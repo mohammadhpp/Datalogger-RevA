@@ -219,6 +219,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=FPKISPNL
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for DATALOGER_final\Design Rule Check - DATALOGER_RevA.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
