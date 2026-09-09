@@ -101,6 +101,30 @@ Last continuity update: 2026-09-09
 - Important audit detail: `R_TOP_B.1` on `USB_OVP_IN` is electrically connected by a same-net track ending on the pad copper edge at approximately `(4865,5090)` while the pad center is `(4895,5090)`. Final Audit v1 initially false-failed because it required a center-coordinate endpoint. Audit v1.1 explicitly recognizes this valid edge-entry geometry.
 - PCB geometry was not changed by the audit.
 
+## Stage 4 — Remaining Power / USB / power-distribution routing — IN PROGRESS
+
+### Stage 4A — raw input nets — PASS
+
+- Script: `T23_RAW_INPUTS_Route_Stage4A_v1`.
+- `BAT_RAW`: `BT1.1 -> F1.2` plus `TP_BAT_RAW`.
+- `USB_VBUS_RAW`: `J1.1 -> S1.3` plus `TP_USB_RAW`.
+- Added exactly **9 Top-Layer tracks, 0 vias**.
+- Main power paths: 30mil; Test-Point branches: 8mil.
+- Runtime validator: **PASS Stage4A v1** with `BAT_RAW=3 tracks`, `USB_VBUS_RAW=6 tracks`, `0 vias`.
+- User visually inspected and ran DRC; no new errors were reported.
+- DRC remains only the same **3 expected GND Net Antennae**.
+- Saved/checkpointed PCB commit: `8ebe1e27866d6dd677c542ee0ac27950d9b35f3d`.
+
+### Stage 4B — `BAT_FUSED` — NEXT
+
+- Prepared script: `T23_BAT_FUSED_Route_Stage4B_v1`.
+- Scope is deliberately limited to `BAT_FUSED`: `F1.1 -> S1.1` plus `TP_BAT_FUSED`.
+- Main current path uses 30mil and crosses to Bottom Layer through **two parallel 0.60/0.30 mm vias** near F1.
+- Bottom corridor is intentionally placed around `x=4250 mil`, left of the existing OVP Bottom-layer control routing.
+- Test-point branch remains Top Layer at 8mil.
+- Script verifies the exact Stage 4A baseline before modifying the PCB.
+- No polygon, no component movement, no automatic save; one transaction / one Ctrl+Z rollback.
+
 ## Current DRC status
 
 - No new Clearance violations.
@@ -112,25 +136,20 @@ Last continuity update: 2026-09-09
 
 - Generate machine-readable snapshots from the live Altium PCB object model using `T23_AI_Board_Snapshot_Exporter_v1_2`.
 - Do not build dense routing scripts from stale snapshots.
-- Latest pre-Stage3D2 snapshot: `AI_BOARD_SNAPSHOT_T23_20260909_201501.tsv`.
-- Since Stage 3D2 has been saved after that snapshot, generate a fresh snapshot before the next dense routing block if exact current geometry is needed.
+- Latest live-board snapshot: `AI_BOARD_SNAPSHOT_T23_20260909_211851.tsv`, checkpoint `43dc2296536e46c901f9b7530ecabe9cfe030ac2`.
+- That snapshot is exact after Stage 3D2 / Final OVP Audit and immediately before Stage 4A.
+- Stage 4A geometry is deterministic and saved at `8ebe1e27866d6dd677c542ee0ac27950d9b35f3d`; Stage 4B explicitly validates the expected Stage 4A track counts before execution.
+- Generate another fresh live-board snapshot before the next dense PMUX / power-distribution routing block after Stage 4B.
 
 ## Immediate next action
 
-**Start the next T23 routing block: remaining Power / USB / power-distribution routing.**
-
-Recommended continuation order:
-
-1. Generate a fresh live-board snapshot before dense next-block scripting.
-2. Finish remaining Power / USB / power-distribution routing.
-3. MCU core and local decoupling.
-4. microSD.
-5. RTC.
-6. OLED / SHT3x.
-7. Navigation / Expansion / connectors / miscellaneous remaining nets.
-8. Only after major signal/power routing: create/pour Bottom Layer GND polygon.
-9. Repour, inspect return paths/islands, add GND stitching vias only where justified.
-10. Final DRC / manufacturing-readiness audit.
+1. Run `T23_BAT_FUSED_Route_Stage4B_v1`.
+2. Visually inspect the two power vias near F1 and the Bottom-layer `x≈4250 mil` corridor to S1.1.
+3. Run DRC before saving.
+4. Accept only if there are no new Clearance / Short / Width violations and the report remains the same 3 expected GND Net Antennae.
+5. If PASS: save PCB and run `Git_Save.cmd`.
+6. Then generate a fresh live-board snapshot before routing `BAT_SW / U_PMUX / remaining power-distribution` because that next block is dense.
+7. Continue later with MCU core/local decoupling, microSD, RTC, OLED/SHT3x, Navigation/Expansion/connectors, then final Bottom GND polygon.
 
 ## Physical-routing preferences
 
