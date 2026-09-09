@@ -17,7 +17,8 @@ Read these files before making project decisions:
 2. `AI_CONTINUITY/DECISIONS_AND_CONSTRAINTS.md`
 3. `AI_CONTINUITY/LESSONS_LEARNED.md`
 4. `AI_CONTINUITY/HISTORY.md`
-5. `AI_CONTINUITY/UPDATE_PROTOCOL.md`
+5. `AI_CONTINUITY/CHAT_MANAGEMENT_RULE.md`
+6. `AI_CONTINUITY/UPDATE_PROTOCOL.md`
 
 Then inspect the latest Git commits and the current engineering files relevant to the task.
 
@@ -27,10 +28,13 @@ Then inspect the latest Git commits and the current engineering files relevant t
 - Current major task: **T23 PCB routing**.
 - Routing Stage 1 and Stage 2 v3 have been completed as controlled routing work.
 - Bottom-layer GND polygon is intentionally **not yet the next construction step**; remaining signal/power blocks should be completed first.
-- The project uses Git AutoSave v2.4 dual backup: local backup is required; GitHub is the online secondary backup.
+- Git AutoSave **v2.5** is the standard one-click workflow: `Git_Save.cmd` safely checks/fetches GitHub, fast-forwards safe incoming updates, creates a checkpoint when needed, then synchronizes `localbackup`, GitHub, and tags.
+- Unsafe/diverged Git histories must not be auto-merged because Altium project files include binary formats.
 
 ## Continuity rule
 
 At every meaningful milestone, update `AI_CONTINUITY/CURRENT_HANDOFF.md` in the same Git history as the engineering changes. Append durable decisions/lessons to the other continuity files when they become stable.
+
+The chat-management threshold is approximately **70% of usable conversation context**. Before the chat becomes heavy or continuity degrades, proactively create/update the complete Git handoff and recommend migration to a fresh chat.
 
 Do not rely on chat memory alone for project continuity.
