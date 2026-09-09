@@ -36,6 +36,77 @@ function RunGitOnline([string[]]$GitArgs) {
     return $true
 }
 
+function Sync-FromGitHubSafe {
+    Write-Host "Checking GitHub for incoming updates..." -ForegroundColor Yellow
+
+    & $GitExe -C $Repo fetch $OnlineRemote --prune --tags
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "WARN: GitHub fetch failed. Continuing with local backup protection." -ForegroundColor Yellow
+        return $false
+    }
+
+    $remoteRef = "$OnlineRemote/$Branch"
+    $localHead = (& $GitExe -C $Repo rev-parse HEAD).Trim()
+    if ($LASTEXITCODE -ne 0) { Fail "Cannot read local HEAD." }
+
+    $remoteHead = (& $GitExe -C $Repo rev-parse $remoteRef).Trim()
+    if ($LASTEXITCODE -ne 0) { Fail "Cannot read $remoteRef after fetch." }
+
+    if ($localHead -eq $remoteHead) {
+        Write-Host "GitHub is already aligned with local HEAD." -ForegroundColor DarkGray
+        return $true
+    }
+
+    & $GitExe -C $Repo merge-base --is-ancestor HEAD $remoteRef
+    $localIsAncestor = $LASTEXITCODE
+
+    if ($localIsAncestor -eq 0) {
+        $statusBeforeSync = @(& $GitExe -C $Repo status --porcelain)
+        if ($LASTEXITCODE -ne 0) { Fail "Cannot read working tree before GitHub fast-forward." }
+
+        $stashCreated = $false
+        if ($statusBeforeSync.Count -gt 0) {
+            $stashStamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
+            Write-Host "Temporarily protecting local edits before GitHub fast-forward..." -ForegroundColor Yellow
+            & $GitExe -C $Repo stash push --include-untracked -m "Git_Save v2.5 pre-sync $stashStamp"
+            if ($LASTEXITCODE -ne 0) {
+                Fail "Could not protect local edits before GitHub synchronization."
+            }
+            $stashCreated = $true
+        }
+
+        Write-Host "Fast-forwarding local main from GitHub..." -ForegroundColor Yellow
+        RunGitRequired @('merge', '--ff-only', $remoteRef)
+
+        if ($stashCreated) {
+            Write-Host "Restoring protected local edits..." -ForegroundColor Yellow
+            & $GitExe -C $Repo stash pop
+            if ($LASTEXITCODE -ne 0) {
+                Fail "GitHub fast-forward completed, but restoring local edits caused a conflict. Git stopped safely; resolve the working tree before continuing."
+            }
+        }
+
+        Write-Host "Incoming GitHub updates integrated safely." -ForegroundColor Green
+        return $true
+    }
+    elseif ($localIsAncestor -ne 1) {
+        Fail "Could not compare local HEAD with GitHub."
+    }
+
+    & $GitExe -C $Repo merge-base --is-ancestor $remoteRef HEAD
+    $remoteIsAncestor = $LASTEXITCODE
+
+    if ($remoteIsAncestor -eq 0) {
+        Write-Host "Local main is ahead of GitHub; it will be pushed after checkpointing." -ForegroundColor DarkGray
+        return $true
+    }
+    elseif ($remoteIsAncestor -ne 1) {
+        Fail "Could not compare GitHub with local HEAD."
+    }
+
+    Fail "Local main and GitHub main have diverged. Automatic merge is intentionally blocked to protect Altium/binary project files. Resolve the divergence once, then Git_Save.cmd will resume one-click operation."
+}
+
 function Sync-Backups {
     Write-Host "Synchronizing local backup..." -ForegroundColor Yellow
     RunGitRequired @('push', $LocalRemote, $Branch)
@@ -52,8 +123,8 @@ function Sync-Backups {
 }
 
 Write-Host "============================================" -ForegroundColor Cyan
-Write-Host " Datalogger - ONE CLICK Git AutoSave v2.4" -ForegroundColor Cyan
-Write-Host "        Local + GitHub Dual Backup" -ForegroundColor Cyan
+Write-Host " Datalogger - ONE CLICK Git AutoSave v2.5" -ForegroundColor Cyan
+Write-Host "   Auto Pull + Commit + Dual Backup + Tags" -ForegroundColor Cyan
 Write-Host "============================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -79,15 +150,18 @@ if ($remotes -notcontains $OnlineRemote) {
     Fail "Required remote '$OnlineRemote' is missing."
 }
 
+$githubFetchOk = Sync-FromGitHubSafe
+Write-Host ""
+
 $statusLines = @(& $GitExe -C $Repo status --porcelain)
 if ($LASTEXITCODE -ne 0) { Fail "Cannot read repository status." }
 
 if ($statusLines.Count -eq 0) {
-    Write-Host "No changes detected." -ForegroundColor Yellow
+    Write-Host "No local changes detected." -ForegroundColor Yellow
     $githubOk = Sync-Backups
     Write-Host ""
     if ($githubOk) {
-        Write-Host "PASS: Working tree clean; localbackup and GitHub synchronized." -ForegroundColor Green
+        Write-Host "PASS: Local repo, localbackup, GitHub and tags are synchronized." -ForegroundColor Green
     }
     else {
         Write-Host "PARTIAL PASS: Local backup is safe; GitHub synchronization needs attention." -ForegroundColor Yellow
@@ -137,7 +211,7 @@ if ($cachedExit -eq 0) {
     $githubOk = Sync-Backups
     Write-Host ""
     if ($githubOk) {
-        Write-Host "PASS: Both backups synchronized." -ForegroundColor Green
+        Write-Host "PASS: Local repo, localbackup, GitHub and tags are synchronized." -ForegroundColor Green
     }
     else {
         Write-Host "PARTIAL PASS: Local backup is safe; GitHub synchronization needs attention." -ForegroundColor Yellow
@@ -157,7 +231,7 @@ RunGitRequired @('log', '-1', '--oneline', '--decorate')
 
 Write-Host ""
 if ($githubOk) {
-    Write-Host "PASS: Changes committed and backed up to localbackup + GitHub." -ForegroundColor Green
+    Write-Host "PASS: One-click sync complete: local repo + localbackup + GitHub + tags." -ForegroundColor Green
 }
 else {
     Write-Host "PARTIAL PASS: Changes committed and backed up locally; GitHub synchronization needs attention." -ForegroundColor Yellow
