@@ -1,0 +1,61 @@
+# Project History — Datalogger RevA
+
+This is a compact milestone history, not a replacement for Git commit history.
+
+## T20 — controlled BOM / connector baseline
+
+- Approved OLED high-frequency decoupling correction: `C_OLED_HF = 100 nF` (`CL10B104KB8NNNC`) on `OLED_VDD`.
+- Selected internal SHT3x PCB connector: 6-pin straight male 2.54 mm 2510-style THT.
+- Kept the external metal/military-style panel connector as a separate interface.
+- Established requirement to expose/label the six connector pin names for continuity testing and manual assembly.
+
+## T21 — expansion / interface architecture
+
+- Expanded the design for additional external sensing/control use cases.
+- Considered light, CO2, CO, city-gas/gas-detector paths and external IoT/SIM-type modules.
+- Reinforced manual-assembly silkscreen requirements and 100 mil schematic grid discipline.
+
+## T22 — footprint / physical-interface audit
+
+- Audited project warnings, PCB-mounted vs off-board parts, and connector completeness.
+- Verified the need for PCB-side sockets/connectors for all off-board devices.
+- Established explicit Pad-number vs Pin-designator verification before footprint assignment/ECO.
+- ECO/compile reached clean execution after footprint corrections.
+- Identified that prior ZIP handoffs were not sufficient as the only AI-continuity mechanism.
+
+## T23 — PCB routing
+
+- Began controlled block-by-block routing on the 2-layer PCB.
+- Routing Stage 1 completed.
+- Routing Stage 2 v3 completed.
+- Handoff lineage records 48 tracks + 3 GND vias at that checkpoint.
+- User requested more assembly/rework room around `U_SYS` and less crowding of thick tracks at IC pins.
+- Corrected routing sequence decision: remaining signal/power blocks should be completed before the final Bottom Layer GND polygon.
+
+## Git / backup evolution
+
+### Local Git baseline
+
+- Working repo established at `C:\#MHP FILES\DataLoger` on branch `main`.
+- Local bare backup established at `C:\#MHP FILES\GitRepos\DataLoger.git` as remote `localbackup`.
+- AutoSave workflow was developed to create automatic checkpoint commits and push to the local bare backup.
+
+### Private GitHub integration — 2026-09-09
+
+- Private repo connected: `mohammadhpp/Datalogger-RevA`.
+- Existing Git history pushed to GitHub.
+- GitHub configured as remote `github` without replacing `localbackup/main` as the tracked upstream.
+- Git AutoSave upgraded to v2.4 dual backup.
+- Verified end-to-end synchronization to both localbackup and GitHub.
+- Historical tag `baseline-2026-08-26` synchronized to GitHub.
+
+### AI continuity layer — 2026-09-09
+
+- Added Git-tracked continuity documentation:
+  - `AI_START_HERE.md`
+  - `AI_CONTINUITY/CURRENT_HANDOFF.md`
+  - `AI_CONTINUITY/DECISIONS_AND_CONSTRAINTS.md`
+  - `AI_CONTINUITY/LESSONS_LEARNED.md`
+  - `AI_CONTINUITY/HISTORY.md`
+  - `AI_CONTINUITY/UPDATE_PROTOCOL.md`
+- Goal: make the project resumable from Git even if chat context is unavailable or a different AI/session is used.
