@@ -9,7 +9,17 @@ Last continuity update: 2026-09-09
 - Local bare backup remote: `localbackup` -> `C:\#MHP FILES\GitRepos\DataLoger.git`.
 - Online remote: `github` -> `https://github.com/mohammadhpp/Datalogger-RevA.git`.
 - `main` remains upstream-tracked to `localbackup/main`; GitHub is intentionally a second remote, not the upstream replacement.
-- `Git_Save.ps1` is v2.4 dual-backup. Local backup failure is fatal; GitHub sync failure should warn without destroying the local checkpoint.
+- `Git_Save.cmd` / `Git_Save.ps1` standard is now **v2.5 one-click sync**.
+- Normal user workflow: run `Git_Save.cmd` only. It checks/fetches GitHub, safely fast-forwards incoming non-diverged updates, checkpoints local changes if present, then synchronizes `localbackup`, GitHub, and tags.
+- If local and GitHub histories truly diverge, the script must stop rather than auto-merge Altium/binary project files.
+- Local backup remains the required safety path; GitHub is the online continuity/secondary backup path.
+
+## Chat continuity management
+
+- Long-project chat threshold: approximately **70% of usable conversation context**.
+- Before the chat becomes heavy or continuity degrades, proactively warn the user, update the Git handoff/continuity files, and recommend continuing in a fresh chat.
+- Do not wait for the user to detect degraded context quality.
+- New sessions must begin from `AI_START_HERE.md` and follow its required read order.
 
 ## CURRENT EXACT POINT
 
