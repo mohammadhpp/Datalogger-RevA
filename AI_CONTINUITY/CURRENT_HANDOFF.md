@@ -68,33 +68,41 @@ Last continuity update: 2026-09-09
 ### Snapshot discipline
 
 - Machine-readable board snapshots are generated from the live Altium PCB object model with `T23_AI_Board_Snapshot_Exporter_v1_2`.
-- Existing snapshot `AI_BOARD_SNAPSHOT_T23_20260909_163016.tsv` predates the user's final manual OVP_BASE correction.
-- **Before building Stage 3C2 OVP_GATE, generate and sync a fresh snapshot so routing scripts use the current accepted geometry.**
+- Current live snapshot for Stage 3C2 is `AI_BOARD_SNAPSHOT_T23_20260909_191417.tsv`.
+- This snapshot includes the accepted manually corrected OVP_BASE geometry.
 - Do not build new dense routing scripts from stale snapshots.
+
+### Stage 3C2 — OVP_GATE — ROUTING GEOMETRY ACCEPTED; SCRIPT FALSE-FAIL IDENTIFIED
+
+- Script used: `T23_OVP_GATE_Route_Stage3C2_v1`.
+- Intended topology: 6 OVP_GATE pads, 8mil control routing, 4 vias, Bottom-layer control spine with Top re-entry at local nodes.
+- Runtime popup reported `FAIL Stage3C2 v1`, but this was identified as a **validation-count bug in the script**, not a routing failure.
+- The script actually contains **14 AddTrack calls**, while its final validation condition incorrectly expects `GAddedTracks = 15`.
+- Therefore the FAIL popup is a deterministic false negative when the rest of the read-back succeeds.
+- User's post-route DRC shows **no new Clearance, Short-Circuit, or Width violations**; only the same 3 pre-existing GND Net Antennae remain.
+- The 4 OVP_GATE vias therefore do not create new DRC violations and the routed geometry is acceptable pending save/checkpoint.
+- **Do not Ctrl+Z solely because of the Stage3C2 v1 FAIL popup.**
 
 ### Remaining OVP work
 
-Next controlled substage:
-
-- **Stage 3C2 — OVP_GATE**
-
-Then:
+Next controlled substage after saving/checkpointing Stage 3C2:
 
 - **Stage 3D — OVP_REF / OVP_K / NetR_K1_1 / NetR_K2_1 and associated K-chain / divider routing**
 - OVP block audit + DRC.
 
 ### High-level continuation order
 
-1. Complete OVP Stage 3C2 and 3D.
-2. Finish remaining Power / USB / OVP and power-distribution routing.
-3. MCU core and local decoupling.
-4. microSD.
-5. RTC.
-6. OLED / SHT3x.
-7. Navigation / Expansion / connectors and remaining miscellaneous nets.
-8. Only after major signal/power routing is complete: create/pour Bottom Layer GND polygon.
-9. Repour, inspect return paths/islands, add GND stitching vias only where justified.
-10. Final DRC / manufacturing-readiness audit.
+1. Save/checkpoint Stage 3C2 OVP_GATE.
+2. Complete Stage 3D OVP_REF / OVP_K / K-chain.
+3. Finish remaining Power / USB / OVP and power-distribution routing.
+4. MCU core and local decoupling.
+5. microSD.
+6. RTC.
+7. OLED / SHT3x.
+8. Navigation / Expansion / connectors and remaining miscellaneous nets.
+9. Only after major signal/power routing is complete: create/pour Bottom Layer GND polygon.
+10. Repour, inspect return paths/islands, add GND stitching vias only where justified.
+11. Final DRC / manufacturing-readiness audit.
 
 ## Current physical-routing preference
 
@@ -108,4 +116,4 @@ The three existing GND vias currently appear as `Net Antennae` before the final 
 
 ## Next AI action
 
-Wait for a fresh live-board snapshot generated after commit `41c59d9`. Then inspect the current OVP_BASE / USB power / nearby Top+Bottom track geometry and build the controlled **Stage 3C2 OVP_GATE** routing script from that fresh snapshot. Keep exact pad/net verification, no component movement, no polygon, no auto-save, one-transaction undo, visual inspection and DRC before checkpointing.
+After the user saves the accepted Stage 3C2 OVP_GATE geometry and runs `Git_Save.cmd`, verify the checkpoint from GitHub. Then use a fresh live-board snapshot if any manual geometry changes occur; otherwise proceed to **Stage 3D OVP_REF / OVP_K / K-chain routing**. Future script validators must count actual AddTrack calls correctly and should prefer topology/read-back checks over brittle exact track-count assumptions.
