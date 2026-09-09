@@ -35,6 +35,14 @@ Last continuity update: 2026-09-09
 - Known routed/control nets in this phase include: `NetL1_1`, `NetL1_2`, `VIN_MUX`, `MODE_PFM`, `FB_3V3`, `3V3_SYS`, and GND-related vias.
 - Bottom GND polygon has not been created/poured as the final ground-plane solution yet.
 
+### Checkpoint DRC status — PASS with expected intermediate warnings
+
+- Checkpoint DRC after Stage 1 + Stage 2 v3 has been run by the user.
+- Result: **only 3 `Net Antennae` violations**.
+- No reported Clearance, Short-Circuit, Width, Hole Size, Minimum Solder Mask Sliver, Component Clearance, or other unexpected routing violations.
+- The 3 Net Antennae correspond to the existing GND vias before the final GND polygon and are acceptable at this intermediate stage.
+- Therefore Stage 1 + Stage 2 v3 routing checkpoint is considered **PASS**.
+
 ### Important correction to prior sequence
 
 Do **not** proceed directly from Stage 2 to the Bottom Layer GND Polygon.
@@ -43,19 +51,18 @@ The board still has additional signal/power blocks to complete. Pouring the fina
 
 ### Correct next sequence
 
-1. Run a checkpoint DRC to confirm Stage 1 + Stage 2 routing did not introduce real clearance/short/width errors.
-2. Treat unrouted-net violations from untouched blocks as expected at this stage.
-3. Complete remaining signal and power routing block-by-block.
-4. Recommended priority:
+1. **Checkpoint DRC completed: PASS except 3 expected GND Net Antennae.**
+2. Complete remaining signal and power routing block-by-block.
+3. Recommended priority:
    - Remaining Power / USB / OVP and power-distribution routing.
    - MCU core and local decoupling routing.
    - microSD.
    - RTC.
    - OLED / SHT3x.
    - Navigation / Expansion / connectors and remaining miscellaneous nets.
-5. Only after major signal/power routing is complete: create/pour Bottom Layer GND polygon.
-6. Repour, inspect return paths/islands, add GND stitching vias only where justified.
-7. Final DRC / manufacturing-readiness audit.
+4. Only after major signal/power routing is complete: create/pour Bottom Layer GND polygon.
+5. Repour, inspect return paths/islands, add GND stitching vias only where justified.
+6. Final DRC / manufacturing-readiness audit.
 
 ## Current physical-routing preference
 
@@ -65,8 +72,8 @@ The board still has additional signal/power blocks to complete. Pouring the fina
 
 ## DRC interpretation note
 
-The three existing GND vias may appear as `Net Antennae` before the final GND polygon is present. Do not force an early polygon solely to silence those warnings.
+The three existing GND vias currently appear as `Net Antennae` before the final GND polygon is present. Do not force an early polygon solely to silence those warnings.
 
 ## Next AI action
 
-Before instructing new routing, inspect the latest `DATALOGER_RevA.PcbDoc` / project state and identify the next unfinished block. Continue block-by-block and record completion here at each meaningful checkpoint.
+Begin the next routing block: **remaining Power / USB / OVP and power-distribution routing**. Inspect the latest `DATALOGER_RevA.PcbDoc` / project state before giving exact track-by-track instructions. Continue block-by-block and record completion here at each meaningful checkpoint.
