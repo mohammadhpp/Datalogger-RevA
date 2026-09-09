@@ -1,10 +1,11 @@
-﻿param()
+param()
 
 $ErrorActionPreference = "Stop"
 
-$Repo   = 'C:\#MHP FILES\DataLoger'
-$Remote = 'localbackup'
-$Branch = 'main'
+$Repo         = 'C:\#MHP FILES\DataLoger'
+$LocalRemote  = 'localbackup'
+$OnlineRemote = 'github'
+$Branch       = 'main'
 
 function Fail([string]$Message) {
     Write-Host ""
@@ -19,15 +20,40 @@ if (-not $gitCommand) {
 }
 $GitExe = $gitCommand.Source
 
-function RunGit([string[]]$GitArgs) {
+function RunGitRequired([string[]]$GitArgs) {
     & $GitExe -C $Repo @GitArgs
     if ($LASTEXITCODE -ne 0) {
         Fail ("git " + ($GitArgs -join " "))
     }
 }
 
+function RunGitOnline([string[]]$GitArgs) {
+    & $GitExe -C $Repo @GitArgs
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "WARN: GitHub synchronization failed: git $($GitArgs -join ' ')" -ForegroundColor Yellow
+        return $false
+    }
+    return $true
+}
+
+function Sync-Backups {
+    Write-Host "Synchronizing local backup..." -ForegroundColor Yellow
+    RunGitRequired @('push', $LocalRemote, $Branch)
+    RunGitRequired @('push', $LocalRemote, '--tags')
+
+    Write-Host "Synchronizing GitHub backup..." -ForegroundColor Yellow
+    $githubBranchOk = RunGitOnline @('push', $OnlineRemote, $Branch)
+    $githubTagsOk   = RunGitOnline @('push', $OnlineRemote, '--tags')
+
+    if ($githubBranchOk -and $githubTagsOk) {
+        return $true
+    }
+    return $false
+}
+
 Write-Host "============================================" -ForegroundColor Cyan
-Write-Host " Datalogger - ONE CLICK Git AutoSave v2.3" -ForegroundColor Cyan
+Write-Host " Datalogger - ONE CLICK Git AutoSave v2.4" -ForegroundColor Cyan
+Write-Host "        Local + GitHub Dual Backup" -ForegroundColor Cyan
 Write-Host "============================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -46,8 +72,11 @@ if ($currentBranch -ne $Branch) {
 
 $remotes = @(& $GitExe -C $Repo remote)
 if ($LASTEXITCODE -ne 0) { Fail "Cannot read Git remotes." }
-if ($remotes -notcontains $Remote) {
-    Fail "Remote '$Remote' is missing."
+if ($remotes -notcontains $LocalRemote) {
+    Fail "Required remote '$LocalRemote' is missing."
+}
+if ($remotes -notcontains $OnlineRemote) {
+    Fail "Required remote '$OnlineRemote' is missing."
 }
 
 $statusLines = @(& $GitExe -C $Repo status --porcelain)
@@ -55,11 +84,14 @@ if ($LASTEXITCODE -ne 0) { Fail "Cannot read repository status." }
 
 if ($statusLines.Count -eq 0) {
     Write-Host "No changes detected." -ForegroundColor Yellow
-    Write-Host "Synchronizing localbackup..." -ForegroundColor Yellow
-    RunGit @('push', $Remote, $Branch)
-    RunGit @('push', $Remote, '--tags')
+    $githubOk = Sync-Backups
     Write-Host ""
-    Write-Host "PASS: Working tree clean; localbackup synchronized." -ForegroundColor Green
+    if ($githubOk) {
+        Write-Host "PASS: Working tree clean; localbackup and GitHub synchronized." -ForegroundColor Green
+    }
+    else {
+        Write-Host "PARTIAL PASS: Local backup is safe; GitHub synchronization needs attention." -ForegroundColor Yellow
+    }
     exit 0
 }
 
@@ -95,31 +127,39 @@ Write-Host "Automatic commit:" -ForegroundColor Cyan
 Write-Host "  $commitMessage"
 Write-Host ""
 
-RunGit @('add', '-A')
+RunGitRequired @('add', '-A')
 
 & $GitExe -C $Repo diff --cached --quiet
 $cachedExit = $LASTEXITCODE
 
 if ($cachedExit -eq 0) {
-    Write-Host "No staged content after git add. Synchronizing backup only." -ForegroundColor Yellow
-    RunGit @('push', $Remote, $Branch)
-    RunGit @('push', $Remote, '--tags')
+    Write-Host "No staged content after git add. Synchronizing backups only." -ForegroundColor Yellow
+    $githubOk = Sync-Backups
     Write-Host ""
-    Write-Host "PASS." -ForegroundColor Green
+    if ($githubOk) {
+        Write-Host "PASS: Both backups synchronized." -ForegroundColor Green
+    }
+    else {
+        Write-Host "PARTIAL PASS: Local backup is safe; GitHub synchronization needs attention." -ForegroundColor Yellow
+    }
     exit 0
 }
-elseif ($cachedExit -ne 1) {
+elif ($cachedExit -ne 1) {
     Fail "Could not verify staged changes."
 }
 
-RunGit @('commit', '-m', $commitMessage)
-RunGit @('push', $Remote, $Branch)
-RunGit @('push', $Remote, '--tags')
+RunGitRequired @('commit', '-m', $commitMessage)
+$githubOk = Sync-Backups
 
 Write-Host ""
 Write-Host "Latest checkpoint:" -ForegroundColor Yellow
-RunGit @('log', '-1', '--oneline', '--decorate')
+RunGitRequired @('log', '-1', '--oneline', '--decorate')
 
 Write-Host ""
-Write-Host "PASS: Changes committed and backed up automatically." -ForegroundColor Green
+if ($githubOk) {
+    Write-Host "PASS: Changes committed and backed up to localbackup + GitHub." -ForegroundColor Green
+}
+else {
+    Write-Host "PARTIAL PASS: Changes committed and backed up locally; GitHub synchronization needs attention." -ForegroundColor Yellow
+}
 exit 0
