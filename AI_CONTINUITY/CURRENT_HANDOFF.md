@@ -31,38 +31,46 @@ Last continuity update: 2026-09-09
 
 - Routing Stage 1: completed.
 - Routing Stage 2 v3: completed.
-- Controlled routing count recorded in the handoff lineage: **48 tracks + 3 GND vias**.
-- Known routed/control nets in this phase include: `NetL1_1`, `NetL1_2`, `VIN_MUX`, `MODE_PFM`, `FB_3V3`, `3V3_SYS`, and GND-related vias.
+- Controlled routing count before Stage 3: **48 tracks + 3 GND vias**.
+- Known routed/control nets in earlier phases include: `NetL1_1`, `NetL1_2`, `VIN_MUX`, `MODE_PFM`, `FB_3V3`, `3V3_SYS`, and GND-related vias.
 - Bottom GND polygon has not been created/poured as the final ground-plane solution yet.
 
 ### Checkpoint DRC status — PASS with expected intermediate warnings
 
-- Checkpoint DRC after Stage 1 + Stage 2 v3 has been run by the user.
+- Checkpoint DRC after Stage 1 + Stage 2 v3 was run by the user.
 - Result: **only 3 `Net Antennae` violations**.
 - No reported Clearance, Short-Circuit, Width, Hole Size, Minimum Solder Mask Sliver, Component Clearance, or other unexpected routing violations.
 - The 3 Net Antennae correspond to the existing GND vias before the final GND polygon and are acceptable at this intermediate stage.
-- Therefore Stage 1 + Stage 2 v3 routing checkpoint is considered **PASS**.
+- Therefore Stage 1 + Stage 2 v3 routing checkpoint is **PASS**.
+
+### Stage 3A — USB_OVP_IN routing — PASS
+
+- Script used: `T23_USB_OVP_IN_Route_v1`.
+- Runtime script result reported: **PASS v1**.
+- Added exactly **21 Top-Layer tracks, 0 vias** on `USB_OVP_IN`.
+- Main power path uses **30 mil**; fine-pitch/sensing branches use **8 mil**.
+- No components were moved and no polygon was added.
+- User supplied visual screenshots after routing; route was visually acceptable for the intended Stage 3 geometry.
+- User then ran DRC after this routing stage.
+- DRC result remained **only the same 3 pre-existing GND `Net Antennae`**; no new Clearance/Short/Width or other violations were reported.
+- Therefore `USB_OVP_IN` routing is **PASS** and may be saved/checkpointed.
 
 ### Important correction to prior sequence
 
-Do **not** proceed directly from Stage 2 to the Bottom Layer GND Polygon.
+Do **not** proceed directly to the Bottom Layer GND Polygon.
 
 The board still has additional signal/power blocks to complete. Pouring the final polygon too early would create unnecessary repours, obscure ratsnest visibility, complicate routing decisions, and can hide return-path problems until later.
 
 ### Correct next sequence
 
-1. **Checkpoint DRC completed: PASS except 3 expected GND Net Antennae.**
-2. Complete remaining signal and power routing block-by-block.
-3. Recommended priority:
-   - Remaining Power / USB / OVP and power-distribution routing.
-   - MCU core and local decoupling routing.
-   - microSD.
-   - RTC.
-   - OLED / SHT3x.
-   - Navigation / Expansion / connectors and remaining miscellaneous nets.
-4. Only after major signal/power routing is complete: create/pour Bottom Layer GND polygon.
-5. Repour, inspect return paths/islands, add GND stitching vias only where justified.
-6. Final DRC / manufacturing-readiness audit.
+1. Stage 1 + Stage 2 checkpoint DRC: **PASS except 3 expected GND Net Antennae**.
+2. Stage 3A `USB_OVP_IN`: **PASS, 21 tracks / 0 vias, DRC clean except same 3 GND Net Antennae**.
+3. Next: route **`USB_VBUS_PROT`** as the next controlled Power / USB / OVP substage.
+4. Continue remaining Power / USB / OVP and power-distribution routing.
+5. Then continue MCU core/decoupling, microSD, RTC, OLED/SHT3x, Navigation/Expansion/connectors and miscellaneous nets.
+6. Only after major signal/power routing is complete: create/pour Bottom Layer GND polygon.
+7. Repour, inspect return paths/islands, add GND stitching vias only where justified.
+8. Final DRC / manufacturing-readiness audit.
 
 ## Current physical-routing preference
 
@@ -76,4 +84,4 @@ The three existing GND vias currently appear as `Net Antennae` before the final 
 
 ## Next AI action
 
-Begin the next routing block: **remaining Power / USB / OVP and power-distribution routing**. Inspect the latest `DATALOGER_RevA.PcbDoc` / project state before giving exact track-by-track instructions. Continue block-by-block and record completion here at each meaningful checkpoint.
+Build and validate the next controlled routing script for **`USB_VBUS_PROT`**, using the latest authoritative PCB geometry. Keep the same safety discipline: exact pad/net verification, no component movement, no polygon, no auto-save, one-transaction undo, visual inspection and DRC before checkpointing.
