@@ -115,15 +115,30 @@ Last continuity update: 2026-09-09
 - DRC remains only the same **3 expected GND Net Antennae**.
 - Saved/checkpointed PCB commit: `8ebe1e27866d6dd677c542ee0ac27950d9b35f3d`.
 
-### Stage 4B — `BAT_FUSED` — NEXT
+### Stage 4B — `BAT_FUSED` — PASS
 
-- Prepared script: `T23_BAT_FUSED_Route_Stage4B_v1`.
-- Scope is deliberately limited to `BAT_FUSED`: `F1.1 -> S1.1` plus `TP_BAT_FUSED`.
+- Script: `T23_BAT_FUSED_Route_Stage4B_v1`.
+- Scope: `F1.1 -> S1.1` plus `TP_BAT_FUSED`.
 - Main current path uses 30mil and crosses to Bottom Layer through **two parallel 0.60/0.30 mm vias** near F1.
-- Bottom corridor is intentionally placed around `x=4250 mil`, left of the existing OVP Bottom-layer control routing.
+- Bottom corridor is intentionally around `x=4250 mil`, left of existing OVP Bottom-layer control routing.
 - Test-point branch remains Top Layer at 8mil.
-- Script verifies the exact Stage 4A baseline before modifying the PCB.
+- Runtime validator: **PASS Stage4B v1** with `BAT_FUSED=10 tracks`, `2 vias`.
+- User visually inspected the route and confirmed DRC clean except the same 3 expected GND Net Antennae.
+- Saved/checkpointed PCB commit: `4b250d7e96431e2848664e4b8ac40e0a40009033`.
+- Fresh post-Stage4B live-board snapshot: `AI_BOARD_SNAPSHOT_T23_20260909_221347.tsv`, checkpoint `7ae6699defdd9796497cc37304240672d975bab6`.
+- Snapshot independently shows the accepted Bottom BAT_FUSED corridor and exactly 2 BAT_FUSED vias.
+
+### Stage 4C — `BAT_SW` — NEXT
+
+- Prepared script: `T23_BAT_SW_Route_Stage4C_v1`.
+- Exact live baseline: `AI_BOARD_SNAPSHOT_T23_20260909_221347.tsv`.
+- Scope is deliberately limited to `BAT_SW`: `S1.2 -> C1.1 -> U_PMUX.6` plus `TP_BAT_SW`.
+- Main input path stays 30mil through S1/C1, then drops to Bottom Layer to avoid dense Top copper around U_PMUX.
+- A controlled 0.60/0.30 mm via near `U_PMUX.6` feeds a very short 8mil fine-pitch neck-down into the PMUX pad.
+- TP branch remains low-current 8mil on Bottom until safely right of the existing `USB_VBUS_PROT` Bottom route, then returns Top near `TP_BAT_SW`.
+- Expected addition: **9 tracks + 3 vias** on `BAT_SW`.
 - No polygon, no component movement, no automatic save; one transaction / one Ctrl+Z rollback.
+- `VIN_MUX` PMUX connection is intentionally deferred to Stage 4D so Stage 4C has its own DRC checkpoint.
 
 ## Current DRC status
 
@@ -136,19 +151,17 @@ Last continuity update: 2026-09-09
 
 - Generate machine-readable snapshots from the live Altium PCB object model using `T23_AI_Board_Snapshot_Exporter_v1_2`.
 - Do not build dense routing scripts from stale snapshots.
-- Latest live-board snapshot: `AI_BOARD_SNAPSHOT_T23_20260909_211851.tsv`, checkpoint `43dc2296536e46c901f9b7530ecabe9cfe030ac2`.
-- That snapshot is exact after Stage 3D2 / Final OVP Audit and immediately before Stage 4A.
-- Stage 4A geometry is deterministic and saved at `8ebe1e27866d6dd677c542ee0ac27950d9b35f3d`; Stage 4B explicitly validates the expected Stage 4A track counts before execution.
-- Generate another fresh live-board snapshot before the next dense PMUX / power-distribution routing block after Stage 4B.
+- Current exact live-board snapshot: `AI_BOARD_SNAPSHOT_T23_20260909_221347.tsv`, checkpoint `7ae6699defdd9796497cc37304240672d975bab6`.
+- This snapshot was generated after Stage 4B had been saved and is the authoritative geometry baseline for Stage 4C.
 
 ## Immediate next action
 
-1. Run `T23_BAT_FUSED_Route_Stage4B_v1`.
-2. Visually inspect the two power vias near F1 and the Bottom-layer `x≈4250 mil` corridor to S1.1.
+1. Run `T23_BAT_SW_Route_Stage4C_v1`.
+2. Visually inspect the Bottom 30mil BAT_SW feed, the via/8mil neck-down immediately at `U_PMUX.6`, and the low-current TP branch.
 3. Run DRC before saving.
 4. Accept only if there are no new Clearance / Short / Width violations and the report remains the same 3 expected GND Net Antennae.
 5. If PASS: save PCB and run `Git_Save.cmd`.
-6. Then generate a fresh live-board snapshot before routing `BAT_SW / U_PMUX / remaining power-distribution` because that next block is dense.
+6. Then continue Stage 4D with the remaining `VIN_MUX / U_PMUX` power-distribution connection from the latest saved geometry.
 7. Continue later with MCU core/local decoupling, microSD, RTC, OLED/SHT3x, Navigation/Expansion/connectors, then final Bottom GND polygon.
 
 ## Physical-routing preferences
