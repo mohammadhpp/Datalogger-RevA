@@ -26,44 +26,50 @@ These are project-specific lessons intended to prevent repeated mistakes across 
    - GND vias may appear as Net Antennae before the intended GND polygon exists.
    - Do not distort the routing sequence only to make an intermediate DRC report cosmetically clean.
 
+6. **Do not equate pad-center endpoints with electrical connectivity.**
+   - A routed track may legitimately terminate on the copper edge of a pad instead of its geometric center.
+   - Stage 3 Final OVP Audit v1 false-failed `R_TOP_B.1` because it required an endpoint at the pad center `(4895,5090)` even though the same-net track validly entered the pad at approximately `(4865,5090)`.
+   - Future audit scripts should prefer actual Altium connectivity/geometry-overlap evidence, or explicitly support verified pad-edge entry, instead of using center-coordinate equality as the only connectivity test.
+   - DRC plus live-board connectivity should outrank brittle coordinate heuristics.
+
 ## Schematic / library / ECO
 
-6. **Pad numbers must match schematic pin designators.**
+7. **Pad numbers must match schematic pin designators.**
    - Before assigning/replacing footprints, verify physical pad numbering against the schematic pins and selected connector/part drawing.
    - A visually correct footprint with wrong pad numbering is unacceptable.
 
-7. **Do not move schematic architecture merely to solve a footprint-management problem.**
+8. **Do not move schematic architecture merely to solve a footprint-management problem.**
    - Prefer deliberate footprint assignment and mapping verification over unnecessary schematic rearrangement.
 
-8. **Off-board symbols still require explicit PCB hardware.**
+9. **Off-board symbols still require explicit PCB hardware.**
    - A logical off-board device without a deliberate board-side connector is an incomplete design.
 
 ## Git / AI continuity
 
-9. **Chat history is not a reliable project database.**
-   - Stable design decisions, exact current point, and lessons must live in Git.
+10. **Chat history is not a reliable project database.**
+    - Stable design decisions, exact current point, and lessons must live in Git.
 
-10. **A ZIP handoff alone is insufficient for day-to-day continuity.**
+11. **A ZIP handoff alone is insufficient for day-to-day continuity.**
     - Git history plus a concise current handoff is superior for identifying what changed and why.
     - Full offline ZIPs remain valuable for disaster recovery and migration.
 
-11. **Do not replace the known-good local backup architecture when adding cloud backup.**
+12. **Do not replace the known-good local backup architecture when adding cloud backup.**
     - Preserve `localbackup` as the required upstream/rollback path.
     - Add GitHub as a second remote.
 
-12. **Online failure must not invalidate a valid local checkpoint.**
-    - AutoSave v2.4 treats local backup as required and GitHub sync as secondary.
+13. **Online failure must not invalidate a valid local checkpoint.**
+    - AutoSave treats local backup as required and GitHub sync as secondary.
     - Loss of internet should produce a warning, not destroy local continuity.
 
-13. **Before continuing from a new AI/session, verify the repo itself.**
+14. **Before continuing from a new AI/session, verify the repo itself.**
     - Read `AI_START_HERE.md` and continuity files.
     - Inspect latest commits and the current engineering file state instead of trusting an old chat summary blindly.
 
 ## Collaboration workflow
 
-14. **Routine screenshots are not mandatory.**
+15. **Routine screenshots are not mandatory.**
     - Proceed from verified files and known state for ordinary steps.
     - Ask/use screenshots when the user is unsure, when visual placement/routing verification is needed, or when the file state cannot answer the question reliably.
 
-15. **When a sequence recommendation is found to be suboptimal, correct it explicitly in the handoff.**
+16. **When a sequence recommendation is found to be suboptimal, correct it explicitly in the handoff.**
     - Do not silently carry a bad next-step recommendation into future sessions.
