@@ -144,7 +144,7 @@ if ($cachedExit -eq 0) {
     }
     exit 0
 }
-elif ($cachedExit -ne 1) {
+elseif ($cachedExit -ne 1) {
     Fail "Could not verify staged changes."
 }
 
