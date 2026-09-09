@@ -7,9 +7,10 @@ Purpose: keep project continuity inside Git so a new AI/session can resume accur
 1. Read `AI_START_HERE.md`.
 2. Read `AI_CONTINUITY/CURRENT_HANDOFF.md`.
 3. Read durable decisions and lessons.
-4. Inspect latest Git commits.
-5. Inspect the current engineering files relevant to the requested task.
-6. If any handoff statement conflicts with newer Git/file evidence, newer Git/file evidence wins and the handoff must be corrected.
+4. Read `AI_CONTINUITY/CHAT_MANAGEMENT_RULE.md`.
+5. Inspect latest Git commits.
+6. Inspect the current engineering files relevant to the requested task.
+7. If any handoff statement conflicts with newer Git/file evidence, newer Git/file evidence wins and the handoff must be corrected.
 
 ## At every meaningful milestone
 
@@ -44,6 +45,9 @@ Append when a mistake, failure mode, or successful practice is likely to matter 
 ### `HISTORY.md`
 Append only major milestone summaries. Do not duplicate every Git commit.
 
+### `CHAT_MANAGEMENT_RULE.md`
+Treat the approximately 70% chat-capacity threshold and pre-migration handoff procedure as a durable project rule. Do not allow a long conversation to become degraded before preparing the handoff.
+
 ## Handoff quality standard
 
 A good handoff must answer all of these without needing the old chat:
@@ -61,8 +65,11 @@ A good handoff must answer all of these without needing the old chat:
 - Never rewrite shared history merely to make continuity notes prettier.
 - Prefer normal commits.
 - Keep `main` tracking `localbackup/main` unless explicitly redesigned.
-- `github` remains the online secondary remote.
-- Run the established Git AutoSave/checkpoint workflow after meaningful local engineering changes.
+- `github` remains the online secondary remote and AI continuity access point.
+- **Normal user workflow is one click only:** run `Git_Save.cmd`.
+- Git AutoSave v2.5 first fetches GitHub, safely fast-forwards incoming non-diverged updates, checkpoints local changes, then synchronizes `localbackup`, GitHub, and tags.
+- If local and GitHub histories truly diverge, automatic merge must stop rather than risk corrupting or incorrectly merging Altium/binary project files.
+- No routine extra `git pull` or manual push command should be required after v2.5 is installed locally.
 
 ## Full offline continuity backup
 
