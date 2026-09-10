@@ -62,15 +62,25 @@ Last continuity update: 2026-09-11
 - v1-v4 were rejected and never saved; do not use them.
 - Final accepted implementation: `T23_Stage4D_v5_CollisionAware.pas`.
 - Collision-aware live-board preflight was used before route acceptance.
-- `PMUX_PR1`: routed, accepted count `5 tracks / 2 vias`.
-- `PMUX_ST`: routed, accepted count `3 tracks / 0 vias`.
-- `USB_CC1`: routed, accepted count `5 tracks / 2 vias`.
-- `USB_CC2`: routed, accepted count `5 tracks / 0 vias`.
-- Low-current `BAT_SW` test-point Bottom branch was surgically moved to open a legal PMUX corridor; the accepted main BAT_SW power path was preserved.
-- Current `BAT_SW` count after Stage 4D is `10 tracks / 3 vias`.
+- `PMUX_PR1`: routed.
+- `PMUX_ST`: routed.
+- `USB_CC1`: routed.
+- `USB_CC2`: routed.
+- Low-current `BAT_SW` test-point Bottom branch was moved to open a legal PMUX corridor; the accepted main BAT_SW power path was preserved.
 - User confirmed DRC clean after Stage 4D except the same 3 expected GND Net Antennae.
-- Fresh collision snapshot after Stage 4D: `AI_BOARD_COLLISION_SNAPSHOT_T23.tsv`, commit `04ffe57a7ca4aea755a06e56b80a6448c05f2d08`.
 - Saved PCB checkpoint containing Stage 4D: `aa285051dcfff95b6947ff4d2b7dc2b6e8c9707f`.
+
+### Stage 4E — PMUX output + local rails — PASS
+
+- Final accepted geometry came from `T23_Stage4E_v5_CollisionAware_PowerBundle.pas`; earlier v1-v4 were development attempts and must not be treated as accepted baselines.
+- Completed `VIN_MUX` connection from `U_PMUX.2/U_PMUX.7` into the existing switcher/input-cap/testpoint VIN_MUX network.
+- VIN_MUX uses controlled 8mil fine-pitch escape near `U_PMUX`, a 30mil Bottom power trunk, and two 0.70/0.30mm vias.
+- Completed local `OLED_VDD` rail: `Q_OLED.3 -> C_OLED_BULK.2 -> C_OLED_HF.2 -> J_OLED.2`.
+- Completed local `SENSOR_3V3` rail: `C_SENSOR_BULK.2 -> C_SENSOR_HF.2 -> J_SENSOR_PCB.1 -> FB_SENSOR.2`.
+- Absolute Altium Track-object counts are NOT a reliable PASS criterion because Altium may split/merge track objects during connectivity normalization. Use `GAddedTracks/GAddedVias`, connectivity, collision preflight, and DRC instead.
+- User confirmed DRC after Stage 4E: only the same 3 expected GND Net Antennae; zero new Clearance / Short / Width / Solder Mask Sliver violations.
+- Saved PCB checkpoint containing Stage 4E: `3af60b028c6144610e0b09b13adc1f69448ee77a`.
+- Fresh post-Stage-4E collision snapshot: `AI_BOARD_COLLISION_SNAPSHOT_T23.tsv`, commit `1e87a57688429f27838305a01ddaf4900580b191`.
 
 ## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
 
@@ -79,41 +89,49 @@ Last continuity update: 2026-09-11
 - Include existing track width, via copper envelope, and required clearance.
 - Protect via-to-pad solder-mask sliver, including same-net pads.
 - Candidate routing must pass collision preflight before DRC.
+- Full-stage preflight must occur before adding the first PCB object whenever practical.
 - DRC is final verification only, not a route-finding tool.
 - If preflight fails, abort instead of guessing another corridor.
 - Preserve one-transaction / one-Ctrl+Z rollback for scripted routing stages.
 - Do not create the Bottom GND polygon until major routing is complete.
 - User prefers larger logical routing bundles where safe; collision safety overrides bundle size.
 - Routing deliverables must be `.pas` only.
+- Do not use absolute final Track-object count as the sole PASS/FAIL gate; Altium can split/merge track primitives.
 
 ## Current exact PCB state
 
 Authoritative PCB checkpoint:
 
-`aa285051dcfff95b6947ff4d2b7dc2b6e8c9707f`
+`3af60b028c6144610e0b09b13adc1f69448ee77a`
 
 Fresh collision snapshot:
 
-`04ffe57a7ca4aea755a06e56b80a6448c05f2d08`
+`1e87a57688429f27838305a01ddaf4900580b191`
 
-Current accepted relevant counts:
+Current accepted relevant state:
 
-- `BAT_RAW = 3 tracks / 0 vias`
-- `USB_VBUS_RAW = 6 tracks / 0 vias`
-- `BAT_FUSED = 10 tracks / 2 vias`
-- `BAT_SW = 10 tracks / 3 vias`
-- `PMUX_PR1 = 5 tracks / 2 vias`
-- `PMUX_ST = 3 tracks / 0 vias`
-- `USB_CC1 = 5 tracks / 2 vias`
-- `USB_CC2 = 5 tracks / 0 vias`
-- `VIN_MUX` remains only partially routed: the switcher/input-cap/testpoint side exists, but the PMUX VIN_MUX output pins still need connection into that accepted VIN_MUX network.
-- `OLED_VDD`, `SENSOR_3V3`, `SD_VDD`, and `VBAT` remain later power-distribution work; `USB_5V_AUX` / `R_EXP_PWR_EN` remains deferred to Expansion routing unless the baseline explicitly changes.
+- `BAT_RAW`, `USB_VBUS_RAW`, `BAT_FUSED`, `BAT_SW` routed.
+- `PMUX_PR1`, `PMUX_ST`, `USB_CC1`, `USB_CC2` routed.
+- `VIN_MUX` is now fully connected from PMUX to the accepted switcher-side network.
+- `OLED_VDD` routed.
+- `SENSOR_3V3` routed.
+- `SD_VDD` remains unrouted.
+- `VBAT` remains unrouted.
+- `CC1_RD_RET` / `CC2_RD_RET` remain unrouted.
+- Global `3V3_SYS` still needs later power-distribution completion.
+- `USB_5V_AUX` / `R_EXP_PWR_EN` remains deferred to Expansion routing unless the baseline explicitly changes.
 
 ## Immediate next action
 
-Continue **Stage 4E** using the fresh collision snapshot and the collision-aware live-board preflight method.
+Continue **Stage 4F — remaining local power distribution** from post-Stage-4E collision snapshot `1e87a576...`.
 
-Priority is to finish the remaining PMUX-to-switcher `VIN_MUX` connection with controlled fine-pitch neck-down near `U_PMUX`, while allowing a larger bundle of spatially separated local power rails where preflight can prove them safe. Good candidates for the same bundle are local `OLED_VDD` and `SENSOR_3V3`; keep more complex `SD_VDD`, `VBAT`, global `3V3_SYS`, CC return wiring, and Expansion power for later dedicated bundles unless preflight demonstrates an obviously safe path.
+Preferred next bundle:
+
+1. `SD_VDD` local rail and SD-card power decoupling/distribution.
+2. `VBAT` RTC/backup-battery/testpoint routing.
+3. If collision preflight proves it trivially safe, `USB_5V_AUX` local expansion-power connection may be included; otherwise keep it deferred with Expansion.
+
+Keep CC return wiring and global `3V3_SYS` for later dedicated bundles if needed. Use full-stage exact-geometry collision preflight before adding objects.
 
 After script PASS:
 
