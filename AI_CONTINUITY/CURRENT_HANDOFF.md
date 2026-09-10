@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-Last continuity update: 2026-09-10
+Last continuity update: 2026-09-11
 
 ## Repository / backup state
 
@@ -53,73 +53,67 @@ Last continuity update: 2026-09-10
 
 - Final accepted implementation: `T23_BAT_SW_Route_Stage4C_v3`.
 - `S1.2 -> C1.1 -> U_PMUX.6` plus `TP_BAT_SW`.
-- Final accepted count: `BAT_SW=9 tracks / 3 vias`.
+- Initial accepted count was `BAT_SW=9 tracks / 3 vias`.
 - Main input path uses 30mil; PMUX approach uses controlled 8mil neck-down.
-- User confirmed DRC clean except the same 3 expected GND Net Antennae.
 - Saved PCB checkpoint: `98d7fbcd03e8a4711be81ac990098328ac35d0b0`.
-- Fresh legacy snapshot after Stage 4C: `AI_BOARD_SNAPSHOT_T23_20260909_224523.tsv`, commit `5f0b439b3974bf44394882b689390efbfddc62fc`.
 
-### Stage 4D — PMUX / USB control bundle — PREVIOUS v1-v4 REJECTED / NOT SAVED
+### Stage 4D — PMUX / USB control bundle — PASS
 
-- Attempts v1 through v4 were deliberately rejected after DRC exposed different collisions.
-- These failed attempts are NOT part of the authoritative PCB baseline.
-- User correctly stopped the trial-and-error workflow.
-- Root cause: routing was being generated from point coordinates without treating full pad copper, multilayer pads, existing track widths and via envelopes as explicit obstacles.
-- Key lesson: DRC must be final confirmation, not the route-finding mechanism.
+- v1-v4 were rejected and never saved; do not use them.
+- Final accepted implementation: `T23_Stage4D_v5_CollisionAware.pas`.
+- Collision-aware live-board preflight was used before route acceptance.
+- `PMUX_PR1`: routed, accepted count `5 tracks / 2 vias`.
+- `PMUX_ST`: routed, accepted count `3 tracks / 0 vias`.
+- `USB_CC1`: routed, accepted count `5 tracks / 2 vias`.
+- `USB_CC2`: routed, accepted count `5 tracks / 0 vias`.
+- Low-current `BAT_SW` test-point Bottom branch was surgically moved to open a legal PMUX corridor; the accepted main BAT_SW power path was preserved.
+- Current `BAT_SW` count after Stage 4D is `10 tracks / 3 vias`.
+- User confirmed DRC clean after Stage 4D except the same 3 expected GND Net Antennae.
+- Fresh collision snapshot after Stage 4D: `AI_BOARD_COLLISION_SNAPSHOT_T23.tsv`, commit `04ffe57a7ca4aea755a06e56b80a6448c05f2d08`.
+- Saved PCB checkpoint containing Stage 4D: `aa285051dcfff95b6947ff4d2b7dc2b6e8c9707f`.
 
-## Collision-aware routing method — NOW REQUIRED
+## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
 
-The project has switched to a collision-aware route-planning workflow for dense routing blocks.
-
-### Collision snapshot
-
-- Exporter accepted: `T23_AI_Board_Collision_Snapshot_Exporter_v1_3_2.pas`.
-- Output: `AI_BOARD_COLLISION_SNAPSHOT_T23.tsv`.
-- Snapshot commit: `ff49c9bd0f52460a858f1f04dcb69c328c354c98`.
-- Snapshot source PCB is the accepted Stage 4C v3 board.
-- Snapshot includes conservative pad bounding rectangles, all tracks with width/bounding rectangles, vias with diameter/hole/bounding rectangles, plus fill/region/arc sections.
-- No Bottom GND polygon exists yet.
-
-### Mandatory dense-routing discipline
-
-1. Use the collision snapshot and/or live PCB object model as the obstacle model.
-2. Treat Multi Layer pads as copper obstacles on both Top and Bottom.
-3. Include existing track width, via copper envelope, and required clearance in route planning.
-4. Include via-to-pad solder-mask-sliver protection, including same-net pads.
-5. Candidate routing must pass collision preflight BEFORE it is accepted for DRC.
-6. DRC is final verification only.
-7. If collision preflight fails, abort the stage rather than trying a guessed corridor.
-8. Preserve one-transaction / one-Ctrl+Z rollback for scripted routing stages.
-9. Continue without Bottom GND polygon until major routing is complete.
-10. User prefers larger logical routing bundles where safe, but safety/collision validation overrides stage size.
-11. For routing deliverables, provide only `.pas` files, not ZIP/PrjScr bundles.
+- Accepted exporter: `T23_AI_Board_Collision_Snapshot_Exporter_v1_3_2.pas`.
+- Treat Multi Layer pads as copper obstacles on both Top and Bottom.
+- Include existing track width, via copper envelope, and required clearance.
+- Protect via-to-pad solder-mask sliver, including same-net pads.
+- Candidate routing must pass collision preflight before DRC.
+- DRC is final verification only, not a route-finding tool.
+- If preflight fails, abort instead of guessing another corridor.
+- Preserve one-transaction / one-Ctrl+Z rollback for scripted routing stages.
+- Do not create the Bottom GND polygon until major routing is complete.
+- User prefers larger logical routing bundles where safe; collision safety overrides bundle size.
+- Routing deliverables must be `.pas` only.
 
 ## Current exact PCB state
 
-Authoritative PCB checkpoint remains:
+Authoritative PCB checkpoint:
 
-`98d7fbcd03e8a4711be81ac990098328ac35d0b0`
+`aa285051dcfff95b6947ff4d2b7dc2b6e8c9707f`
 
-Collision snapshot baseline:
+Fresh collision snapshot:
 
-`ff49c9bd0f52460a858f1f04dcb69c328c354c98`
+`04ffe57a7ca4aea755a06e56b80a6448c05f2d08`
 
-Current relevant accepted counts:
+Current accepted relevant counts:
 
 - `BAT_RAW = 3 tracks / 0 vias`
 - `USB_VBUS_RAW = 6 tracks / 0 vias`
 - `BAT_FUSED = 10 tracks / 2 vias`
-- `BAT_SW = 9 tracks / 3 vias`
-- `PMUX_PR1 = 0 tracks / 0 vias`
-- `PMUX_ST = 0 tracks / 0 vias`
-- `USB_CC1 = 0 tracks / 0 vias`
-- `USB_CC2 = 0 tracks / 0 vias`
+- `BAT_SW = 10 tracks / 3 vias`
+- `PMUX_PR1 = 5 tracks / 2 vias`
+- `PMUX_ST = 3 tracks / 0 vias`
+- `USB_CC1 = 5 tracks / 2 vias`
+- `USB_CC2 = 5 tracks / 0 vias`
+- `VIN_MUX` remains only partially routed: the switcher/input-cap/testpoint side exists, but the PMUX VIN_MUX output pins still need connection into that accepted VIN_MUX network.
+- `OLED_VDD`, `SENSOR_3V3`, `SD_VDD`, and `VBAT` remain later power-distribution work; `USB_5V_AUX` / `R_EXP_PWR_EN` remains deferred to Expansion routing unless the baseline explicitly changes.
 
 ## Immediate next action
 
-Run the new collision-aware coordinated Stage 4D script only after its internal live-board preflight passes.
+Continue **Stage 4E** using the fresh collision snapshot and the collision-aware live-board preflight method.
 
-The new Stage 4D strategy is allowed to surgically move only the low-current `BAT_SW` test-point Bottom branch if required to open a legal PMUX corridor, while preserving the accepted main BAT_SW power path. Then route a larger logical bundle including `PMUX_PR1`, `PMUX_ST`, `USB_CC1`, and `USB_CC2`.
+Priority is to finish the remaining PMUX-to-switcher `VIN_MUX` connection with controlled fine-pitch neck-down near `U_PMUX`, while allowing a larger bundle of spatially separated local power rails where preflight can prove them safe. Good candidates for the same bundle are local `OLED_VDD` and `SENSOR_3V3`; keep more complex `SD_VDD`, `VBAT`, global `3V3_SYS`, CC return wiring, and Expansion power for later dedicated bundles unless preflight demonstrates an obviously safe path.
 
 After script PASS:
 
@@ -128,7 +122,7 @@ After script PASS:
 3. Accept only with zero new Clearance / Short / Width / Solder Mask Sliver violations.
 4. The only expected remaining violations are the same 3 pre-existing GND Net Antennae.
 5. If DRC passes, save PCB and run `Git_Save.cmd`.
-6. Generate a fresh collision snapshot before the next dense power-distribution block if geometry changes materially.
+6. Generate a fresh collision snapshot before the next dense routing bundle when geometry changes materially.
 
 ## Physical-routing preferences
 
