@@ -31,6 +31,10 @@ This is a compact milestone history, not a replacement for Git commit history.
 - Handoff lineage records 48 tracks + 3 GND vias at that checkpoint.
 - User requested more assembly/rework room around `U_SYS` and less crowding of thick tracks at IC pins.
 - Corrected routing sequence decision: remaining signal/power blocks should be completed before the final Bottom Layer GND polygon.
+- Stage 3 OVP / protected-USB routing was formally closed after final audit and DRC PASS.
+- Stage 4 remaining power / USB / power-distribution routing was completed through Stage4I. Global `3V3_SYS` is connected at 34/34 pads and `USB_VBUS_PROT` at 8/8 pads.
+- Stage 4 closed with accepted PCB checkpoint `5205a902577784c061c5db5fcf529707a8ea2752` and post-Stage4I collision snapshot `f798bdd34bd316866b4fb8102c6ddbba3e3989a6`.
+- Stage 5 signal routing began with an externally planned SWD debug-pair candidate; the Bottom GND polygon remains deferred.
 
 ## Git / backup evolution
 

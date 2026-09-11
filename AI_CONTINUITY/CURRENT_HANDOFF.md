@@ -33,7 +33,7 @@ Last continuity update: 2026-09-11
 - Bottom GND polygon has NOT yet been created.
 - DRC baseline remains only the same 3 expected GND Net Antennae from pre-polygon GND vias.
 
-## Stage 4 — Remaining Power / USB / power-distribution routing — IN PROGRESS
+## Stage 4 — Remaining Power / USB / power-distribution routing — FORMALLY CLOSED / PASS
 
 ### Stage 4A — raw input nets — PASS
 
@@ -195,6 +195,28 @@ Stage4H1 v3 accepted scope:
 - Geometry analysis confirms all 34 of 34 `3V3_SYS` pads are connected. Global Stage4H 3V3 distribution is formally closed.
 - Do not rerun or undo Stage4H6.
 
+### Stage 4I — final USB_VBUS_PROT expansion-enable branch — PASS / SAVED
+
+- Accepted implementation: `AI_SCRIPTS/T23/T23_Stage4I_USB_VBUS_PROT_EXP_PWR_EN_ExternalPlan_v1.pas`.
+- Script reported `APPLY COMPLETE Stage4I v1: 5 tracks / 0 vias` on the live board.
+- Connected the final Stage4 power-distribution pad, `R_EXP_PWR_EN.1`, to `USB_VBUS_PROT`.
+- User explicitly confirmed DRC was correct after execution; Stage4I v1 is accepted as PASS.
+- User completed save -> `Git_Save.cmd` -> collision snapshot export v1.3.2 -> `Git_Save.cmd`.
+- Verified PCB checkpoint: `5205a902577784c061c5db5fcf529707a8ea2752`; PCB blob `78f01044643b792c443bd7545eafefe23bf34471`, 1,687,552 bytes.
+- Verified post-Stage4I snapshot: `f798bdd34bd316866b4fb8102c6ddbba3e3989a6`; snapshot blob `3ced992e3d97ec92fd6bcc977d31638b94c35852`.
+- Snapshot delta against post-H6 is exactly five added 8mil Top-layer `USB_VBUS_PROT` tracks and zero removals. All 418 pads, 49 vias, fills, regions and arcs are unchanged.
+- Geometry analysis confirms all 8 of 8 `USB_VBUS_PROT` pads are connected.
+- Stage 4 Remaining Power / USB / power-distribution routing is formally closed. Do not rerun Stage4I.
+
+## Stage 5 — signal routing — IN PROGRESS
+
+### Stage 5A — SWD debug pair — CANDIDATE ISSUED / DRC PENDING
+
+- Candidate: `AI_SCRIPTS/T23/T23_Stage5A_SWD_Debug_ExternalPlan_v1.pas`.
+- Targets `SWDIO: U_MCU.24 -> J_SWD.2` and `SWCLK: U_MCU.25 -> J_SWD.4`.
+- Proposed additions: 3 Top-layer 8mil tracks / 0 vias.
+- `NRST` is intentionally deferred for coordinated MCU north-side fanout; the rejected preliminary long route would have blocked later signal escapes.
+
 ## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
 
 - Accepted exporter: `T23_AI_Board_Collision_Snapshot_Exporter_v1_3_2.pas`.
@@ -219,18 +241,18 @@ Stage4H1 v3 accepted scope:
 
 PCB checkpoint:
 
-`d16238e9d98c551ff47964f9e0752a8d0cb2ccc4`
+`5205a902577784c061c5db5fcf529707a8ea2752`
 
 Fresh collision snapshot:
 
-`4f08a9598ea36dbc1ccab495345a3229c2525eec`
+`f798bdd34bd316866b4fb8102c6ddbba3e3989a6`
 
-This saved state contains Stage4H1 through Stage4H6 PASS. Global `3V3_SYS` distribution is complete at 34 of 34 pads.
+This saved state contains Stage4A through Stage4I PASS. Stage 4 is formally closed.
 
 ### Current LIVE Altium state
 
-- User confirmed saving accepted Stage4H6 and exporting the fresh snapshot; both are verified on GitHub.
-- No Stage4I routing has been applied. Stage4I is an issued candidate awaiting execution and DRC.
+- User confirmed saving accepted Stage4I and exporting the fresh snapshot; both are verified on GitHub.
+- No Stage5A routing has been applied. Stage5A is an issued candidate awaiting execution and DRC.
 - Altium is operated by the user; the AI has no direct live-UI access.
 
 Current accepted SAVED routing:
@@ -241,31 +263,31 @@ Current accepted SAVED routing:
 - `SD_VDD`, `VBAT`, `USB_5V_AUX` routed.
 - `CC1_RD_RET`, `CC2_RD_RET` routed and DRC-clean.
 - Stage4H1 through Stage4H6 global `3V3_SYS` distribution is saved, DRC-PASS and closed.
-- One final Stage4 power-distribution pad remains: `R_EXP_PWR_EN.1` on `USB_VBUS_PROT`.
-- Expansion signal routing remains later work.
+- Stage4I final `USB_VBUS_PROT` branch is saved and DRC-PASS; all 8 pads are connected.
+- Stage 4 Remaining Power / USB / power-distribution is closed.
+- Fresh geometry inventory finds 51 incomplete non-GND signal nets; Stage 5 signal routing is active.
 
 ## Immediate next action — EXACT
 
-1. Run `Git_Save.cmd` once to receive the new Stage4I script and this handoff.
-2. Run `AI_SCRIPTS/T23/T23_Stage4I_USB_VBUS_PROT_EXP_PWR_EN_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage4I_USB_VBUS_PROT_EXP_PWR_EN_v1`, exactly once.
-3. Stage4I targets only `R_EXP_PWR_EN.1` on `USB_VBUS_PROT`.
-4. Proposed additions: exactly **5 Top-layer tracks / 0 vias**, all at 8mil.
+1. Run `Git_Save.cmd` once to receive the new Stage5A script and this handoff.
+2. Run `AI_SCRIPTS/T23/T23_Stage5A_SWD_Debug_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage5A_SWD_Debug_v1`, exactly once.
+3. Stage5A routes only `SWDIO` and `SWCLK` from `U_MCU` to `J_SWD`.
+4. Proposed additions: exactly **3 Top-layer tracks / 0 vias**, all at 8mil.
 5. On preflight `ABORT`, nothing was added and no Undo is needed. On `BUILD INCOMPLETE`, one Ctrl+Z rolls back the transaction. On `APPLY COMPLETE`, do not rerun or save; run DRC and report the result.
 6. Accept only zero new Clearance, Short-Circuit, Width and Minimum Solder Mask Sliver violations. The same three pre-polygon GND Net Antennae remain the only accepted entries.
 7. After accepted DRC: save PCB -> `Git_Save.cmd` -> export collision snapshot v1.3.2 -> `Git_Save.cmd`; verify Git and update handoff.
-8. If Stage4I passes, formally close Stage 4 Remaining Power / USB / power-distribution. No polygon yet.
-9. After Stage 4 closure, audit and plan the remaining signal-routing bundles from the new collision snapshot before issuing the next script.
+8. Continue Stage 5 in coordinated functional bundles. No polygon yet.
 
-### Stage4I validation completed outside Altium
+### Stage5A validation completed outside Altium
 
-- Exact post-H6 snapshot content verified against Git snapshot blob `398927e37c8606837eeaa4786b491e94123bea06`.
+- Exact post-Stage4I snapshot content verified byte-for-byte against Git blob `3ced992e3d97ec92fd6bcc977d31638b94c35852`.
 - Full collision audit reports zero proposed conflicts under the 6mil electrical-clearance model.
-- Smallest conservative candidate-track gap to different-net copper is 33.283mil.
-- Proposed union connects `R_EXP_PWR_EN.1` to the existing `USB_VBUS_PROT` component; all 8 of 8 pads become connected and all five candidate tracks join that component.
-- The final route was visually inspected on the Top layer.
-- Preflight and static-apply argument lists match mechanically; build count is 5 tracks / 0 vias.
-- Baseline guards require exactly two existing `USB_VBUS_PROT` vias, sixteen post-H6 `3V3_SYS` vias, no polygon, the exact USB root and H6 anchor, and the exact target pad coordinates.
-- **Altium compile, live execution and Stage4I DRC remain user-side gates.**
+- Smallest conservative candidate-track gap to different-net copper is 16.669mil. Minimum SWDIO-to-SWCLK candidate copper gap is 61.686mil.
+- Proposed union connects both endpoints of `SWDIO` and both endpoints of `SWCLK`; no candidate segment is isolated.
+- Top-layer route geometry and future MCU fanout impact were visually inspected.
+- Preflight and static-apply argument lists match mechanically; build count is 3 tracks / 0 vias.
+- Baseline guards require zero existing SWDIO/SWCLK tracks, no polygon, the exact saved Stage4I anchor, and exact target pad net/layer/coordinates.
+- **Altium compile, live execution and Stage5A DRC remain user-side gates.**
 
 ### Remaining 3V3_SYS inventory after Stage4H5
 
