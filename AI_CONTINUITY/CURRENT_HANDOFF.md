@@ -161,7 +161,7 @@ This saved state contains Stage4H1 v3 PASS, including the north/upper 3V3_SYS ba
 ### Current LIVE Altium state
 
 - User confirmed saving the accepted v3 geometry and exporting the fresh snapshot; both changes are verified on GitHub.
-- No newer routing was applied in this session. Altium is operated by the user; the AI does not have direct live-UI access.
+- No newer routing was applied in this session. Stage4H2 is an issued candidate awaiting user execution/DRC. Altium is operated by the user; the AI does not have direct live-UI access.
 - Stage4G PCB `4b3fdd50...` / snapshot `7840d80a...` are now rollback references only.
 
 Current accepted SAVED routing:
@@ -176,13 +176,36 @@ Current accepted SAVED routing:
 
 ## Immediate next action — EXACT
 
-1. Continue from the saved Stage4H1 PCB and snapshot above. Do not repeat Stage4H1 and do not use the older Stage4G snapshot for new planning.
-2. Stage4H2 is in planning only: no route script was applied and no Stage4H2 DRC result exists.
-3. The Stage4H1 v3 .pas source is not present in the current Git tree. Obtain the user's actual `T23_Stage4H1_3V3_North_ExternalPlan_v3.pas` to correct its audit expectation (24 tracks / 8 vias), preserve its known working lightweight exact-preflight framework, and retain routing-script source in Git. Do not claim the source has been fixed until it is available and edited. The accepted board does not need a rerun.
-4. Plan the next coherent distribution bundle externally from snapshot `cc1721a8...`, with MCU power/decoupling and its nearby distribution as the next candidate scope. Choose final scope only after obstacle and return-path review.
-5. Keep the remaining OLED source branch `Q_OLED.2` and PMUX status pull-up supply `R_ST_PU.1` explicitly on the unfinished list; Stage4H1 did not route them.
-6. For every new stage: exact live preflight -> one static-apply transaction -> connectivity analysis -> user DRC -> save and Git_Save only after acceptance -> fresh collision snapshot -> Git_Save.
-7. The user needs only Git_Save.cmd to receive this continuity update; no separate manual pull is required.
+1. Continue from saved Stage4H1 PCB `3f556377...` and collision snapshot `cc1721a8...`. Do not repeat Stage4H1.
+2. The user supplied the actual Stage4H1 v3 source. It is now retained under `AI_SCRIPTS/T23/reference/T23_Stage4H1_3V3_North_ExternalPlan_v3.pas` for history only; its wrong 25-track audit is preserved as received.
+3. The audit-only correction is `AI_SCRIPTS/T23/T23_Stage4H1_3V3_North_ExternalPlan_v4_AuditFix.pas`. Mechanical comparison proves its static-build block is unchanged from v3: 24 tracks / 8 vias. Header, message and expected count are corrected. Do not execute it on the accepted board.
+4. **Stage4H2 candidate is READY FOR USER EXECUTION, NOT APPLIED / DRC PENDING.**
+   - File: `AI_SCRIPTS/T23/T23_Stage4H2_3V3_MCU_SWD_ExternalPlan_v1.pas`.
+   - Entry point: `ApplyT23_Stage4H2_3V3_MCU_SWD_v1`.
+   - Scope: `U_MCU.4`, `C_MCU_HF.2`, `C_MCU_BULK.2`, `J_SWD.1`, all on `3V3_SYS`.
+   - Proposed additions: exactly **9 tracks / 1 via**.
+   - Bottom root joins the accepted Stage4H1 backbone at (5600,5925) mil. A 20mil feed runs to the via at (6070,5925); Top feed runs through bulk/HF supply pads to an 8mil MCU entry. Bottom SWD branch proceeds via (6710,5925), (6815,5820), then J_SWD.1 at (6875,5820).
+   - Via copper/hole = 23.622/11.811mil (0.60/0.30mm); Top capacitor link = 12mil.
+   - Live baseline anchors require the saved Stage4H1 geometry, 8 existing 3V3 vias, correct target pads/nets/layers/positions, and no polygons.
+   - Exact lightweight preflight is derived from the user-tested H1 v3 helpers. Supplemental guards cover free pads and conservative copper/keepout fill/region/arc bounds. Via-to-pad/via spacing allowance was increased to 8mil beyond conservative bounds/copper.
+   - All preflight checks run before one static-apply transaction. No route search occurs inside Altium and the script never saves.
+5. Ask the user to run the H2 entry point once. On `APPLY COMPLETE`, run DRC and send the result before saving. This message means build completion, not DRC PASS.
+6. On preflight `ABORT`, no geometry was added; no Undo is needed. On partial build failure, one Ctrl+Z rolls back the transaction. Never keep rerunning an applied candidate.
+7. After accepted DRC (only the same three GND Net Antennae): save PCB -> Git_Save.cmd -> export a new collision snapshot -> Git_Save.cmd, then update this handoff with the verified new checkpoints.
+8. MCU/decoupling GND returns remain unfinished. The Top corridor below the local supply traces remains available for return routing; final power integrity is not qualified by this 3V3-only stage.
+9. Keep `Q_OLED.2` and `R_ST_PU.1` on the remaining supply list. No other routing or polygon was applied in this session.
+10. Git_Save.cmd receives these script/continuity updates without a separate manual pull.
+
+### Stage4H2 validation completed outside Altium
+
+- Snapshot content verified against Git blob `9be4ebdbcd580bd6158a022c55cd68df5b7737e9`.
+- All 9 proposed tracks checked against full snapshot pads (including Multi Layer), existing track widths and vias with the inherited 6mil electrical clearance.
+- Via at (6070,5925) passes both-layer clearance and strengthened mask spacing checks; nearest conservative pad-boundary-to-via-copper gap is 25.551mil.
+- Smallest proposed track-to-other-net conservative copper gap is 16.669mil at the MCU entry, above the 6mil preflight requirement.
+- Proposed union geometry connects all 4 intended pads to the existing C_OUT/U_SYS source with no isolated 3V3 track/via island. If applied unchanged, connected 3V3 pads increase from 11 to 15; 19 remain.
+- Preflight track/via argument lists and static-apply argument lists match mechanically; build calls counted mechanically as 9/1.
+- Visual inspection of the generated Top/Bottom local routing view completed.
+- **No Altium compile, live execution, or H2 DRC has been performed by the AI.** These remain user-side gates; external geometry analysis does not replace them.
 
 ### Remaining 3V3_SYS inventory after Stage4H1
 
