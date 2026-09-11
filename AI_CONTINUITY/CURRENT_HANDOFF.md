@@ -224,9 +224,12 @@ Stage4H1 v3 accepted scope:
 
 ### Stage 5B — NRST / reset distribution — CANDIDATE ISSUED / DRC PENDING
 
-- Candidate: `AI_SCRIPTS/T23/T23_Stage5B_NRST_ExternalPlan_v1.pas`.
+- `T23_Stage5B_NRST_ExternalPlan_v1.pas` preflight-aborted before adding any object.
+- Exact live abort: v1 track T02 `(6245,5840) -> (6190,5780)` touched the conservative expanded bounding rectangle of `C_MCU_HF.1` (`GND`). No Undo was required and the saved/live PCB baseline remained unchanged.
+- Replacement candidate: `AI_SCRIPTS/T23/T23_Stage5B_NRST_ExternalPlan_v2.pas`.
 - Targets all five NRST pads: `U_MCU.6`, `C_NRST.1`, `SW_RESET.1/.2`, and `J_SWD.5`.
-- Proposed additions: 11 tracks / 2 vias, 8mil throughout.
+- Proposed additions: 12 tracks / 2 vias, 8mil throughout.
+- v2 replaces the rejected diagonal with `(6245,5840) -> (6245,5810) -> (6190,5780)`.
 - The cross-board trunk is on Bottom between vias at (6030,5970) and (6500,6150), preserving Top-layer north-side MCU fanout.
 
 ## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
@@ -237,6 +240,7 @@ Stage4H1 v3 accepted scope:
 - Protect via-to-pad solder-mask sliver, including same-net pads.
 - DRC is final verification only, not a route-finding tool.
 - If preflight fails, abort instead of applying a guessed route.
+- External pad-collision checks must mirror Altium's conservative axis-expanded `BoundingRectangle` test. A Euclidean corner-distance check is insufficient and caused the Stage5B v1 false-clear result.
 - Preserve one-transaction / one-Ctrl+Z rollback for scripted routing stages.
 - Do not create the Bottom GND polygon until major routing is complete.
 - User prefers larger logical routing bundles where safe; collision safety overrides bundle size.
@@ -264,7 +268,7 @@ This saved state contains Stage4A through Stage4I and Stage5A PASS.
 ### Current LIVE Altium state
 
 - User confirmed accepted Stage5A DRC, PCB save and fresh snapshot export; both files are verified on GitHub.
-- No Stage5B routing has been applied. Stage5B is an issued candidate awaiting execution and DRC.
+- Stage5B v1 preflight-aborted cleanly; no Stage5B routing has been applied. Stage5B v2 is the issued replacement candidate awaiting execution and DRC.
 - Altium is operated by the user; the AI has no direct live-UI access.
 
 Current accepted SAVED routing:
@@ -283,9 +287,9 @@ Current accepted SAVED routing:
 ## Immediate next action — EXACT
 
 1. Run `Git_Save.cmd` once to receive the new Stage5B script and this handoff.
-2. Run `AI_SCRIPTS/T23/T23_Stage5B_NRST_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage5B_NRST_v1`, exactly once.
+2. Run `AI_SCRIPTS/T23/T23_Stage5B_NRST_ExternalPlan_v2.pas`, entry point `ApplyT23_Stage5B_NRST_v2`, exactly once. Do not rerun v1.
 3. Stage5B connects all five `NRST` pads across MCU, local capacitor, reset switch and SWD connector.
-4. Proposed additions: exactly **11 tracks / 2 vias**, all tracks at 8mil; vias are 0.60/0.30mm.
+4. Proposed additions: exactly **12 tracks / 2 vias**, all tracks at 8mil; vias are 0.60/0.30mm.
 5. On preflight `ABORT`, nothing was added and no Undo is needed. On `BUILD INCOMPLETE`, one Ctrl+Z rolls back the transaction. On `APPLY COMPLETE`, do not rerun or save; run DRC and report the result.
 6. Accept only zero new Clearance, Short-Circuit, Width and Minimum Solder Mask Sliver violations. The same three pre-polygon GND Net Antennae remain the only accepted entries.
 7. After accepted DRC: save PCB -> `Git_Save.cmd` -> export collision snapshot v1.3.2 -> `Git_Save.cmd`; verify Git and update handoff.
@@ -294,11 +298,11 @@ Current accepted SAVED routing:
 ### Stage5B validation completed outside Altium
 
 - Exact post-Stage5A snapshot content verified byte-for-byte against Git blob `6f94abb49147c55e99795558dc3fb1cc00dc3c01`.
-- Full collision audit reports zero proposed conflicts under the 6mil electrical-clearance model.
-- Smallest conservative candidate-track gap to different-net copper is 10.090mil; smallest candidate-via clearance is 23.189mil under the conservative mask model.
+- The corrected external checker exactly reproduces the v1 T02 collision against the axis-expanded `C_MCU_HF.1` bbox, then reports zero conflicts for v2 under the same conservative rectangle-intersection semantics used by the Altium preflight.
+- The two v2 replacement segments both clear the expanded `C_MCU_HF.1` bbox `(6181.299,5833.071)-(6238.701,5886.929)`; all unchanged tracks and vias were rechecked against the exact post-Stage5A snapshot.
 - Proposed union connects all five NRST pads and every candidate track/via into one component.
 - Top/Bottom geometry and later MCU north-side fanout impact were visually inspected. The Bottom trunk avoids a long Top-layer barrier.
-- Preflight and static-apply argument lists match mechanically; build count is 11 tracks / 2 vias.
+- Preflight and static-apply argument lists match mechanically; build count is 12 tracks / 2 vias.
 - Baseline guards require zero existing NRST tracks/vias, no polygon, exact saved Stage5A SWDIO/SWCLK anchors and exact target pad net/layer/coordinates.
 - **Altium compile, live execution and Stage5B DRC remain user-side gates.**
 
