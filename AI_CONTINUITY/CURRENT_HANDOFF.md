@@ -94,7 +94,7 @@ Last continuity update: 2026-09-11
 
 ### Stage 4H — global 3V3_SYS distribution — IN PROGRESS
 
-#### Stage 4H1 — north / upper 3V3_SYS backbone — LIVE UNSAVED CANDIDATE, DRC PENDING
+#### Stage 4H1 — north / upper 3V3_SYS backbone — PASS / SAVED
 
 - Baseline for all Stage4H1 attempts is the saved Stage4G PCB checkpoint `4b3fdd50...` plus collision snapshot `7840d80a...`.
 - `T23_Stage4H1_3V3_North_ExternalPlan_v1.pas` preflight-aborted before adding objects: horizontal Bottom backbone at `Y=5750` collided with existing `USB_VBUS_PROT` Bottom wall at `X=5290`.
@@ -102,11 +102,16 @@ Last continuity update: 2026-09-11
 - `T23_Stage4H1_3V3_North_ExternalPlan_v3.pas` then passed full exact preflight and STATIC APPLY executed.
 - v3 live result message: `AddedTracks=24, AddedVias=8`; script incorrectly expected `25 tracks / 8 vias`, therefore it displayed a FALSE object-audit FAIL.
 - Verified after the fact: the v3 build block actually contains exactly **24 `AddTrackMil` calls and 8 `AddViaMil` calls**. The mismatch is arithmetic in the audit expectation, not evidence of a missing build object.
-- **No DRC has yet been run on the live Stage4H1 v3 candidate.**
-- **Do not save Stage4H1 yet.**
-- At chat handoff time, the Altium working board may still contain the unsaved v3 geometry. Do NOT automatically discard it merely because of the false count FAIL.
+- User supplied the post-v3 DRC screenshot dated 2026-09-11, 11:58:19 Altium local time. It shows only the same three GND Net Antennae at (5040,5802.835), (5215,5980), and (5395,5860) mil; no new violations displayed.
+- Stage4H1 v3 was accepted as DRC PASS in this session.
+- User then confirmed PCB save -> Git_Save.cmd -> collision snapshot export v1.3.2 -> Git_Save.cmd.
+- Verified PCB save commit: `3f5563775ca5735eb0f73cdb863d489184f9a517`; PCB blob `5f4c48d39cd25bda48a2455848e5976069c0f18d`, 1,678,848 bytes.
+- Verified post-Stage4H1 snapshot commit: `cc1721a8d01d11704ccebe731dce0b767fa20b92`; snapshot blob `9be4ebdbcd580bd6158a022c55cd68df5b7737e9`.
+- Snapshot comparison against post-Stage4G: same 418 pad records and unchanged other-net geometry; 8 added 3V3_SYS vias. Track-record net increase is 28, with junction splitting visible, so this is not a 24-call audit failure.
+- All eight intended upper consumers are connected to the C_OUT/U_SYS 3V3_SYS source in snapshot geometry.
+- Do not rerun or undo the accepted Stage4H1 route.
 
-Stage4H1 v3 intended scope:
+Stage4H1 v3 accepted scope:
 
 - Root from already-routed `3V3_SYS` near `(5035,5750)`.
 - Bottom-layer north/upper distribution backbone routed around the Stage3 OVP / protected-USB obstacle maze.
@@ -145,19 +150,19 @@ Stage4H1 v3 intended scope:
 
 PCB checkpoint:
 
-`4b3fdd50c4fe619e312c0d59d6a2fae5d386c131`
+`3f5563775ca5735eb0f73cdb863d489184f9a517`
 
 Fresh collision snapshot:
 
-`7840d80a223e2bee4b294b8d1e744a2d4469f0cf`
+`cc1721a8d01d11704ccebe731dce0b767fa20b92`
 
-This saved state contains Stage4G PASS but **does not yet contain Stage4H1**.
+This saved state contains Stage4H1 v3 PASS, including the north/upper 3V3_SYS backbone.
 
-### Current LIVE Altium state at handoff
+### Current LIVE Altium state
 
-- Likely contains unsaved `Stage4H1 v3` geometry because the script applied 24 tracks / 8 vias before reporting the false count-audit FAIL.
-- No Stage4H1 DRC result exists yet.
-- If Altium was closed, the board was undone, or the unsaved geometry was otherwise discarded before the new chat starts, fall back to the saved Stage4G checkpoint above.
+- User confirmed saving the accepted v3 geometry and exporting the fresh snapshot; both changes are verified on GitHub.
+- No newer routing was applied in this session. Altium is operated by the user; the AI does not have direct live-UI access.
+- Stage4G PCB `4b3fdd50...` / snapshot `7840d80a...` are now rollback references only.
 
 Current accepted SAVED routing:
 
@@ -166,30 +171,31 @@ Current accepted SAVED routing:
 - `VIN_MUX`, `OLED_VDD`, `SENSOR_3V3` routed.
 - `SD_VDD`, `VBAT`, `USB_5V_AUX` routed.
 - `CC1_RD_RET`, `CC2_RD_RET` routed and DRC-clean.
-- Global `3V3_SYS` is the active current task.
+- North/upper `3V3_SYS` Stage4H1 is saved and PASS; remaining global distribution is the active task.
 - Expansion signal routing remains later work; `R_EXP_PWR_EN.1` is still on `USB_VBUS_PROT` and was intentionally not altered by Stage 4F.
 
 ## Immediate next action — EXACT
 
-New chat must start by reading `AI_START_HERE.md`, then `AI_CONTINUITY/CURRENT_HANDOFF.md`, `DECISIONS_AND_CONSTRAINTS.md`, and `LESSONS_LEARNED.md`.
+1. Continue from the saved Stage4H1 PCB and snapshot above. Do not repeat Stage4H1 and do not use the older Stage4G snapshot for new planning.
+2. Stage4H2 is in planning only: no route script was applied and no Stage4H2 DRC result exists.
+3. The Stage4H1 v3 .pas source is not present in the current Git tree. Obtain the user's actual `T23_Stage4H1_3V3_North_ExternalPlan_v3.pas` to correct its audit expectation (24 tracks / 8 vias), preserve its known working lightweight exact-preflight framework, and retain routing-script source in Git. Do not claim the source has been fixed until it is available and edited. The accepted board does not need a rerun.
+4. Plan the next coherent distribution bundle externally from snapshot `cc1721a8...`, with MCU power/decoupling and its nearby distribution as the next candidate scope. Choose final scope only after obstacle and return-path review.
+5. Keep the remaining OLED source branch `Q_OLED.2` and PMUX status pull-up supply `R_ST_PU.1` explicitly on the unfinished list; Stage4H1 did not route them.
+6. For every new stage: exact live preflight -> one static-apply transaction -> connectivity analysis -> user DRC -> save and Git_Save only after acceptance -> fresh collision snapshot -> Git_Save.
+7. The user needs only Git_Save.cmd to receive this continuity update; no separate manual pull is required.
 
-Then determine whether the unsaved Stage4H1 v3 geometry is still present in Altium:
+### Remaining 3V3_SYS inventory after Stage4H1
 
-### If the v3 geometry is STILL present
+The fresh snapshot contains 34 3V3_SYS pads. Geometry analysis proves 11 connected to the source: the three existing local pads (`U_SYS.1`, `C_OUT.1`, `R_FB_TOP.1`) and all eight Stage4H1 targets listed above. The other 23 pads remain outside that connected copper network:
 
-1. **Do not Ctrl+Z yet.** The displayed FAIL was caused by a wrong expected count; the actual build block is 24 tracks / 8 vias and all exact preflight checks had already passed.
-2. Run DRC on the current unsaved board.
-3. Accept only if there are zero new `Clearance`, `Short-Circuit`, `Width`, and `Minimum Solder Mask Sliver` violations.
-4. The only acceptable remaining DRC entries are the same 3 pre-existing GND Net Antennae.
-5. If DRC is clean, formally mark Stage4H1 v3 PASS, save the PCB, run `Git_Save.cmd`, generate a fresh collision snapshot, then run `Git_Save.cmd` again.
-6. Correct the v3/v4 script audit expectation to 24 tracks / 8 vias for continuity, but do not rerun the route merely to make the message pretty if the live geometry already passes DRC.
+- MCU/debug: `U_MCU.4`, `C_MCU_HF.2`, `C_MCU_BULK.2`, `J_SWD.1`.
+- SD power/buffer: `U_SD_BUF.13`, `U_SD_BUF.14`, `C_BUF.2`, `R_GATE.2`, `Q_SD.2`, `R_CD_PU.1`.
+- RTC: `U_RTC.2`, `C_RTC.1`, `R_RTC_INT_PU.1`.
+- Navigation pull-ups: `R_PULL1.2`, `R_PULL2.2`, `R_PULL3.2`, `R_PULL4.2`.
+- Expansion: `J_EXP.1`, `R_EXT_REF.1`, `D_EXT1.5`, `D_EXT2.5`.
+- Remaining local branches: `Q_OLED.2`, `R_ST_PU.1`.
 
-### If the v3 geometry is NOT present
-
-1. Stay on authoritative Stage4G checkpoint `4b3fdd50...` / snapshot `7840d80a...`.
-2. Produce a corrected lightweight Stage4H1 static-apply script whose object audit expects exactly **24 tracks / 8 vias**.
-3. Do not change the accepted v3 geometry unless the latest snapshot/preflight proves a collision problem.
-4. Run script -> DRC -> save only after clean DRC.
+This inventory is snapshot-derived engineering analysis, not a claim that Altium's whole-board unrouted count is 23. GND polygon and other signal-net routing remain later work.
 
 ## Physical-routing preferences
 
