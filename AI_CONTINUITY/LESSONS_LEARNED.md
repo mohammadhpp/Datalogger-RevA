@@ -56,44 +56,49 @@ These are project-specific lessons intended to prevent repeated mistakes across 
     - `GAddedTracks/GAddedVias` are useful only if the expected values were mechanically verified against the final apply code.
     - A count-audit mismatch must be diagnosed before discarding geometry that already passed exact preflight; do not reflexively treat it as a routing failure.
 
+12. **External collision math must mirror Altium's exact conservative primitive.**
+   - Stage5B v1 passed an external Euclidean corner-distance check but correctly failed the live Altium preflight because the diagonal intersected the axis-expanded pad bounding rectangle of `C_MCU_HF.1`.
+   - For scripted dense routing, external track-to-pad verification must use the same axis-expanded `BoundingRectangle` intersection semantics as the Pascal preflight; Euclidean distance to the unexpanded rectangle is not equivalent at corners.
+   - A clean external result is trustworthy only when its geometry model reproduces known live preflight failures as well as accepted routes.
+
 ## Schematic / library / ECO
 
-12. **Pad numbers must match schematic pin designators.**
+13. **Pad numbers must match schematic pin designators.**
    - Before assigning/replacing footprints, verify physical pad numbering against the schematic pins and selected connector/part drawing.
    - A visually correct footprint with wrong pad numbering is unacceptable.
 
-13. **Do not move schematic architecture merely to solve a footprint-management problem.**
+14. **Do not move schematic architecture merely to solve a footprint-management problem.**
    - Prefer deliberate footprint assignment and mapping verification over unnecessary schematic rearrangement.
 
-14. **Off-board symbols still require explicit PCB hardware.**
+15. **Off-board symbols still require explicit PCB hardware.**
    - A logical off-board device without a deliberate board-side connector is an incomplete design.
 
 ## Git / AI continuity
 
-15. **Chat history is not a reliable project database.**
+16. **Chat history is not a reliable project database.**
    - Stable design decisions, exact current point, and lessons must live in Git.
 
-16. **A ZIP handoff alone is insufficient for day-to-day continuity.**
+17. **A ZIP handoff alone is insufficient for day-to-day continuity.**
    - Git history plus a concise current handoff is superior for identifying what changed and why.
    - Full offline ZIPs remain valuable for disaster recovery and migration.
 
-17. **Do not replace the known-good local backup architecture when adding cloud backup.**
+18. **Do not replace the known-good local backup architecture when adding cloud backup.**
    - Preserve `localbackup` as the required upstream/rollback path.
    - Add GitHub as a second remote.
 
-18. **Online failure must not invalidate a valid local checkpoint.**
+19. **Online failure must not invalidate a valid local checkpoint.**
    - AutoSave treats local backup as required and GitHub sync as secondary.
    - Loss of internet should produce a warning, not destroy local continuity.
 
-19. **Before continuing from a new AI/session, verify the repo itself.**
+20. **Before continuing from a new AI/session, verify the repo itself.**
    - Read `AI_START_HERE.md` and continuity files.
    - Inspect latest commits and the current engineering file state instead of trusting an old chat summary blindly.
 
 ## Collaboration workflow
 
-20. **Routine screenshots are not mandatory.**
+21. **Routine screenshots are not mandatory.**
    - Proceed from verified files and known state for ordinary steps.
    - Ask/use screenshots when the user is unsure, when visual placement/routing verification is needed, or when the file state cannot answer the question reliably.
 
-21. **When a sequence recommendation is found to be suboptimal, correct it explicitly in the handoff.**
+22. **When a sequence recommendation is found to be suboptimal, correct it explicitly in the handoff.**
    - Do not silently carry a bad next-step recommendation into future sessions.

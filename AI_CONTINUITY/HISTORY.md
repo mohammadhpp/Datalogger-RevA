@@ -35,6 +35,9 @@ This is a compact milestone history, not a replacement for Git commit history.
 - Stage 4 remaining power / USB / power-distribution routing was completed through Stage4I. Global `3V3_SYS` is connected at 34/34 pads and `USB_VBUS_PROT` at 8/8 pads.
 - Stage 4 closed with accepted PCB checkpoint `5205a902577784c061c5db5fcf529707a8ea2752` and post-Stage4I collision snapshot `f798bdd34bd316866b4fb8102c6ddbba3e3989a6`.
 - Stage 5 signal routing began with an externally planned SWD debug-pair candidate; the Bottom GND polygon remains deferred.
+- Stage5A SWD debug pair (`SWDIO`, `SWCLK`) passed DRC and was saved at PCB checkpoint `77fed8e2f76d5eed73fb5d3d81b96ce2d1ec7888` with snapshot `a067fc546e8a9ea8fe3dcbda82ac7a13fd932479`.
+- Stage5B v1 was rejected safely by preflight before apply because a marginal diagonal touched the axis-expanded `C_MCU_HF.1` bounding rectangle. The external collision model was corrected to mirror Altium's conservative rectangle test.
+- Stage5B v2 completed `NRST` across all five pads with 12 tracks / 2 vias, passed DRC, and was saved at PCB checkpoint `747622fd0cccd34f6636183d5b56aecf16a708f9` with snapshot `956ee7ef5a7b14fcf63326d331e5cc708a2eef76`.
 
 ## Git / backup evolution
 
