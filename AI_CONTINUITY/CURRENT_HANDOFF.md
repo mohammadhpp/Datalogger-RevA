@@ -168,6 +168,20 @@ Stage4H1 v3 accepted scope:
 - Do not rerun or undo Stage4H4.
 
 
+#### Stage 4H5 — Navigation pull-ups + OLED source 3V3_SYS — PASS / SAVED
+
+- Accepted implementation: `AI_SCRIPTS/T23/T23_Stage4H5_3V3_Nav_OLED_ExternalPlan_v1.pas`.
+- Script reported `APPLY COMPLETE Stage4H5 v1: 7 tracks / 2 vias` on the live board.
+- Connected `R_PULL1.2`, `R_PULL2.2`, `R_PULL3.2`, `R_PULL4.2`, and `Q_OLED.2` to `3V3_SYS`.
+- User explicitly confirmed DRC was correct after execution; Stage4H5 v1 is accepted as PASS. The supplied image shows the apply-complete message; DRC acceptance is based on the user's direct confirmation.
+- User completed save -> Git_Save.cmd -> collision snapshot export v1.3.2 -> Git_Save.cmd.
+- Verified PCB checkpoint: `2bb804d591ed18a178fc50937db1b76b1527f5fa`; PCB blob `19dc731cb31b51c8d2e7967e6290cae6f98a9b92`, 1,685,504 bytes.
+- Verified post-Stage4H5 snapshot: `ad3a613e6c43ea490b45cda70877f0ec21badfed`; snapshot blob `589e0ba44b1702321eb8d369693c446137d2f330`.
+- Snapshot contains exactly two new 3V3 vias. Altium re-segmented several existing paths and `R_PULL3` shifted by about (+1.575,-4.370)mil with its connected trace following it. Geometry partition analysis proves every affected non-3V3 net retained the same pad connectivity; all five H5 targets are connected and DRC is PASS.
+- Connected 3V3 pads are now 29 of 34; five remain.
+- Do not rerun or undo Stage4H5.
+
+
 ## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
 
 - Accepted exporter: `T23_AI_Board_Collision_Snapshot_Exporter_v1_3_2.pas`.
@@ -192,18 +206,18 @@ Stage4H1 v3 accepted scope:
 
 PCB checkpoint:
 
-`441ed94c303603ecf4486f66937b05a100b8c340`
+`2bb804d591ed18a178fc50937db1b76b1527f5fa`
 
 Fresh collision snapshot:
 
-`5cb4de007b2ce5e40169e059fc4b52d801af7bb0`
+`ad3a613e6c43ea490b45cda70877f0ec21badfed`
 
-This saved state contains Stage4H1 through Stage4H4 PASS.
+This saved state contains Stage4H1 through Stage4H5 PASS.
 
 ### Current LIVE Altium state
 
-- User confirmed saving accepted Stage4H4 and exporting the fresh snapshot; both are verified on GitHub.
-- No Stage4H5 routing has been applied. Stage4H5 is an issued candidate awaiting execution and DRC.
+- User confirmed saving accepted Stage4H5 and exporting the fresh snapshot; both are verified on GitHub.
+- No Stage4H6 routing has been applied. Stage4H6 is an issued candidate awaiting execution and DRC.
 - Altium is operated by the user; the AI has no direct live-UI access.
 
 Current accepted SAVED routing:
@@ -213,42 +227,46 @@ Current accepted SAVED routing:
 - `VIN_MUX`, `OLED_VDD`, `SENSOR_3V3` routed.
 - `SD_VDD`, `VBAT`, `USB_5V_AUX` routed.
 - `CC1_RD_RET`, `CC2_RD_RET` routed and DRC-clean.
-- Stage4H1 upper, Stage4H2 MCU/SWD, Stage4H3 SD and Stage4H4 RTC `3V3_SYS` distribution are saved and PASS.
-- Global `3V3_SYS` distribution remains active; Stage4H5 targets the four Navigation pull-ups and the remaining OLED source branch.
+- Stage4H1 upper, Stage4H2 MCU/SWD, Stage4H3 SD, Stage4H4 RTC and Stage4H5 Navigation/OLED `3V3_SYS` distribution are saved and PASS.
+- Global `3V3_SYS` distribution remains active; Stage4H6 targets the final five pads and would complete all 34 pads.
 - Expansion signal routing remains later work; `R_EXP_PWR_EN.1` remains on `USB_VBUS_PROT`.
 
 ## Immediate next action — EXACT
 
-1. Run `Git_Save.cmd` once to receive the new H5 script and this handoff.
-2. Run `AI_SCRIPTS/T23/T23_Stage4H5_3V3_Nav_OLED_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage4H5_3V3_Nav_OLED_v1`, exactly once.
-3. H5 targets `R_PULL1.2`, `R_PULL2.2`, `R_PULL3.2`, `R_PULL4.2`, and `Q_OLED.2` on `3V3_SYS`.
-4. Proposed additions: exactly **7 tracks / 2 vias**. The long Bottom feed uses 20mil; local Top pad entries use 10mil; both vias are 0.60/0.30mm (23.622/11.811mil).
-5. The Navigation branch extends the accepted Bottom backbone from (6137.441,6600) to (6900,6600), rises to the four pull-ups at Y≈6390, and a separate short via branch at (5800,6600) feeds `Q_OLED.2`.
+1. Run `Git_Save.cmd` once to receive the new H6 script and this handoff.
+2. Run `AI_SCRIPTS/T23/T23_Stage4H6_3V3_Final_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage4H6_3V3_Final_v1`, exactly once.
+3. H6 targets the final five `3V3_SYS` pads: `R_ST_PU.1`, `R_EXT_REF.1`, `J_EXP.1`, `D_EXT1.5`, and `D_EXT2.5`.
+4. Proposed additions: exactly **16 tracks / 2 vias**. Bottom distribution trunks use 20mil; Top local entries use 10mil; both vias are 0.60/0.30mm (23.622/11.811mil).
+5. The lower branch feeds `J_EXP.1` and the expansion protection/reference group from the accepted RTC-side backbone. A separate short branch uses a via at (4400,5840) and the legal x=4320 Top corridor to reach `R_ST_PU.1` around C1/VIN_MUX/BAT_SW.
 6. On preflight `ABORT`, nothing was added and no Undo is needed. On `BUILD INCOMPLETE`, one Ctrl+Z rolls back the transaction. On `APPLY COMPLETE`, do not rerun or save; run DRC and report the result.
 7. Accept only zero new Clearance, Short-Circuit, Width and Minimum Solder Mask Sliver violations. The same three pre-polygon GND Net Antennae remain the only accepted entries.
 8. After accepted DRC: save PCB -> Git_Save.cmd -> export collision snapshot v1.3.2 -> Git_Save.cmd; verify Git and update handoff.
-9. The five remaining 3V3_SYS pads, RTC signal/GND routing, SD signal/GND routing and MCU/decoupling GND returns remain later work. No polygon yet.
+9. If H6 passes, Stage4H global 3V3_SYS distribution is complete. Expansion signals and subsystem signal/GND routing remain later work. No polygon yet.
 
-### Stage4H5 validation completed outside Altium
 
-- Exact post-H4 snapshot content verified against Git blob `86a5ff09bb7b14e332a432269a9582af2a2fbba2`.
-- Full collision audit reports zero proposed conflicts with Top/Bottom/Multi Layer pads, existing tracks or vias under the 6mil electrical-clearance model and conservative 8mil via/pad mask allowance.
-- Smallest conservative candidate-to-other-net gaps are 47.610mil for tracks and 23.071mil for vias.
-- Proposed union connects all five targets to the C_OUT/U_SYS source. Connected 3V3 pads would increase from 24 to 29, leaving five. No candidate track or via remains isolated.
-- Preflight and static-apply argument lists match mechanically; build count is 7 tracks / 2 vias.
-- Proposed Top/Bottom route was visually inspected around the Navigation pull-ups and OLED branch.
-- `R_ST_PU.1` was deliberately excluded: a tested direct branch from the H1-left area conflicts with existing `VIN_MUX` / `C1` geometry and needs its own collision-aware plan.
-- **Altium compile, live execution and H5 DRC remain user-side gates.**
+### Stage4H6 validation completed outside Altium
 
-### Remaining 3V3_SYS inventory after Stage4H4
+- Exact post-H5 snapshot content verified against Git blob `589e0ba44b1702321eb8d369693c446137d2f330`.
+- Full collision audit reports zero proposed conflicts under the 6mil electrical-clearance model and conservative 8mil via/pad mask allowance.
+- Smallest conservative candidate-track gap is 11.260mil; smallest candidate-via obstacle gap is 20.921mil.
+- Proposed union connects all five remaining targets to the C_OUT/U_SYS source. Connected 3V3 pads would increase from 29 to 34, leaving zero. No candidate track or via remains isolated.
+- Preflight, supplemental checks and static-apply argument lists match mechanically; build count is 16 tracks / 2 vias.
+- Proposed Top/Bottom routes were visually inspected in both the expansion and PMUX-left regions.
+- Baseline guards require exactly 14 existing 3V3 vias, no polygon, current H4/H5/left-backbone anchors and exact target pad coordinates.
+- **Altium compile, live execution and H6 DRC remain user-side gates.**
 
-The fresh snapshot contains 34 `3V3_SYS` pads. Geometry analysis proves 24 connected. The remaining 10 are:
+### Remaining 3V3_SYS inventory after Stage4H5
 
-- Stage4H5 targets: `R_PULL1.2`, `R_PULL2.2`, `R_PULL3.2`, `R_PULL4.2`, and `Q_OLED.2`.
-- Expansion: `J_EXP.1`, `R_EXT_REF.1`, `D_EXT1.5`, `D_EXT2.5`.
-- Remaining local branch: `R_ST_PU.1`.
+The fresh snapshot contains 34 `3V3_SYS` pads. Geometry analysis proves 29 connected. The five remaining pads are exactly:
 
-After successful Stage4H5, five pads should remain: the four expansion pads and `R_ST_PU.1`. This is snapshot-derived connectivity inventory, not the whole-board unrouted count.
+- `R_ST_PU.1`
+- `R_EXT_REF.1`
+- `J_EXP.1`
+- `D_EXT1.5`
+- `D_EXT2.5`
+
+Stage4H6 targets all five. This is snapshot-derived connectivity inventory, not the whole-board unrouted count.
+
 
 ## Physical-routing preferences
 
