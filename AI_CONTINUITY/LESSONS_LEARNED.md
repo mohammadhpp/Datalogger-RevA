@@ -51,44 +51,49 @@ These are project-specific lessons intended to prevent repeated mistakes across 
     - Altium can split or merge primitives when new copper joins existing copper.
     - Prefer script-added object count, geometry/connectivity checks, exact preflight, and final DRC.
 
+11. **Audit expected object counts against the actual final build block before shipping a script.**
+    - Stage4H1 v3 passed exact preflight and applied successfully, then falsely reported FAIL because the script expected `25 tracks / 8 vias` while its build block actually contained exactly `24 AddTrackMil` calls and `8 AddViaMil` calls.
+    - `GAddedTracks/GAddedVias` are useful only if the expected values were mechanically verified against the final apply code.
+    - A count-audit mismatch must be diagnosed before discarding geometry that already passed exact preflight; do not reflexively treat it as a routing failure.
+
 ## Schematic / library / ECO
 
-11. **Pad numbers must match schematic pin designators.**
+12. **Pad numbers must match schematic pin designators.**
    - Before assigning/replacing footprints, verify physical pad numbering against the schematic pins and selected connector/part drawing.
    - A visually correct footprint with wrong pad numbering is unacceptable.
 
-12. **Do not move schematic architecture merely to solve a footprint-management problem.**
+13. **Do not move schematic architecture merely to solve a footprint-management problem.**
    - Prefer deliberate footprint assignment and mapping verification over unnecessary schematic rearrangement.
 
-13. **Off-board symbols still require explicit PCB hardware.**
+14. **Off-board symbols still require explicit PCB hardware.**
    - A logical off-board device without a deliberate board-side connector is an incomplete design.
 
 ## Git / AI continuity
 
-14. **Chat history is not a reliable project database.**
+15. **Chat history is not a reliable project database.**
    - Stable design decisions, exact current point, and lessons must live in Git.
 
-15. **A ZIP handoff alone is insufficient for day-to-day continuity.**
+16. **A ZIP handoff alone is insufficient for day-to-day continuity.**
    - Git history plus a concise current handoff is superior for identifying what changed and why.
    - Full offline ZIPs remain valuable for disaster recovery and migration.
 
-16. **Do not replace the known-good local backup architecture when adding cloud backup.**
+17. **Do not replace the known-good local backup architecture when adding cloud backup.**
    - Preserve `localbackup` as the required upstream/rollback path.
    - Add GitHub as a second remote.
 
-17. **Online failure must not invalidate a valid local checkpoint.**
+18. **Online failure must not invalidate a valid local checkpoint.**
    - AutoSave treats local backup as required and GitHub sync as secondary.
    - Loss of internet should produce a warning, not destroy local continuity.
 
-18. **Before continuing from a new AI/session, verify the repo itself.**
+19. **Before continuing from a new AI/session, verify the repo itself.**
    - Read `AI_START_HERE.md` and continuity files.
    - Inspect latest commits and the current engineering file state instead of trusting an old chat summary blindly.
 
 ## Collaboration workflow
 
-19. **Routine screenshots are not mandatory.**
+20. **Routine screenshots are not mandatory.**
    - Proceed from verified files and known state for ordinary steps.
    - Ask/use screenshots when the user is unsure, when visual placement/routing verification is needed, or when the file state cannot answer the question reliably.
 
-20. **When a sequence recommendation is found to be suboptimal, correct it explicitly in the handoff.**
+21. **When a sequence recommendation is found to be suboptimal, correct it explicitly in the handoff.**
    - Do not silently carry a bad next-step recommendation into future sessions.
