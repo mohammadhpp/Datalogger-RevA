@@ -154,6 +154,20 @@ Stage4H1 v3 accepted scope:
 - Snapshot connectivity confirms all six H3 targets join the C_OUT/U_SYS source. Connected 3V3 pads are now 21 of 34; 13 remain.
 - Do not rerun or undo Stage4H3.
 
+#### Stage 4H4 — RTC 3V3_SYS distribution — PASS / SAVED
+
+- Accepted implementation: `AI_SCRIPTS/T23/T23_Stage4H4_3V3_RTC_ExternalPlan_v1.pas`.
+- Script reported `APPLY COMPLETE Stage4H4 v1: 6 tracks / 0 vias` on the live board.
+- Connected `U_RTC.2`, `C_RTC.1`, and `R_RTC_INT_PU.1` to `3V3_SYS`.
+- User explicitly confirmed DRC was correct after execution; Stage4H4 v1 is accepted as PASS. The supplied image shows the apply-complete message; DRC acceptance is based on the user's direct confirmation.
+- User completed save -> Git_Save.cmd -> collision snapshot export v1.3.2 -> Git_Save.cmd.
+- Verified PCB checkpoint: `441ed94c303603ecf4486f66937b05a100b8c340`; PCB blob `68bbc9b27c7227982184fc54a2ad31758cadbc49`, 1,682,944 bytes.
+- Verified post-Stage4H4 snapshot: `5cb4de007b2ce5e40169e059fc4b52d801af7bb0`; snapshot blob `86a5ff09bb7b14e332a432269a9582af2a2fbba2`.
+- Snapshot delta contains seven new 3V3 track records for six requested calls because the branch junction split one primitive; zero new vias. Pad records and other-net geometry are unchanged.
+- Snapshot connectivity confirms all three H4 targets join the C_OUT/U_SYS source. Connected 3V3 pads are now 24 of 34; 10 remain.
+- Do not rerun or undo Stage4H4.
+
+
 ## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
 
 - Accepted exporter: `T23_AI_Board_Collision_Snapshot_Exporter_v1_3_2.pas`.
@@ -178,18 +192,18 @@ Stage4H1 v3 accepted scope:
 
 PCB checkpoint:
 
-`7b096e8ef5d6e0d2ddf991ed2f96cd90a7c11e23`
+`441ed94c303603ecf4486f66937b05a100b8c340`
 
 Fresh collision snapshot:
 
-`ab3f6d9ea9f7f8e4bf71490257ad48637fd4157b`
+`5cb4de007b2ce5e40169e059fc4b52d801af7bb0`
 
-This saved state contains Stage4H1, Stage4H2 and Stage4H3 PASS.
+This saved state contains Stage4H1 through Stage4H4 PASS.
 
 ### Current LIVE Altium state
 
-- User confirmed saving accepted Stage4H3 and exporting the fresh snapshot; both are verified on GitHub.
-- No Stage4H4 routing has been applied. Stage4H4 is an issued candidate awaiting execution and DRC.
+- User confirmed saving accepted Stage4H4 and exporting the fresh snapshot; both are verified on GitHub.
+- No Stage4H5 routing has been applied. Stage4H5 is an issued candidate awaiting execution and DRC.
 - Altium is operated by the user; the AI has no direct live-UI access.
 
 Current accepted SAVED routing:
@@ -199,42 +213,42 @@ Current accepted SAVED routing:
 - `VIN_MUX`, `OLED_VDD`, `SENSOR_3V3` routed.
 - `SD_VDD`, `VBAT`, `USB_5V_AUX` routed.
 - `CC1_RD_RET`, `CC2_RD_RET` routed and DRC-clean.
-- Stage4H1 upper, Stage4H2 MCU/SWD and Stage4H3 SD `3V3_SYS` distribution are saved and PASS.
-- Global `3V3_SYS` distribution remains active; Stage4H4 targets RTC supply.
+- Stage4H1 upper, Stage4H2 MCU/SWD, Stage4H3 SD and Stage4H4 RTC `3V3_SYS` distribution are saved and PASS.
+- Global `3V3_SYS` distribution remains active; Stage4H5 targets the four Navigation pull-ups and the remaining OLED source branch.
 - Expansion signal routing remains later work; `R_EXP_PWR_EN.1` remains on `USB_VBUS_PROT`.
 
 ## Immediate next action — EXACT
 
-1. Run `Git_Save.cmd` once to receive the new H4 script and this handoff.
-2. Run `AI_SCRIPTS/T23/T23_Stage4H4_3V3_RTC_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage4H4_3V3_RTC_v1`, exactly once.
-3. H4 targets `U_RTC.2`, `C_RTC.1`, and `R_RTC_INT_PU.1` on `3V3_SYS`.
-4. Proposed additions: exactly **6 Bottom-layer tracks / 0 vias**. Main feed is 20mil and local pad entries are 10mil.
-5. Route joins the accepted backbone at (5600,5120), passes below the RTC pin field at Y=4680, feeds `C_RTC.1` then `U_RTC.2`, and branches to `R_RTC_INT_PU.1` at Y=4870.
+1. Run `Git_Save.cmd` once to receive the new H5 script and this handoff.
+2. Run `AI_SCRIPTS/T23/T23_Stage4H5_3V3_Nav_OLED_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage4H5_3V3_Nav_OLED_v1`, exactly once.
+3. H5 targets `R_PULL1.2`, `R_PULL2.2`, `R_PULL3.2`, `R_PULL4.2`, and `Q_OLED.2` on `3V3_SYS`.
+4. Proposed additions: exactly **7 tracks / 2 vias**. The long Bottom feed uses 20mil; local Top pad entries use 10mil; both vias are 0.60/0.30mm (23.622/11.811mil).
+5. The Navigation branch extends the accepted Bottom backbone from (6137.441,6600) to (6900,6600), rises to the four pull-ups at Y≈6390, and a separate short via branch at (5800,6600) feeds `Q_OLED.2`.
 6. On preflight `ABORT`, nothing was added and no Undo is needed. On `BUILD INCOMPLETE`, one Ctrl+Z rolls back the transaction. On `APPLY COMPLETE`, do not rerun or save; run DRC and report the result.
 7. Accept only zero new Clearance, Short-Circuit, Width and Minimum Solder Mask Sliver violations. The same three pre-polygon GND Net Antennae remain the only accepted entries.
 8. After accepted DRC: save PCB -> Git_Save.cmd -> export collision snapshot v1.3.2 -> Git_Save.cmd; verify Git and update handoff.
-9. RTC signal/GND routing, SD signal/GND routing and MCU/decoupling GND returns remain later work. No polygon yet.
+9. The five remaining 3V3_SYS pads, RTC signal/GND routing, SD signal/GND routing and MCU/decoupling GND returns remain later work. No polygon yet.
 
-### Stage4H4 validation completed outside Altium
+### Stage4H5 validation completed outside Altium
 
-- Exact snapshot content verified against Git blob `00f17ae9b72cbf6728d28dfca8e81c90fbacafe3`.
-- Full collision audit reports zero proposed conflicts with Bottom/Multi Layer pads, existing Bottom tracks or vias under the 6mil clearance model.
-- Smallest proposed track-to-other-net conservative copper gap is 32.599mil.
-- Proposed union connects all three RTC targets to the C_OUT/U_SYS source. Connected 3V3 pads would increase from 21 to 24, leaving 10. No isolated 3V3 track remains.
-- Preflight and static-apply geometry match mechanically; build count is 6 tracks / 0 vias.
-- Proposed Bottom-layer route was visually inspected around the RTC pin field.
-- **Altium compile, live execution and H4 DRC remain user-side gates.**
+- Exact post-H4 snapshot content verified against Git blob `86a5ff09bb7b14e332a432269a9582af2a2fbba2`.
+- Full collision audit reports zero proposed conflicts with Top/Bottom/Multi Layer pads, existing tracks or vias under the 6mil electrical-clearance model and conservative 8mil via/pad mask allowance.
+- Smallest conservative candidate-to-other-net gaps are 47.610mil for tracks and 23.071mil for vias.
+- Proposed union connects all five targets to the C_OUT/U_SYS source. Connected 3V3 pads would increase from 24 to 29, leaving five. No candidate track or via remains isolated.
+- Preflight and static-apply argument lists match mechanically; build count is 7 tracks / 2 vias.
+- Proposed Top/Bottom route was visually inspected around the Navigation pull-ups and OLED branch.
+- `R_ST_PU.1` was deliberately excluded: a tested direct branch from the H1-left area conflicts with existing `VIN_MUX` / `C1` geometry and needs its own collision-aware plan.
+- **Altium compile, live execution and H5 DRC remain user-side gates.**
 
-### Remaining 3V3_SYS inventory after Stage4H3
+### Remaining 3V3_SYS inventory after Stage4H4
 
-The fresh snapshot contains 34 `3V3_SYS` pads. Geometry analysis proves 21 connected. The remaining 13 are:
+The fresh snapshot contains 34 `3V3_SYS` pads. Geometry analysis proves 24 connected. The remaining 10 are:
 
-- RTC: `U_RTC.2`, `C_RTC.1`, `R_RTC_INT_PU.1` — Stage4H4 targets these three.
-- Navigation pull-ups: `R_PULL1.2`, `R_PULL2.2`, `R_PULL3.2`, `R_PULL4.2`.
+- Stage4H5 targets: `R_PULL1.2`, `R_PULL2.2`, `R_PULL3.2`, `R_PULL4.2`, and `Q_OLED.2`.
 - Expansion: `J_EXP.1`, `R_EXT_REF.1`, `D_EXT1.5`, `D_EXT2.5`.
-- Remaining local branches: `Q_OLED.2`, `R_ST_PU.1`.
+- Remaining local branch: `R_ST_PU.1`.
 
-This is snapshot-derived connectivity inventory, not the whole-board unrouted count.
+After successful Stage4H5, five pads should remain: the four expansion pads and `R_ST_PU.1`. This is snapshot-derived connectivity inventory, not the whole-board unrouted count.
 
 ## Physical-routing preferences
 
