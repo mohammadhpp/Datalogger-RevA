@@ -239,12 +239,25 @@ Stage4H1 v3 accepted scope:
 - The cross-board trunk is on Bottom between vias at (6030,5970) and (6500,6150), preserving Top-layer north-side MCU fanout.
 - Do not rerun Stage5B.
 
-### Stage 5C — RTC interrupt distribution — CANDIDATE ISSUED / DRC PENDING
+### Stage 5C — RTC interrupt distribution — PASS / SAVED
 
-- Candidate: `AI_SCRIPTS/T23/T23_Stage5C_RTC_INT_ExternalPlan_v1.pas`.
+- Accepted implementation: `AI_SCRIPTS/T23/T23_Stage5C_RTC_INT_ExternalPlan_v1.pas`.
 - Targets all four RTC_INT_N pads: `U_RTC.3`, `R_RTC_INT_PU.2`, `TP_RTC_INT.1`, and `U_MCU.27`.
-- Proposed additions: 8 tracks / 3 vias, 8mil throughout.
-- The RTC/pull-up branch starts on Bottom, rises to the test point and left-side Top corridor, then crosses the final MCU approach on Bottom at Y=6110. Only the short U_MCU.27 escape remains on Top, preserving north-side MCU fanout.
+- Script reported `APPLY COMPLETE Stage5C v1: 8 tracks / 3 vias`; user explicitly confirmed DRC was correct.
+- User completed PCB save -> `Git_Save.cmd` -> collision snapshot export v1.3.2 -> `Git_Save.cmd`.
+- Verified PCB checkpoint: `d786903658079c055acdff33afba12fa14dfc16e`; PCB blob `a0489eef10789e9ed607f32632fe94dd34fe27ff`, 1,691,648 bytes.
+- Verified post-Stage5C snapshot: `698faffa45f73e7469fcb77b0b493c11c483e9d0`; snapshot blob `c55561bae7eb42aa8b2cfcc1265af9121a6ca9b1`, 161,988 bytes.
+- Snapshot delta keeps all 418 pads, fills, regions and arcs unchanged; it adds exactly three RTC_INT_N vias and 12 RTC_INT_N track records with no removals. The difference from eight scripted track calls is Altium's save-time segmentation of routed diagonals, not extra topology.
+- Snapshot connectivity proves all four RTC_INT_N pads are in one connected component. `3V3_SYS` remains 34/34 connected and SWD/NRST remain complete.
+- Fresh geometry inventory now finds 47 incomplete non-GND signal nets; RTC_INT_N is no longer incomplete.
+- Do not rerun Stage5C.
+
+### Stage 5D — OLED connector I2C output pair — CANDIDATE ISSUED / DRC PENDING
+
+- Candidate: `AI_SCRIPTS/T23/T23_Stage5D_OLED_I2C_ExternalPlan_v1.pas`.
+- Connects `OLED_SCL: U_OLED_SW.2 -> J_OLED.3` and `OLED_SDA: U_OLED_SW.4 -> J_OLED.4`.
+- Proposed additions: exactly 10 tracks / 0 vias, all Top-layer 8mil.
+- Both routes use the externally verified local OLED corridor and enter the two adjacent connector pads without crossing the existing OLED_VDD route.
 
 ## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
 
@@ -271,18 +284,18 @@ Stage4H1 v3 accepted scope:
 
 PCB checkpoint:
 
-`747622fd0cccd34f6636183d5b56aecf16a708f9`
+`d786903658079c055acdff33afba12fa14dfc16e`
 
 Fresh collision snapshot:
 
-`956ee7ef5a7b14fcf63326d331e5cc708a2eef76`
+`698faffa45f73e7469fcb77b0b493c11c483e9d0`
 
-This saved state contains Stage4A through Stage4I and Stage5A through Stage5B PASS.
+This saved state contains Stage4A through Stage4I and Stage5A through Stage5C PASS.
 
 ### Current LIVE Altium state
 
-- User confirmed accepted Stage5B v2 DRC, PCB save and fresh snapshot export; both files are verified on GitHub.
-- No Stage5C routing has been applied. Stage5C v1 is an issued candidate awaiting execution and DRC.
+- User confirmed accepted Stage5C v1 DRC, PCB save and fresh snapshot export; both files are verified on GitHub.
+- No Stage5D routing has been applied. Stage5D v1 is an issued candidate awaiting execution and DRC.
 - Altium is operated by the user; the AI has no direct live-UI access.
 
 Current accepted SAVED routing:
@@ -297,29 +310,30 @@ Current accepted SAVED routing:
 - Stage 4 Remaining Power / USB / power-distribution is closed.
 - Stage5A `SWDIO` and `SWCLK` are saved and DRC-PASS.
 - Stage5B `NRST` is saved and DRC-PASS; all five NRST pads are connected.
-- Fresh geometry inventory now finds 48 incomplete non-GND signal nets; Stage 5 signal routing is active.
+- Stage5C `RTC_INT_N` is saved and DRC-PASS; all four RTC interrupt pads are connected.
+- Fresh geometry inventory now finds 47 incomplete non-GND signal nets; Stage 5 signal routing is active.
 
 ## Immediate next action — EXACT
 
-1. Run `Git_Save.cmd` once to receive the new Stage5C script and this handoff.
-2. Run `AI_SCRIPTS/T23/T23_Stage5C_RTC_INT_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage5C_RTC_INT_v1`, exactly once.
-3. Stage5C connects all four `RTC_INT_N` pads across RTC, pull-up, test point and MCU.
-4. Proposed additions: exactly **8 tracks / 3 vias**, all tracks at 8mil; vias are 0.60/0.30mm.
+1. Run `Git_Save.cmd` once to receive the new Stage5D script and this handoff.
+2. Run `AI_SCRIPTS/T23/T23_Stage5D_OLED_I2C_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage5D_OLED_I2C_v1`, exactly once.
+3. Stage5D connects the two switched OLED bus outputs from `U_OLED_SW` to `J_OLED`.
+4. Proposed additions: exactly **10 tracks / 0 vias**, all Top-layer tracks at 8mil.
 5. On preflight `ABORT`, nothing was added and no Undo is needed. On `BUILD INCOMPLETE`, one Ctrl+Z rolls back the transaction. On `APPLY COMPLETE`, do not rerun or save; run DRC and report the result.
 6. Accept only zero new Clearance, Short-Circuit, Width and Minimum Solder Mask Sliver violations. The same three pre-polygon GND Net Antennae remain the only accepted entries.
 7. After accepted DRC: save PCB -> `Git_Save.cmd` -> export collision snapshot v1.3.2 -> `Git_Save.cmd`; verify Git and update handoff.
 8. Continue Stage 5 in coordinated functional bundles. No polygon yet.
 
-### Stage5C validation completed outside Altium
+### Stage5D validation completed outside Altium
 
-- Exact post-Stage5B snapshot content is Git blob `2e551070ce84d75c401be7d081ef8311e5fe18b5`.
+- Exact post-Stage5C snapshot content is Git blob `c55561bae7eb42aa8b2cfcc1265af9121a6ca9b1`.
 - Full candidate audit reports zero pad/track/via conflicts using the same axis-expanded pad-bbox semantics as the Altium preflight.
-- The tightest conservative guard headroom is 8.063mil at the final via-to-own-pad mask check near `U_MCU.27`; all checks remain above their required limits.
-- Proposed union connects all four RTC_INT_N pads and every candidate track/via into one component.
-- The long final approach is deliberately on Bottom rather than across the Top side of U_MCU, so later north-side MCU signal fanout is not blocked.
-- Preflight and static-apply argument lists match mechanically; build count is 8 tracks / 3 vias.
-- Baseline guards require zero existing RTC_INT_N tracks/vias, no polygon, exact saved Stage5B NRST anchors and exact target pad net/layer/coordinates.
-- **Altium compile, live execution and Stage5C DRC remain user-side gates.**
+- The tightest conservative guard headroom is 8.738mil beyond the required clearance envelope, against the existing 3V3_SYS via at (5800,6600).
+- Minimum OLED_SCL-to-OLED_SDA candidate spacing has 39.601mil headroom beyond the required copper-plus-clearance limit.
+- Proposed geometry connects both two-pad nets, with no layer change and no new via/mask-sliver risk.
+- Preflight and static-apply argument lists match mechanically; build count is 10 tracks / 0 vias.
+- Baseline guards require zero existing OLED_SCL/OLED_SDA tracks/vias, no polygon, exact saved Stage5C RTC_INT_N anchors and exact target pad net/layer/coordinates.
+- **Altium compile, live execution and Stage5D DRC remain user-side gates.**
 
 ### Remaining 3V3_SYS inventory after Stage4H5
 
