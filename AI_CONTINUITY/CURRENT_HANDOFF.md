@@ -73,15 +73,24 @@ Last continuity update: 2026-09-11
 
 ### Stage 4F — remaining local power rails — PASS
 
-- Final accepted implementation: `T23_Stage4F_v2_CollisionAware_RemainingPower.pas`; v1 preflight-aborted before adding objects because the first SD_VDD corridor crossed `R_MISO.2`.
-- v2 corrected the SD_VDD main vertical rail to `X=7002.5mil`, centered in the legal gap between `R_MISO_PD.1` and `R_MISO.2`.
-- Completed `SD_VDD` distribution including Q_SD, bulk/mid/HF capacitors, SD ESD arrays, J_SD.4, and R_CS_PU.2.
-- Completed `VBAT`: U_RTC.14 -> BT2.1 -> TP_VBAT, using Bottom trunk plus Top test-point branch.
-- Completed `USB_5V_AUX`: R_EXP_PWR_EN.2 -> J_EXP_PWR.1/J_EXP_PWR.2.
-- Script requested 24 tracks / 0 vias and PASSed full-stage exact collision preflight.
+- Final accepted implementation: `T23_Stage4F_v2_CollisionAware_RemainingPower.pas`.
+- Completed `SD_VDD`, `VBAT`, and `USB_5V_AUX`.
 - User confirmed DRC after Stage 4F: only the same 3 expected GND Net Antennae; zero new Clearance / Short / Width / Solder Mask Sliver violations.
-- Saved PCB checkpoint containing Stage 4F: `f2a7e90127879cc40855345699ca847759019d09`.
-- Fresh post-Stage-4F collision snapshot: `AI_BOARD_COLLISION_SNAPSHOT_T23.tsv`, commit `b5c9aea39d413fb2ff877b608fbe41d2106da104`.
+- Saved PCB checkpoint: `f2a7e90127879cc40855345699ca847759019d09`.
+- Post-Stage-4F collision snapshot: `b5c9aea39d413fb2ff877b608fbe41d2106da104`.
+
+### Stage 4G — USB-C CC return completion — PASS
+
+- Final accepted implementation: `T23_Stage4G_ExternalPlan_v1.pas`.
+- The earlier manually guessed Stage4G v1-v4 corridors were rejected by preflight and never saved.
+- An in-Altium A* experiment was abandoned because PascalScript route search blocked the Altium UI; no route from that experiment was saved.
+- Final method: route planning performed externally from the collision snapshot; Altium script performs only lightweight exact live-board preflight and static apply.
+- Routed `CC1_RD_RET`: `R_CC1.2 -> S1.5`, accepted geometry = 7 tracks / 1 via.
+- Routed `CC2_RD_RET`: `R_CC2.2 -> S1.7`, accepted geometry = 5 tracks / 2 vias.
+- Total Stage4G requested objects = 12 tracks / 3 vias.
+- User confirmed DRC after Stage 4G: only the same 3 expected GND Net Antennae; zero new Clearance / Short / Width / Solder Mask Sliver violations.
+- Saved PCB checkpoint containing Stage 4G: `4b3fdd50c4fe619e312c0d59d6a2fae5d386c131`.
+- Fresh post-Stage-4G collision snapshot: `AI_BOARD_COLLISION_SNAPSHOT_T23.tsv`, commit `7840d80a223e2bee4b294b8d1e744a2d4469f0cf`.
 
 ## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
 
@@ -89,24 +98,26 @@ Last continuity update: 2026-09-11
 - Treat Multi Layer pads as copper obstacles on both Top and Bottom.
 - Include existing track width, via copper envelope, and required clearance.
 - Protect via-to-pad solder-mask sliver, including same-net pads.
-- Full-stage preflight must occur before adding the first PCB object whenever practical.
 - DRC is final verification only, not a route-finding tool.
 - If preflight fails, abort instead of applying a guessed route.
 - Preserve one-transaction / one-Ctrl+Z rollback for scripted routing stages.
 - Do not create the Bottom GND polygon until major routing is complete.
 - User prefers larger logical routing bundles where safe; collision safety overrides bundle size.
 - Routing deliverables must be `.pas` only.
-- Do not use absolute final Track-object count as the sole PASS/FAIL gate; Altium may split/merge track primitives. Use script-added object counts, connectivity analysis, preflight, and DRC.
+- Do not use absolute final Track-object count as the sole PASS/FAIL gate; Altium may split/merge track primitives.
+- **Dense route planning must be done outside Altium from the latest collision snapshot.**
+- **Do not run heavy A*/grid-search/route-planning loops inside Altium PascalScript.** Altium is single-UI-thread sensitive and can appear hung.
+- The Altium `.pas` stage should be lightweight: baseline checks -> exact preflight -> static apply -> connectivity analysis -> DRC by user.
 
 ## Current exact PCB state
 
 Authoritative PCB checkpoint:
 
-`f2a7e90127879cc40855345699ca847759019d09`
+`4b3fdd50c4fe619e312c0d59d6a2fae5d386c131`
 
 Fresh collision snapshot:
 
-`b5c9aea39d413fb2ff877b608fbe41d2106da104`
+`7840d80a223e2bee4b294b8d1e744a2d4469f0cf`
 
 Current accepted relevant state:
 
@@ -114,19 +125,19 @@ Current accepted relevant state:
 - `PMUX_PR1`, `PMUX_ST`, `USB_CC1`, `USB_CC2` routed.
 - `VIN_MUX`, `OLED_VDD`, `SENSOR_3V3` routed.
 - `SD_VDD`, `VBAT`, `USB_5V_AUX` routed.
-- `CC1_RD_RET` / `CC2_RD_RET` remain unrouted.
-- Global `3V3_SYS` still requires power-distribution completion.
+- `CC1_RD_RET`, `CC2_RD_RET` routed and DRC-clean.
+- Global `3V3_SYS` still requires dedicated power-distribution completion.
 - Expansion signal routing remains later work; `R_EXP_PWR_EN.1` is still on `USB_VBUS_PROT` and was intentionally not altered by Stage 4F.
 
 ## Immediate next action
 
-Continue **Stage 4G — USB-C CC return completion** from post-Stage-4F collision snapshot `b5c9aea3...`.
+Continue **Stage 4H — global `3V3_SYS` power-distribution completion** from post-Stage-4G collision snapshot `7840d80a...`.
 
-- Route `CC1_RD_RET`: `R_CC1.2 -> S1.5`.
-- Route `CC2_RD_RET`: `R_CC2.2 -> S1.7`.
-- Prefer Bottom-layer long runs with controlled vias near the SMD resistors to avoid the dense OVP/PMUX Top copper.
-- Full-stage exact collision preflight must PASS before adding anything.
-- Keep the global `3V3_SYS` for the following dedicated power-distribution stage; it is physically broad and should not be mixed into the CC-return geometry merely to inflate route count.
+- Treat `3V3_SYS` as a broad power-distribution problem, not a single guessed polyline.
+- Plan externally from the fresh collision snapshot and divide into coherent local clusters/trunks if that improves routability and verification.
+- Preserve controlled neck-down around fine-pitch IC pads.
+- Keep the Bottom GND polygon deferred until major routing is complete.
+- Deliver only a lightweight `.pas` static-apply script with exact preflight; no route search inside Altium.
 
 After script PASS:
 
