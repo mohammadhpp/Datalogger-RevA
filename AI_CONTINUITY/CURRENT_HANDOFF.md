@@ -210,12 +210,24 @@ Stage4H1 v3 accepted scope:
 
 ## Stage 5 — signal routing — IN PROGRESS
 
-### Stage 5A — SWD debug pair — CANDIDATE ISSUED / DRC PENDING
+### Stage 5A — SWD debug pair — PASS / SAVED
 
-- Candidate: `AI_SCRIPTS/T23/T23_Stage5A_SWD_Debug_ExternalPlan_v1.pas`.
-- Targets `SWDIO: U_MCU.24 -> J_SWD.2` and `SWCLK: U_MCU.25 -> J_SWD.4`.
-- Proposed additions: 3 Top-layer 8mil tracks / 0 vias.
-- `NRST` is intentionally deferred for coordinated MCU north-side fanout; the rejected preliminary long route would have blocked later signal escapes.
+- Accepted implementation: `AI_SCRIPTS/T23/T23_Stage5A_SWD_Debug_ExternalPlan_v1.pas`.
+- Script reported `APPLY COMPLETE Stage5A v1: 3 tracks / 0 vias` on the live board.
+- Connected `SWDIO: U_MCU.24 -> J_SWD.2` with two Top-layer 8mil tracks and `SWCLK: U_MCU.25 -> J_SWD.4` with one Top-layer 8mil track.
+- User explicitly confirmed DRC was correct after execution; Stage5A v1 is accepted as PASS.
+- User completed save / snapshot exporter v1.3.2 / `Git_Save.cmd`.
+- Verified PCB checkpoint: `77fed8e2f76d5eed73fb5d3d81b96ce2d1ec7888`; PCB blob `d0cbc4235497ca70b9e7892393e4f65ec972ff35`, 1,687,552 bytes.
+- Verified post-Stage5A snapshot: `a067fc546e8a9ea8fe3dcbda82ac7a13fd932479`; snapshot blob `6f94abb49147c55e99795558dc3fb1cc00dc3c01`.
+- Snapshot delta is exactly two added SWDIO tracks and one added SWCLK track; all 418 pads, 49 vias, fills, regions and arcs are unchanged.
+- Do not rerun Stage5A.
+
+### Stage 5B — NRST / reset distribution — CANDIDATE ISSUED / DRC PENDING
+
+- Candidate: `AI_SCRIPTS/T23/T23_Stage5B_NRST_ExternalPlan_v1.pas`.
+- Targets all five NRST pads: `U_MCU.6`, `C_NRST.1`, `SW_RESET.1/.2`, and `J_SWD.5`.
+- Proposed additions: 11 tracks / 2 vias, 8mil throughout.
+- The cross-board trunk is on Bottom between vias at (6030,5970) and (6500,6150), preserving Top-layer north-side MCU fanout.
 
 ## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
 
@@ -241,18 +253,18 @@ Stage4H1 v3 accepted scope:
 
 PCB checkpoint:
 
-`5205a902577784c061c5db5fcf529707a8ea2752`
+`77fed8e2f76d5eed73fb5d3d81b96ce2d1ec7888`
 
 Fresh collision snapshot:
 
-`f798bdd34bd316866b4fb8102c6ddbba3e3989a6`
+`a067fc546e8a9ea8fe3dcbda82ac7a13fd932479`
 
-This saved state contains Stage4A through Stage4I PASS. Stage 4 is formally closed.
+This saved state contains Stage4A through Stage4I and Stage5A PASS.
 
 ### Current LIVE Altium state
 
-- User confirmed saving accepted Stage4I and exporting the fresh snapshot; both are verified on GitHub.
-- No Stage5A routing has been applied. Stage5A is an issued candidate awaiting execution and DRC.
+- User confirmed accepted Stage5A DRC, PCB save and fresh snapshot export; both files are verified on GitHub.
+- No Stage5B routing has been applied. Stage5B is an issued candidate awaiting execution and DRC.
 - Altium is operated by the user; the AI has no direct live-UI access.
 
 Current accepted SAVED routing:
@@ -265,29 +277,30 @@ Current accepted SAVED routing:
 - Stage4H1 through Stage4H6 global `3V3_SYS` distribution is saved, DRC-PASS and closed.
 - Stage4I final `USB_VBUS_PROT` branch is saved and DRC-PASS; all 8 pads are connected.
 - Stage 4 Remaining Power / USB / power-distribution is closed.
-- Fresh geometry inventory finds 51 incomplete non-GND signal nets; Stage 5 signal routing is active.
+- Stage5A `SWDIO` and `SWCLK` are saved and DRC-PASS.
+- Fresh geometry inventory now finds 49 incomplete non-GND signal nets; Stage 5 signal routing is active.
 
 ## Immediate next action — EXACT
 
-1. Run `Git_Save.cmd` once to receive the new Stage5A script and this handoff.
-2. Run `AI_SCRIPTS/T23/T23_Stage5A_SWD_Debug_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage5A_SWD_Debug_v1`, exactly once.
-3. Stage5A routes only `SWDIO` and `SWCLK` from `U_MCU` to `J_SWD`.
-4. Proposed additions: exactly **3 Top-layer tracks / 0 vias**, all at 8mil.
+1. Run `Git_Save.cmd` once to receive the new Stage5B script and this handoff.
+2. Run `AI_SCRIPTS/T23/T23_Stage5B_NRST_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage5B_NRST_v1`, exactly once.
+3. Stage5B connects all five `NRST` pads across MCU, local capacitor, reset switch and SWD connector.
+4. Proposed additions: exactly **11 tracks / 2 vias**, all tracks at 8mil; vias are 0.60/0.30mm.
 5. On preflight `ABORT`, nothing was added and no Undo is needed. On `BUILD INCOMPLETE`, one Ctrl+Z rolls back the transaction. On `APPLY COMPLETE`, do not rerun or save; run DRC and report the result.
 6. Accept only zero new Clearance, Short-Circuit, Width and Minimum Solder Mask Sliver violations. The same three pre-polygon GND Net Antennae remain the only accepted entries.
 7. After accepted DRC: save PCB -> `Git_Save.cmd` -> export collision snapshot v1.3.2 -> `Git_Save.cmd`; verify Git and update handoff.
 8. Continue Stage 5 in coordinated functional bundles. No polygon yet.
 
-### Stage5A validation completed outside Altium
+### Stage5B validation completed outside Altium
 
-- Exact post-Stage4I snapshot content verified byte-for-byte against Git blob `3ced992e3d97ec92fd6bcc977d31638b94c35852`.
+- Exact post-Stage5A snapshot content verified byte-for-byte against Git blob `6f94abb49147c55e99795558dc3fb1cc00dc3c01`.
 - Full collision audit reports zero proposed conflicts under the 6mil electrical-clearance model.
-- Smallest conservative candidate-track gap to different-net copper is 16.669mil. Minimum SWDIO-to-SWCLK candidate copper gap is 61.686mil.
-- Proposed union connects both endpoints of `SWDIO` and both endpoints of `SWCLK`; no candidate segment is isolated.
-- Top-layer route geometry and future MCU fanout impact were visually inspected.
-- Preflight and static-apply argument lists match mechanically; build count is 3 tracks / 0 vias.
-- Baseline guards require zero existing SWDIO/SWCLK tracks, no polygon, the exact saved Stage4I anchor, and exact target pad net/layer/coordinates.
-- **Altium compile, live execution and Stage5A DRC remain user-side gates.**
+- Smallest conservative candidate-track gap to different-net copper is 10.090mil; smallest candidate-via clearance is 23.189mil under the conservative mask model.
+- Proposed union connects all five NRST pads and every candidate track/via into one component.
+- Top/Bottom geometry and later MCU north-side fanout impact were visually inspected. The Bottom trunk avoids a long Top-layer barrier.
+- Preflight and static-apply argument lists match mechanically; build count is 11 tracks / 2 vias.
+- Baseline guards require zero existing NRST tracks/vias, no polygon, exact saved Stage5A SWDIO/SWCLK anchors and exact target pad net/layer/coordinates.
+- **Altium compile, live execution and Stage5B DRC remain user-side gates.**
 
 ### Remaining 3V3_SYS inventory after Stage4H5
 
