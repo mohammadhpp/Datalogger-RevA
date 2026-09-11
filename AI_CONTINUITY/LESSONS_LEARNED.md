@@ -32,44 +32,63 @@ These are project-specific lessons intended to prevent repeated mistakes across 
    - Future audit scripts should prefer actual Altium connectivity/geometry-overlap evidence, or explicitly support verified pad-edge entry, instead of using center-coordinate equality as the only connectivity test.
    - DRC plus live-board connectivity should outrank brittle coordinate heuristics.
 
+7. **Collision checking is not route planning.**
+   - Repeatedly guessing coordinates and then asking a preflight checker whether they collide is still trial-and-error.
+   - Dense routing should be planned from the full obstacle field first; preflight is the independent verifier, not the pathfinder.
+
+8. **Do not run heavy route-search algorithms inside Altium PascalScript.**
+   - A live-board A* experiment during T23 Stage 4G blocked the Altium UI and made the application appear hung.
+   - Altium scripts for this project must stay lightweight: baseline checks, exact geometry preflight, static apply, connectivity analysis.
+   - Heavy search/planning belongs outside Altium.
+
+9. **For dense scripted routing, plan externally from the latest collision snapshot.**
+   - Use `AI_BOARD_COLLISION_SNAPSHOT_T23.tsv` as the external planning geometry source.
+   - Model Top/Bottom obstacles, Multi Layer pads, existing track widths, vias, electrical clearance, and via-to-pad mask sliver.
+   - When two target nets compete for the same corridor, plan them as a pair rather than independently.
+   - The accepted Stage 4G solution (`CC1_RD_RET` / `CC2_RD_RET`) used this method successfully.
+
+10. **Do not use absolute Altium Track-object count as the sole route PASS gate.**
+    - Altium can split or merge primitives when new copper joins existing copper.
+    - Prefer script-added object count, geometry/connectivity checks, exact preflight, and final DRC.
+
 ## Schematic / library / ECO
 
-7. **Pad numbers must match schematic pin designators.**
+11. **Pad numbers must match schematic pin designators.**
    - Before assigning/replacing footprints, verify physical pad numbering against the schematic pins and selected connector/part drawing.
    - A visually correct footprint with wrong pad numbering is unacceptable.
 
-8. **Do not move schematic architecture merely to solve a footprint-management problem.**
+12. **Do not move schematic architecture merely to solve a footprint-management problem.**
    - Prefer deliberate footprint assignment and mapping verification over unnecessary schematic rearrangement.
 
-9. **Off-board symbols still require explicit PCB hardware.**
+13. **Off-board symbols still require explicit PCB hardware.**
    - A logical off-board device without a deliberate board-side connector is an incomplete design.
 
 ## Git / AI continuity
 
-10. **Chat history is not a reliable project database.**
-    - Stable design decisions, exact current point, and lessons must live in Git.
+14. **Chat history is not a reliable project database.**
+   - Stable design decisions, exact current point, and lessons must live in Git.
 
-11. **A ZIP handoff alone is insufficient for day-to-day continuity.**
-    - Git history plus a concise current handoff is superior for identifying what changed and why.
-    - Full offline ZIPs remain valuable for disaster recovery and migration.
+15. **A ZIP handoff alone is insufficient for day-to-day continuity.**
+   - Git history plus a concise current handoff is superior for identifying what changed and why.
+   - Full offline ZIPs remain valuable for disaster recovery and migration.
 
-12. **Do not replace the known-good local backup architecture when adding cloud backup.**
-    - Preserve `localbackup` as the required upstream/rollback path.
-    - Add GitHub as a second remote.
+16. **Do not replace the known-good local backup architecture when adding cloud backup.**
+   - Preserve `localbackup` as the required upstream/rollback path.
+   - Add GitHub as a second remote.
 
-13. **Online failure must not invalidate a valid local checkpoint.**
-    - AutoSave treats local backup as required and GitHub sync as secondary.
-    - Loss of internet should produce a warning, not destroy local continuity.
+17. **Online failure must not invalidate a valid local checkpoint.**
+   - AutoSave treats local backup as required and GitHub sync as secondary.
+   - Loss of internet should produce a warning, not destroy local continuity.
 
-14. **Before continuing from a new AI/session, verify the repo itself.**
-    - Read `AI_START_HERE.md` and continuity files.
-    - Inspect latest commits and the current engineering file state instead of trusting an old chat summary blindly.
+18. **Before continuing from a new AI/session, verify the repo itself.**
+   - Read `AI_START_HERE.md` and continuity files.
+   - Inspect latest commits and the current engineering file state instead of trusting an old chat summary blindly.
 
 ## Collaboration workflow
 
-15. **Routine screenshots are not mandatory.**
-    - Proceed from verified files and known state for ordinary steps.
-    - Ask/use screenshots when the user is unsure, when visual placement/routing verification is needed, or when the file state cannot answer the question reliably.
+19. **Routine screenshots are not mandatory.**
+   - Proceed from verified files and known state for ordinary steps.
+   - Ask/use screenshots when the user is unsure, when visual placement/routing verification is needed, or when the file state cannot answer the question reliably.
 
-16. **When a sequence recommendation is found to be suboptimal, correct it explicitly in the handoff.**
-    - Do not silently carry a bad next-step recommendation into future sessions.
+20. **When a sequence recommendation is found to be suboptimal, correct it explicitly in the handoff.**
+   - Do not silently carry a bad next-step recommendation into future sessions.
