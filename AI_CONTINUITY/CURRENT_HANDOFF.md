@@ -82,7 +82,7 @@ Last continuity update: 2026-09-11
 ### Stage 4G — USB-C CC return completion — PASS
 
 - Final accepted implementation: `T23_Stage4G_ExternalPlan_v1.pas`.
-- The earlier manually guessed Stage4G v1-v4 corridors were rejected by preflight and never saved.
+- Earlier manually guessed Stage4G v1-v4 corridors were rejected by preflight and never saved.
 - An in-Altium A* experiment was abandoned because PascalScript route search blocked the Altium UI; no route from that experiment was saved.
 - Final method: route planning performed externally from the collision snapshot; Altium script performs only lightweight exact live-board preflight and static apply.
 - Routed `CC1_RD_RET`: `R_CC1.2 -> S1.5`, accepted geometry = 7 tracks / 1 via.
@@ -91,6 +91,35 @@ Last continuity update: 2026-09-11
 - User confirmed DRC after Stage 4G: only the same 3 expected GND Net Antennae; zero new Clearance / Short / Width / Solder Mask Sliver violations.
 - Saved PCB checkpoint containing Stage 4G: `4b3fdd50c4fe619e312c0d59d6a2fae5d386c131`.
 - Fresh post-Stage-4G collision snapshot: `AI_BOARD_COLLISION_SNAPSHOT_T23.tsv`, commit `7840d80a223e2bee4b294b8d1e744a2d4469f0cf`.
+
+### Stage 4H — global 3V3_SYS distribution — IN PROGRESS
+
+#### Stage 4H1 — north / upper 3V3_SYS backbone — LIVE UNSAVED CANDIDATE, DRC PENDING
+
+- Baseline for all Stage4H1 attempts is the saved Stage4G PCB checkpoint `4b3fdd50...` plus collision snapshot `7840d80a...`.
+- `T23_Stage4H1_3V3_North_ExternalPlan_v1.pas` preflight-aborted before adding objects: horizontal Bottom backbone at `Y=5750` collided with existing `USB_VBUS_PROT` Bottom wall at `X=5290`.
+- `T23_Stage4H1_3V3_North_ExternalPlan_v2.pas` preflight-aborted before adding objects: attempted detour down from `(5035,5750)` collided with existing `OVP_K` Bottom geometry.
+- `T23_Stage4H1_3V3_North_ExternalPlan_v3.pas` then passed full exact preflight and STATIC APPLY executed.
+- v3 live result message: `AddedTracks=24, AddedVias=8`; script incorrectly expected `25 tracks / 8 vias`, therefore it displayed a FALSE object-audit FAIL.
+- Verified after the fact: the v3 build block actually contains exactly **24 `AddTrackMil` calls and 8 `AddViaMil` calls**. The mismatch is arithmetic in the audit expectation, not evidence of a missing build object.
+- **No DRC has yet been run on the live Stage4H1 v3 candidate.**
+- **Do not save Stage4H1 yet.**
+- At chat handoff time, the Altium working board may still contain the unsaved v3 geometry. Do NOT automatically discard it merely because of the false count FAIL.
+
+Stage4H1 v3 intended scope:
+
+- Root from already-routed `3V3_SYS` near `(5035,5750)`.
+- Bottom-layer north/upper distribution backbone routed around the Stage3 OVP / protected-USB obstacle maze.
+- Connects upper `3V3_SYS` consumers including:
+  - `TP_3V3_SYS`
+  - `R_SCL_PU.2`
+  - `R_SDA_PU.2`
+  - `D_ESD.5`
+  - `FB_SENSOR.1`
+  - `R_OLED_GATE.2`
+  - `U_OLED_SW.14`
+  - `C_4066.1`
+- v3 build count should be treated as **24 tracks / 8 vias**, not 25/8.
 
 ## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
 
@@ -104,14 +133,17 @@ Last continuity update: 2026-09-11
 - Do not create the Bottom GND polygon until major routing is complete.
 - User prefers larger logical routing bundles where safe; collision safety overrides bundle size.
 - Routing deliverables must be `.pas` only.
-- Do not use absolute final Track-object count as the sole PASS/FAIL gate; Altium may split/merge track primitives.
-- **Dense route planning must be done outside Altium from the latest collision snapshot.**
-- **Do not run heavy A*/grid-search/route-planning loops inside Altium PascalScript.** Altium is single-UI-thread sensitive and can appear hung.
+- Do not use absolute final Altium Track-object count as the sole PASS/FAIL gate; Altium may split/merge track primitives.
+- Dense route planning must be done outside Altium from the latest collision snapshot.
+- Do not run heavy A*/grid-search/route-planning loops inside Altium PascalScript. Altium is single-UI-thread sensitive and can appear hung.
 - The Altium `.pas` stage should be lightweight: baseline checks -> exact preflight -> static apply -> connectivity analysis -> DRC by user.
+- Before hard-coding `GAddedTracks/GAddedVias` PASS counts, verify them against the actual `AddTrackMil` / `AddViaMil` calls in the final build block. A false audit FAIL must not be treated as a routing failure.
 
 ## Current exact PCB state
 
-Authoritative PCB checkpoint:
+### Authoritative SAVED Git state
+
+PCB checkpoint:
 
 `4b3fdd50c4fe619e312c0d59d6a2fae5d386c131`
 
@@ -119,34 +151,45 @@ Fresh collision snapshot:
 
 `7840d80a223e2bee4b294b8d1e744a2d4469f0cf`
 
-Current accepted relevant state:
+This saved state contains Stage4G PASS but **does not yet contain Stage4H1**.
+
+### Current LIVE Altium state at handoff
+
+- Likely contains unsaved `Stage4H1 v3` geometry because the script applied 24 tracks / 8 vias before reporting the false count-audit FAIL.
+- No Stage4H1 DRC result exists yet.
+- If Altium was closed, the board was undone, or the unsaved geometry was otherwise discarded before the new chat starts, fall back to the saved Stage4G checkpoint above.
+
+Current accepted SAVED routing:
 
 - `BAT_RAW`, `USB_VBUS_RAW`, `BAT_FUSED`, `BAT_SW` routed.
 - `PMUX_PR1`, `PMUX_ST`, `USB_CC1`, `USB_CC2` routed.
 - `VIN_MUX`, `OLED_VDD`, `SENSOR_3V3` routed.
 - `SD_VDD`, `VBAT`, `USB_5V_AUX` routed.
 - `CC1_RD_RET`, `CC2_RD_RET` routed and DRC-clean.
-- Global `3V3_SYS` still requires dedicated power-distribution completion.
+- Global `3V3_SYS` is the active current task.
 - Expansion signal routing remains later work; `R_EXP_PWR_EN.1` is still on `USB_VBUS_PROT` and was intentionally not altered by Stage 4F.
 
-## Immediate next action
+## Immediate next action — EXACT
 
-Continue **Stage 4H — global `3V3_SYS` power-distribution completion** from post-Stage-4G collision snapshot `7840d80a...`.
+New chat must start by reading `AI_START_HERE.md`, then `AI_CONTINUITY/CURRENT_HANDOFF.md`, `DECISIONS_AND_CONSTRAINTS.md`, and `LESSONS_LEARNED.md`.
 
-- Treat `3V3_SYS` as a broad power-distribution problem, not a single guessed polyline.
-- Plan externally from the fresh collision snapshot and divide into coherent local clusters/trunks if that improves routability and verification.
-- Preserve controlled neck-down around fine-pitch IC pads.
-- Keep the Bottom GND polygon deferred until major routing is complete.
-- Deliver only a lightweight `.pas` static-apply script with exact preflight; no route search inside Altium.
+Then determine whether the unsaved Stage4H1 v3 geometry is still present in Altium:
 
-After script PASS:
+### If the v3 geometry is STILL present
 
-1. Do NOT save immediately.
-2. Run DRC.
-3. Accept only with zero new Clearance / Short / Width / Solder Mask Sliver violations.
-4. The only expected remaining violations are the same 3 pre-existing GND Net Antennae.
-5. If DRC passes, save PCB and run `Git_Save.cmd`.
-6. Generate a fresh collision snapshot before the next dense routing bundle.
+1. **Do not Ctrl+Z yet.** The displayed FAIL was caused by a wrong expected count; the actual build block is 24 tracks / 8 vias and all exact preflight checks had already passed.
+2. Run DRC on the current unsaved board.
+3. Accept only if there are zero new `Clearance`, `Short-Circuit`, `Width`, and `Minimum Solder Mask Sliver` violations.
+4. The only acceptable remaining DRC entries are the same 3 pre-existing GND Net Antennae.
+5. If DRC is clean, formally mark Stage4H1 v3 PASS, save the PCB, run `Git_Save.cmd`, generate a fresh collision snapshot, then run `Git_Save.cmd` again.
+6. Correct the v3/v4 script audit expectation to 24 tracks / 8 vias for continuity, but do not rerun the route merely to make the message pretty if the live geometry already passes DRC.
+
+### If the v3 geometry is NOT present
+
+1. Stay on authoritative Stage4G checkpoint `4b3fdd50...` / snapshot `7840d80a...`.
+2. Produce a corrected lightweight Stage4H1 static-apply script whose object audit expects exactly **24 tracks / 8 vias**.
+3. Do not change the accepted v3 geometry unless the latest snapshot/preflight proves a collision problem.
+4. Run script -> DRC -> save only after clean DRC.
 
 ## Physical-routing preferences
 
