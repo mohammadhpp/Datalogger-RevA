@@ -126,6 +126,20 @@ Stage4H1 v3 accepted scope:
   - `C_4066.1`
 - v3 build count should be treated as **24 tracks / 8 vias**, not 25/8.
 
+
+#### Stage 4H2 — MCU / SWD 3V3_SYS distribution — PASS / SAVED
+
+- Accepted implementation: `AI_SCRIPTS/T23/T23_Stage4H2_3V3_MCU_SWD_ExternalPlan_v1.pas`.
+- Script reported `APPLY COMPLETE Stage4H2 v1: 9 tracks / 1 via` on the live board.
+- Connected `U_MCU.4`, `C_MCU_HF.2`, `C_MCU_BULK.2`, and `J_SWD.1` to the accepted `3V3_SYS` backbone.
+- User explicitly confirmed DRC was correct after execution; Stage4H2 v1 is accepted as PASS. The supplied image shows the apply-complete message, while the DRC result is the user's direct confirmation.
+- User completed save -> Git_Save.cmd -> collision snapshot export v1.3.2 -> Git_Save.cmd.
+- Verified PCB checkpoint: `27b39afdaab9145585ab877021b0b266e5bbd967`; PCB blob `cb03de4a69426a8b14d9a14a367fe0b31d788935`, 1,679,872 bytes.
+- Verified post-Stage4H2 snapshot: `fd2bd4ea6fac7ecda6467328d9be4749e55233cd`; snapshot blob `47af36e44cb1b463604cfe25e1c321e903b81bcb`.
+- Snapshot delta shows the intended 9 added calls as 11 new track records and one removed/split prior 3V3 track record at the H1 junction, plus exactly one new 3V3 via at (6070,5925). Pads and other-net geometry are unchanged.
+- Snapshot connectivity confirms all four H2 target pads join the C_OUT/U_SYS source. Connected 3V3 pads are now 15 of 34; 19 remain.
+- Do not rerun or undo Stage4H2.
+
 ## Collision-aware routing method — MANDATORY FOR DENSE ROUTING
 
 - Accepted exporter: `T23_AI_Board_Collision_Snapshot_Exporter_v1_3_2.pas`.
@@ -150,19 +164,19 @@ Stage4H1 v3 accepted scope:
 
 PCB checkpoint:
 
-`3f5563775ca5735eb0f73cdb863d489184f9a517`
+`27b39afdaab9145585ab877021b0b266e5bbd967`
 
 Fresh collision snapshot:
 
-`cc1721a8d01d11704ccebe731dce0b767fa20b92`
+`fd2bd4ea6fac7ecda6467328d9be4749e55233cd`
 
-This saved state contains Stage4H1 v3 PASS, including the north/upper 3V3_SYS backbone.
+This saved state contains Stage4H1 and Stage4H2 PASS.
 
 ### Current LIVE Altium state
 
-- User confirmed saving the accepted v3 geometry and exporting the fresh snapshot; both changes are verified on GitHub.
-- No newer routing was applied in this session. Stage4H2 is an issued candidate awaiting user execution/DRC. Altium is operated by the user; the AI does not have direct live-UI access.
-- Stage4G PCB `4b3fdd50...` / snapshot `7840d80a...` are now rollback references only.
+- User confirmed saving accepted Stage4H2 and exporting the fresh snapshot; both are verified on GitHub.
+- No Stage4H3 routing has been applied yet. Stage4H3 is an issued candidate awaiting execution and DRC.
+- Altium is operated by the user; the AI has no direct live-UI access.
 
 Current accepted SAVED routing:
 
@@ -171,54 +185,43 @@ Current accepted SAVED routing:
 - `VIN_MUX`, `OLED_VDD`, `SENSOR_3V3` routed.
 - `SD_VDD`, `VBAT`, `USB_5V_AUX` routed.
 - `CC1_RD_RET`, `CC2_RD_RET` routed and DRC-clean.
-- North/upper `3V3_SYS` Stage4H1 is saved and PASS; remaining global distribution is the active task.
+- Stage4H1 north/upper `3V3_SYS` and Stage4H2 MCU/SWD supply are saved and PASS.
+- Global `3V3_SYS` distribution remains the active task; Stage4H3 targets the SD subsystem.
 - Expansion signal routing remains later work; `R_EXP_PWR_EN.1` is still on `USB_VBUS_PROT` and was intentionally not altered by Stage 4F.
 
 ## Immediate next action — EXACT
 
-1. Continue from saved Stage4H1 PCB `3f556377...` and collision snapshot `cc1721a8...`. Do not repeat Stage4H1.
-2. The user supplied the actual Stage4H1 v3 source. It is now retained under `AI_SCRIPTS/T23/reference/T23_Stage4H1_3V3_North_ExternalPlan_v3.pas` for history only; its wrong 25-track audit is preserved as received.
-3. The audit-only correction is `AI_SCRIPTS/T23/T23_Stage4H1_3V3_North_ExternalPlan_v4_AuditFix.pas`. Mechanical comparison proves its static-build block is unchanged from v3: 24 tracks / 8 vias. Header, message and expected count are corrected. Do not execute it on the accepted board.
-4. **Stage4H2 candidate is READY FOR USER EXECUTION, NOT APPLIED / DRC PENDING.**
-   - File: `AI_SCRIPTS/T23/T23_Stage4H2_3V3_MCU_SWD_ExternalPlan_v1.pas`.
-   - Entry point: `ApplyT23_Stage4H2_3V3_MCU_SWD_v1`.
-   - Scope: `U_MCU.4`, `C_MCU_HF.2`, `C_MCU_BULK.2`, `J_SWD.1`, all on `3V3_SYS`.
-   - Proposed additions: exactly **9 tracks / 1 via**.
-   - Bottom root joins the accepted Stage4H1 backbone at (5600,5925) mil. A 20mil feed runs to the via at (6070,5925); Top feed runs through bulk/HF supply pads to an 8mil MCU entry. Bottom SWD branch proceeds via (6710,5925), (6815,5820), then J_SWD.1 at (6875,5820).
-   - Via copper/hole = 23.622/11.811mil (0.60/0.30mm); Top capacitor link = 12mil.
-   - Live baseline anchors require the saved Stage4H1 geometry, 8 existing 3V3 vias, correct target pads/nets/layers/positions, and no polygons.
-   - Exact lightweight preflight is derived from the user-tested H1 v3 helpers. Supplemental guards cover free pads and conservative copper/keepout fill/region/arc bounds. Via-to-pad/via spacing allowance was increased to 8mil beyond conservative bounds/copper.
-   - All preflight checks run before one static-apply transaction. No route search occurs inside Altium and the script never saves.
-5. Ask the user to run the H2 entry point once. On `APPLY COMPLETE`, run DRC and send the result before saving. This message means build completion, not DRC PASS.
-6. On preflight `ABORT`, no geometry was added; no Undo is needed. On partial build failure, one Ctrl+Z rolls back the transaction. Never keep rerunning an applied candidate.
-7. After accepted DRC (only the same three GND Net Antennae): save PCB -> Git_Save.cmd -> export a new collision snapshot -> Git_Save.cmd, then update this handoff with the verified new checkpoints.
-8. MCU/decoupling GND returns remain unfinished. The Top corridor below the local supply traces remains available for return routing; final power integrity is not qualified by this 3V3-only stage.
-9. Keep `Q_OLED.2` and `R_ST_PU.1` on the remaining supply list. No other routing or polygon was applied in this session.
-10. Git_Save.cmd receives these script/continuity updates without a separate manual pull.
+1. Run `Git_Save.cmd` once so the local repo safely fast-forwards to the new script/handoff commit.
+2. Run `AI_SCRIPTS/T23/T23_Stage4H3_3V3_SD_ExternalPlan_v1.pas`, entry point `ApplyT23_Stage4H3_3V3_SD_v1`, exactly once.
+3. Stage4H3 target scope: `C_BUF.2`, `U_SD_BUF.13`, `U_SD_BUF.14`, `Q_SD.2`, `R_GATE.2`, and `R_CD_PU.1` on `3V3_SYS`.
+4. Proposed additions are exactly **11 tracks / 3 vias**. Bottom trunk is 20mil; C_BUF rise is 12mil; Top local branches are 10mil. Vias are 23.622/11.811mil.
+5. The Bottom trunk joins the accepted H1 backbone at (5600,5350), feeds the SD buffer/capacitor rise at (6030,5223.307), the SD power-control branch via (6800,5350), and the card-detect pull-up via (7225,5350).
+6. On preflight `ABORT`, nothing was added and no Undo is needed. On `BUILD INCOMPLETE`, use one Ctrl+Z and report the full message. On `APPLY COMPLETE`, do not rerun or save yet; run DRC and report the result.
+7. Accept only zero new Clearance, Short-Circuit, Width, and Minimum Solder Mask Sliver violations. The same three pre-polygon GND Net Antennae remain the only accepted DRC entries.
+8. After accepted DRC: save PCB -> Git_Save.cmd -> export collision snapshot v1.3.2 -> Git_Save.cmd; then verify Git and update handoff.
+9. SD signal/GND routing and MCU/decoupling GND returns remain unfinished. No polygon yet.
 
-### Stage4H2 validation completed outside Altium
+### Stage4H3 validation completed outside Altium
 
-- Snapshot content verified against Git blob `9be4ebdbcd580bd6158a022c55cd68df5b7737e9`.
-- All 9 proposed tracks checked against full snapshot pads (including Multi Layer), existing track widths and vias with the inherited 6mil electrical clearance.
-- Via at (6070,5925) passes both-layer clearance and strengthened mask spacing checks; nearest conservative pad-boundary-to-via-copper gap is 25.551mil.
-- Smallest proposed track-to-other-net conservative copper gap is 16.669mil at the MCU entry, above the 6mil preflight requirement.
-- Proposed union geometry connects all 4 intended pads to the existing C_OUT/U_SYS source with no isolated 3V3 track/via island. If applied unchanged, connected 3V3 pads increase from 11 to 15; 19 remain.
-- Preflight track/via argument lists and static-apply argument lists match mechanically; build calls counted mechanically as 9/1.
-- Visual inspection of the generated Top/Bottom local routing view completed.
-- **No Altium compile, live execution, or H2 DRC has been performed by the AI.** These remain user-side gates; external geometry analysis does not replace them.
+- Exact baseline snapshot content verified against Git blob `47af36e44cb1b463604cfe25e1c321e903b81bcb`.
+- Full snapshot collision audit reports zero proposed track/via conflicts with pads, Multi Layer pads, existing tracks or vias under the inherited 6mil electrical clearance and strengthened 8mil conservative via/pad mask allowance.
+- Smallest proposed track-to-other-net conservative copper gap is 21.772mil. Smallest proposed via-to-other-pad conservative copper gap is 14.961mil at the SD control area.
+- Proposed union connects all six H3 target pads to the C_OUT/U_SYS source; connected 3V3 pads would increase from 15 to 21, leaving 13. No proposed 3V3 track/via island remains.
+- Preflight and static-apply geometry lists match mechanically; build calls are exactly 11 tracks / 3 vias.
+- Top/Bottom proposed-routing view was inspected.
+- **Altium compile, live execution and H3 DRC remain user-side gates.**
 
-### Remaining 3V3_SYS inventory after Stage4H1
+### Remaining 3V3_SYS inventory after Stage4H2
 
-The fresh snapshot contains 34 3V3_SYS pads. Geometry analysis proves 11 connected to the source: the three existing local pads (`U_SYS.1`, `C_OUT.1`, `R_FB_TOP.1`) and all eight Stage4H1 targets listed above. The other 23 pads remain outside that connected copper network:
+The fresh snapshot contains 34 `3V3_SYS` pads. Geometry analysis proves 15 connected to the source. The remaining 19 are:
 
-- MCU/debug: `U_MCU.4`, `C_MCU_HF.2`, `C_MCU_BULK.2`, `J_SWD.1`.
-- SD power/buffer: `U_SD_BUF.13`, `U_SD_BUF.14`, `C_BUF.2`, `R_GATE.2`, `Q_SD.2`, `R_CD_PU.1`.
+- SD power/buffer: `U_SD_BUF.13`, `U_SD_BUF.14`, `C_BUF.2`, `R_GATE.2`, `Q_SD.2`, `R_CD_PU.1` — Stage4H3 candidate targets these six.
 - RTC: `U_RTC.2`, `C_RTC.1`, `R_RTC_INT_PU.1`.
 - Navigation pull-ups: `R_PULL1.2`, `R_PULL2.2`, `R_PULL3.2`, `R_PULL4.2`.
 - Expansion: `J_EXP.1`, `R_EXT_REF.1`, `D_EXT1.5`, `D_EXT2.5`.
 - Remaining local branches: `Q_OLED.2`, `R_ST_PU.1`.
 
-This inventory is snapshot-derived engineering analysis, not a claim that Altium's whole-board unrouted count is 23. GND polygon and other signal-net routing remain later work.
+This is snapshot-derived connectivity inventory, not the whole-board unrouted count.
 
 ## Physical-routing preferences
 
