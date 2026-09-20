@@ -24,12 +24,20 @@ Then inspect the latest Git commits and the current engineering files relevant t
 
 ## Current high-level state
 
-- Project: Datalogger RevA, Altium, 2-layer PCB.
-- Current major task: **T23 PCB routing**.
-- Routing Stage 1 and Stage 2 v3 have been completed as controlled routing work.
-- Bottom-layer GND polygon is intentionally **not yet the next construction step**; remaining signal/power blocks should be completed first.
+- Project: Datalogger RevA, Altium, **2-layer PCB**.
+- **T23 PCB routing is formally CLOSED / PASS.**
+- Final Bottom Layer GND polygon has been created and poured.
+- Final post-pour DRC baseline: **0 warnings / 0 rule violations**.
+- **T24 is active.**
+- T24 Stage1 top-silkscreen branding is **PASS / SAVED**:
+  - approved chibi logo
+  - `SANAT NEGAR`
+  - `M.PAHLAVIAN`
+- Current saved post-logo PCB checkpoint: `43306bfd199b10555d7fa2f5f45a8550b8363720`.
+- Next recommended scope: **T24 Stage2 manufacturing / release audit**.
 - Git AutoSave **v2.5** is the standard one-click workflow: `Git_Save.cmd` safely checks/fetches GitHub, fast-forwards safe incoming updates, creates a checkpoint when needed, then synchronizes `localbackup`, GitHub, and tags.
 - Unsafe/diverged Git histories must not be auto-merged because Altium project files include binary formats.
+- Prefer `T24_Stage1_TopSilk_Logo_v1_2.pas` over v1.1 if the logo ever must be reproduced; v1.2 removes the redraw command that previously blocked normal Save.
 
 ## Continuity rule
 
