@@ -67,3 +67,34 @@ This is a compact milestone history, not a replacement for Git commit history.
   - `AI_CONTINUITY/HISTORY.md`
   - `AI_CONTINUITY/UPDATE_PROTOCOL.md`
 - Goal: make the project resumable from Git even if chat context is unavailable or a different AI/session is used.
+
+
+## T23 — closeout / final GND plane — 2026-09-20
+
+- Completed remaining GND fanout and custom NAV escape.
+- Created one poured Bottom Layer GND polygon from the live Altium BoardOutline.
+- Final T23 GND object counts: **117 tracks / 46 vias**.
+- Final post-pour full DRC shown in Altium: **0 warnings / 0 rule violations**.
+- Clean pre-logo T23 rollback checkpoint:
+  `a1e4193edacf4f03da623616e470258cd1dc147e`.
+- T23 is formally **CLOSED / PASS**.
+
+## T24 — board release / manufacturing-prep refinements
+
+### Stage1 — top silkscreen branding — 2026-09-20
+
+- Added the user-approved monochrome chibi portrait logo to the intentionally empty lower-left Top Overlay area.
+- Added centered branding text:
+  - `SANAT NEGAR`
+  - `M.PAHLAVIAN`
+- Artwork is implemented as **964 Top Overlay fill runs**.
+- Saved artwork bounds from the post-logo snapshot:
+  - X = `4934 .. 5362 mil`
+  - Y = `4364 .. 4816 mil`
+- User visually approved the result and reported DRC OK.
+- The first successful logo script version (v1.1) left an active Altium `PCB:Zoom` command after execution, which blocked normal Save.
+- Recovery was completed safely with Save Copy, Altium restart, and replacement of the working `DATALOGER_RevA.PcbDoc`.
+- Script v1.2 was then added without `RunProcess('PCB:Zoom')`; use v1.2 if reproduction is ever required.
+- Current saved post-logo PCB checkpoint:
+  `43306bfd199b10555d7fa2f5f45a8550b8363720`.
+- T24 Stage1 status: **PASS / SAVED**.
