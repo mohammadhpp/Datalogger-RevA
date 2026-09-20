@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-Last continuity update: 2026-09-20 — T24 Stage1 branding saved; post-logo snapshot v1.4.2 verified
+Last continuity update: 2026-09-21 — T24 Stage2A Top GND polygon PASS / SAVED / CLOSED
 
 ## Repository / backup state
 
@@ -32,6 +32,10 @@ Latest verified post-pour checkpoint:
 **T24 — Board release / manufacturing-prep refinements — ACTIVE**
 
 **T24 Stage1 — Top silkscreen branding — PASS / SAVED**
+
+**T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
+
+**Current exact point: T24 Stage2B planning**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -142,6 +146,46 @@ Current authoritative post-logo snapshot:
   - Y = `4364 .. 4816 mil`
 
 This v1.4.2 snapshot supersedes the temporary v1.3.2 post-logo snapshot caveat.
+
+## T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED
+
+A controlled solid **Top Layer GND polygon** was added after Stage1 branding.
+
+Implementation:
+- Script: `AI_SCRIPTS/T24/T24_Stage2A_Top_GND_Polygon_v1.pas`
+- Script commit: `fb01c1fbdfe54c3a31568136ce8c4f10aa8a36ef`
+- Polygon net: **GND**
+- Layer: **Top Layer**
+- Geometry copied from the live 8-point BoardOutline.
+- Bottom GND polygon and completed T23 routing were not intentionally changed.
+- No stitching vias were added in Stage2A.
+
+Authoritative saved Stage2A checkpoint:
+- Git commit: `c7c57171ca952ee28726ef206b83eb5daaae330e`
+- Commit message:
+  `Auto checkpoint 2026-09-21 00:18:04 | 2 file(s): AI_BOARD_COLLISION_SNAPSHOT_T23.tsv, DATALOGER_RevA.PcbDoc`
+- Snapshot exporter: **v1.4.2**
+- Snapshot generated: **2026-09-21 00:17:46**
+- Snapshot verifies:
+  - **2 poured GND polygons total**
+  - **1 Bottom Layer GND polygon**
+  - **1 Top Layer GND polygon**
+  - both polygons have **8 points**
+  - both use the same board bounds
+  - **117 GND tracks**
+  - **46 GND vias**
+
+Validation:
+- User ran full Altium DRC on the saved post-Stage2A PCB.
+- User reported **DRC OK** on 2026-09-21.
+- Stage2A is therefore formally **PASS / SAVED / CLOSED**.
+
+### Current exact continuation point
+
+Proceed to **T24 Stage2B planning** from the post-Stage2A v1.4.2 snapshot.
+Do not rerun Stage2A.
+Do not move existing T23 copper merely for cosmetic reasons.
+Any new GND stitching vias must be planned against the current Top/Bottom poured copper and the full obstacle snapshot, then followed by polygon repour, full DRC, snapshot refresh, and Git checkpoint.
 
 ## Locked project constraints still in force
 
