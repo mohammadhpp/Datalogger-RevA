@@ -1,9 +1,9 @@
 {==============================================================================
  Datalogger RevA - T24 Stage1
- TOP SILK BRANDING LOGO v1
+ TOP SILK BRANDING LOGO v1.1
 
  Entry point:
-   ApplyT24_Stage1_TopSilk_Logo_v1
+   ApplyT24_Stage1_TopSilk_Logo_v1_1
 
  Purpose:
    Place the approved chibi portrait logo plus:
@@ -20,6 +20,10 @@
    Final user-verified DRC before logo:
      Warnings = 0
      Rule Violations = 0
+
+ Fix in v1.1:
+   IPCB_Fill uses X1Location/Y1Location/X2Location/Y2Location,
+   not X1/Y1/X2/Y2. This matches Altium's IPCB_RectangularPrimitive API.
 
  Artwork:
    Embedded 120 x 115 monochrome bitmap.
@@ -435,10 +439,10 @@ Begin
 
     If F=Nil Then Exit;
 
-    F.X1:=MilsToCoord(LX);
-    F.Y1:=MilsToCoord(BY);
-    F.X2:=MilsToCoord(RX);
-    F.Y2:=MilsToCoord(TY);
+    F.X1Location:=MilsToCoord(LX);
+    F.Y1Location:=MilsToCoord(BY);
+    F.X2Location:=MilsToCoord(RX);
+    F.Y2Location:=MilsToCoord(TY);
     F.Layer:=eTopOverlay;
 
     GBoard.AddPCBObject(F);
@@ -461,7 +465,7 @@ Begin
     RunProcess('PCB:Zoom');
 End;
 
-Procedure ApplyT24_Stage1_TopSilk_Logo_v1;
+Procedure ApplyT24_Stage1_TopSilk_Logo_v1_1;
 Var X;Y;RunStart;InRun;
 Begin
     GBoard:=PCBServer.GetCurrentPCBBoard;
@@ -563,7 +567,7 @@ Begin
     RedrawPCB;
 
     ShowMessage(
-        'APPLY COMPLETE T24 Stage1 Logo v1.'+#13#10+
+        'APPLY COMPLETE T24 Stage1 Logo v1.1.'+#13#10+
         'Approved logo + SANAT NEGAR + M.PAHLAVIAN placed on Top Overlay.'+#13#10+
         'Size: 12.192 x 11.684 mm.'+#13#10+
         'Location: X 4910..5390 mil / Y 4360..4820 mil.'+#13#10+
