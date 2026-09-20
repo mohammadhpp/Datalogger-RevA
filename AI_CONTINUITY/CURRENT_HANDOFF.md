@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-Last continuity update: 2026-09-21 — T24 Stage2A Top GND polygon PASS / SAVED / CLOSED
+Last continuity update: 2026-09-21 — T24 Stage2B GND-stitching script prepared; awaiting live preflight/apply
 
 ## Repository / backup state
 
@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: T24 Stage2B planning**
+**Current exact point: T24 Stage2B script prepared; run live preflight before apply**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -186,6 +186,52 @@ Proceed to **T24 Stage2B planning** from the post-Stage2A v1.4.2 snapshot.
 Do not rerun Stage2A.
 Do not move existing T23 copper merely for cosmetic reasons.
 Any new GND stitching vias must be planned against the current Top/Bottom poured copper and the full obstacle snapshot, then followed by polygon repour, full DRC, snapshot refresh, and Git checkpoint.
+
+## T24 Stage2B — controlled GND plane stitching — SCRIPT READY / NOT YET APPLIED
+
+Purpose:
+- add a modest set of deliberate stitching vias between the already-poured Top and Bottom GND planes;
+- do not reopen completed routing;
+- avoid blind via-grid placement.
+
+Prepared script:
+- `AI_SCRIPTS/T24/T24_Stage2B_GND_Stitching_v1.pas`
+- script commit: `7eb2431a2a459e91cab048fe8d16e7ad0bc85a03`
+- committed file blob: `6a640bf5ac9fab8a0ac5d401c760dccb8450ab3f`
+- entry points:
+  - `PreflightT24_Stage2B_GND_Stitching_v1`
+  - `ApplyT24_Stage2B_GND_Stitching_v1`
+
+Planning basis:
+- authoritative post-Stage2A Snapshot Exporter v1.4.2 data;
+- 418 pads, 180 existing vias, and 2400 track primitives included in the external obstacle model;
+- candidates restricted to the board interior;
+- Stage1 branding/logo area excluded;
+- component bounding rectangles used as an additional assembly-clearance filter;
+- via geometry matches the established project via: **23.622 mil diameter / 11.811 mil hole**.
+
+Static candidate count:
+- **11 new GND stitching vias**
+- expected post-apply GND via count: **57**
+- expected post-apply total via count: **191**
+- GND track count must remain **117**
+- polygon count must remain **2**
+
+Safety behavior:
+- baseline requires 117 GND tracks / 46 GND vias / 180 total vias / 2 polygons;
+- one Top GND polygon and one Bottom GND polygon, each with 8 points, must exist;
+- preflight checks all candidates against live component bounds, pads, Top/Bottom tracks, existing vias, non-GND copper/keepouts, controlled board-interior bounds, and the logo region;
+- Apply repeats the same preflight before changing geometry;
+- no interactive `PCB:Zoom` command is used.
+
+Exact next action:
+1. synchronize the local repo with normal `Git_Save.cmd` v2.5 so the new script is present locally;
+2. in Altium run `PreflightT24_Stage2B_GND_Stitching_v1` only;
+3. if it reports **PREFLIGHT PASS 11/11**, then run the Apply entry point;
+4. after Apply: **Repour All Polygons**, run **FULL DRC**, and do not save until DRC is clean;
+5. after DRC PASS: save PCB, run Snapshot Exporter v1.4.2, then `Git_Save.cmd`.
+
+Stage2B is **not PASS yet**. Do not mark it closed until post-apply Repour + full DRC + refreshed snapshot are verified.
 
 ## Locked project constraints still in force
 
