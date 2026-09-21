@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-Last continuity update: 2026-09-21 — direct audit of current PcbDoc completed; KEEP both GND polygons and Relief on soldered pads; add specific Direct Connect rule for GND vias before Stage2B
+Last continuity update: 2026-09-21 — direct current-PcbDoc thermal audit complete; controlled GND-via Direct PolygonConnect rule script prepared; awaiting live preflight
 
 ## Repository / backup state
 
@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: current PcbDoc verified; KEEP Top/Bottom GND polygons; keep component pads Relief; add higher-priority IsVia AND InNet('GND') Direct Connect rule, repour + full DRC, then Stage2B**
+**Current exact point: run PreflightT24_GND_Via_Direct_Rule_v1; if PASS apply rule, repour + full DRC; Stage2B remains pending**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -266,6 +266,48 @@ Validation after rule change:
 5. Then run Stage2B v2 preflight/apply.
 
 The previously prepared read-only script remains optional because the current PcbDoc was parsed directly and the rule values are now known.
+
+## T24 GND-via Direct PolygonConnect rule — SCRIPT READY / NOT YET APPLIED
+
+Prepared controlled script:
+- `AI_SCRIPTS/T24/T24_GND_Via_Direct_Rule_v1.pas`
+- commit: `d05a2c8dd2062b55ce40c3ce3a8ab154f3cc635d`
+- blob: `ba7ef143f8098e2e3a3132315af8cfde990535a7`
+
+Entry points:
+- `PreflightT24_GND_Via_Direct_Rule_v1`
+- `ApplyT24_GND_Via_Direct_Rule_v1`
+
+New rule:
+- name: `PolygonConnect_GND_Via_Direct`
+- type: Polygon Connect Style
+- scope: `IsVia AND InNet('GND')`
+- style: **Direct Connect**
+- expected new-rule priority: **1** (highest)
+- existing general `PolygonConnect` Relief rule remains present and moves to lower priority.
+
+Safety / validation:
+- preflight requires current exact baseline: 42 rules / 1 PolygonConnect / 180 total vias / 46 GND vias / 2 GND polygons;
+- existing general rule must be enabled Relief / Scope All / 10mil spoke / 4 entries;
+- Apply adds only one rule; no routing/via/polygon geometry changes;
+- post-apply expects 43 total rules and exactly 2 PolygonConnect rules;
+- verifies new rule priority=1 and general rule lower priority;
+- tests scope against real board objects:
+  - GND via MUST match;
+  - non-GND via MUST NOT match;
+  - GND pad MUST NOT match;
+- if any post-check fails: **DO NOT SAVE; one Ctrl+Z rolls back**.
+
+Exact next action:
+1. sync local repo with normal `Git_Save.cmd`;
+2. open `AI_SCRIPTS/T24/T24_GND_Via_Direct_Rule_v1.pas`;
+3. run **only** `PreflightT24_GND_Via_Direct_Rule_v1`;
+4. expected: `PREFLIGHT PASS - T24 GND VIA DIRECT RULE v1`;
+5. report the result before Apply;
+6. after Apply success: **Repour All Polygons → FULL DRC**;
+7. do not save until DRC is clean;
+8. after DRC PASS: save PCB → Snapshot Exporter v1.4.2 → `Git_Save.cmd`;
+9. only then continue to Stage2B v2.
 
 ## T24 Stage2B — controlled GND plane stitching — PAUSED UNTIL GND-VIA DIRECT RULE + DRC PASS
 
