@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-Last continuity update: 2026-09-21 — T24 Stage2B GND-stitching script prepared; awaiting live preflight/apply
+Last continuity update: 2026-09-21 — Arya Madar DFM audit completed; Stage2B v2 prepared with 0.80/0.45 mm GND stitching vias; awaiting live preflight/apply
 
 ## Repository / backup state
 
@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: T24 Stage2B script prepared; run live preflight before apply**
+**Current exact point: T24 Stage2B v2 prepared after Arya Madar DFM audit; run v2 live preflight before apply**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -187,51 +187,68 @@ Do not rerun Stage2A.
 Do not move existing T23 copper merely for cosmetic reasons.
 Any new GND stitching vias must be planned against the current Top/Bottom poured copper and the full obstacle snapshot, then followed by polygon repour, full DRC, snapshot refresh, and Git checkpoint.
 
-## T24 Stage2B — controlled GND plane stitching — SCRIPT READY / NOT YET APPLIED
+## T24 Stage2B — controlled GND plane stitching — v2 SCRIPT READY / NOT YET APPLIED
+
+Manufacturer-specific DFM audit:
+- completed against Arya Madar public pricing guidance on 2026-09-21;
+- report: `AI_CONTINUITY/T24_ARYAMADAR_DFM_AUDIT.md`;
+- report commit: `15d34b51f09023931fea003e8e1daa0f5eda5fa9`;
+- current board already contains routing clearance below 0.2 mm and all 180 legacy vias use about 0.30 mm drill, so blindly resizing all vias would add routing risk without guaranteeing removal of the manufacturer's premium price class;
+- bulk legacy-via enlargement is therefore NOT approved at this checkpoint.
+
+Authoritative Stage2B script:
+- USE: `AI_SCRIPTS/T24/T24_Stage2B_GND_Stitching_v2.pas`
+- v2 script commit: `4ba9f97e16385eaaf07abc9ebda63980e29d0ae4`
+- v2 script blob: `b10a61b26019d1ed7c512939e79f0c6805d912b0`
+- DO NOT USE the older v1 script; v1 is superseded for execution.
+
+v2 entry points:
+- `PreflightT24_Stage2B_GND_Stitching_v2`
+- `ApplyT24_Stage2B_GND_Stitching_v2`
 
 Purpose:
-- add a modest set of deliberate stitching vias between the already-poured Top and Bottom GND planes;
-- do not reopen completed routing;
-- avoid blind via-grid placement.
+- add 11 deliberate GND stitching vias between the already-poured Top and Bottom GND planes;
+- do not reopen completed signal/power routing;
+- use fabrication-friendly new stitching geometry where ample space exists.
 
-Prepared script:
-- `AI_SCRIPTS/T24/T24_Stage2B_GND_Stitching_v1.pas`
-- script commit: `7eb2431a2a459e91cab048fe8d16e7ad0bc85a03`
-- committed file blob: `6a640bf5ac9fab8a0ac5d401c760dccb8450ab3f`
-- entry points:
-  - `PreflightT24_Stage2B_GND_Stitching_v1`
-  - `ApplyT24_Stage2B_GND_Stitching_v1`
+New Stage2B via geometry:
+- diameter: **31.496 mil = 0.80 mm**
+- drill: **17.717 mil = 0.45 mm**
+- annular ring: approximately **0.175 mm**
+- Top-to-Bottom through via
+- net: GND
 
-Planning basis:
-- authoritative post-Stage2A Snapshot Exporter v1.4.2 data;
-- 418 pads, 180 existing vias, and 2400 track primitives included in the external obstacle model;
-- candidates restricted to the board interior;
-- Stage1 branding/logo area excluded;
-- component bounding rectangles used as an additional assembly-clearance filter;
-- via geometry matches the established project via: **23.622 mil diameter / 11.811 mil hole**.
+Static DFM clearance audit of the 11 enlarged candidates:
+- all 11 remain in large open-plane areas;
+- worst estimated different-net obstacle margin with 0.80 mm via diameter is approximately **74.6 mil / 1.89 mm**;
+- this is only a planning result; live Altium preflight remains mandatory.
 
-Static candidate count:
+Baseline safety:
+- requires 117 GND tracks / 46 GND vias / 180 total vias / 2 polygons;
+- requires one Top GND polygon and one Bottom GND polygon, each with 8 points;
+- preflight checks candidates against live component bounds, pads, Top/Bottom tracks, existing vias, electrical/keepout objects, controlled interior limits, and Stage1 logo region;
+- Apply repeats preflight before any PCB change;
+- no routing moves and no polygon-outline changes are performed;
+- no interactive PCB:Zoom call.
+
+Expected state immediately after successful Apply:
 - **11 new GND stitching vias**
-- expected post-apply GND via count: **57**
-- expected post-apply total via count: **191**
-- GND track count must remain **117**
-- polygon count must remain **2**
-
-Safety behavior:
-- baseline requires 117 GND tracks / 46 GND vias / 180 total vias / 2 polygons;
-- one Top GND polygon and one Bottom GND polygon, each with 8 points, must exist;
-- preflight checks all candidates against live component bounds, pads, Top/Bottom tracks, existing vias, non-GND copper/keepouts, controlled board-interior bounds, and the logo region;
-- Apply repeats the same preflight before changing geometry;
-- no interactive `PCB:Zoom` command is used.
+- **57 GND vias total**
+- **191 total vias**
+- **117 GND tracks unchanged**
+- **2 polygons unchanged**
 
 Exact next action:
-1. synchronize the local repo with normal `Git_Save.cmd` v2.5 so the new script is present locally;
-2. in Altium run `PreflightT24_Stage2B_GND_Stitching_v1` only;
-3. if it reports **PREFLIGHT PASS 11/11**, then run the Apply entry point;
-4. after Apply: **Repour All Polygons**, run **FULL DRC**, and do not save until DRC is clean;
-5. after DRC PASS: save PCB, run Snapshot Exporter v1.4.2, then `Git_Save.cmd`.
+1. synchronize local repo with normal `Git_Save.cmd` v2.5 so the new remote commits are present locally;
+2. open `AI_SCRIPTS/T24/T24_Stage2B_GND_Stitching_v2.pas` in Altium;
+3. run **only** `PreflightT24_Stage2B_GND_Stitching_v2`;
+4. expected result: **PREFLIGHT PASS** and **11/11 candidates passed live-board checks for 0.80/0.45 mm vias**;
+5. only after that PASS, run `ApplyT24_Stage2B_GND_Stitching_v2`;
+6. after Apply: **Repour All Polygons → FULL DRC**;
+7. if DRC is not clean, do not save; if DRC PASS, save PCB → Snapshot Exporter v1.4.2 → `Git_Save.cmd`;
+8. verify the refreshed Git/snapshot before formally closing Stage2B.
 
-Stage2B is **not PASS yet**. Do not mark it closed until post-apply Repour + full DRC + refreshed snapshot are verified.
+Stage2B remains **NOT PASS yet** until post-apply repour + full DRC + refreshed snapshot are verified.
 
 ## Locked project constraints still in force
 
