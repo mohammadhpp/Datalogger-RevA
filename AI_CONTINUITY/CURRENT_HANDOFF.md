@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-Last continuity update: 2026-09-21 — direct current-PcbDoc thermal audit complete; controlled GND-via Direct PolygonConnect rule script prepared; awaiting live preflight
+Last continuity update: 2026-09-21 — GND-via Direct rule applied successfully; expanded Batch DRC exposed 2 pre-existing RoutingViaStyle violations plus pre-existing ComponentClearance violations; controlled via-style range update prepared
 
 ## Repository / backup state
 
@@ -313,6 +313,44 @@ Exact next action:
 7. do not save until DRC is clean;
 8. after DRC PASS: save PCB → Snapshot Exporter v1.4.2 → `Git_Save.cmd`;
 9. only then continue to Stage2B v2.
+
+## T24 expanded Batch DRC — OLD BASELINE VIOLATIONS EXPOSED
+
+After GND-via Direct rule Apply and polygon repour, the user enabled a broader Batch DRC set. Result:
+- 2 `Routing Via Style Violation` entries;
+- multiple `Component Clearance Constraint Violation` entries.
+
+The two RoutingViaStyle violations are NOT caused by the new PolygonConnect rule:
+- `VIN_MUX` via at `(4480,5950)`: 27.559 mil diameter / 11.811 mil hole;
+- `VIN_MUX` via at `(5235,5830)`: 27.559 mil diameter / 11.811 mil hole.
+Both are present in the saved pre-change snapshot and therefore pre-existing.
+
+Direct current PcbDoc Rules6 audit shows:
+- `RoutingVias` rule is Scope=All;
+- Min/Preferred/Max diameter are all fixed at **23.622 mil**;
+- Min/Preferred/Max hole are all fixed at **11.811 mil**.
+Therefore the two existing 27.559-mil vias violate the old overly-narrow rule.
+
+The same old rule would also reject the planned Stage2B vias at 31.496 / 17.717 mil.
+
+Prepared controlled rule-range update:
+- `AI_SCRIPTS/T24/T24_RoutingViaStyle_Range_v1.pas`
+- commit: `be769502aa9f3ea4815f9dbc442443944a526233`
+- changes RULE ONLY; no via geometry;
+- new diameter allowed range: 23.622..31.496 mil (preferred 23.622);
+- new hole allowed range: 11.811..17.717 mil (preferred 11.811).
+
+Exact next action:
+1. keep current PCB open; do not save yet;
+2. run only `PreflightT24_RoutingViaStyle_Range_v1`;
+3. if PASS, run `ApplyT24_RoutingViaStyle_Range_v1`;
+4. rerun Batch DRC;
+5. the ComponentClearance violations must then be audited separately before formal release acceptance.
+
+ComponentClearance note:
+- current PcbDoc rule is Scope All/All, Gap=10mil, CollisionCheckMode=3;
+- these violations were hidden previously because Batch checking for Component Clearance had not been enabled;
+- component placement was not changed by the GND-via Direct rule or polygon repour.
 
 ## T24 Stage2B — controlled GND plane stitching — PAUSED UNTIL GND-VIA DIRECT RULE + DRC PASS
 
