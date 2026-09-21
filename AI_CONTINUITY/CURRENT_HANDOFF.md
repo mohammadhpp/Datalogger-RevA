@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-Last continuity update: 2026-09-21 — KEEP Top GND polygon decision remains; read-only Polygon Connect / Thermal Relief audit script prepared; Stage2B Apply waits for this audit
+Last continuity update: 2026-09-21 — direct audit of current PcbDoc completed; KEEP both GND polygons and Relief on soldered pads; add specific Direct Connect rule for GND vias before Stage2B
 
 ## Repository / backup state
 
@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: KEEP validated Top GND polygon; DO NOT run removal script; run read-only Thermal Relief audit before Stage2B Apply**
+**Current exact point: current PcbDoc verified; KEEP Top/Bottom GND polygons; keep component pads Relief; add higher-priority IsVia AND InNet('GND') Direct Connect rule, repour + full DRC, then Stage2B**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -218,42 +218,56 @@ Exact next gate:
 - After Apply: Repour All Polygons → FULL DRC → save/snapshot/Git only if clean.
 - Before final fabrication release, audit Polygon Connect Style / thermal relief for manual solderability.
 
-## T24 Polygon Connect / Thermal Relief — READ-ONLY AUDIT READY
+## T24 Polygon Connect / Thermal Relief — DIRECT PCBDOC AUDIT COMPLETE
 
-Reason:
-- authoritative collision snapshot exports polygon geometry but not the effective Plane » Polygon Connect Style design rule;
-- therefore exact Relief vs Direct behavior must be read from the live PcbDoc rather than guessed from snapshot geometry.
+Authoritative audit:
+- `AI_CONTINUITY/T24_DIRECT_PCBDOC_THERMAL_AUDIT.md`
+- audit commit: `e43655fd089042323f5de0ac2031c2c86c696c23`
+- uploaded/current PcbDoc Git blob verified exactly: `16f5576c1882a60a69a03b55c5456104be938911`
 
-Prepared read-only script:
-- `AI_SCRIPTS/T24/T24_Thermal_Relief_Audit_v1.pas`
-- script commit: `9fa2685ec21714eba6f2995b5bf60578caa9a2f9`
-- script blob: `b90394dd68a39fa6f27b48fa93064349c53b440d`
-- entry point: `AuditT24_Polygon_Thermal_Relief_v1`
+Direct Rules6 result:
+- exactly one enabled `PolygonConnect` rule;
+- Scope: `All`;
+- Connect style: **Relief**;
+- **4 spokes**;
+- spoke width **10 mil**;
+- air gap **10 mil**;
+- angle **90°**.
 
-Safety:
-- no AddPCBObject / RemovePCBObject;
-- no SetState calls;
-- no PCBServer PreProcess/PostProcess;
-- no polygon repour or CopperPourValidate;
-- exports only a text report: `T24_Thermal_Relief_Audit_Report.txt` next to the PcbDoc.
+Direct PadViaLibraryCache result:
+- 48 templates total = 46 pad + 2 via templates;
+- all 48 use **Relief / 10 mil air gap / 10 mil conductor / 4 entries / 90°**;
+- zero `Direct` and zero `No Connect` textual connect-style records were found in the current PcbDoc.
 
-The report enumerates:
-- all actual Polygon Connect Style rules from the board;
-- enabled state, scope expressions and Altium DataSummaryString;
-- simple API ConnectStyle / conductor width / entries / angle;
-- GND SMD pad count;
-- GND through-hole pad count;
-- GND via count;
-- any manual pad/via thermal cache overrides that could supersede rule-driven behavior.
+Direct Polygons6 result:
+- exactly 2 polygons;
+- both are net index 71 = **GND**;
+- Bottom: Solid / PourOver / RemoveDead / RemoveIslands; RemoveNarrowNecks=FALSE;
+- Top: Solid / PourOver / RemoveDead / RemoveIslands / RemoveNarrowNecks=TRUE at 10 mil;
+- both IgnoreViolations=FALSE.
 
-Exact next action:
-1. sync local repo normally;
-2. run only `AuditT24_Polygon_Thermal_Relief_v1`;
-3. send/report the generated `T24_Thermal_Relief_Audit_Report.txt` or its text;
-4. do not change polygon rules yet;
-5. Stage2B Apply remains pending until this audit is interpreted.
+Final thermal decision:
+- component pads: **KEEP Relief** for manual solderability;
+- Top GND polygon: **KEEP**;
+- Bottom GND polygon: **KEEP**;
+- GND vias: current global rule also makes routed vias Relief; for deliberate plane stitching, use a more-specific higher-priority Direct Connect rule for GND vias.
 
-## T24 Stage2B — controlled GND plane stitching — v2 READY / LIVE PREFLIGHT REQUIRED
+Required rule before Stage2B:
+- Plane » Polygon Connect Style
+- Scope: `IsVia AND InNet('GND')`
+- Connect Style: **Direct Connect**
+- Priority above the general `PolygonConnect` Relief rule.
+
+Validation after rule change:
+1. Repour All Polygons.
+2. FULL DRC.
+3. Do not save on any new violation.
+4. If DRC clean: save PCB -> Snapshot Exporter v1.4.2 -> Git_Save.cmd.
+5. Then run Stage2B v2 preflight/apply.
+
+The previously prepared read-only script remains optional because the current PcbDoc was parsed directly and the rule values are now known.
+
+## T24 Stage2B — controlled GND plane stitching — PAUSED UNTIL GND-VIA DIRECT RULE + DRC PASS
 
 Manufacturer-specific DFM audit:
 - completed against Arya Madar public pricing guidance on 2026-09-21;
