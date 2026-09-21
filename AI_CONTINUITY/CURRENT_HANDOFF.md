@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: DO NOT SAVE yet; run global Mechanical-2 usage audit before any Courtyard migration or footprint edit**
+**Current exact point: T24 Courtyard Migration Step1 v3 APPLIED; DO NOT SAVE; next manually set Mechanical 2/4 Component Layer Pair Type = Courtyard and verify with screenshot**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -538,6 +538,72 @@ Exact next action:
 4. no Save / layer migration / component move / rule edit yet;
 5. if Mechanical 2 is globally component-only courtyard-style data with zero loose board primitives, prepare controlled Courtyard component-layer-pair migration;
 6. then add missing courtyard geometry only for footprints that currently lack Mech2.
+
+## T24 Courtyard Migration Step1 — APPLIED / UNSAVED
+
+Timestamp: 2026-09-21 23:21 +03:30
+
+Authoritative user screenshot confirms:
+- `ApplyT24_Courtyard_LayerPair_Step1_v3` completed successfully.
+- Mechanical Layer Pair created: `Mechanical 2 <-> Mechanical 4`.
+- Exactly 12 bottom-side mechanical primitives were moved from Mechanical 2 to Mechanical 4.
+- No copper, routing, via, polygon, component position/rotation, or design rule was changed.
+- User has NOT been instructed to save yet.
+
+Current DRC state:
+- Routing Via Style root-cause fix remains PASS.
+- GND-via Direct rule remains valid.
+- Top/Bottom GND polygons remain KEEP.
+- Formal Batch DRC is NOT yet PASS because Component Clearance semantics are still being corrected.
+- Existing 21 Component Clearance violations are not yet a trustworthy physical-placement verdict until Courtyard migration is completed and DRC is rerun.
+
+Courtyard audit chain already completed:
+- all 21 Component Clearance violation pairs resolved;
+- affected components had `Height=0` and `BodyCount=0`;
+- Mechanical 1 geometry behaves like body/assembly outline;
+- Mechanical 2 geometry behaves like courtyard;
+- global audit: 129 total components, 113 with Mech2, 16 without Mech2, zero loose board-level Mech2 primitives;
+- migration preflight: 110 top-side components with Mech2, 3 bottom-side components with Mech2, 1 bottom-side component without Mech2;
+- bottom components migrated in Step1: `R_RTC_INT_PU`, `C_RTC`, `BT2`.
+
+Applied script:
+- `AI_SCRIPTS/T24/T24_Courtyard_LayerPair_Migration_Step1_v3.pas`
+- Git commit: `769741eef5e6d15d77be678c3c493c7393d1eacd`
+
+CURRENT EXACT POINT:
+1. DO NOT SAVE yet.
+2. In Altium open View Configuration.
+3. Go to Component Layer Pairs.
+4. Edit the `Mechanical 2 / Mechanical 4` pair.
+5. Set `Layer Type = Courtyard`.
+6. Confirm/apply the dialog.
+7. Return with screenshot of the Component Layer Pair showing Courtyard.
+8. After that, prepare Step2 to add/fix courtyard geometry for the 16 components that currently have no Mech2/paired courtyard.
+9. Only after Courtyard semantics are complete: rerun Component Clearance / full Batch DRC and classify any real remaining collisions.
+10. Do not relax the global ComponentClearance rule merely to clear violations; fix root cause.
+
+16 components currently without Mechanical 2 before Step1:
+- `U_RTC` (Bottom)
+- `Q_SD`
+- `Q_OLED`
+- `J_SWD`
+- `J_SHIELD`
+- `J_SD`
+- `J_NAV`
+- `D_EXT3`
+- `D_EXT2`
+- `D_EXT1`
+- `D_ESD`
+- `D_ESD2`
+- `D_ESD1`
+- `C_SENSOR_BULK`
+- `C_SD_MID`
+- `C_OLED_BULK`
+
+Do not rerun obsolete scripts:
+- `T24_RoutingViaStyle_Range_v1.pas`
+- `T24_Component_Clearance_Violation_Audit_v1/v2`
+- `T24_Courtyard_LayerPair_Migration_Step1_v1/v2`
 
 ## T24 Stage2B — controlled GND plane stitching — PAUSED UNTIL GND-VIA DIRECT RULE + DRC PASS
 
