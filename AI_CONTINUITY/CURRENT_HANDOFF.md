@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: DO NOT SAVE yet; run read-only Component Clearance violation exporter on the current 21 DRC markers; no rule relaxation or placement edits until exact pairs are audited**
+**Current exact point: 21/21 Component Clearance pairs resolved; current rule is Component Body Mode; run read-only component-body audit before any placement/footprint correction**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -430,6 +430,41 @@ Exact next action:
 3. send/upload `T24_Component_Clearance_Violation_Audit.txt`;
 4. do not save, waive, move parts or edit Component Clearance yet;
 5. then classify all 21 pairs and fix actual causes only.
+
+## T24 Component Clearance pair resolution — 21/21 COMPLETE / BODY AUDIT NEXT
+
+Latest v3 report:
+- user report: `T24_Component_Clearance_Violation_Audit_v3.txt`
+- all current violation objects = **21**
+- Component Clearance violations = **21**
+- resolved component/component pairs = **21**
+- therefore pair identity is complete.
+
+Current PcbDoc ComponentClearance rule was directly inspected:
+- RuleKind = ComponentClearance
+- Scope1 = All
+- Scope2 = All
+- Gap = 10 mil
+- VerticalGap = 10 mil
+- CollisionCheckMode = 3
+- Altium API maps collision-check mode 3 to **Component Body Mode**.
+
+Therefore do NOT move parts or relax the rule based only on generic component BoundingRectangle values.
+Before any correction, inspect actual `eComponentBodyObject` geometry for every violating pair.
+
+Prepared read-only script:
+- `AI_SCRIPTS/T24/T24_Component_Body_Clearance_Audit_v1.pas`
+- commit `9d7c4eeec76712ceb8f87a3f238b47bf32e0b969`
+- entry: `AuditT24_Component_Bodies_For_Clearance_v1`
+- output: `T24_Component_Body_Clearance_Audit.txt`
+- no PCB/rule/DRC/polygon modification.
+
+Exact next action:
+1. keep current unsaved PCB and current DRC markers;
+2. run `AuditT24_Component_Bodies_For_Clearance_v1`;
+3. upload `T24_Component_Body_Clearance_Audit.txt`;
+4. classify each violation as real physical body collision vs bad/oversized footprint body;
+5. only then make placement or footprint edits.
 
 ## T24 Stage2B — controlled GND plane stitching — PAUSED UNTIL GND-VIA DIRECT RULE + DRC PASS
 
