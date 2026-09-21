@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: 21 Component Clearance pairs are resolved, all involved components have BodyCount=0; run read-only Mechanical1/Mechanical2 envelope audit for the 12 representative footprint families before changing placement or rules**
+**Current exact point: DO NOT SAVE yet; run global Mechanical-2 usage audit before any Courtyard migration or footprint edit**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -493,6 +493,51 @@ Exact next action:
 2. send `T24_Footprint_Mechanical_Envelope_Audit.txt`;
 3. classify Mechanical1/2 as body/assembly/courtyard from geometry;
 4. only then decide whether to use an existing mechanical envelope or add corrected courtyard/body geometry.
+
+## T24 Component Clearance root-cause — MECHANICAL LAYER ROLE CONFIRMED
+
+Latest read-only audits established:
+- all 21 Component Clearance violations resolve to exact component pairs;
+- all affected components have `Height=0` and `BodyCount=0`;
+- therefore current Component Clearance is not checking real 3D bodies;
+- for representative footprints, Mechanical 1 geometry matches package/body outline and Mechanical 2 geometry matches a buffered placement courtyard pattern;
+- Mechanical 2 examples:
+  - 0603: pad envelope about 2.20 x 0.90 mm; Mech2 about 2.65 x 1.45 mm;
+  - 1206: pad envelope about 4.30 x 1.70 mm; Mech2 about 4.75 x 2.25 mm;
+- `Q_OLED`, `J_NAV`, and `D_ESD1` have no Mechanical 2 primitives and will need explicit courtyard completion if Mechanical 2 is migrated to a true Courtyard role.
+
+Authoritative mechanical-layer role audit:
+- `T24_Mechanical_Layer_Role_Audit.txt`
+- current board mechanical layer state:
+  - Mechanical 1 name = `Mechanical 1`, used/enabled;
+  - Mechanical 2 name = `Mechanical 2`, used/enabled;
+  - no typed/component-layer-pair structure exists;
+  - Mechanical pair count = 0;
+  - Mechanical1 paired with Mechanical2 = FALSE.
+
+Implication:
+- Mechanical 2 currently behaves geometrically like courtyard but is NOT recognized by Altium as Courtyard Layer Type.
+- Altium Component Clearance only treats geometry as courtyard when the mechanical layer/component layer pair has Layer Type=Courtyard.
+- therefore the current 21 clearance markers are not a trustworthy physical-placement verdict.
+
+Do NOT:
+- loosen ComponentClearance just to clear DRC;
+- move components based on these 21 markers;
+- globally retag/migrate Mechanical 2 before proving it is used only as component courtyard data across the whole board.
+
+Prepared global read-only audit:
+- `AI_SCRIPTS/T24/T24_Global_Mech2_Usage_Audit_v1.pas`
+- commit `93ae5543f5b14254e930dba0cb1429a8ae75141c`
+- entry: `AuditT24_Global_Mech2_Usage_v1`
+- output: `T24_Global_Mech2_Usage_Audit.txt`
+
+Exact next action:
+1. keep current unsaved PCB open;
+2. run only `AuditT24_Global_Mech2_Usage_v1`;
+3. send/upload `T24_Global_Mech2_Usage_Audit.txt`;
+4. no Save / layer migration / component move / rule edit yet;
+5. if Mechanical 2 is globally component-only courtyard-style data with zero loose board primitives, prepare controlled Courtyard component-layer-pair migration;
+6. then add missing courtyard geometry only for footprints that currently lack Mech2.
 
 ## T24 Stage2B — controlled GND plane stitching — PAUSED UNTIL GND-VIA DIRECT RULE + DRC PASS
 
