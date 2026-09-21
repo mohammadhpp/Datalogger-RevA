@@ -1,0 +1,244 @@
+Datalogger RevA - T24 Component Clearance Violation Audit v1
+READ ONLY - current Altium violation objects
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA.PcbDoc
+
+This report must be generated AFTER the Batch DRC that shows
+the current Component Clearance violations.
+
+
+------------------------------------------------------------
+Component Clearance Violation #1
+Violation Name: 0161: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #2
+Violation Name: 0163: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #3
+Violation Name: 0165: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #4
+Violation Name: 0167: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #5
+Violation Name: 0157: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #6
+Violation Name: 0173: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #7
+Violation Name: 0183: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #8
+Violation Name: 0189: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #9
+Violation Name: 0169: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #10
+Violation Name: 0177: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #11
+Violation Name: 0191: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #12
+Violation Name: 0171: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #13
+Violation Name: 0159: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #14
+Violation Name: 0179: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #15
+Violation Name: 0193: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #16
+Violation Name: 0175: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #17
+Violation Name: 0181: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #18
+Violation Name: 0199: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #19
+Violation Name: 0195: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #20
+Violation Name: 0185: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+------------------------------------------------------------
+Component Clearance Violation #21
+Violation Name: 0187: Component / Component
+Rule Name: ComponentClearance
+Description:
+
+Primitive1 object id: 9
+Primitive1 layer: Top Layer
+Primitive2 object id: 9
+Primitive2 layer: Top Layer
+
+============================================================
+SUMMARY
+All current violation objects: 21
+Component Clearance violations: 21
+PASS: complete Component Clearance violation descriptions exported.
