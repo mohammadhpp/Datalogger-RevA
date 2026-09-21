@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: run PreflightT24_GND_Via_Direct_Rule_v2; if PASS apply rule, repour + full DRC; Stage2B remains pending**
+**Current exact point: DO NOT SAVE yet; run read-only Component Clearance violation exporter on the current 21 DRC markers; no rule relaxation or placement edits until exact pairs are audited**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -388,6 +388,48 @@ After Apply:
 - do not save until Component Clearance violations are separately dispositioned.
 
 Stage2B remains paused. Its planned via geometry must be revisited after current DRC cleanup; the earlier 0.80/0.45 mm choice is not automatically carried forward.
+
+## T24 Current DRC disposition — 21 Component Clearance only
+
+Latest user-confirmed live sequence:
+- `PolygonConnect_GND_Via_Direct` v2 Apply COMPLETE / scope self-test PASS.
+- Repour All Polygons completed.
+- First expanded Batch DRC exposed:
+  - 2 pre-existing Routing Via Style violations on VIN_MUX;
+  - old Component Clearance violations that had not previously been included in Batch DRC.
+- The two VIN_MUX vias were normalized from 0.70/0.30 mm to the established project 0.60/0.30 mm standard using:
+  - `AI_SCRIPTS/T24/T24_Normalize_VIN_MUX_Vias_v1.pas`
+  - commit `72fda53b5a79b3fd994848f4ea467705a13c549c`
+- User reran Batch DRC.
+- Routing Via Style violations are now gone.
+- Current Batch DRC shows exactly **21 Component Clearance Constraint Violations** and no Routing Via Style violations in the supplied result.
+- Current candidate is therefore **NOT formal DRC PASS yet**.
+- Do not save until these 21 placement/footprint-clearance items are dispositioned.
+
+Root-cause discipline:
+- `T24_RoutingViaStyle_Range_v1.pas` is **OBSOLETE / DO NOT RUN**; widening the rule is not the chosen solution.
+- Do not disable or loosen Component Clearance merely to clear the report.
+- Component Clearance rule currently found in the PcbDoc:
+  - Scope1 = All
+  - Scope2 = All
+  - Gap = 10 mil
+  - enabled
+- Altium Component Clearance can use true 3D bodies; when those are absent or boundary checking is selected, component boundaries/selection geometry are used. Therefore each violation must be classified as real physical collision vs footprint/body-definition artifact before any fix.
+
+Prepared read-only exporter:
+- `AI_SCRIPTS/T24/T24_Component_Clearance_Violation_Audit_v1.pas`
+- commit `df168d9c0c8217796f8e11e7d679adb7343851b5`
+- entry: `AuditT24_Component_Clearance_Violations_v1`
+- output: `T24_Component_Clearance_Violation_Audit.txt`
+- reads current `eViolationObject` entries and exports full unclipped Altium descriptions and associated rule names;
+- makes no PCB/rule/polygon/DRC changes.
+
+Exact next action:
+1. keep the current unsaved PCB open after the DRC;
+2. run only `AuditT24_Component_Clearance_Violations_v1`;
+3. send/upload `T24_Component_Clearance_Violation_Audit.txt`;
+4. do not save, waive, move parts or edit Component Clearance yet;
+5. then classify all 21 pairs and fix actual causes only.
 
 ## T24 Stage2B — controlled GND plane stitching — PAUSED UNTIL GND-VIA DIRECT RULE + DRC PASS
 
