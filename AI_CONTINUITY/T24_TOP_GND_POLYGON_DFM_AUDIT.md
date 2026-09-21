@@ -1,3 +1,7 @@
+# SUPERSEDED — DO NOT USE AS CURRENT DECISION
+
+This single-pass audit was superseded on 2026-09-21 by `AI_CONTINUITY/T24_TOP_GND_TRIPLE_EXPERT_REVIEW.md`. Final decision: KEEP the validated Top GND polygon; do not run the removal script.
+
 # T24 Top GND Polygon Risk / Necessity Audit
 
 Date: 2026-09-21
