@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: run PreflightT24_GND_Via_Direct_Rule_v1; if PASS apply rule, repour + full DRC; Stage2B remains pending**
+**Current exact point: run PreflightT24_GND_Via_Direct_Rule_v2; if PASS apply rule, repour + full DRC; Stage2B remains pending**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -269,14 +269,16 @@ The previously prepared read-only script remains optional because the current Pc
 
 ## T24 GND-via Direct PolygonConnect rule — SCRIPT READY / NOT YET APPLIED
 
-Prepared controlled script:
-- `AI_SCRIPTS/T24/T24_GND_Via_Direct_Rule_v1.pas`
-- commit: `d05a2c8dd2062b55ce40c3ce3a8ab154f3cc635d`
-- blob: `ba7ef143f8098e2e3a3132315af8cfde990535a7`
+v1 Apply attempt aborted safely because `PCBObjectFactory(eRuleObject,...)` returned Nil; no rule or geometry was added. v1 is superseded and MUST NOT be rerun.
+
+Prepared corrected controlled script:
+- `AI_SCRIPTS/T24/T24_GND_Via_Direct_Rule_v2.pas`
+- v2 commit: `15a00556d25bdb03deb9c346862f62cbcc50fcd9`
+- v2 blob: `b38bed03e7f0548f05be0362925a58c3bba21cab`
 
 Entry points:
-- `PreflightT24_GND_Via_Direct_Rule_v1`
-- `ApplyT24_GND_Via_Direct_Rule_v1`
+- `PreflightT24_GND_Via_Direct_Rule_v2`
+- `ApplyT24_GND_Via_Direct_Rule_v2`
 
 New rule:
 - name: `PolygonConnect_GND_Via_Direct`
@@ -285,6 +287,9 @@ New rule:
 - style: **Direct Connect**
 - expected new-rule priority: **1** (highest)
 - existing general `PolygonConnect` Relief rule remains present and moves to lower priority.
+
+v2 fix:
+- uses documented `PCBServer.PCBRuleFactory(eRule_PolygonConnectStyle)` instead of `PCBObjectFactory` for rule creation.
 
 Safety / validation:
 - preflight requires current exact baseline: 42 rules / 1 PolygonConnect / 180 total vias / 46 GND vias / 2 GND polygons;
@@ -300,9 +305,9 @@ Safety / validation:
 
 Exact next action:
 1. sync local repo with normal `Git_Save.cmd`;
-2. open `AI_SCRIPTS/T24/T24_GND_Via_Direct_Rule_v1.pas`;
-3. run **only** `PreflightT24_GND_Via_Direct_Rule_v1`;
-4. expected: `PREFLIGHT PASS - T24 GND VIA DIRECT RULE v1`;
+2. open `AI_SCRIPTS/T24/T24_GND_Via_Direct_Rule_v2.pas`;
+3. run **only** `PreflightT24_GND_Via_Direct_Rule_v2`;
+4. expected: `PREFLIGHT PASS - T24 GND VIA DIRECT RULE v2`;
 5. report the result before Apply;
 6. after Apply success: **Repour All Polygons → FULL DRC**;
 7. do not save until DRC is clean;
