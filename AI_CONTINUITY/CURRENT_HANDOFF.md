@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-Last continuity update: 2026-09-21 — Arya Madar DFM audit completed; Stage2B v2 prepared with 0.80/0.45 mm GND stitching vias; awaiting live preflight/apply
+Last continuity update: 2026-09-21 — Top GND polygon DFM audit completed; controlled Top-polygon removal prepared; Stage2B stitching is ON HOLD
 
 ## Repository / backup state
 
@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: T24 Stage2B v2 prepared after Arya Madar DFM audit; run v2 live preflight before apply**
+**Current exact point: run controlled preflight for removing the optional Top GND polygon; DO NOT run Stage2B stitching**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -187,7 +187,44 @@ Do not rerun Stage2A.
 Do not move existing T23 copper merely for cosmetic reasons.
 Any new GND stitching vias must be planned against the current Top/Bottom poured copper and the full obstacle snapshot, then followed by polygon repour, full DRC, snapshot refresh, and Git checkpoint.
 
-## T24 Stage2B — controlled GND plane stitching — v2 SCRIPT READY / NOT YET APPLIED
+## T24 DFM rollback — REMOVE OPTIONAL TOP GND POLYGON — SCRIPT READY / NOT YET APPLIED
+
+Audit evidence:
+- report: `AI_CONTINUITY/T24_TOP_GND_POLYGON_DFM_AUDIT.md`
+- audit commit: `18ab3311ad9b82bba9eae2978c8068877b42044d`
+- bottom-only T23 baseline had all Top-side GND groups deliberately connected to Bottom;
+- Bottom GND polygon + routing passed full Altium DRC with **0 warnings / 0 rule violations**;
+- adding Stage2A Top GND polygon changed Top pour-generated REGION count from **0 to 20**;
+- the Top pour is therefore optional for electrical completion and adds fragmented copper near dense routing.
+
+Controlled removal script:
+- `AI_SCRIPTS/T24/T24_Remove_Top_GND_Polygon_DFM_v1.pas`
+- script commit: `efcba5441020282b95e3ffb29683ac1c1b382b34`
+- script blob: `4968514e4278e543c409975cda35cadbed5d0c7f`
+- preflight entry: `PreflightT24_Remove_Top_GND_Polygon_DFM_v1`
+- apply entry: `ApplyT24_Remove_Top_GND_Polygon_DFM_v1`
+
+Removal scope:
+- remove exactly **1 Top Layer GND polygon**;
+- keep exactly **1 Bottom Layer GND polygon**;
+- preserve **117 GND tracks / 46 GND vias / 180 total vias**;
+- do not move tracks, vias, components, silkscreen, or Bottom polygon;
+- do not manually delete polygon-generated REGION primitives.
+
+Exact next action:
+1. synchronize local repo with `Git_Save.cmd` v2.5;
+2. open `AI_SCRIPTS/T24/T24_Remove_Top_GND_Polygon_DFM_v1.pas`;
+3. run only `PreflightT24_Remove_Top_GND_Polygon_DFM_v1`;
+4. if PREFLIGHT PASS, run `ApplyT24_Remove_Top_GND_Polygon_DFM_v1`;
+5. then **Repour All Polygons → FULL DRC**;
+6. if DRC is not clean, do not save;
+7. if DRC PASS, save PCB → Snapshot Exporter v1.4.2 → `Git_Save.cmd`;
+8. verify snapshot: **1 Bottom GND polygon / 0 Top polygons / 117 GND tracks / 46 GND vias / 180 total vias**.
+
+**Stage2B stitching is ON HOLD and MUST NOT be run after Top-polygon removal.**
+The previous `T24_Stage2B_GND_Stitching_v2.pas` remains in history only.
+
+## T24 Stage2B — controlled GND plane stitching — ON HOLD / DO NOT RUN
 
 Manufacturer-specific DFM audit:
 - completed against Arya Madar public pricing guidance on 2026-09-21;
