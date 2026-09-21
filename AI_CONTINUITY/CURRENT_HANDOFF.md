@@ -352,6 +352,43 @@ ComponentClearance note:
 - these violations were hidden previously because Batch checking for Component Clearance had not been enabled;
 - component placement was not changed by the GND-via Direct rule or polygon repour.
 
+## T24 Expanded Batch DRC — ROOT-CAUSE STATUS
+
+After GND-via Direct PolygonConnect v2 Apply + Repour, expanded Batch DRC showed:
+- 2 × Routing Via Style violations;
+- legacy Component Clearance violations that had not been part of the earlier Batch set.
+
+The two Routing Via Style violations are both pre-existing VIN_MUX vias:
+- (4480,5950) mil = 27.559 / 11.811 mil = 0.70 / 0.30 mm
+- (5235,5830) mil = 27.559 / 11.811 mil = 0.70 / 0.30 mm
+
+Snapshot comparison proves:
+- 178/180 existing vias use the project standard 0.60 / 0.30 mm;
+- all other audited power-net vias (BAT_FUSED, BAT_SW, USB_VBUS_PROT, 3V3_SYS) use 0.60 / 0.30 mm;
+- the two VIN_MUX vias are the only 0.70 / 0.30 mm outliers;
+- their drill remains 0.30 mm, so the barrel geometry is the same as the project standard.
+
+Decision:
+- DO NOT widen the generic RoutingVias rule merely to silence these violations.
+- `T24_RoutingViaStyle_Range_v1.pas` is **OBSOLETE / DO NOT RUN**.
+- Normalize the two actual via-pad outliers to the project standard.
+
+Controlled fix:
+- `AI_SCRIPTS/T24/T24_Normalize_VIN_MUX_Vias_v1.pas`
+- commit: `72fda53b5a79b3fd994848f4ea467705a13c549c`
+- entry points:
+  - `PreflightT24_Normalize_VIN_MUX_Vias_v1`
+  - `ApplyT24_Normalize_VIN_MUX_Vias_v1`
+- target: change Size only from 27.559 mil to 23.622 mil on exactly the two VIN_MUX vias;
+- HoleSize stays 11.811 mil;
+- coordinates, net, layer span and routing stay unchanged.
+
+After Apply:
+- rerun Batch DRC;
+- do not save until Component Clearance violations are separately dispositioned.
+
+Stage2B remains paused. Its planned via geometry must be revisited after current DRC cleanup; the earlier 0.80/0.45 mm choice is not automatically carried forward.
+
 ## T24 Stage2B — controlled GND plane stitching — PAUSED UNTIL GND-VIA DIRECT RULE + DRC PASS
 
 Manufacturer-specific DFM audit:
