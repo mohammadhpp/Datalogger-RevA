@@ -35,7 +35,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: 21/21 Component Clearance pairs resolved; current rule is Component Body Mode; run read-only component-body audit before any placement/footprint correction**
+**Current exact point: 21 Component Clearance pairs are resolved, all involved components have BodyCount=0; run read-only Mechanical1/Mechanical2 envelope audit for the 12 representative footprint families before changing placement or rules**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
@@ -465,6 +465,34 @@ Exact next action:
 3. upload `T24_Component_Body_Clearance_Audit.txt`;
 4. classify each violation as real physical body collision vs bad/oversized footprint body;
 5. only then make placement or footprint edits.
+
+## T24 Footprint mechanical-layer audit — READY
+
+Latest findings:
+- all 21 current Component Clearance violations resolved to exact component/component pairs;
+- every involved component has `Height=0` and `BodyCount=0`;
+- therefore current Component Clearance is not checking real 3D/component bodies;
+- all 12 representative footprint families do contain mechanical-layer primitives, but layer-name intent (body/assembly/courtyard) is not documented;
+- do not move parts or relax Component Clearance yet.
+
+Prepared read-only script:
+- `AI_SCRIPTS/T24/T24_Footprint_Mechanical_Envelope_Audit_v1.pas`
+- commit `452eeb8eaade6f681897e4a0c276c8784f75149b`
+- entry: `AuditT24_Footprint_Mechanical_Envelopes_v1`
+- output: `T24_Footprint_Mechanical_Envelope_Audit.txt`
+
+It measures separate envelopes for:
+- pads;
+- Mechanical Layer 1;
+- Mechanical Layer 2;
+- Top Overlay;
+for the 12 representative footprint families.
+
+Exact next action:
+1. run the read-only envelope audit;
+2. send `T24_Footprint_Mechanical_Envelope_Audit.txt`;
+3. classify Mechanical1/2 as body/assembly/courtyard from geometry;
+4. only then decide whether to use an existing mechanical envelope or add corrected courtyard/body geometry.
 
 ## T24 Stage2B — controlled GND plane stitching — PAUSED UNTIL GND-VIA DIRECT RULE + DRC PASS
 
