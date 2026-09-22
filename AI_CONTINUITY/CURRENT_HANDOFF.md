@@ -1,5 +1,25 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — root-cause fix moved to PcbLib; one persistent repair script ready — 2026-09-23
+
+- Recheck resolved the apparent contradiction about courtyard size. For this project, T24 intentionally uses the missing-footprint boundary itself (PAD / Mechanical1 union) and keeps the separate board-level Component Clearance rule at 10 mil. Therefore do NOT add another 10 mil expansion inside the newly created missing courtyards; that would double-count clearance and recreate the 11 known conflicts.
+- The transient PCB-child scripts (`T24_Courtyard_Step2A_Apply13_v2`, `T24_Courtyard_ESD12_Final_v1`) are not a release solution because their newly added child tracks do not persist correctly through Save/reload.
+- Persistent fix is now at the SOURCE library: `AI_SCRIPTS/T24/T24_PcbLib_MissingCourtyards_Apply_v1.pas`.
+- Script commit: `baf265d2179249c0ff82892ecbb1443289dca83f`.
+- The script targets `Datalogger_RevA_Clean.PcbLib`, internally preflights, and modifies exactly 8 unique footprint families covering all 16 currently missing board instances:
+  - `MAXIM_W16H2_SO16_90_0107`
+  - `AOS_SOT23_AO3401A_3P`
+  - `GOSUN_PLS_2P54_1X5_THT`
+  - `WIRE_DRAIN_1P_D1P20_P2P40_THT`
+  - `ATOM_MR01A_01245_10P`
+  - `SHOUHAN_2P50_1X05_ZZMS_THT`
+  - `ST_SOT23_6L_USBLC6_6P`
+  - `MURATA_GRM21_0805_CAP_2P`
+- It adds exactly 4 Mechanical2 tracks per footprint (32 tracks total), width 0.05 mm, with track centerlines inset by half-width so the OUTER boundary equals the audited PAD/M1 union exactly.
+- `J_SD` uses its audited 12.5 x 16.8 mm pad envelope as a documented engineering fallback because the current project footprint lacks a complete Mechanical1 body outline; this is not claimed as a manufacturer-certified IPC courtyard.
+- Official ST verification: USBLC6-2SC6 is SOT23-6L; ST publishes an official Altium Symbol/Footprint resource and datasheet footprint recommendation. This supports the project land pattern identity, but the T24 boundary policy remains the already-approved PAD/M1 union + external 10 mil rule.
+- Exact next action: open `Datalogger_RevA_Clean.PcbLib` and run only `ApplyT24_PcbLib_MissingCourtyards_v1`. On PASS, save the PcbLib, then use `Tools > Update PCB With All Footprints` with Mechanical-layer primitives enabled (avoid unrelated primitive updates), return to the PENDING PCB, verify 129/129 courtyard coverage visually and with DRC, then Save/Snapshot/Git_Save.
+
 ## CURRENT EXACT POINT — persistent Courtyard strategy corrected; do NOT use pad-envelope-only courtyard — 2026-09-23
 
 - The transient PCB-script method for adding missing courtyards is NOT persistent after Save; do not use `T24_Courtyard_Step2A_Apply13_v2`, `T24_Courtyard_ESD12_Final_v1`, or the ESD visibility repair as a release solution.
