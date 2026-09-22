@@ -1,6 +1,29 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-Last continuity update: 2026-09-21 — GND-via Direct rule applied successfully; expanded Batch DRC exposed 2 pre-existing RoutingViaStyle violations plus pre-existing ComponentClearance violations; controlled via-style range update prepared
+Last continuity update: 2026-09-22 — Courtyard M2/M4 confirmed; By Layer active after restart; PENDING copy has one reported Component Clearance violation; Step2 read-only geometry preflight ready.
+
+
+## Latest continuation — 2026-09-22 (supersedes older next-action blocks)
+
+- User screenshot verified Top M2 / Bottom M4 pair has Layer Type Courtyard.
+- PCB.ComponentSelection was 2 (By Graphic). User changed to 1 (By Layer).
+- Altium required restart. User saved a separate copy:
+  `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`, then restarted and ran DRC on that copy.
+- Latest screenshot shows one Component Clearance violation: Q_OLED versus R_OLED_GATE, collision <10 mil; previous list had 21.
+- This is not final DRC PASS or fabrication acceptance. Sixteen components still lack courtyard geometry.
+- PENDING is the current experimental candidate; original main PCB has not been replaced by this session.
+- User uploaded PENDING for direct inspection. CFB parsing found 129 components, no ComponentBodies6 data, 440 M2 tracks and 12 M4 tracks. Q_OLED has M1 outline but no M2 tracks. J_SD has M3 geometry; J_SHIELD has no mechanical track outline.
+- User also requests missing yellow silkscreen outlines. Audit Top/Bottom Overlay separately from courtyard; preserve RefDes/polarity and mask clearance. A full closed silk rectangle is not mandatory.
+- Do not infer real body collision solely from the remaining message, or infer correct physical clearance solely from disappearing messages.
+
+Exact next action:
+1. Keep PENDING active in Altium.
+2. Run `PreflightT24_Step2_Geometry_v1` from `AI_SCRIPTS/T24/T24_Step2_Geometry_Preflight_v1.pas`.
+3. Upload `T24_Step2_Geometry_Preflight_v1.txt`.
+4. Script is READ ONLY, derived from the previously used mechanical-envelope exporter; includes 16 missing components plus R_OLED_GATE, M1/M2/M3/M4, both overlays, individual primitive bounds, track centerlines, and board-wide silk track/arc inventory. Text is excluded from measured envelopes.
+5. It has not been executed in Altium by the assistant. DATA COMPLETE means coverage only, not geometry approval or DRC PASS.
+6. Use live report plus source package geometry to plan controlled courtyard additions and silk repairs. No Apply script is approved yet. Do not shrink courtyard or loosen 10 mil rule to silence errors.
+7. Retain saved PENDING recovery copy; do not promote it over the original PCB until validated.
 
 ## Repository / backup state
 
@@ -35,7 +58,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: T24 Courtyard Migration Step1 v3 APPLIED; DO NOT SAVE; next manually set Mechanical 2/4 Component Layer Pair Type = Courtyard and verify with screenshot**
+**Current exact point: M2/M4 Courtyard type CONFIRMED; PCB.ComponentSelection=1 applied after restart; active candidate is DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc; run Step2 read-only geometry preflight.**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
