@@ -1,5 +1,14 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — final Q_OLED clearance root cause narrowed — 2026-09-22
+
+- Focused audit v2 on the live post-Apply13 PENDING board shows `BoundingRectangleForSelection` exactly matches the M2/M4 Courtyard for both `Q_OLED` and `R_OLED_GATE`.
+- Selection/Courtyard axis gap is **51.418 mil** while the ComponentClearance horizontal gap is **10 mil**; therefore the remaining DRC marker is not caused by actual courtyard separation.
+- Rule state exported live: `CollisionCheckMode=3`, Scope1=All, Scope2=All, Gap=10 mil, VerticalGap=10 mil.
+- Altium API documents collision mode 3 as **Component Body Mode**. Current project intent is courtyard/component-boundary clearance.
+- Do not delete Q_OLED silk, move either component, shrink courtyards, or relax the 10 mil gap.
+- Exact next action: in Design Rules -> Placement -> Component Clearance, enable **Check clearance by component boundary** while keeping 10 mil and All/All unchanged; then rerun full Batch DRC. Do not Save until DRC is clean.
+
 ## CURRENT EXACT POINT — Apply13 v2 PASS; one Component Clearance remains — 2026-09-22
 
 - `PreflightT24_Courtyard_Step2A_Apply13_v2` passed on `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`.
