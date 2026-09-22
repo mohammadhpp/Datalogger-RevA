@@ -68,7 +68,7 @@ function Sync-FromGitHubSafe {
         if ($statusBeforeSync.Count -gt 0) {
             $stashStamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
             Write-Host "Temporarily protecting local edits before GitHub fast-forward..." -ForegroundColor Yellow
-            & $GitExe -C $Repo stash push --include-untracked -m "Git_Save v2.5 pre-sync $stashStamp"
+            & $GitExe -C $Repo stash push --include-untracked -m "Git_Save v2.5.1 pre-sync $stashStamp"
             if ($LASTEXITCODE -ne 0) {
                 Fail "Could not protect local edits before GitHub synchronization."
             }
@@ -123,7 +123,7 @@ function Sync-Backups {
 }
 
 Write-Host "============================================" -ForegroundColor Cyan
-Write-Host " Datalogger - ONE CLICK Git AutoSave v2.5" -ForegroundColor Cyan
+Write-Host " Datalogger - ONE CLICK Git AutoSave v2.5.1" -ForegroundColor Cyan
 Write-Host "   Auto Pull + Commit + Dual Backup + Tags" -ForegroundColor Cyan
 Write-Host "============================================" -ForegroundColor Cyan
 Write-Host ""
@@ -185,17 +185,14 @@ foreach ($line in $statusLines) {
 }
 
 $uniqueNames = @($changedNames | Select-Object -Unique)
-$previewNames = @($uniqueNames | Select-Object -First 5)
-$nameText = $previewNames -join ', '
-if ($uniqueNames.Count -gt 5) {
-    $nameText += ", +$($uniqueNames.Count - 5) more"
-}
 
+# Keep the commit message independent of raw path text.
+# Git porcelain may quote filenames that contain spaces or special characters;
+# embedding those quotes in a native git.exe argument can be re-tokenized by
+# legacy Windows PowerShell argument passing and turn parts of the message into
+# accidental pathspecs. The changed-file list is already preserved by Git.
 $stamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-$commitMessage = "Auto checkpoint $stamp | $($uniqueNames.Count) file(s): $nameText"
-if ($commitMessage.Length -gt 220) {
-    $commitMessage = $commitMessage.Substring(0, 217) + "..."
-}
+$commitMessage = "Auto checkpoint $stamp | $($uniqueNames.Count) file(s)"
 
 Write-Host "Automatic commit:" -ForegroundColor Cyan
 Write-Host "  $commitMessage"
