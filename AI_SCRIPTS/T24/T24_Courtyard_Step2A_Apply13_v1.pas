@@ -148,7 +148,7 @@ Procedure T24AddLine(C,Lay,X1,Y1,X2,Y2);
 Var T;
 Begin
     T:=PCBServer.PCBObjectFactory(eTrackObject,eNoDimension,eCreate_Default);
-    If T=Nil Then Raise Exception.Create('Track factory failed');
+    If T=Nil Then Begin Raise('Track factory failed'); End;
     T.Layer:=Lay; T.Width:=MilsToCoord(1.968504);
     T.X1:=MilsToCoord(X1); T.Y1:=MilsToCoord(Y1);
     T.X2:=MilsToCoord(X2); T.Y2:=MilsToCoord(Y2);
@@ -161,7 +161,7 @@ Procedure T24ApplyOne(RefName,SideName,L,B,R,T);
 Var C; Lay;
 Begin
     C:=T24FindComponent(RefName);
-    If C=Nil Then Raise Exception.Create('Missing '+RefName);
+    If C=Nil Then Begin Raise('Missing '+RefName); End;
     Lay:=eMechanical2;
     If SideName='BOTTOM' Then Lay:=eMechanical4;
     PCBServer.SendMessageToRobots(C.I_ObjectAddress,c_Broadcast,PCBM_BeginModify,c_NoEventData);
