@@ -1,0 +1,18 @@
+Datalogger RevA - T24 ComponentClearance Raw Rule Summary v1
+READ ONLY
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc
+
+============================================================
+Rule Name: ComponentClearance
+DRCEnabled: True
+Scope1: All
+Scope2: All
+Gap mil: 10
+VerticalGap mil: 10
+CollisionCheckMode: 3
+ShortDescriptor: Component Clearance Constraint
+ScopeDescriptor: (All),(All)
+DataSummary: Horizontal Clearance = 10mil    Vertical Clearance = 10mil
+
+ComponentClearance rule count: 1
+Nothing changed.

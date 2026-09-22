@@ -1,0 +1,47 @@
+Datalogger RevA - T24 Q_OLED / R_OLED_GATE focused audit v1
+READ ONLY - post Apply13 v2
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc
+
+CURRENT DRC VIOLATION FOUND
+Violation Name: 0122: Component / Component
+Rule Name: ComponentClearance
+Pair: Q_OLED / R_OLED_GATE
+
+============================================================
+RefDes: Q_OLED
+X/Y mil: 5710 / 6665
+Layer ID: 1
+Rotation deg: 0
+Component BBox L/B/R/T mil: 5580.444 / 6599.055 / 5770.039 / 6805.213
+MECH1 | Count=6 | L/B/R/T mil=5650.945 / 6619.724 / 5769.055 / 6698.465 | W/H mil=118.110000000001 / 78.741
+COURTYARD M2/M4 | Count=4 | L/B/R/T mil=5649.961 / 6599.055 / 5770.039 / 6730.945 | W/H mil=120.078 / 131.889999999999
+TOP OVERLAY (text excluded) | Count=1 | L/B/R/T mil=5580.444 / 6673.48 / 5600.444 / 6693.48 | W/H mil=20 / 20
+Primitive | Ref=Q_OLED | ObjectId=6 | Layer=33 | L/B/R/T mil=5580.444 / 6673.48 / 5600.444 / 6693.48
+Primitive | Ref=Q_OLED | ObjectId=4 | Layer=58 | L/B/R/T mil=5649.961 / 6599.055 / 5770.039 / 6601.023
+Primitive | Ref=Q_OLED | ObjectId=4 | Layer=58 | L/B/R/T mil=5768.071 / 6599.055 / 5770.039 / 6730.945
+Primitive | Ref=Q_OLED | ObjectId=4 | Layer=58 | L/B/R/T mil=5649.961 / 6728.977 / 5770.039 / 6730.945
+Primitive | Ref=Q_OLED | ObjectId=4 | Layer=58 | L/B/R/T mil=5649.961 / 6599.055 / 5651.929 / 6730.945
+
+============================================================
+RefDes: R_OLED_GATE
+X/Y mil: 5570 / 6594.528
+Layer ID: 1
+Rotation deg: 270
+Component BBox L/B/R/T mil: 5487.766 / 6540.846 / 5600.059 / 6855.19
+MECH1 | Count=4 | L/B/R/T mil=5550.315 / 6559.095 / 5589.685 / 6629.961 | W/H mil=39.3700000000008 / 70.866
+COURTYARD M2/M4 | Count=4 | L/B/R/T mil=5541.457 / 6542.362 / 5598.543 / 6646.693 | W/H mil=57.0859999999993 / 104.331
+TOP OVERLAY (text excluded) | Count=4 | L/B/R/T mil=5539.941 / 6540.846 / 5600.059 / 6648.209 | W/H mil=60.1180000000004 / 107.363
+Primitive | Ref=R_OLED_GATE | ObjectId=4 | Layer=33 | L/B/R/T mil=5539.941 / 6643.209 / 5600.059 / 6648.209
+Primitive | Ref=R_OLED_GATE | ObjectId=4 | Layer=33 | L/B/R/T mil=5595.059 / 6540.846 / 5600.059 / 6648.209
+Primitive | Ref=R_OLED_GATE | ObjectId=4 | Layer=33 | L/B/R/T mil=5539.941 / 6540.846 / 5600.059 / 6545.846
+Primitive | Ref=R_OLED_GATE | ObjectId=4 | Layer=33 | L/B/R/T mil=5539.941 / 6540.846 / 5544.941 / 6648.209
+Primitive | Ref=R_OLED_GATE | ObjectId=4 | Layer=58 | L/B/R/T mil=5541.457 / 6542.362 / 5543.425 / 6646.693
+Primitive | Ref=R_OLED_GATE | ObjectId=4 | Layer=58 | L/B/R/T mil=5541.457 / 6542.362 / 5598.543 / 6544.331
+Primitive | Ref=R_OLED_GATE | ObjectId=4 | Layer=58 | L/B/R/T mil=5596.575 / 6542.362 / 5598.543 / 6646.693
+Primitive | Ref=R_OLED_GATE | ObjectId=4 | Layer=58 | L/B/R/T mil=5541.457 / 6644.725 / 5598.543 / 6646.693
+
+COMPONENT BBOX axis gap | DX=0 mil | DY=0 mil
+COURTYARD axis gap | DX=51.4180000000006 mil | DY=0 mil
+COURTYARD SCREEN: >=10 mil separation exists on at least one axis.
+
+Nothing changed.
