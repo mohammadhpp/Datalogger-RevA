@@ -1,5 +1,12 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — Apply13 v2 second parser fix, 2026-09-22
+
+User attempted `T24_Courtyard_Step2A_Apply13_v2.pas`. Altium then reported `Error in declaration block` at the postcheck function. Cause identified: local variable `OR` conflicts with the reserved DelphiScript logical operator `Or`. Renamed it to `ORight`.
+
+Use the refreshed same-named v2 file from GitHub or the new download supplied by this session. New commit: `80a52260bc3dbd0ef661ef2c4e4e7c0aef335a6c`. The preflight entry remains `PreflightT24_Courtyard_Step2A_Apply13_v2`. No PCB modification or Save is confirmed from this parser-error attempt.
+
+
 ## CURRENT EXACT POINT — Apply13 parser fix, 2026-09-22
 
 User attempted the first Apply13 script and Altium reported `Else expected` while compiling. Root cause identified: DelphiScript does not support Delphi `Exception.Create`; it requires textual `Raise('...')`. The corrected parser-compatible script is:
