@@ -1,5 +1,12 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — Step2A parser recovery, 2026-09-22
+
+User screenshot reports `Program name expected` while attempting Step2A v1. No successful preflight or Apply is confirmed. Exact parser cause is NOT established by the screenshot.
+Use `AI_SCRIPTS/T24/T24_Courtyard_Step2A_Preflight_v2.pas`, entry `PreflightT24_Courtyard_Step2A_v2`, on the PENDING PCB. This read-only rewrite removes arrays, prefixes helper names (including Near), and removes the Apply code from this diagnostic file. All 15 expected geometry tuples and baseline guards are preserved. Static checks passed; live Altium compile/execution is still unverified.
+NEXT: user runs v2 preflight and returns `T24_Courtyard_Step2A_Preflight_v2.txt` or the exact error. Do not run v1 Apply. Candidate clearance conflicts, J_SD body drawing and yellow silkscreen outlines remain unresolved. No PCB change/save is requested by this recovery step.
+
+
 Last continuity update: 2026-09-22 — Courtyard M2/M4 confirmed; By Layer active after restart; PENDING copy has one reported Component Clearance violation; Step2 read-only geometry preflight ready.
 
 
