@@ -1,5 +1,15 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## Git checkpoint — 2026-09-22 20:38 +03:30
+
+Git AutoSave recovery completed successfully.
+- `Git_Save.ps1` / launcher upgraded to **v2.5.1** to avoid raw quoted filenames in native `git commit -m` arguments.
+- recovery checkpoint: `e9957b8f3b56981deb7769282e02ef1ac30f8b95`;
+- `HEAD`, `localbackup/main`, and `github/main` were user-confirmed aligned at the checkpoint;
+- six current T24 working artifacts were committed, including `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`, DRC outputs, and the existing Step2 preflight reports.
+- This checkpoint records the current experimental PENDING PCB; it does **not** promote it over the original main PCB.
+- Exact engineering next action is unchanged: run **only** `PreflightT24_Courtyard_Step2A_Apply13_v2`. Do not Apply and do not Save after that preflight until its report is reviewed.
+
 ## Git checkpoint — 2026-09-22
 
 Registered in the private repository after the T24 Step2 parser recovery:
