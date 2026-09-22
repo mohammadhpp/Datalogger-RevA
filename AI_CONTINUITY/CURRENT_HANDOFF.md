@@ -1,5 +1,17 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — Apply13 v2 PASS; one Component Clearance remains — 2026-09-22
+
+- `PreflightT24_Courtyard_Step2A_Apply13_v2` passed on `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`.
+- `ApplyT24_Courtyard_Step2A_Apply13_v2` then completed successfully: **13 courtyards / 52 tracks**, resulting in **126/129 components with courtyard data**.
+- Deferred by design: `D_ESD1`, `D_ESD2`, `J_SD`.
+- User ran a fresh full Batch DRC after Apply. Exactly **one Component Clearance violation** remains: `Q_OLED` vs `R_OLED_GATE`.
+- Do not Save, move components, or relax Component Clearance yet.
+- Prior geometry report shows the old component bounding boxes overlap because `Q_OLED` has a remote Top Overlay primitive, while the intended courtyard geometry is expected to be separated by more than 10 mil. This must now be verified on the live post-Apply board before any fix.
+- Focused READ-ONLY audit prepared: `AI_SCRIPTS/T24/T24_QOLED_ROLEDGATE_Audit_v1.pas`.
+- Audit script commit: `0697c203ce8328ff1342ffffee4e7cb786a7cb3a`.
+- Exact next action: run only `AuditT24_QOLED_ROLEDGATE_v1` and return `T24_QOLED_ROLEDGATE_Audit_v1.txt`. No Save.
+
 ## Git checkpoint — 2026-09-22 20:38 +03:30
 
 Git AutoSave recovery completed successfully.
