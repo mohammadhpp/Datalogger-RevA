@@ -1,6 +1,6 @@
 @echo off
 setlocal
-title Datalogger Git AutoSave v2.5 - One Click Sync
+title Datalogger Git AutoSave v2.5.1 - One Click Sync
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0Git_Save.ps1"
 set "RC=%ERRORLEVEL%"
