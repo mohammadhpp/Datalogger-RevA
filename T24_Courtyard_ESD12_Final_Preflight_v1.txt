@@ -1,0 +1,9 @@
+T24 Final Courtyard ESD12 v1 - PREFLIGHT PASS
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc
+Baseline: 129 components / 126 courtyard-covered.
+D_ESD1 candidate OUTER envelope: 7173.858 / 5761.417 / 7315.591 / 5863.779 mil.
+D_ESD2 candidate OUTER envelope: 7178.858 / 5533.819 / 7320.591 / 5636.181 mil.
+Track width: 0.05 mm; centerline inset preserves exact outer envelope.
+Live screen: no existing courtyard under 10 mil.
+J_SD remains deferred pending exact MR01A-01245 body drawing.
+Nothing changed.
