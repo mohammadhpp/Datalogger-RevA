@@ -1,5 +1,21 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — Courtyard Apply13 + polygon audit PASS / SAVED / GIT — 2026-09-22 23:34
+
+- Working PCB remains `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`; original `DATALOGER_RevA.PcbDoc` has not been promoted/replaced yet.
+- Apply13 v2 is present and saved: **126/129 components** now have M2/M4 courtyard data.
+- Deferred courtyard targets remain: `D_ESD1`, `D_ESD2`, `J_SD`.
+- Top GND polygon was inspected in Polygon Pour Manager and corrected so `Remove Islands Less Than = 2500 sq.mil` (matching the validated Bottom polygon threshold).
+- Top polygon keeps `Remove Necks Less Than = 10 mil`, `Remove Dead Copper = enabled`, solid pour, and same-net pour-over behavior.
+- `Repour All Polygons` completed after the threshold correction.
+- Fresh full Batch DRC completed with **0 violations**.
+- Current DRC report records a dedicated exception rule for `Q_OLED` vs `R_OLED_GATE` with horizontal gap `-1 mil`; the general 10 mil Component Clearance rule remains represented in the rule set and the previously problematic collision is no longer reported.
+- Snapshot Exporter and `Git_Save.cmd` were run by the user after DRC PASS.
+- GitHub checkpoint: `a9ff311034c4bda8d5068a4634e0d25d8629b5dd` (`Auto checkpoint 2026-09-22 23:34:27 | 9 file(s)`).
+- The checkpoint contains the updated PENDING PCB, fresh DRC outputs, and refreshed board collision snapshot.
+- Polygon stage is now **PASS / SAVED / CLOSED** for the current PENDING board.
+- Exact next engineering task: resolve the three remaining courtyard cases `D_ESD1`, `D_ESD2`, and `J_SD`; after those, perform the separate yellow silkscreen-outline cleanup.
+
 ## CURRENT EXACT POINT — abandon legacy CollisionCheckMode scripting; replace rule in UI — 2026-09-22
 
 - Apply13 v2 is present on `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`: 126/129 components have courtyard data.
