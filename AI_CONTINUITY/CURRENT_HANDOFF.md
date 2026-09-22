@@ -1,5 +1,15 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## Git checkpoint — 2026-09-22
+
+Registered in the private repository after the T24 Step2 parser recovery:
+- current PCB remains `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`; no PCB Save is confirmed from the failed compile attempts;
+- Step2A baseline and collision preflight reports are recorded;
+- latest parser-compatible candidate is `AI_SCRIPTS/T24/T24_Courtyard_Step2A_Apply13_v2.pas` with commit `80a52260bc3dbd0ef661ef2c4e4e7c0aef335a6c`;
+- concise new-chat handoff is `AI_CONTINUITY/PASTE_THIS_INTO_NEW_CHAT_T24_STEP2.txt` with commit `05da0e5fb3f7432f637ead19bd387bef2fc7d340`;
+- next execution remains Preflight only: `PreflightT24_Courtyard_Step2A_Apply13_v2`.
+
+
 ## CURRENT EXACT POINT — Apply13 v2 second parser fix, 2026-09-22
 
 User attempted `T24_Courtyard_Step2A_Apply13_v2.pas`. Altium then reported `Error in declaration block` at the postcheck function. Cause identified: local variable `OR` conflicts with the reserved DelphiScript logical operator `Or`. Renamed it to `ORight`.
