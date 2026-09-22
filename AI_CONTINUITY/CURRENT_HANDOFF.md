@@ -1,5 +1,15 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — abandon legacy CollisionCheckMode scripting; replace rule in UI — 2026-09-22
+
+- Apply13 v2 is present on `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`: 126/129 components have courtyard data.
+- Fresh Batch DRC still reports exactly one Component Clearance collision: `Q_OLED` vs `R_OLED_GATE`.
+- Focused audits proved `BoundingRectangleForSelection` matches M2/M4 courtyard for both components and the courtyard X-gap is 51.418 mil while the rule gap is 10 mil.
+- `Check clearance by component boundary` was enabled manually in the Rules dialog, but the single collision remained.
+- Attempt to change legacy `CollisionCheckMode` from 3 to `eFullCheck` by script failed postcheck; **do not use that script again** and do not save any change from that failed attempt.
+- Next approach is UI-only and simpler: create a NEW Component Clearance rule with All/All, 10 mil horizontal, Specified 10 mil vertical, `Check clearance by component boundary` enabled, `Do not check components without 3D body` disabled; then disable the old `ComponentClearance` rule in the Component Clearance summary list. Do not delete the old rule yet.
+- Reset Error Markers and rerun full Batch DRC. If clean, save the PENDING PCB and checkpoint. No more diagnostic scripts for this issue.
+
 ## CURRENT EXACT POINT — Altium access violation during rule-mode change — 2026-09-22
 
 - After Apply13 v2 PASS and one remaining Q_OLED/R_OLED_GATE Component Clearance marker, user attempted the next rule-mode step and Altium raised an access violation in `ADVPCB.DLL`.
