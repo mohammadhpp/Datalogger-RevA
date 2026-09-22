@@ -1,5 +1,22 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — Collision preflight complete; conservative 13-target plan, 2026-09-22
+
+User ran `PreflightT24_Courtyard_Step2A_Collision_v1` on the PENDING board. Output reports 11 potential AABB hits under 10 mil. The report is read-only and is not DRC PASS. Confirmed pairs:
+- candidate/candidate: Q_OLED/C_OLED_BULK = 3.464 mil; D_ESD2/C_SD_MID = overlap;
+- candidate/existing: Q_SD with Q_SD_DRV and C_SD_BULK1/2; Q_OLED with Q_OLED_DRV; J_NAV with D_NAV1; D_ESD2/D_ESD1 with C_SD_HF; C_SENSOR_BULK with C_SENSOR_HF; C_OLED_BULK with C_OLED_HF.
+
+Engineering disposition for the next controlled step: the previous `PAD/M1 union + 10 mil` candidate was overconservative because the ComponentClearance rule already enforces 10 mil between courtyard boundaries. A revised candidate uses the audited PAD/M1 union itself, with 0.05 mm track width, and rechecks all 13 non-border targets. Static screening with the line half-width leaves no <10 mil AABB hits for those 13. `D_ESD1` and `D_ESD2` remain deferred because both border C_SD_HF at/under the 10 mil limit; `J_SD` remains deferred pending exact MR01A-01245 body drawing. This is a geometry disposition for a controlled test, not a blanket approval.
+
+Prepared script:
+- `AI_SCRIPTS/T24/T24_Courtyard_Step2A_Apply13_v1.pas`
+- commit `5606ce0a174865fb13d5228c7079c061c2c1f323`
+- entry `PreflightT24_Courtyard_Step2A_Apply13_v1`, then (only after separate confirmation) `ApplyT24_Courtyard_Step2A_Apply13_v1`;
+- adds 13 rectangles / 52 tracks, union-only geometry; baseline guards 129 components / 113 courtyard-covered; expected post-state 126/129 covered.
+
+NEXT: run only `PreflightT24_Courtyard_Step2A_Apply13_v1` on PENDING and return `T24_Courtyard_Step2A_Apply13_Preflight_v1.txt`. Do not Apply or Save yet. After PASS, run Apply, then full Batch DRC before any Save. Silk and D_ESD1/D_ESD2/J_SD remain pending.
+
+
 ## CURRENT EXACT POINT — Step2A baseline preflight PASS, collision gate pending, 2026-09-22
 
 User ran `PreflightT24_Courtyard_Step2A_v2` on `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`. Result: **BASELINE PASS ONLY**; 129 components, 113 already courtyard-covered, 15 targets verified; no PCB change. Output: `T24_Courtyard_Step2A_Preflight_v2.txt`.
