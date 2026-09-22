@@ -1,5 +1,15 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — persistent Courtyard strategy corrected; do NOT use pad-envelope-only courtyard — 2026-09-23
+
+- The transient PCB-script method for adding missing courtyards is NOT persistent after Save; do not use `T24_Courtyard_Step2A_Apply13_v2`, `T24_Courtyard_ESD12_Final_v1`, or the ESD visibility repair as a release solution.
+- Recheck against project geometry shows the previous proposed `D_ESD1/D_ESD2` courtyard of **3.60 x 2.60 mm** was merely the PAD envelope, not a proper assembly courtyard. That proposal is **RETRACTED / DO NOT USE**.
+- Existing validated project courtyards consistently extend beyond pad envelopes (examples: 0603 pad 2.20 x 0.90 mm -> courtyard about 2.65 x 1.45 mm; 0805 pad 4.30 x 1.70 mm -> courtyard about 4.75 x 2.25 mm; SOT23-3 family also has explicit margin beyond pads).
+- ST official USBLC6-2SC6 documentation identifies the device as SOT23-6L with package dimensions up to about 3.05 mm x 3.00 mm and ST publishes an official Altium Symbol/Footprint archive. Prefer checking/importing the official ST CAD footprint instead of inventing a courtyard.
+- The 16 missing-courtyard board instances collapse to 8 unique footprints in `Datalogger_RevA_Clean.PcbLib`; persistent correction should be made in the PcbLib footprints and then propagated to the PCB.
+- For `ST_SOT23_6L_USBLC6_6P`, do NOT draw a 3.60 x 2.60 mm courtyard. First inspect the official ST Altium model and reconcile it with the project courtyard convention. A project-style inferred courtyard would be materially larger and would expose real spacing conflicts around `D_ESD1/D_ESD2` vs `C_SD_HF`, so shrinking the courtyard merely to pass 10 mil is not acceptable.
+- Next action: obtain/open the official ST `USBLC6-2SC6` Altium footprint (ST product page CAD Resources) and compare its courtyard/assembly geometry with `ST_SOT23_6L_USBLC6_6P` before editing the project library. No PCB routing/placement change until that comparison is complete.
+
 ## CURRENT EXACT POINT — baseline mismatch discovered before final ESD courtyard apply — 2026-09-22
 
 - Attempted `PreflightT24_Courtyard_ESD12_Final_v1` aborted safely with: `Expected 126/129 courtyard-covered baseline. Nothing changed.`
