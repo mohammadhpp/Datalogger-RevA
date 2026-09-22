@@ -176,13 +176,13 @@ Begin
 End;
 
 Function T24PostcheckOne(RefName,SideName,L,B,R,T);
-Var C; N; OL; OB; OR; OT;
+Var C; N; OL; OB; ORight; OT;
 Begin
     Result:=False; C:=T24FindComponent(RefName);
     If C=Nil Then Exit;
-    T24Measure(C,2,N,OL,OB,OR,OT);
+    T24Measure(C,2,N,OL,OB,ORight,OT);
     Result:=(N=4) And T24WithinTolerance(OL,L-0.984252) And
-        T24WithinTolerance(OB,B-0.984252) And T24WithinTolerance(OR,R+0.984252) And
+        T24WithinTolerance(OB,B-0.984252) And T24WithinTolerance(ORight,R+0.984252) And
         T24WithinTolerance(OT,T+0.984252);
 End;
 
