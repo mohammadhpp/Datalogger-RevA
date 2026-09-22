@@ -1,5 +1,14 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — baseline mismatch discovered before final ESD courtyard apply — 2026-09-22
+
+- Attempted `PreflightT24_Courtyard_ESD12_Final_v1` aborted safely with: `Expected 126/129 courtyard-covered baseline. Nothing changed.`
+- This means the live PCB no longer matches the assumed post-Apply13 state.
+- Double-check against the latest saved collision snapshot shows only **113 component refs with M2/M4 component-owned primitives**; `D_ESD1`, `D_ESD2`, and `J_SD` are still absent, and the 13 prior Apply13 additions are not represented as persisted component-owned courtyards in that snapshot.
+- Therefore DO NOT run the ESD12 Apply yet.
+- Correct recovery path: rerun existing `T24_Courtyard_Step2A_Apply13_v2.pas` preflight on the current PENDING board. If it PASSes, rerun Apply13, Save the PENDING PCB, close/reopen Altium, then verify persistence with the already-existing `AuditT24_Apply13_PostCrash_v1` checker. Only after a verified 126/129 persisted state should `T24_Courtyard_ESD12_Final_v1` be used.
+- No new diagnostic script is needed for this recovery.
+
 ## CURRENT EXACT POINT — final courtyard completion split: D_ESD1/D_ESD2 ready, J_SD still deferred — 2026-09-22
 
 - Current saved PENDING baseline after polygon closeout: 129 components / 126 courtyard-covered / full Batch DRC clean.
