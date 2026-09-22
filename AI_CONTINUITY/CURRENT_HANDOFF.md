@@ -1,5 +1,20 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — final courtyard completion split: D_ESD1/D_ESD2 ready, J_SD still deferred — 2026-09-22
+
+- Current saved PENDING baseline after polygon closeout: 129 components / 126 courtyard-covered / full Batch DRC clean.
+- Remaining courtyard components: `D_ESD1`, `D_ESD2`, `J_SD`.
+- Geometry recheck shows a safe controlled solution for the two ESD devices without moving routing:
+  - `D_ESD1` final OUTER courtyard = pad envelope `7173.858 / 5761.417 / 7315.591 / 5863.779 mil`; nearest critical existing courtyard `C_SD_HF` is about 10.905 mil away.
+  - `D_ESD2` final OUTER courtyard = pad envelope `7178.858 / 5533.819 / 7320.591 / 5636.181 mil`; nearest critical existing courtyard `C_SD_HF` is exactly 10.000 mil and `C_SD_MID` is about 11.26 mil away.
+- To avoid the previous half-track-width overgrowth, the new 0.05 mm courtyard tracks use centerlines inset by half the track width so final OUTER bounds equal the audited pad envelopes.
+- Prepared controlled script: `AI_SCRIPTS/T24/T24_Courtyard_ESD12_Final_v1.pas`.
+- Script commit: `61ba0038ef61b5660bf05c03455159ecca69c3d8`.
+- Run order: first `PreflightT24_Courtyard_ESD12_Final_v1`; only after PASS run `ApplyT24_Courtyard_ESD12_Final_v1`; then Full Batch DRC; do not save before clean DRC.
+- Expected post-Apply state: **128/129 components** with courtyard data; only `J_SD` remains.
+- `J_SD` is confirmed as Shenzhen Atom Tech `MR01A-01245` / JLCPCB `C55094511`, but the accessible public pages do not expose a usable dimensional body drawing. Do not invent its courtyard from incomplete Mechanical3 geometry. Keep `J_SD` deferred until the exact drawing is obtained.
+- After J_SD is resolved, proceed to the separate yellow silkscreen-outline cleanup.
+
 ## CURRENT EXACT POINT — Courtyard Apply13 + polygon audit PASS / SAVED / GIT — 2026-09-22 23:34
 
 - Working PCB remains `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`; original `DATALOGER_RevA.PcbDoc` has not been promoted/replaced yet.
