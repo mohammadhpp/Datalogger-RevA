@@ -3,6 +3,18 @@
 Last continuity update: 2026-09-22 — Courtyard M2/M4 confirmed; By Layer active after restart; PENDING copy has one reported Component Clearance violation; Step2 read-only geometry preflight ready.
 
 
+## Latest Step2 planning update — 2026-09-22
+User supplied T24_Step2_Geometry_Preflight_v1.txt: 17/17 target measurements complete, on PENDING. This is data completeness, not DRC PASS.
+Prepared AI_SCRIPTS/T24/T24_Courtyard_Step2A_v1.pas (not executed in Altium).
+NEXT: run ONLY PreflightT24_Courtyard_Step2A_v1 and return T24_Courtyard_Step2A_Preflight_v1.txt. Do not Apply yet.
+Candidate geometry: 15 missing courtyards, pad/M1 envelope union expanded by 10 mil each side; 60 component-owned tracks, 0.05 mm width, M4 for U_RTC and M2 for other 14. Engineering allowance, not a claim of IPC-certified envelopes.
+J_SHIELD uses solder-land envelope; wire/strain-relief envelope still requires review.
+J_SD deferred: no M1/body; M3 has two internal rectangles, cannot serve as full package courtyard. Exact MR01A-01245 drawing still needed. A web PDF found by search was a different manufacturer's drawing and was NOT used.
+Known candidate issues: C_SD_MID / D_ESD2 rectangles overlap; C_OLED_BULK / Q_OLED gap about 3.464 mil (<10 mil rule). Existing neighbour courtyards also need checking. Do not shrink boundaries or relax rule merely to hide violations.
+Q_OLED has remote Top Overlay fill at x=5580.444..5600.444 mil; its pad/M1 left bound is 5650.945 mil, while R_OLED_GATE courtyard right centerline is 5597.559 mil. This supports a fallback-boundary artifact explanation for current violation; it is not a final physical fit certification.
+Silk inventory received for all 129 components. Silk repair remains pending and is not included in Step2A.
+The candidate script has guards for PENDING filename, M2/M4 pair, 129 total/113 courtyard-bearing components, target positions/sides/rotations, pad and M1 counts/bounds, and no existing target courtyard. Postcheck expects 60 tracks/4 per target. Static checks only; live Altium execution remains unverified.
+
 ## Latest continuation — 2026-09-22 (supersedes older next-action blocks)
 
 - User screenshot verified Top M2 / Bottom M4 pair has Layer Type Courtyard.
@@ -58,7 +70,7 @@ Latest verified post-pour checkpoint:
 
 **T24 Stage2A — Top GND polygon — PASS / SAVED / CLOSED**
 
-**Current exact point: M2/M4 Courtyard type CONFIRMED; PCB.ComponentSelection=1 applied after restart; active candidate is DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc; run Step2 read-only geometry preflight.**
+**Current exact point: M2/M4 Courtyard type CONFIRMED; PCB.ComponentSelection=1 applied after restart; active candidate is DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc; Step2 geometry report received; run ONLY Step2A baseline preflight, Apply held for candidate-clearance review.**
 
 T23 remains formally CLOSED / PASS and must not be casually reopened.
 
