@@ -1,5 +1,21 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — Step2A baseline preflight PASS, collision gate pending, 2026-09-22
+
+User ran `PreflightT24_Courtyard_Step2A_v2` on `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`. Result: **BASELINE PASS ONLY**; 129 components, 113 already courtyard-covered, 15 targets verified; no PCB change. Output: `T24_Courtyard_Step2A_Preflight_v2.txt`.
+
+The report is not a clearance PASS. Static geometry screening found candidate rectangles that must be checked before Apply. Candidate/candidate pairs: `Q_OLED` / `C_OLED_BULK` gap about 3.464 mil; `D_ESD2` / `C_SD_MID` overlap. Candidate-to-existing courtyard AABB screening also finds several target bounds under 10 mil from existing courtyards, including Q_SD vs C_SD_BULK1/2, Q_OLED vs Q_OLED_DRV, J_NAV vs D_NAV1, D_ESD2/D_ESD1 vs C_SD_HF, and C_SENSOR_BULK vs C_SENSOR_HF. These are screening results, not final geometric DRC results, but they block a blind 15-target Apply.
+
+Prepared read-only script:
+- `AI_SCRIPTS/T24/T24_Courtyard_Step2A_Collision_Preflight_v1.pas`
+- commit `42159f53090f958183f6275227c0f840398d7095`
+- entry: `PreflightT24_Courtyard_Step2A_Collision_v1`
+- output: `T24_Courtyard_Step2A_Collision_Preflight_v1.txt`
+- checks the live PENDING board, M2/M4 pair, baseline counts, target-to-target candidate rectangles and target-to-existing courtyard AABB gaps; read-only.
+
+NEXT: run only `PreflightT24_Courtyard_Step2A_Collision_v1` and return the TXT. Do not run any Step2A Apply script yet. No PCB Save. After the live collision report, disposition each hit as body/footprint geometry or real placement clearance before adding any courtyard. J_SD body geometry and yellow silkscreen remain pending.
+
+
 ## CURRENT EXACT POINT — Step2A parser recovery, 2026-09-22
 
 User screenshot reports `Program name expected` while attempting Step2A v1. No successful preflight or Apply is confirmed. Exact parser cause is NOT established by the screenshot.
