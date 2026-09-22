@@ -1,5 +1,16 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — Altium access violation during rule-mode change — 2026-09-22
+
+- After Apply13 v2 PASS and one remaining Q_OLED/R_OLED_GATE Component Clearance marker, user attempted the next rule-mode step and Altium raised an access violation in `ADVPCB.DLL`.
+- Apply13 had not yet been saved, so current live unsaved state must be treated as uncertain after the crash.
+- Do not save from the crashed process.
+- Recovery plan: close Altium, reopen `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`, then run the read-only `AuditT24_Apply13_PostCrash_v1`.
+- Recovery audit script: `AI_SCRIPTS/T24/T24_Apply13_PostCrash_Audit_v1.pas`.
+- Script commit: `ffe8aab5fce8d6e6cc4882e2e3bda007759ae442`.
+- If report says 126/129 covered with 4 courtyard primitives on all 13 Apply13 targets, Apply13 survived. If 113/129, reopen baseline and re-run Apply13 only after preflight. Mixed state must not be continued.
+- Do not retry the Component Clearance mode change until the post-crash board state is verified.
+
 ## CURRENT EXACT POINT — final Q_OLED clearance root cause narrowed — 2026-09-22
 
 - Focused audit v2 on the live post-Apply13 PENDING board shows `BoundingRectangleForSelection` exactly matches the M2/M4 Courtyard for both `Q_OLED` and `R_OLED_GATE`.
