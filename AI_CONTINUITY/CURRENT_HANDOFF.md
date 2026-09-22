@@ -1,5 +1,14 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — Apply13 parser fix, 2026-09-22
+
+User attempted the first Apply13 script and Altium reported `Else expected` while compiling. Root cause identified: DelphiScript does not support Delphi `Exception.Create`; it requires textual `Raise('...')`. The corrected parser-compatible script is:
+- `AI_SCRIPTS/T24/T24_Courtyard_Step2A_Apply13_v2.pas`
+- commit `1ad86ce5586c3d316604813ccf835a00ef583da4`
+- entry `PreflightT24_Courtyard_Step2A_Apply13_v2`; Apply entry remains `ApplyT24_Courtyard_Step2A_Apply13_v2` and must wait for preflight review.
+The prior v1 path was updated too, but use v2 to avoid stale local copies. No PCB change or Save is confirmed from the parser-error attempt.
+
+
 ## CURRENT EXACT POINT — Collision preflight complete; conservative 13-target plan, 2026-09-22
 
 User ran `PreflightT24_Courtyard_Step2A_Collision_v1` on the PENDING board. Output reports 11 potential AABB hits under 10 mil. The report is read-only and is not DRC PASS. Confirmed pairs:
