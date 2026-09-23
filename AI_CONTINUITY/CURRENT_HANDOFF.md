@@ -1,5 +1,13 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — controlled 16-component ECO executed successfully — 2026-09-23
+
+- Canonical generated `Datalogger_RevA_Clean.PcbLib` was used to update only the 16 T24 courtyard-target components in `DATALOGER_RevA.PcbDoc`.
+- Update comparison was restricted to `Top Courtyard` and `Bottom Courtyard`; Component Update Options were restricted to `Other -> On Mechanical Layers` only. Text, silk, other layers, pad attributes, and footprint parameters were disabled.
+- ECO contained exactly `Change Physical Footprints (16)` for: C_OLED_BULK, C_SD_MID, C_SENSOR_BULK, D_ESD, D_ESD1, D_ESD2, D_EXT1, D_EXT2, D_EXT3, J_NAV, J_SD, J_SHIELD, J_SWD, Q_OLED, Q_SD, U_RTC.
+- User executed ECO; screenshot confirms all 16 rows have green `Check` and green `Done`, with no reported error.
+- NEXT EXACT ACTION: close ECO, save canonical `DATALOGER_RevA.PcbDoc`, close/reopen that PcbDoc, then run a read-only 129/129 courtyard persistence audit before Full Batch DRC.
+
 ## CURRENT EXACT POINT — promote audited generated library and update only 16 PCB instances — 2026-09-23
 
 - User approved promotion of the final audited generated PcbLib.
