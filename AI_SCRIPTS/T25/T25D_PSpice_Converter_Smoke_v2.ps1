@@ -62,10 +62,13 @@ try {
         [Environment]::GetFolderPath('StartMenu')
     )) {
         if (-not $menu -or -not (Test-Path -LiteralPath $menu)) { continue }
-        $shell = New-Object -ComObject WScript.Shell
+        try { $shell = New-Object -ComObject WScript.Shell } catch {
+            $notes += 'Start shortcut inspection unavailable; continuing with other installation evidence.'
+            continue
+        }
         foreach ($link in (Get-ChildItem -LiteralPath $menu -Recurse -File -Filter '*.lnk' -ErrorAction SilentlyContinue)) {
             if ($link.Name -notmatch 'Cadence|OrCAD|PSpice|Allegro') { continue }
-            $target = $shell.CreateShortcut($link.FullName).TargetPath
+            try { $target = $shell.CreateShortcut($link.FullName).TargetPath } catch { continue }
             if ($target) {
                 $notes += "Start shortcut: $($link.Name) -> $target"
                 if ($target -match '(?i)psp_cmd\.exe$') { $candidates += $target }
