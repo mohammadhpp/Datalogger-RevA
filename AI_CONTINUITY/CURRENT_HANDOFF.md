@@ -1,5 +1,17 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — v3 PcbLib crash; recovery switched to proven T23 transaction pattern — 2026-09-23
+
+- `T24_PcbLib_MissingCourtyards_Apply_v3.pas` also caused an Access Violation in `ScriptingSystem.DLL`. Treat the crashed Altium/PcbLib session as invalid and do not save it.
+- User explicitly requested preserving project continuity and reusing the proven successful script architecture.
+- Recheck of successful T23 scripts (`Stage4H1`, `Stage5A`, `Stage6A`) shows the stable mutation pattern: all read-only iterators finish first; mutation uses one simple `PCBServer.PreProcess` / `PostProcess` transaction, `PCBObjectFactory`, owner `AddPCBObject`, `PCBM_BoardRegisteration`, then postcheck. No iterator traversal or page switching during mutation.
+- Official Altium PCB API confirms `GetCurrentPCBBoard` is valid for either PcbDoc or PcbLib, and for a PcbLib the active footprint is `IPCB_Library.CurrentComponent`; `IPCB_LibComponent.AddPCBObject` is the supported way to add child primitives.
+- New safe script: `AI_SCRIPTS/T24/T24_CurrentFootprint_Courtyard_Repair_v4.pas`.
+- v4 operates ONLY on the currently displayed footprint in `Datalogger_RevA_Clean.PcbLib`; it does not use `LibraryIterator`, `SetBoardToComponentByName`, `GetComponentByName`, state rebuild methods, or exception flow.
+- v4 has one entry: `ApplyT24_CurrentFootprint_Courtyard_v4`. It internally preflights footprint name, pad count, Mechanical1 count, audited envelope dimensions, and absence of existing M2/M4 courtyard before mutation.
+- Run the same v4 procedure one footprint at a time for the 8 target source footprints, saving the PcbLib after each PASS. Only after all 8 pass should `Tools > Update PCB With All Footprints` be used.
+- v1/v2/v3 PcbLib repair scripts are stale / DO NOT USE.
+
 ## CURRENT EXACT POINT — PcbLib v2 crashed ScriptingSystem; use direct-component v3 — 2026-09-23
 
 - `T24_PcbLib_MissingCourtyards_Apply_v2.pas` compiled but caused an Access Violation in `ScriptingSystem.DLL` while operating on the PcbLib. User must close Altium without saving the PcbLib and reopen it from disk.
