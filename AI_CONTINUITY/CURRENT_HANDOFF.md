@@ -1,5 +1,14 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25C simulator route selected; runtime pending — 2026-09-23
+
+- User checked Windows Installed apps for Cadence/PSpice/OrCAD and found no entry; treat full PSpice as unavailable for current workflow.
+- Official Altium documentation explicitly says vendor-encrypted PSpice models can run only in their designated simulator. TI's encrypted `TPS631000_STARTUP` therefore **cannot run in Altium MixedSim**; the earlier T25B compatibility-unknown note is superseded by this finding. Do not attach this payload to the canonical project.
+- TPS2116's unencrypted exact TI model is a candidate for **isolated** MixedSim testing; syntax/runtime unverified. Preserve T25B explicit non-numeric pin mapping.
+- Full route, evidence gates and source links: `AI_CONTINUITY/T25C_SIMULATOR_AVAILABILITY_AND_MIXEDSIM_ROUTE.md`.
+- NEXT EXACT ACTION: user checks whether **Simulate** menu / **Mixed Simulation** extension appears in Altium while `01_POWER.SchDoc` is open in `DATALOGER_final.PrjPcb`; no schematic edit or whole-project simulation. If present, develop and test isolated TPS2116 `.nsx`; for TPS631000 use explicitly approximate behavioral sensitivity and reserve exact startup/load-step validation for supported full PSpice or physical measurements. No guessed load waveforms.
+- No engineering source changes, transient results or fresh DRC. T24 courtyard 129/129 and Full Batch DRC 0 warnings / 0 violations remain the last accepted physical-board evidence.
+
 ## CURRENT EXACT POINT — T25B vendor-model archive preflight PASS; runtime test pending — 2026-09-23
 
 - User ran `Git_Save.cmd` v2.5; GitHub `main` checkpoint `248879d3e7488af5a5920b54f0a4a5a5c01821e0` fast-forwarded after T25A. It changed `DATALOGER_final.PrjPcb` and `Script_Project1.PrjScr` only. The canonical PCB/PcbLib and schematic binaries remain at the prior T24/T25A engineering state.
