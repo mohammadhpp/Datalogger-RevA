@@ -1,5 +1,16 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — PcbLib scripting root cause narrowed to Altium ScriptingSystem native crash — 2026-09-23
+
+- `T24_CurrentFootprint_Courtyard_Repair_v4.pas` also crashes with the same native Access Violation address in `ScriptingSystem.DLL` (`00000001D0D1B837`, null-address read) seen with v2/v3.
+- The repeated identical native crash survives removal of LibraryIterator mutation, component navigation, state-rebuild methods, and exception flow. Therefore the failure is no longer attributed to those script structures.
+- Proven T23 scripts use the same `PCBServer.PreProcess -> PCBObjectFactory -> AddPCBObject -> PCBM_BoardRegisteration -> PostProcess` pattern successfully on PcbDoc. The crash occurs specifically when that family of operations is applied to PcbLib footprint child primitives in the user's current Altium build.
+- Altium's official PCB API documents `GetCurrentPCBBoard` for PcbLib, `IPCB_Library.CurrentComponent`, `IPCB_LibComponent.AddPCBObject`, group iterators, and PCBServer registration as supported. Thus v4 is using documented interfaces; the native null dereference points to a ScriptingSystem implementation defect/regression or an internal PcbLib-state bug, not a DelphiScript parser error.
+- Public evidence exists for the same class of `ScriptingSystem.DLL` access violation during scripted footprint/component creation, and Altium historical release notes include prior fixes for script-based library-loader access violations.
+- Treat **all PcbLib mutation scripts v1/v2/v3/v4 as STALE / DO NOT RUN** in this Altium build. Do not save a PcbLib after a crash; reopen it from disk.
+- Keep the engineering geometry/audit data from T24, but finish persistent courtyard creation through native Altium UI/library editing rather than scripted PcbLib mutation unless a different Altium build proves the API path stable.
+- No change to the main PCB routing/polygon checkpoint is implied by this scripting crash.
+
 ## CURRENT EXACT POINT — v3 PcbLib crash; recovery switched to proven T23 transaction pattern — 2026-09-23
 
 - `T24_PcbLib_MissingCourtyards_Apply_v3.pas` also caused an Access Violation in `ScriptingSystem.DLL`. Treat the crashed Altium/PcbLib session as invalid and do not save it.
