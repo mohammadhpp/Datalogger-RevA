@@ -98,3 +98,20 @@ This is a compact milestone history, not a replacement for Git commit history.
 - Current saved post-logo PCB checkpoint:
   `43306bfd199b10555d7fa2f5f45a8550b8363720`.
 - T24 Stage1 status: **PASS / SAVED**.
+
+
+## T24 — courtyard / release-prep closure — 2026-09-23
+
+- Completed persistent courtyard coverage for all PCB components.
+- Final post-save/reopen audit: **129 / 129 components covered**.
+- Final Full Batch DRC: **0 warnings / 0 rule violations**.
+- Canonical working PCB: `DATALOGER_RevA.PcbDoc`.
+- Canonical promoted library: `Datalogger_RevA_Clean.PcbLib`.
+- Final user checkpoint after Snapshot Exporter + Git_Save: `3ea38daf1998dc926ec7ee77df95ce5ccf42d3b8`.
+- T24 courtyard/manufacturing-prep subtask is formally **CLOSED / PASS**.
+
+## T25 — functional verification / simulation — planned start
+
+- User approved a new phase for functional verification and simulation before final manufacturing release.
+- First substage: **T25A Power Tree / Simulation Model Audit**, beginning from the actual `01_POWER.SchDoc` and current source libraries.
+- Initial engineering focus: TPS631000 / 3V3_SYS startup and transient behavior, switched SD/OLED loads, and simulation-model availability/limitations.
