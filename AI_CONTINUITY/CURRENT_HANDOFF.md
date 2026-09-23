@@ -1,5 +1,16 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — fast native Courtyard path selected; use one Rectangle per unique footprint — 2026-09-23
+
+- Recheck of project history found two successful PcbLib delta-builder runs on the SAME Altium Designer 26.8.1 Build 31: `T23_BT2_PCBLIB_DELTA_BUILDER_v0.1.0_REPORT.txt` and `T23_RESET_6X6_PCBLIB_DELTA_BUILDER_v0.1.0_REPORT.txt`.
+- Those reports show real PcbLib mutations persisted successfully: BT2 library 37->38 footprints / 537->555 primitives (+18), RESET library 38->39 footprints / 555->569 primitives (+14), including a Mechanical2 courtyard on the reset footprint.
+- Therefore the recent T24 crashes do NOT prove that Altium 26.8.1 cannot mutate PcbLib at all; they only prove the recent v1-v4 mutation path is unsafe. The original delta-builder source scripts are not present in the current repo, so do not reconstruct them from guesswork.
+- Fast/safe completion path: use Altium native `Place > Rectangle` in the PCB Library Editor on `Top Courtyard`. Rectangle placement is supported natively in PcbLib and replaces four separate line placements with one closed object.
+- Remaining scope is 8 unique source footprints, therefore only 8 native Rectangle objects are needed to cover all 16 missing-courtyard PCB instances.
+- T24-approved boundary policy remains the audited PAD/Mechanical1 union, with Track Width 0.05 mm and no extra invented margin in this cleanup step. Component Clearance 10mil remains a separate board rule.
+- Audited local rectangle sizes/centers (mm): `MAXIM_W16H2_SO16_90_0107` 11.45x10.60 @ center 0,0; `AOS_SOT23_AO3401A_3P` 3.00x3.30 @ 0,0; `GOSUN_PLS_2P54_1X5_THT` 12.80x2.64 @ 0,0; `WIRE_DRAIN_1P_D1P20_P2P40_THT` 2.50x2.50 @ 0,0; `ATOM_MR01A_01245_10P` 16.80x12.50 @ center 0,+5.10; `SHOUHAN_2P50_1X05_ZZMS_THT` 15.10x5.90 @ 0,0; `ST_SOT23_6L_USBLC6_6P` 3.60x2.60 @ 0,0; `MURATA_GRM21_0805_CAP_2P` 2.50x1.35 @ 0,0.
+- After all 8 rectangles are saved in `Datalogger_RevA_Clean.PcbLib`, propagate to `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`, then visually verify persistence and run Full Batch DRC.
+
 ## CURRENT EXACT POINT — latest PENDING PCB + snapshot re-audited; no actual <10mil physical-envelope collision found — 2026-09-23
 
 - User-uploaded `DATALOGER_RevA_T24_Courtyard_PENDING(2).PcbDoc` is byte-identical to repo `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`: Git blob SHA `1dbf8d1a54ce2b165286154bcd9cc2432d360c5a`.
