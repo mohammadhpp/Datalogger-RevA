@@ -63,3 +63,7 @@ The exact vendor header is `.SUBCKT TPS2116_TRANS GND MODE PR1 ST VIN1 VIN2 VOUT
 5. First check whether the **current local** `Datalogger_RevA_Clean.SchLib` exists and why it is absent from GitHub before any eventual model attachment/ECO. A read-only, isolated testbench can proceed without modifying this source library.
 
 No PCB change and no fresh DRC were performed in this preflight. Last accepted T24 Full Batch DRC remains 0 warnings / 0 violations.
+
+### Addendum — archived TI run logs rechecked at T25D
+
+The original TI ZIP contains a second profile `Soft_Start/TEST/TEST.cir` that already points to `TPS631000_SYMBOL.lib`, contrary to the impression that the missing `tps631000.lib` reference is the only profile option. However its archived `TEST.out` ends `JOB ABORTED` despite having no explicit `ERROR(` marker. The other archived `Soft_Start.out` contains two `ORPSIM-15142` floating-node ERRORs. Neither archived output proves a valid model run. This addendum supersedes the earlier instruction to infer validity from merely fixing the example filename. Use the independent T25D runtime test, and accept only a newly generated clean log. No canonical schematic/board edit is involved.
