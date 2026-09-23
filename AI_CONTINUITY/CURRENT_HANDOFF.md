@@ -1,5 +1,40 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CHAT MIGRATION HANDOFF — T24 CLOSED, T25 FUNCTIONAL VERIFICATION / SIMULATION NEXT — 2026-09-23
+
+- Chat migration is now REQUIRED under `AI_CONTINUITY/CHAT_MANAGEMENT_RULE.md`; the conversation became heavy and the migration should have been proposed proactively earlier.
+- Authoritative branch/repo: `main` of private GitHub repo `mohammadhpp/Datalogger-RevA`.
+- Canonical working PCB: `DATALOGER_RevA.PcbDoc`.
+- Canonical PCB library: `Datalogger_RevA_Clean.PcbLib`.
+- T23 routing: CLOSED / PASS.
+- T24 courtyard/manufacturing-prep subtask: **PASS / SAVED / CLOSED**.
+- Final courtyard persistence after Save/Close/Reopen: **129 / 129 PASS**.
+- Final Full Batch DRC after courtyard completion: **0 warnings / 0 rule violations**.
+- Final Snapshot Exporter run completed from canonical `DATALOGER_RevA.PcbDoc`; snapshot header generated `2026-09-23 18:35:51` using Collision-Aware FULL Board Snapshot v1.4.2.
+- Final user `Git_Save.cmd` checkpoint: `3ea38daf1998dc926ec7ee77df95ce5ccf42d3b8` (`Auto checkpoint 2026-09-23 18:36:49 | 11 file(s)`).
+- Continuity note after that checkpoint records T24 closure; do not reopen the stale `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc` as the working source.
+- The promoted generated PcbLib was binary-audited before use. Eight target footprint families have persistent courtyard data; the final generated candidate SHA256 was `a2f2aea3592b79934fbeb8042ce90b2089791ea83b71c2a39a27efa3ba9514a2`.
+- Controlled ECO updated exactly 16 target PCB components using only mechanical/courtyard content; final ECO showed all Check/Done green.
+
+### NEXT TASK — T25 Functional Verification & Simulation
+
+- User approved starting a new phase focused on functional verification/simulation before manufacturing release.
+- First recommended substage: **T25A — Power Tree / Simulation Model Audit**.
+- Start by reading the actual schematic and source files, especially `01_POWER.SchDoc`, then extract the real power tree and identify which parts have usable simulation models versus which require behavioral/load equivalents.
+- Primary initial focus: `TPS631000` power path / `3V3_SYS`, startup, load-step behavior, transient response, SD/OLED switched loads, and any power-enable / load-switch interaction.
+- Do not claim whole-board firmware/MCU behavior can be fully SPICE-simulated. Separate: (1) analog/power simulation, (2) digital/load behavioral checks, (3) post-layout signal-integrity checks for relevant high-speed nets if warranted.
+- Before any simulation setup or model substitution, inspect the current schematic/BOM/library evidence from Git. Do not invent missing model parameters.
+- Preserve all existing locked project constraints: 2-layer PCB, current canonical PCB/PcbLib, manual-assembly requirements, 100mil schematic grid, current routing and courtyard state.
+- No additional T24 changes are required before T25.
+
+### NEW CHAT START PROCEDURE
+
+1. Read `AI_START_HERE.md`.
+2. Read `AI_CONTINUITY/CURRENT_HANDOFF.md`.
+3. Read `DECISIONS_AND_CONSTRAINTS.md`, `LESSONS_LEARNED.md`, `HISTORY.md`, `CHAT_MANAGEMENT_RULE.md`, and `UPDATE_PROTOCOL.md`.
+4. Inspect the latest Git commits and canonical engineering files.
+5. Continue exactly from **T25A — Power Tree / Simulation Model Audit**.
+
 ## CURRENT EXACT POINT — T24 Courtyard CLOSED / final checkpoint saved — 2026-09-23
 
 - Canonical PCB: `DATALOGER_RevA.PcbDoc`.
