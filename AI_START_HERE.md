@@ -29,7 +29,7 @@ Then inspect the latest Git commits and the current engineering files relevant t
 - T24 courtyard/manufacturing-prep: **CLOSED / PASS**, 129/129 persistent courtyards, last Full Batch DRC **0 warnings / 0 violations**.
 - Canonical PCB: `DATALOGER_RevA.PcbDoc`; canonical library: `Datalogger_RevA_Clean.PcbLib`; final engineering checkpoint `3ea38daf1998dc926ec7ee77df95ce5ccf42d3b8`.
 - T25A power-tree/simulation-model evidence audit: **COMPLETE**, report `AI_CONTINUITY/T25A_POWER_TREE_SIMULATION_MODEL_AUDIT.md`. No transient simulation or fresh DRC is claimed.
-- **NEXT: T25B**: inspect and smoke-test the published exact-part TI PSpice models; source realistic battery/USB and SD/OLED load parameters; then prepare isolated startup/transfer/load-step benches. Read `CURRENT_HANDOFF.md` for the exact point.
+- **T25B static preflight PASS**: official TI ZIPs and exact PSpice subcircuit pin orders audited in `AI_CONTINUITY/T25B_TI_MODEL_ARCHIVE_PREFLIGHT.md`. **NEXT:** execute the vendor examples in supported PSpice; then source realistic battery/USB and SD/OLED load parameters for isolated Datalogger benches. Read `CURRENT_HANDOFF.md` for the exact point.
 - Git AutoSave **v2.5** remains the one-click local sync workflow. It safely fast-forwards GitHub documentation updates, commits local changes and syncs `localbackup`, GitHub and tags. Never auto-merge diverged Altium binary histories.
 
 ## Continuity rule
