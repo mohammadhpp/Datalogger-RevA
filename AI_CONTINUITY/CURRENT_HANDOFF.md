@@ -8,7 +8,7 @@
 - The TPS631000 supplied soft-start example references an absent `tps631000.lib` filename; the archive instead contains `TPS631000_SYMBOL.lib` with the encrypted subcircuit. Resolve path only in an isolated copy when running a supported PSpice smoke test.
 - `DATALOGER_final.PrjPcb` references `Datalogger_RevA_Clean.SchLib`, which is missing from GitHub `main`. Confirm the **current local** library before ever attaching a simulation model or performing schematic ECO; do not substitute the older T23 ZIP.
 - **Static archive/pin audit PASS; PSpice runtime, Altium compatibility and project-specific transient simulation remain PENDING.** No new DRC was run or needed for this read-only step; last accepted Full Batch DRC is T24 0/0.
-- NEXT EXACT ACTION: on an available supported PSpice installation, run each TI-supplied example in an isolated folder and record version/errors/waveforms. For TPS631000 correct only the example's library reference to the included file in that isolated copy. After successful vendor examples, create a separate Datalogger power bench with actual sourced load/source parameters. Keep the canonical schematic/PCB unchanged.
+- NEXT EXACT ACTION: on an available full Cadence PSpice installation, run each TI-supplied example (TI support reports TPS631000 trouble in the limited PSpice for TI edition) in an isolated folder and record version/errors/waveforms. For TPS631000 correct only the example's library reference to the included file in that isolated copy. After successful vendor examples, create a separate Datalogger power bench with actual sourced load/source parameters. Keep the canonical schematic/PCB unchanged.
 
 ## CURRENT EXACT POINT — T25A source/model audit COMPLETE — 2026-09-23
 
