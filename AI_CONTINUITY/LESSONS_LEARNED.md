@@ -102,3 +102,9 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 
 22. **When a sequence recommendation is found to be suboptimal, correct it explicitly in the handoff.**
    - Do not silently carry a bad next-step recommendation into future sessions.
+
+
+23. **Do not mutate PcbLib footprints through DelphiScript on the current Altium build.**
+   - T24 PcbLib courtyard repair attempts v2/v3/v4 all produced the same native null-read Access Violation in `ScriptingSystem.DLL`, even after removing iterator mutation, component navigation, state rebuilds, and exception flow.
+   - The same PCBServer object-creation transaction pattern is proven on PcbDoc in T23, while Altium's documented PcbLib interfaces still crash natively in this environment.
+   - Treat this as an Altium scripting-engine/PcbLib implementation defect or build regression until proven otherwise. Use native PcbLib UI editing for persistent footprint changes, and never save the library after such a crash.
