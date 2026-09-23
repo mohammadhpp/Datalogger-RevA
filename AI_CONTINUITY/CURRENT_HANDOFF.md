@@ -1,5 +1,16 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — first Make PCB Library candidate audited; persistence solved, U_RTC source courtyard layer needs one automated regeneration — 2026-09-23
+
+- User supplied generated `DATALOGER_RevA.PcbLib` from native `Design > Make PCB Library` after transient 129/129 staging.
+- Binary CFB/PcbLib audit confirmed the new courtyards are **persistent in the generated library**. The workaround fundamentally works.
+- 7 of the 8 unique target footprints have exactly four 0.05mm courtyard tracks on Mechanical2 / Top Courtyard with the expected T24 envelope geometry: `AOS_SOT23_AO3401A_3P`, `GOSUN_PLS_2P54_1X5_THT`, `WIRE_DRAIN_1P_D1P20_P2P40_THT`, `ATOM_MR01A_01245_10P`, `SHOUHAN_2P50_1X05_ZZMS_THT`, `ST_SOT23_6L_USBLC6_6P`, `MURATA_GRM21_0805_CAP_2P`.
+- `MAXIM_W16H2_SO16_90_0107` (`U_RTC`) has correct 11.45x10.60mm geometry and 0.05mm tracks, but its four new tracks are on Mechanical4 because v2 staged that bottom-placed component on Bottom Courtyard before native extraction. In a source PcbLib this should be Mechanical2 / Top Courtyard so the M2/M4 pair can flip correctly when the component is placed on Bottom.
+- The generated library contains 37 footprints. Compared with the pre-T23 baseline plus the two later replacement footprints, native Make PCB Library has intentionally omitted two unused legacy footprints: `OMRON_B3F_12X12_THT_4P` and `CR2032_HOLDER_P20_2P_THT`. Their replacements `TACT_6X6_H5_P6P5_X4P5_4P_THT_REV_A` and `CR2032_HOLDER_VERTICAL_P20_D0P90_2P_THT_REV_B` are present. This does not affect the current board but must be documented if the generated library becomes canonical.
+- Do NOT promote the first generated `DATALOGER_RevA.PcbLib` yet solely because of U_RTC's source courtyard layer.
+- Automated fix script created: `AI_SCRIPTS/T24/T24_All16_TransientCourtyards_ForMakeLib_v3.pas`, entry `ApplyT24_All16_TransientCourtyards_ForMakeLib_v3`. It is identical to v2 except that extraction staging for `U_RTC` is deliberately Mechanical2/Top Courtyard.
+- NEXT: close the generated candidate PcbLib; close canonical `DATALOGER_RevA.PcbDoc` WITHOUT saving the transient 129/129 staging; reopen `DATALOGER_RevA.PcbDoc` to restore verified 113/129 baseline; run v3; after PASS immediately `Design > Make PCB Library`; submit the regenerated PcbLib for final binary audit.
+
 ## CURRENT EXACT POINT — transient courtyard staging PASS 129/129; extract native PcbLib now — 2026-09-23
 
 - `T24_All16_TransientCourtyards_ForMakeLib_v2.pas` ran successfully on canonical `DATALOGER_RevA.PcbDoc`.
