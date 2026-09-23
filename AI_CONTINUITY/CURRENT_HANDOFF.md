@@ -1,5 +1,15 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — ECO complete; final Save/Reopen persistence audit is next — 2026-09-23
+
+- Controlled 16-component footprint ECO completed successfully with all Check/Done green.
+- User should have saved canonical `DATALOGER_RevA.PcbDoc`, closed it, and reopened it before the next audit.
+- New read-only script: `AI_SCRIPTS/T24/T24_Courtyard_Final_Persistence_Audit_v1.pas`.
+- Entry: `AuditT24_Courtyard_Final_Persistence_v1`.
+- PASS requires 129 total components, 129/129 with M2/M4 courtyard data, the 15 repaired Top-side targets at M2=4/M4=0, and bottom-side `U_RTC` at M2=0/M4=4.
+- Script writes `T24_Courtyard_Final_Persistence_Audit_v1.txt` and makes no PCB changes.
+- NEXT: run this persistence audit. If PASS, immediately run Full Batch DRC. If DRC=0, run Snapshot Exporter and Git_Save.
+
 ## CURRENT EXACT POINT — controlled 16-component ECO executed successfully — 2026-09-23
 
 - Canonical generated `Datalogger_RevA_Clean.PcbLib` was used to update only the 16 T24 courtyard-target components in `DATALOGER_RevA.PcbDoc`.
