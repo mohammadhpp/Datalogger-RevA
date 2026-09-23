@@ -115,3 +115,11 @@ This is a compact milestone history, not a replacement for Git commit history.
 - User approved a new phase for functional verification and simulation before final manufacturing release.
 - First substage: **T25A Power Tree / Simulation Model Audit**, beginning from the actual `01_POWER.SchDoc` and current source libraries.
 - Initial engineering focus: TPS631000 / 3V3_SYS startup and transient behavior, switched SD/OLED loads, and simulation-model availability/limitations.
+
+## T25A — power-tree / simulation-model evidence audit — 2026-09-23
+
+- Read and Git-blob-verified the actual `01_POWER.SchDoc` plus MCU, SD, RTC, OLED/SHT3x and expansion sheets.
+- Extracted battery / protected USB → TPS2116 mux → TPS631000 → 3V3_SYS and separate switched SD/OLED supply branches.
+- All 115 components in the six inspected power-related sheets contain only PCB footprint model records; no attached simulation model was found. TI's TPS631000 encrypted PSpice and TPS2116 unencrypted transient PSpice packages are external candidates requiring compatibility and pin-map tests.
+- Detailed report: `AI_CONTINUITY/T25A_POWER_TREE_SIMULATION_MODEL_AUDIT.md`.
+- No simulation waveform, changed engineering source, or new DRC result was claimed. Next: T25B exact-part model qualification and sourced stimulus/load profiles.
