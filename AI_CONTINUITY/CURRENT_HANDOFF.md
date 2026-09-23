@@ -1,5 +1,14 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — canonical PCB filename changed to DATALOGER_RevA.PcbDoc — 2026-09-23
+
+- User created a backup of the previous board state and explicitly promoted `DATALOGER_RevA.PcbDoc` as the canonical working PCB filename from this point forward.
+- Do not require or target `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc` anymore unless explicitly restoring/inspecting an older checkpoint.
+- `T24_All16_TransientCourtyards_ForMakeLib_v1.pas` aborted safely because it was intentionally filename-locked to the old PENDING filename; no board change occurred.
+- Replacement script: `AI_SCRIPTS/T24/T24_All16_TransientCourtyards_ForMakeLib_v2.pas`, entry `ApplyT24_All16_TransientCourtyards_ForMakeLib_v2`.
+- v2 targets only `DATALOGER_RevA.PcbDoc`; all geometry, 129-component / 113-covered baseline guards, 64-track transient courtyard build, 129/129 postcheck, and Make PCB Library workflow remain unchanged.
+- After v2 PASS: do NOT save/close/reopen the PCB before `Design > Make PCB Library`.
+
 ## CURRENT EXACT POINT — no-manual-drawing workaround selected: transient PcbDoc patch + native Make PCB Library — 2026-09-23
 
 - User explicitly does not want manual courtyard drawing.
