@@ -1,5 +1,15 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — PcbLib v2 crashed ScriptingSystem; use direct-component v3 — 2026-09-23
+
+- `T24_PcbLib_MissingCourtyards_Apply_v2.pas` compiled but caused an Access Violation in `ScriptingSystem.DLL` while operating on the PcbLib. User must close Altium without saving the PcbLib and reopen it from disk.
+- No PCB document was intentionally modified by v2. Treat in-memory PcbLib state from the crashed session as invalid; do not save it.
+- Likely unsafe pattern: mutating footprints while a `LibraryIterator` is active, combined with unnecessary group state rebuild calls.
+- Official Altium PCB API provides direct `IPCB_Library.GetComponentByName` and `SetBoardToComponentByName`; v3 uses those instead of a LibraryIterator during mutation.
+- v3 also removes `SetState_LayersUsedArray` and `SetState_XSizeYSize`, and uses no Raise/exception flow.
+- Use only `AI_SCRIPTS/T24/T24_PcbLib_MissingCourtyards_Apply_v3.pas`, entry `ApplyT24_PcbLib_MissingCourtyards_v3`, after reopening `Datalogger_RevA_Clean.PcbLib` cleanly.
+- v1 and v2 are stale / DO NOT USE.
+
 ## CURRENT EXACT POINT — PcbLib courtyard repair v1 parser failure; use parser-safe v2 — 2026-09-23
 
 - `T24_PcbLib_MissingCourtyards_Apply_v1.pas` failed to compile in Altium with `Then expected` at the single-line `If ... Then Raise(...)` pattern. No script execution/mutation occurred.
