@@ -386,7 +386,7 @@ Var FN;
 Begin
     If GReport=Nil Then Exit;
 
-    GReport.Add('Datalogger RevA - T24 Persistent PcbLib Courtyard Repair v1');
+    GReport.Add('Datalogger RevA - T24 Persistent PcbLib Courtyard Repair v2');
     GReport.Add('Status: '+StatusText);
     GReport.Add('Library: '+GBoard.FileName);
     GReport.Add('');
@@ -407,7 +407,7 @@ Begin
     GReport.SaveToFile(FN);
 End;
 
-Procedure ApplyT24_PcbLib_MissingCourtyards_v1;
+Procedure ApplyT24_PcbLib_MissingCourtyards_v2;
 Var LI; F;
 Begin
     GAddedFootprints:=0;
@@ -424,7 +424,7 @@ Begin
         PCBServer.PreProcess;
         Try
             LI:=GLib.LibraryIterator_Create;
-            If LI=Nil Then Raise('Library iterator unavailable during Apply');
+            If LI=Nil Then Begin Raise('Library iterator unavailable during Apply'); End;
 
             LI.SetState_FilterAll;
 
@@ -464,7 +464,7 @@ Begin
             'Now SAVE Datalogger_RevA_Clean.PcbLib.'+#13#10+
             'Then use Tools > Update PCB With All Footprints,'+#13#10+
             'updating Mechanical-layer primitives only.'+#13#10+
-            'Output: T24_PcbLib_MissingCourtyards_Apply_v1.txt'
+            'Output: T24_PcbLib_MissingCourtyards_Apply_v2.txt'
         );
     Finally
         GReport.Free;
