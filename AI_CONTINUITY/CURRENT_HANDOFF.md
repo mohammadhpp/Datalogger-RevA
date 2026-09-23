@@ -1,5 +1,15 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25A source/model audit COMPLETE — 2026-09-23
+
+- T23 routing and T24 courtyard remain CLOSED / PASS. Canonical engineering checkpoint is `3ea38daf1998dc926ec7ee77df95ce5ccf42d3b8`; canonical PCB `DATALOGER_RevA.PcbDoc`, PcbLib `Datalogger_RevA_Clean.PcbLib`.
+- T25A read-only power-tree/model audit is recorded in `AI_CONTINUITY/T25A_POWER_TREE_SIMULATION_MODEL_AUDIT.md` (report commit `7554e792df1de75474c11a8607d8857ac7ff4c94`). The current `main` binary `01_POWER.SchDoc` and five related power-load sheets were parsed and Git blob verified.
+- Confirmed path: battery / USB through S1 and USB OVP → TPS2116 priority mux → VIN_MUX → TPS631000 with EN tied to VIN_MUX → 3V3_SYS; SD and OLED are separate AO3401A high-side branches with 54.1 µF and 10.1 µF nominal local capacitor sums, respectively.
+- All 115 components in the six inspected sheets attach only `PCBLIB` model records. TI publishes an encrypted TPS631000 PSpice model and an unencrypted TPS2116 transient model, but neither is attached or validated against the project's simulator. Card/OLED/module current waveforms, AA source impedance and effective capacitor values remain unsourced.
+- **T25A PASS as an evidence audit only. No circuit simulation has run, no numeric transient PASS is claimed and no engineering file was modified.** Last Full Batch DRC remains T24's user-confirmed 0 warnings / 0 violations; no fresh DRC was run for this read-only audit.
+- NEXT EXACT ACTION (T25B): obtain/inspect the exact TI model archives, verify pin mapping and license, run supported-simulator smoke tests on isolated copies, then build a source-and-load stimulus matrix using sourced current profiles. Do not place guessed models or loads into the canonical schematic. If encrypted converter model cannot run in the chosen simulator, use a clearly labeled averaged behavioral model for system-level exploration and reserve switching/startup qualification for TI-compatible simulation and bench measurements.
+- Git workflow: the report and this handoff were written to GitHub `main`; on the local Windows working repo run the established `Git_Save.cmd` v2.5 once to safely fetch/fast-forward and sync `localbackup`. Check for divergence before any binary edit.
+
 ## CHAT MIGRATION HANDOFF — T24 CLOSED, T25 FUNCTIONAL VERIFICATION / SIMULATION NEXT — 2026-09-23
 
 - Chat migration is now REQUIRED under `AI_CONTINUITY/CHAT_MANAGEMENT_RULE.md`; the conversation became heavy and the migration should have been proposed proactively earlier.
