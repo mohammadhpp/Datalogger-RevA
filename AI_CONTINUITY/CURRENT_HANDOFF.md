@@ -1,5 +1,18 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — regenerated PcbLib v3 FINAL BINARY AUDIT PASS — 2026-09-23
+
+- User supplied regenerated `DATALOGER_RevA(1).PcbLib` after running `T24_All16_TransientCourtyards_ForMakeLib_v3.pas` and native `Design > Make PCB Library`.
+- Direct binary OLE/CFB audit result: **PASS** for all 8 unique T24 target footprints.
+- File size: 294912 bytes. SHA256: `a2f2aea3592b79934fbeb8042ce90b2089791ea83b71c2a39a27efa3ba9514a2`.
+- Every target footprint has exactly 4 new 0.05mm-equivalent courtyard tracks on Mechanical2 / Top Courtyard with the expected T24 envelope geometry.
+- `MAXIM_W16H2_SO16_90_0107` (U_RTC) specifically corrected: 4 courtyard tracks are now on Mechanical2 / Top Courtyard; previous candidate had them on Mechanical4.
+- Exact audited geometries (mm): MAXIM 11.449987x10.599976; AOS SOT23 3.000017x3.300016; GOSUN 12.799972x2.639972; WIRE_DRAIN 2.500018x2.500018; ATOM J_SD 16.800015x12.499998 centered at Y +5.099990; SHOUHAN 15.099993x5.900011; ST SOT23-6 3.600016x2.599992; MURATA 2.499992x1.350007.
+- Native generated library contains 37 currently-used footprints. Two unused legacy footprints from the prior canonical library are absent: `OMRON_B3F_12X12_THT_4P` and `CR2032_HOLDER_P20_2P_THT`; their current replacements are present. This is not a current-board functional issue but is a library-history difference.
+- Audit report committed as `T24_Final_Generated_PcbLib_Binary_Audit.txt`.
+- NEXT DECISION: either promote this 37-footprint generated library as the new canonical `Datalogger_RevA_Clean.PcbLib` (legacy footprints remain recoverable from Git history), or preserve the two unused legacy footprints by merging them before promotion. For speed/current-board correctness, promoting the 37-footprint library is technically sufficient.
+- After promotion: update/associate `DATALOGER_RevA.PcbDoc` from the promoted library, save, close/reopen, verify courtyard persistence, Full Batch DRC, Snapshot Exporter, Git_Save.
+
 ## CURRENT EXACT POINT — first Make PCB Library candidate audited; persistence solved, U_RTC source courtyard layer needs one automated regeneration — 2026-09-23
 
 - User supplied generated `DATALOGER_RevA.PcbLib` from native `Design > Make PCB Library` after transient 129/129 staging.
