@@ -1,5 +1,15 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T24 Courtyard FINAL PASS / DRC 0 — 2026-09-23
+
+- Canonical PCB: `DATALOGER_RevA.PcbDoc`.
+- Final persistence audit after Save/Close/Reopen: **PASS 129 / 129 courtyard coverage**.
+- All 16 repaired components passed the final read-only layer/persistence checks.
+- Full Batch DRC run after persistence audit: **Warnings = 0, Rule Violations = 0**.
+- Therefore T24 Courtyard repair is technically COMPLETE / PASS.
+- Canonical generated library used for the controlled update: `Datalogger_RevA_Clean.PcbLib` with the audited 8 target footprints carrying persistent courtyard data.
+- NEXT EXACT ACTIONS before leaving T24: run Snapshot Exporter v1.3.2, then run `Git_Save.cmd`, then record resulting checkpoint and move to the next project task.
+
 ## CURRENT EXACT POINT — ECO complete; final Save/Reopen persistence audit is next — 2026-09-23
 
 - Controlled 16-component footprint ECO completed successfully with all Check/Done green.
