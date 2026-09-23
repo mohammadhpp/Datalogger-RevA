@@ -1,5 +1,12 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25D first PSpice smoke NO_RUN; expanded v2 discovery READY — 2026-09-24
+
+- User-uploaded `Datalogger_T25D_Result_20260924_000020.zip` has only `T25D_Result.txt`: `NO_PASS` because v1 did not find `psp_cmd.exe` in its limited paths. There is no input deck, simulator log, model execution or transient result. Treat this as **preflight location failure**, not evidence of an invalid TPS631000 model, failed converter, or missing PSpice installation/license.
+- Added `AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke_v2.cmd` and `T25D_PSpice_Converter_Smoke_v2.ps1`. Expanded read-only discovery checks Cadence/SPB roots across file-system drives, Windows product registrations, Start shortcuts, process path and PATH. It reports only presence of Cadence environment variables and never their sensitive values. Output includes `T25D_Install_Diagnostic.txt`; if `psp_cmd.exe` is found, it runs the same isolated TI-example smoke. v2 is statically reviewed; Windows runtime still pending.
+- NEXT EXACT ACTION: user runs existing `Git_Save.cmd` v2.5 once to safely fast-forward new Git files, then double-clicks **`AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke_v2.cmd`**, and uploads the newest `Documents/Datalogger_T25D_Result_*.zip`. Analyze the diagnostic, output and warning log before changing installation or making any engineering claim. See `AI_CONTINUITY/T25D_PSPICE_25P1_INSTALL_AND_CONVERTER_SMOKE.md`.
+- Canonical Altium schematic/PCB/PcbLib untouched. T23/T24 closed; last accepted courtyard 129/129 and Full Batch DRC 0 warnings / 0 violations. **No new DRC or project simulation PASS**.
+
 ## CURRENT EXACT POINT — T25D OrCAD X 25.1 installed; isolated TPS631000 smoke test READY / NOT RUN — 2026-09-23
 
 - User screenshot shows **OrCAD X Capture CIS 25.1 S050 (459063), Professional_Plus, Windows SPB 64-bit**. This is **Capture evidence only**; PSpice executable/license and encrypted TI model runtime still need a test.
