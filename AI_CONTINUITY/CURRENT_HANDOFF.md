@@ -1,5 +1,13 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25D OrCAD X 25.1 installed; isolated TPS631000 smoke test READY / NOT RUN — 2026-09-23
+
+- User screenshot shows **OrCAD X Capture CIS 25.1 S050 (459063), Professional_Plus, Windows SPB 64-bit**. This is **Capture evidence only**; PSpice executable/license and encrypted TI model runtime still need a test.
+- `AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke.cmd` and `T25D_PSpice_Converter_Smoke_v1.ps1` are in Git. They run a local, isolated full-PSpice model smoke test, download and SHA256-verify TI's official encrypted-model ZIP, preserve the exact `U_SYS` pin order and actual schematic nominal L/C/feedback values, and use TI's **example-only** 2.8 V input / 3.3 Ω load. The script has been statically reviewed but **not executed in Windows/PSpice** by AI.
+- Reinspection of TI archive corrected a T25B omission: archived `Soft_Start.out` contains two floating-node ERRORs and archived `TEST.out` ends `JOB ABORTED`. These historical artifacts do not establish successful runtime. The new test must generate its own `.out` and complete cleanly. Full explanation: `AI_CONTINUITY/T25D_PSPICE_25P1_INSTALL_AND_CONVERTER_SMOKE.md`.
+- NEXT EXACT ACTION: user runs existing `Git_Save.cmd` v2.5 once to fetch/fast-forward the new Git scripts and sync `localbackup`; then double-clicks `AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke.cmd`; sends the `Documents/Datalogger_T25D_Result_*.zip`. If automatic TI download fails, download official `SLVMDV2.ZIP` to Windows Downloads and rerun. Do not run model attachment/ECO on canonical Altium schematic.
+- Status: **NO simulation/model runtime PASS yet**; last confirmed T24 courtyard 129/129 and Full Batch DRC 0 warnings / 0 violations remain unchanged. After a clean model smoke, inspect warning/log/waveform, then test TPS2116 and only then develop source/load-qualified Datalogger transients.
+
 ## CURRENT EXACT POINT — T25C simulator route selected; runtime pending — 2026-09-23
 
 - User checked Windows Installed apps for Cadence/PSpice/OrCAD and found no entry; treat full PSpice as unavailable for current workflow.
