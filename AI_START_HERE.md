@@ -25,19 +25,12 @@ Then inspect the latest Git commits and the current engineering files relevant t
 ## Current high-level state
 
 - Project: Datalogger RevA, Altium, **2-layer PCB**.
-- **T23 PCB routing is formally CLOSED / PASS.**
-- Final Bottom Layer GND polygon has been created and poured.
-- Final post-pour DRC baseline: **0 warnings / 0 rule violations**.
-- **T24 is active.**
-- T24 Stage1 top-silkscreen branding is **PASS / SAVED**:
-  - approved chibi logo
-  - `SANAT NEGAR`
-  - `M.PAHLAVIAN`
-- Current saved post-logo PCB checkpoint: `43306bfd199b10555d7fa2f5f45a8550b8363720`.
-- Next recommended scope: **T24 Stage2 manufacturing / release audit**.
-- Git AutoSave **v2.5** is the standard one-click workflow: `Git_Save.cmd` safely checks/fetches GitHub, fast-forwards safe incoming updates, creates a checkpoint when needed, then synchronizes `localbackup`, GitHub, and tags.
-- Unsafe/diverged Git histories must not be auto-merged because Altium project files include binary formats.
-- Prefer `T24_Stage1_TopSilk_Logo_v1_2.pas` over v1.1 if the logo ever must be reproduced; v1.2 removes the redraw command that previously blocked normal Save.
+- T23 routing: **CLOSED / PASS**.
+- T24 courtyard/manufacturing-prep: **CLOSED / PASS**, 129/129 persistent courtyards, last Full Batch DRC **0 warnings / 0 violations**.
+- Canonical PCB: `DATALOGER_RevA.PcbDoc`; canonical library: `Datalogger_RevA_Clean.PcbLib`; final engineering checkpoint `3ea38daf1998dc926ec7ee77df95ce5ccf42d3b8`.
+- T25A power-tree/simulation-model evidence audit: **COMPLETE**, report `AI_CONTINUITY/T25A_POWER_TREE_SIMULATION_MODEL_AUDIT.md`. No transient simulation or fresh DRC is claimed.
+- **NEXT: T25B**: inspect and smoke-test the published exact-part TI PSpice models; source realistic battery/USB and SD/OLED load parameters; then prepare isolated startup/transfer/load-step benches. Read `CURRENT_HANDOFF.md` for the exact point.
+- Git AutoSave **v2.5** remains the one-click local sync workflow. It safely fast-forwards GitHub documentation updates, commits local changes and syncs `localbackup`, GitHub and tags. Never auto-merge diverged Altium binary histories.
 
 ## Continuity rule
 
