@@ -1,5 +1,14 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — transient courtyard staging PASS 129/129; extract native PcbLib now — 2026-09-23
+
+- `T24_All16_TransientCourtyards_ForMakeLib_v2.pas` ran successfully on canonical `DATALOGER_RevA.PcbDoc`.
+- Script result confirmed: `PASS: 16 missing courtyards created IN MEMORY` and `129 / 129 components now have courtyard data`.
+- Current PCB memory state contains all 16 previously missing courtyards. This is a transient staging state; do NOT save/close/reopen the PCB before library extraction.
+- NEXT EXACT ACTION: dismiss the PASS dialog, then immediately use Altium native `Design > Make PCB Library` on the still-open `DATALOGER_RevA.PcbDoc`.
+- Save the generated library under a temporary candidate name, recommended `Datalogger_RevA_Clean_T24_CANDIDATE.PcbLib`; do NOT overwrite canonical `Datalogger_RevA_Clean.PcbLib` yet.
+- After generation, audit the candidate PcbLib for the 8 unique target footprints and verify persistent Top/Bottom Courtyard content before any replacement of the canonical library.
+
 ## CURRENT EXACT POINT — canonical PCB filename changed to DATALOGER_RevA.PcbDoc — 2026-09-23
 
 - User created a backup of the previous board state and explicitly promoted `DATALOGER_RevA.PcbDoc` as the canonical working PCB filename from this point forward.
