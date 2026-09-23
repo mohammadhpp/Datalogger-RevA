@@ -1,5 +1,17 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — no-manual-drawing workaround selected: transient PcbDoc patch + native Make PCB Library — 2026-09-23
+
+- User explicitly does not want manual courtyard drawing.
+- Direct PcbLib DelphiScript mutation v1-v4 is abandoned because of ScriptingSystem.DLL crashes on AD 26.8.1.
+- PcbDoc component-child mutation is proven to work in-memory in T24 (`Apply13` and ESD12 postchecks). Its only defect was persistence after PcbDoc Save/Reopen.
+- New workaround uses that proven in-memory PcbDoc mutation only as a staging step, then immediately invokes Altium's native `Design > Make PCB Library` command to regenerate a persistent PcbLib from the active PCB. Altium documentation explicitly supports generating an exact working PcbLib from placed PCB footprints.
+- New script: `AI_SCRIPTS/T24/T24_All16_TransientCourtyards_ForMakeLib_v1.pas`, entry `ApplyT24_All16_TransientCourtyards_ForMakeLib_v1`.
+- Script requires the verified 129-component / 113-courtyard baseline, adds all 16 missing courtyards (64 component-owned M2/M4 tracks) in memory, with 0.05mm line width and outer boundary equal to audited PAD/Mechanical1 union. J_SD uses its audited pad envelope fallback.
+- Expected script postcheck: 129/129 components have courtyard data IN MEMORY.
+- CRITICAL: after PASS, do NOT save/close/reopen the PENDING PcbDoc before library extraction. Immediately run native `Design > Make PCB Library`; the generated PcbLib is the candidate persistent library. Then audit that generated PcbLib before replacing `Datalogger_RevA_Clean.PcbLib`.
+- This path requires no manual footprint/rectangle drawing; only script execution plus the native Make PCB Library command.
+
 ## CURRENT EXACT POINT — fast native Courtyard path selected; use one Rectangle per unique footprint — 2026-09-23
 
 - Recheck of project history found two successful PcbLib delta-builder runs on the SAME Altium Designer 26.8.1 Build 31: `T23_BT2_PCBLIB_DELTA_BUILDER_v0.1.0_REPORT.txt` and `T23_RESET_6X6_PCBLIB_DELTA_BUILDER_v0.1.0_REPORT.txt`.
