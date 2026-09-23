@@ -1,5 +1,18 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — latest PENDING PCB + snapshot re-audited; no actual <10mil physical-envelope collision found — 2026-09-23
+
+- User-uploaded `DATALOGER_RevA_T24_Courtyard_PENDING(2).PcbDoc` is byte-identical to repo `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`: Git blob SHA `1dbf8d1a54ce2b165286154bcd9cc2432d360c5a`.
+- Latest collision snapshot is `AI_BOARD_COLLISION_SNAPSHOT_T23.tsv`, generated 2026-09-23 00:25:29 from the same PENDING PCB state.
+- Latest saved Full Batch DRC reports **0 violations**, including electrical clearance, shorts, unrouted nets, modified polygons, widths, hole rules, silk/mask, board clearance, and Component Clearance 10mil.
+- Persistent courtyard metadata is still incomplete: **113 / 129 components** have component-owned M2/M4 courtyard data; 16 instances are missing courtyard primitives (`U_RTC`, `Q_SD`, `Q_OLED`, `J_SWD`, `J_SHIELD`, `J_NAV`, `D_EXT1/2/3`, `D_ESD`, `D_ESD1`, `D_ESD2`, `C_SENSOR_BULK`, `C_SD_MID`, `C_OLED_BULK`, `J_SD`).
+- Independent recheck using each missing component's actual **PAD/Mechanical1 union envelope** (no artificial extra margin) against all persisted existing courtyard envelopes and against the other missing envelopes found **zero pairs below 10mil**.
+- Nearest physical-envelope pairs: `D_ESD2` vs `C_SD_HF` = exactly **10.000 mil**; `D_ESD1` vs `C_SD_HF` = **10.905 mil**; `J_NAV` vs `D_NAV1` = **11.693 mil**; `C_SD_MID` vs `D_ESD2` = **12.244 mil**.
+- Therefore the remaining courtyard issue is currently a **library/assembly-DRC metadata completeness problem**, not evidence of a copper/electrical fault or an actual component-body overlap in the current placement.
+- Missing courtyards do not alter Gerber copper, solder mask, drill, routing, polygons, connectivity, BOM values, or normal electrical operation. Their practical risk is false-negative/weak automated assembly-clearance checking, 3D/mechanical interference checking, placement DFM, and future edits where a component can be moved too close without the intended component-clearance boundary.
+- Because `D_ESD2` is exactly at the 10mil target using the audited physical envelope, it is the tightest placement and should not be moved closer without a fresh mechanical clearance check.
+- PcbLib scripting remains DO NOT USE on Altium 26.8.1 due ScriptingSystem native crashes. Native/manual PcbLib courtyard cleanup is optional for release quality but recommended before declaring T24 library-quality closure.
+
 ## CURRENT EXACT POINT — stay on Altium 26.8.1; abandon PcbLib scripting; finish courtyards with native UI — 2026-09-23
 
 - User chose to continue with the installed Altium Designer 26.8.1 Build 31 instead of spending time on an upgrade.
