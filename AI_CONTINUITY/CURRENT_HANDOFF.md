@@ -1,5 +1,17 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T24 Courtyard CLOSED / final checkpoint saved — 2026-09-23
+
+- Canonical PCB: `DATALOGER_RevA.PcbDoc`.
+- Final persistence audit: **PASS 129 / 129 courtyard coverage** after Save/Close/Reopen.
+- Full Batch DRC: **0 warnings / 0 rule violations**.
+- Snapshot Exporter completed successfully after final DRC.
+- Latest snapshot header: source `DATALOGER_RevA.PcbDoc`, generated `2026-09-23 18:35:51`, exporter format `Collision-Aware FULL Board Snapshot v1.4.2`.
+- `Git_Save.cmd` completed and produced checkpoint commit `3ea38daf1998dc926ec7ee77df95ce5ccf42d3b8` (`Auto checkpoint 2026-09-23 18:36:49 | 11 file(s)`).
+- That checkpoint includes canonical PCB, canonical `Datalogger_RevA_Clean.PcbLib`, latest snapshot, final persistence audit report, project file, and related backup artifacts.
+- T24 Courtyard work is **PASS / SAVED / CLOSED**.
+- Next project work should start from this checkpoint; do not reopen the stale `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc` as the working source.
+
 ## CURRENT EXACT POINT — T24 Courtyard FINAL PASS / DRC 0 — 2026-09-23
 
 - Canonical PCB: `DATALOGER_RevA.PcbDoc`.
