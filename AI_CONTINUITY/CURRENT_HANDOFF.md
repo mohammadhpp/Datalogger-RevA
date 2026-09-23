@@ -1,5 +1,15 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25B vendor-model archive preflight PASS; runtime test pending — 2026-09-23
+
+- User ran `Git_Save.cmd` v2.5; GitHub `main` checkpoint `248879d3e7488af5a5920b54f0a4a5a5c01821e0` fast-forwarded after T25A. It changed `DATALOGER_final.PrjPcb` and `Script_Project1.PrjScr` only. The canonical PCB/PcbLib and schematic binaries remain at the prior T24/T25A engineering state.
+- Official TI TPS631000 `SLVMDV2.ZIP` and TPS2116 `SLVMDI4A.ZIP` were downloaded; both passed ZIP integrity checks. Full SHA256, actual `.SUBCKT` headers, physical pin map, limitations and next procedure: `AI_CONTINUITY/T25B_TI_MODEL_ARCHIVE_PREFLIGHT.md`, commit `ff277ab00baf3a497df16f657876f96784c31d4c`.
+- TPS631000 encrypted interface pin order matches `U_SYS` physical pins 1–8. TPS2116 unencrypted interface order is **GND, MODE, PR1, ST, VIN1, VIN2, VOUT_0, VOUT_1**; it does NOT match numeric physical order. Both VOUT pins map to `VIN_MUX`.
+- The TPS631000 supplied soft-start example references an absent `tps631000.lib` filename; the archive instead contains `TPS631000_SYMBOL.lib` with the encrypted subcircuit. Resolve path only in an isolated copy when running a supported PSpice smoke test.
+- `DATALOGER_final.PrjPcb` references `Datalogger_RevA_Clean.SchLib`, which is missing from GitHub `main`. Confirm the **current local** library before ever attaching a simulation model or performing schematic ECO; do not substitute the older T23 ZIP.
+- **Static archive/pin audit PASS; PSpice runtime, Altium compatibility and project-specific transient simulation remain PENDING.** No new DRC was run or needed for this read-only step; last accepted Full Batch DRC is T24 0/0.
+- NEXT EXACT ACTION: on an available supported PSpice installation, run each TI-supplied example in an isolated folder and record version/errors/waveforms. For TPS631000 correct only the example's library reference to the included file in that isolated copy. After successful vendor examples, create a separate Datalogger power bench with actual sourced load/source parameters. Keep the canonical schematic/PCB unchanged.
+
 ## CURRENT EXACT POINT — T25A source/model audit COMPLETE — 2026-09-23
 
 - T23 routing and T24 courtyard remain CLOSED / PASS. Canonical engineering checkpoint is `3ea38daf1998dc926ec7ee77df95ce5ccf42d3b8`; canonical PCB `DATALOGER_RevA.PcbDoc`, PcbLib `Datalogger_RevA_Clean.PcbLib`.
