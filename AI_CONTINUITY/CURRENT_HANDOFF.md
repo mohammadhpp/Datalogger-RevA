@@ -1,5 +1,14 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — stay on Altium 26.8.1; abandon PcbLib scripting; finish courtyards with native UI — 2026-09-23
+
+- User chose to continue with the installed Altium Designer 26.8.1 Build 31 instead of spending time on an upgrade.
+- PcbLib DelphiScript mutation is CLOSED as a failed path on this build: v1/v2/v3/v4 all produced native `ScriptingSystem.DLL` access violations or non-persistent results.
+- Do not run the stale PcbLib mutation scripts again.
+- Continue using only native Altium PcbLib editing for the remaining persistent courtyard corrections.
+- Engineering scope remains the 8 unique source footprints that cover the 16 missing-courtyard PCB instances. After all 8 PcbLib footprints are corrected and saved, propagate them to `DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc`, then run visual check + Full Batch DRC before any promotion of the PENDING PCB.
+- Main PCB routing/polygon checkpoint remains unchanged by the scripting crashes.
+
 ## CURRENT EXACT POINT — PcbLib scripting root cause narrowed to Altium ScriptingSystem native crash — 2026-09-23
 
 - `T24_CurrentFootprint_Courtyard_Repair_v4.pas` also crashes with the same native Access Violation address in `ScriptingSystem.DLL` (`00000001D0D1B837`, null-address read) seen with v2/v3.
