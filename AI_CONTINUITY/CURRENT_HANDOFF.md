@@ -1,5 +1,13 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — PcbLib courtyard repair v1 parser failure; use parser-safe v2 — 2026-09-23
+
+- `T24_PcbLib_MissingCourtyards_Apply_v1.pas` failed to compile in Altium with `Then expected` at the single-line `If ... Then Raise(...)` pattern. No script execution/mutation occurred.
+- Root cause: DelphiScript parser compatibility. Previous known-good T24 scripts use `If ... Then Begin Raise('...'); End;`.
+- v2 rewrites all single-line Raise statements with `Begin/End`, replaces `W Div 2` with explicit `MilsToCoord(0.984252)`, and splits the combined size guard into two parser-simple checks.
+- Use only `AI_SCRIPTS/T24/T24_PcbLib_MissingCourtyards_Apply_v2.pas`, entry `ApplyT24_PcbLib_MissingCourtyards_v2`.
+- v1 is stale / DO NOT USE.
+
 ## CURRENT EXACT POINT — root-cause fix moved to PcbLib; one persistent repair script ready — 2026-09-23
 
 - Recheck resolved the apparent contradiction about courtyard size. For this project, T24 intentionally uses the missing-footprint boundary itself (PAD / Mechanical1 union) and keeps the separate board-level Component Clearance rule at 10 mil. Therefore do NOT add another 10 mil expansion inside the newly created missing courtyards; that would double-count clearance and recreate the 11 known conflicts.
