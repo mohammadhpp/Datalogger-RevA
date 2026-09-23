@@ -1,5 +1,18 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — promote audited generated library and update only 16 PCB instances — 2026-09-23
+
+- User approved promotion of the final audited generated PcbLib.
+- Final generated candidate SHA256: `a2f2aea3592b79934fbeb8042ce90b2089791ea83b71c2a39a27efa3ba9514a2`.
+- A canonically named copy has been prepared for local replacement as `Datalogger_RevA_Clean.PcbLib`.
+- Git connector cannot directly replace the binary PcbLib; user must overwrite the local project file with the prepared canonical copy, then later run `Git_Save.cmd` to commit it.
+- To avoid manually selecting 16 PCB instances, new helper script `AI_SCRIPTS/T24/T24_Select16_ForLibraryUpdate_v1.pas` selects exactly the 16 target components and nothing else.
+- After replacing the local PcbLib and reopening Altium, run `SelectT24_Courtyard16_ForLibraryUpdate_v1`; expected PASS = exactly 16 selected.
+- Then right-click one selected component > `Component Actions > Update Current Components From PCB Libraries`.
+- In `Update From PCB Libraries - Options`, include ONLY Mechanical 2 and Mechanical 4 / Top-Bottom Courtyard layers. Do not update pads, overlay, solder mask, paste, models, or unrelated footprint primitives.
+- Review the comparison/ECO before execution; it should affect only the selected 16 components and courtyard-layer primitives.
+- After ECO Execute Changes: Save PCB, close/reopen, verify courtyard persistence, run Full Batch DRC, Snapshot Exporter, then `Git_Save.cmd`.
+
 ## CURRENT EXACT POINT — regenerated PcbLib v3 FINAL BINARY AUDIT PASS — 2026-09-23
 
 - User supplied regenerated `DATALOGER_RevA(1).PcbLib` after running `T24_All16_TransientCourtyards_ForMakeLib_v3.pas` and native `Design > Make PCB Library`.
