@@ -1,5 +1,12 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25D v3 unique runner READY; user reports v2 output missing — 2026-09-24
+
+- User reports no new file from the latest PowerShell attempt and requests a distinct version so results cannot be confused. No new ZIP/log from that attempt exists for AI inspection; **do not infer a simulation failure or success**. Previous v2 ZIP `...150032.zip` definitively stopped during netlist parsing because our `.PROBE64 V(VIN) V(VOUT) V(FB)` selector caused three `ORPSIM-15090` errors. Its corrected selector `.PROBE64 V(alias(*))` has not yet been confirmed by Windows output.
+- Created `AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke_v3.cmd` and `T25D_PSpice_Converter_Smoke_v3.ps1` in GitHub. v3 preserves the source/hash/pins/TI-example isolation and corrected probe selector but writes distinctly named `Documents/Datalogger_T25D_v3_Result_<timestamp>.zip`, `T25D_v3_Result.txt`, `T25D_v3_Install_Diagnostic.txt`, and `Datalogger_T25D_v3_<timestamp>` work folder. CMD prints a v3 banner, waits for completion, and opens Windows Documents to locate the ZIP. v3 has been statically reviewed only; no Windows runtime yet.
+- NEXT EXACT ACTION: user runs `Git_Save.cmd` once to fetch the new v3 files, **double-clicks only `AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke_v3.cmd`**, waits for `Send this ZIP for review:` and uploads the new `Datalogger_T25D_v3_Result_*.zip`. If no ZIP appears, send the exact CMD/PowerShell text displayed; do not interpret the prior 150032 ZIP as v3. Treat v2 as superseded; avoid deleting it locally during this fetch to prevent another stash conflict.
+- T24 canonical Altium source unchanged; courtyard 129/129 and last Full Batch DRC 0/0. PSpice model runtime and 3V3 project startup/load-step qualification still PENDING.
+
 ## CURRENT EXACT POINT — T25D PSpice 25.1 launches; probe directive fixed, rerun pending — 2026-09-24
 
 - User ZIP `Datalogger_T25D_Result_20260924_150032.zip` has result/diagnostic/deck/console/out. PSpice CLI at `C:\Cadence\OrCADX_25.1\tools\bin\psp_cmd.exe` runs version 25.1.0 and indexes all four TI libraries, but exits 1 before transient. The `.out` has 3 `ORPSIM-15090` undefined PROBE devices (`VIN`, `VOUT`, `FB`) and 0 warnings. Cause: our generated selector `.PROBE64 V(VIN) V(VOUT) V(FB)`, not a demonstrated license, encrypted TI model or circuit failure.
