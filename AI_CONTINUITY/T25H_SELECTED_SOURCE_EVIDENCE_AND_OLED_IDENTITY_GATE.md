@@ -31,7 +31,7 @@ The user subsequently provided clear front/back photographs of an assembled four
 
 ## Next exact action and verification boundary
 
-1. Obtain front/back photo or exact part number of the **physical four-pin OLED assembly** that the user intends to connect, and clarify whether the WEO PDF identifies a bare purchased panel or is only a panel reference. Confirm connector orientation/gender, controller, I2C pin order, onboard charge pump/regulator and supply rating before selecting an OLED load function or changing Altium.
+1. Correct user photo already identifies the **VCC, GND, SCL, SDA** four-hole signal order; do not ask again for a front photo or revive T25I. Confirm physical mating/header orientation, actual carrier VCC rating and, when needed, backside/controller identity and input current via exact carrier listing or measurement. The WEO PDF's 20-pin panel specs cannot establish these carrier values. Avoid changing Altium to match the wrong photos.
 2. Proceed independently with a **bounded, distinctly labeled TPS631000 full-startup feasibility bench** using source-declared fixture values and a process wall-time limit. This is separate from OLED/card/USB product qualification; do not report a full `3V3_SYS` PASS from a partial/encrypted-model run.
 3. For the unbranded card and variable USB sources, eventual physical voltage/current captures or explicitly bounded source/load sweeps are needed for board-level claims. Any behavioral load is a scenario, never a measured actual device.
 
