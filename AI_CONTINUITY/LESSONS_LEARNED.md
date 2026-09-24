@@ -116,3 +116,6 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 
 25. **Check the resulting load current at the actual simulated voltage.**
    - The T25E fixture chose 3.3 Ω to represent 1 A if the output were 3.3 V, but the TPS2116 model produced 4.944 V at 7 ms; the real final fixture current is 1.498 A. Label such resistors as fixture choices and compute currents from simulation data before comparing with a vendor example or a product load. A clean PSpice job qualifies runtime for that stimulus; static-source simulation alone does not validate priority transfer or real USB/AA/SD/OLED behavior.
+
+26. **Separate a mux's status indication from measured current and sampled voltage limits.**
+   - T25G ST went low in the first sampled 1.65–1.66 ms interval, but VOUT remained above the 3 V VIN2 fixture and only decayed toward 3 V later under 22 µF nominal output capacitance and 330 Ω load. ST confirms the model's selection state, not that VIN2 delivered a given current at that instant. An 801-point trace spaced 10 µs apart cannot establish sub-sample worst-case dip or precise switching time; add branch-current probes and adequate resolution before asserting either.
