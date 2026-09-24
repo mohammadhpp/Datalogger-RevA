@@ -135,3 +135,8 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 
 - Read the **exact manufacturer part row** and its test definitions: for Murata `DFE322512F-1R0M=P2`, 4.8 A is a DC current causing **30% inductance reduction**; 3.8 A is the DC current causing **40°C rise on Murata's six-layer test board**. Neither is an unlimited peak rating or the TPS631000 current limit. Different layers/ambient/AC core loss can change the board thermal result.
 - Compare a converter's inductor to TI's **boost peak formula plus 20% saturation margin** using explicitly stated VIN, load, assumed efficiency, inductance under current and switching frequency. Nominal L tolerance in TI's recommended interval and a successful static example cannot prove startup, transient, weak-cell full-load behavior, or L(I,T) at actual current.
+
+## T25Q Windows PowerShell 5.1 script encoding
+
+- The v1 `.ps1` in Git contained UTF-8 without a BOM and em dashes inside string literals. The user's Windows PowerShell read it using a legacy code page, producing a `ParserError` near line 152 **before any PSpice run** and before ZIP creation. This is an automation failure, not an electrical or vendor-model result.
+- For one-click scripts targeting Windows PowerShell 5.1, use **ASCII-only source text** (or an explicitly verified UTF-8 BOM), check bytes before Git publishing and use new versioned names/output folders after a failed attempt. Do not classify a launcher that prints its final static instructions as evidence the called PowerShell script actually ran; require its unique result ZIP.
