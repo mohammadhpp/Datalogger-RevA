@@ -165,7 +165,7 @@ R_TI_EXAMPLE_LOAD VOUT 0 3.3
 X_U_SYS VOUT LX2 LX1 VIN VIN 0 0 FB TPS631000_STARTUP PARAMS: SS=0
 .TRAN 0 0.6m 0 10n SKIPBP
 .OPTIONS ADVCONV
-.PROBE64 V(VIN) V(VOUT) V(FB)
+.PROBE64 V(alias(*))
 .END
 '@
     $deck.Replace('@ROOT@', $root) | Set-Content -LiteralPath $cir -Encoding Ascii
