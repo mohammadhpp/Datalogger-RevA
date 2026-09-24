@@ -126,3 +126,7 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 
 28. **Do not turn a visually similar module photo into an engineering identity.**
    - T25I inferred a reverse-polarity blocker from two photos that the user later identified as the **wrong OLED module**. The user's correct photo in T25J shows VCC, GND, SCL, SDA, matching `J_OLED` signal order on paper. Retract the T25I connector pin swap and crossed-cable advice; preserve the old report with a visible correction. Verify module identity, allowed supply, actual installed header orientation and pad continuity on the physical device before assembly. The earlier 0/0 DRC does not check off-board module mating or supply rating.
+
+29. **A capacitor's catalog value is not its biased circuit capacitance.**
+   - TDK `C2012X5R1A476M125AC` visibly loses a substantial fraction of 47 µF across the DC-bias plot by 3.3 V, while TI TPS631000's 10.4 µF minimum is an **effective** 3.3 V condition. A nameplate-only arithmetic sweep is useful for planning but cannot prove stability or startup; obtain the exact vendor bias payload/measurement and include tolerance/temperature/aging before declaring the threshold met. Do not fill unavailable DC-bias samples with graph guesses.
+   - A data-sheet delay/ramp and `Q=C×V` yield a time/charge budget, not a closed-loop transient waveform or peak current. Keep the T25M script labeled as accounting and the encrypted-model 10 µs result as a limited engine smoke.
