@@ -1,6 +1,9 @@
 # T25I — OLED four-pin pinout conflict from supplied module photographs
 
-Date: 2026-09-24. Status: **physical-interface BLOCKER OPEN; unpowered verification required; no Altium change**.
+> **RETRACTED / HISTORICAL — T25J supersedes this file.** The user stated the two photographs analyzed below were **not their module**. Their correct photograph `1000072574.jpg` SHA256 `0e92be2af1f0d28e52f1394d3be7abe9f1af1a7ad23d2a71fe9fb90d8f56039e` shows left-to-right **VCC, GND, SCL, SDA**, aligned with the schematic signal order. The reverse-polarity blocker, crossed harness proposal, and proposed connector pin swap below **do not apply**. Do not implement them. Current evidence and remaining checks: [`T25J_CORRECTED_OLED_MODULE_PHOTO.md`](T25J_CORRECTED_OLED_MODULE_PHOTO.md).
+
+
+Date: 2026-09-24. Status at time of writing: **BLOCKER CLAIM RETRACTED**, because the pictured module was wrong; this document preserves the superseded analysis only. No Altium change.
 
 ## Evidence
 
