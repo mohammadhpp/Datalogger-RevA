@@ -1,6 +1,6 @@
 # T25D — OrCAD X 25.1 installation and isolated TPS631000 runtime gate
 
-Date: 2026-09-23. Status: **test prepared; user runtime result pending**.
+Date: 2026-09-23 to 2026-09-24. Status: **10 µs isolated model/engine smoke manually adjudicated PASS from complete PSpice .out and .dat; longer startup and project transients pending**. See final v4 section for the wrapper's false `NO_PASS`.
 
 ## Observed user installation
 
