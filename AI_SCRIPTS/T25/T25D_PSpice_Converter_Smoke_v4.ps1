@@ -20,6 +20,7 @@ function Write-Result([string]$status, [string]$detail) {
         "TIME: $(Get-Date -Format o)",
         "WORKDIR: $work",
         "PSPICE: $psp",
+        "PROCESS EXIT: $(if ($null -eq $exit) { 'unavailable' } else { $exit })",
         "DETAIL: $detail",
         'SCOPE: TI model runtime smoke, not Datalogger startup/load-step qualification.',
         'SOURCE: SLVMDV2.ZIP SHA256 F55C75639AD5B62C5437EC114301905FE6C63408CDB689825EB542C095ECD946.'
@@ -196,7 +197,10 @@ X_U_SYS VOUT LX2 LX1 VIN VIN 0 0 FB TPS631000_STARTUP PARAMS: SS=0
     $log = Get-Content -LiteralPath $out -Raw
     $errors = @([regex]::Matches($log, '(?im)^\s*(?:ERROR\(|FATAL|JOB ABORTED)'))
     $warningCount = [regex]::Matches($log, '(?im)^\s*WARNING\(').Count
-    if ($exit -ne 0 -or $errors.Count -gt 0 -or $log -notmatch '(?i)Total job time') {
+    # Start-Process can return a null ExitCode in this Windows installation.
+    # Require independent PSpice completion markers and reject a known bad exit.
+    if (($null -ne $exit -and $exit -ne 0) -or $errors.Count -gt 0 -or
+        $log -notmatch '(?im)^\s*JOB CONCLUDED\s*$' -or $log -notmatch '(?i)Total job time') {
         throw "Simulation did not complete cleanly. Exit=$exit, failure markers=$($errors.Count), warnings=$warningCount. Read .out."
     }
     Write-Result 'MODEL_RUNTIME_SMOKE_PASS' "PSpice completed; warnings=$warningCount. This is NOT 3V3_SYS startup or load-step qualification."
