@@ -1,6 +1,6 @@
 # T25E — TPS2116 isolated vendor-model smoke
 
-Date: 2026-09-24. Status: **script READY / Windows PSpice execution PENDING**. No TPS2116 runtime PASS is claimed yet.
+Date: 2026-09-24. Status: **isolated 7 ms TPS2116 PSpice model/runtime smoke PASS, limited scope**. Board transfer and integrated startup remain pending. See final Windows v1 result and fixture-current correction.
 
 ## Direct source evidence
 
@@ -15,10 +15,10 @@ Date: 2026-09-24. Status: **script READY / Windows PSpice execution PENDING**. N
 - Transient `.TRAN 0 7m 0 10u SKIPBP` uses the TI example's 7 ms duration. PSpice subprocess is capped at 180 seconds with ten-second heartbeat; timeout terminates only that child and still packages logs. Named-node `.PROBE64` and `.PRINT TRAN` use the voltage syntax proven by T25D v4. The wrapper emits **`Documents/Datalogger_T25E_v1_Result_<timestamp>.zip`** and opens Documents.
 - `MODEL_RUNTIME_SMOKE_PASS` requires a concluded PSpice job, reported job time, no error/fatal/abort markers, zero warnings, at least two printed numeric voltage rows and a nonempty raw `.dat`; a known nonzero process exit fails, while unavailable exit status is adjudicated through simulator evidence. Review ZIP `.out` and voltages independently before accepting. Even a clean runtime result would qualify only this isolated fixture and does not prove power-source transfer or `3V3_SYS` startup/load steps.
 
-## Preflight and next action
+## Preflight and original run instructions (completed)
 
-- Linux static checks passed exact archive SHA, extracted header/order and generated `X_U_PMUX` positional mapping; no Windows PowerShell or PSpice runtime is available here. No actual T25E waveform, success or failure exists yet.
-- User: run existing `Git_Save.cmd` **once** to fetch this v1 pair, then double-click **`AI_SCRIPTS/T25/Run_T25E_TPS2116_Model_Smoke_v1.cmd`**, wait for its ZIP path, and send the **new `Datalogger_T25E_v1_Result_*.zip`**. If direct TI download is unavailable, place original `SLVMDI4A.ZIP` in Windows Downloads and repeat the same CMD; the hash check still applies.
+- Linux static checks passed exact archive SHA, extracted header/order and generated `X_U_PMUX` positional mapping. The subsequent Windows run and independent waveform audit are recorded in the final section.
+- The v1 runner was synced and executed on the user's Windows PSpice installation; the result ZIP is documented below. These original run instructions are retained only for provenance; no v1 rerun is required.
 - Canonical schematic, PCB and PcbLib remain unchanged. Last physical evidence remains T24 courtyard 129/129 and Full Batch DRC 0 warnings / 0 violations. Longer TPS631000 startup and board-specific loads remain pending.
 
 ## Windows v1 result — 2026-09-24
