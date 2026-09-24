@@ -1,5 +1,11 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — local Git_Save v2.5.1 stash-apply conflict; safe recovery before PSpice test — 2026-09-24
+
+- User posted Git_Save log: GitHub fast-forward `c0743db..d747e79` succeeded, then stash restore failed because local edits deleted four T25D scripts, while updated upstream modified `T25D_PSpice_Converter_Smoke_v2.ps1`. Three deletion paths are staged and the v2 PS1 is unmerged (`deleted by them`). `Git_Save.cmd` stopped without pushing. The protected stash entry (`Git_Save v2.5.1 pre-sync 2026-09-24 14:51:50`) was kept. GitHub main still contains all four T25D scripts; it has not lost engineering files.
+- Proposed recovery for this specific reported state: from `C:\#MHP FILES\DataLoger`, use `git restore --source=HEAD --staged --worktree --` with exactly the four affected T25D paths to restore the current fast-forwarded Git versions and resolve index conflict. Then inspect `git status --short`; if clean, run `Git_Save.cmd` to sync and launch the v2 CMD. Do not `git stash pop` because the retained stash includes deletions and would recreate this conflict. Do not reset/rebase shared history.
+- This recovery has not yet been run on user's Windows PC. PSpice executable path is observed; license/model/runtime test remains pending. Last courtyard 129/129 and Full Batch DRC 0/0 are unchanged.
+
 ## CURRENT EXACT POINT — PSpice executable FOUND; model/runtime test pending — 2026-09-24
 
 - User Windows search screenshots show `psp_cmd.exe` and `pspice.exe` at `C:\Cadence\OrCADX_25.1\tools\bin` (also `parpspice.exe`). This resolves the v1 `psp_cmd.exe not found` preflight: its search assumed a different directory. It proves a simulator binary exists, **not** that licensing/model runtime succeeds.
