@@ -26,7 +26,8 @@ function Write-Result([string]$status, [string]$detail) {
 }
 
 try {
-    $candidates = @()
+    # Confirmed by the user's 2026-09-24 Windows search screenshot.
+    $candidates = @('C:\Cadence\OrCADX_25.1\tools\bin\psp_cmd.exe')
     $scanRoots = @()
     $notes = @('T25D PSpice installation discovery (read-only)',
                'No license keys, serials or environment variable values are collected.')
@@ -91,8 +92,12 @@ try {
     }
     $roots = @($scanRoots | Where-Object { $_ -and (Test-Path -LiteralPath $_ -PathType Container) } |
         Sort-Object -Unique)
-    $notes += "Installation roots searched: $($roots.Count)"
+    $notes += "Eligible installation roots: $($roots.Count)"
     foreach ($root in $roots) {
+        if (@($candidates | Where-Object { $_ -and (Test-Path -LiteralPath $_ -PathType Leaf) }).Count -gt 0) {
+            $notes += 'Recursive search skipped: PSpice executable found directly.'
+            break
+        }
         $notes += "SEARCH: $root"
         Write-Host "Searching PSpice installation under $root ..."
         $candidates += @(Get-ChildItem -LiteralPath $root -Recurse -File -Filter 'psp_cmd.exe' -ErrorAction SilentlyContinue |
