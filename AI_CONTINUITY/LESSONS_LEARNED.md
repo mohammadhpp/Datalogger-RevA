@@ -130,3 +130,8 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 29. **A capacitor's catalog value is not its biased circuit capacitance.**
    - TDK `C2012X5R1A476M125AC` visibly loses a substantial fraction of 47 µF across the DC-bias plot by 3.3 V, while TI TPS631000's 10.4 µF minimum is an **effective** 3.3 V condition. A nameplate-only arithmetic sweep is useful for planning but cannot prove stability or startup; obtain the exact vendor bias payload/measurement and include tolerance/temperature/aging before declaring the threshold met. Do not fill unavailable DC-bias samples with graph guesses.
    - A data-sheet delay/ramp and `Q=C×V` yield a time/charge budget, not a closed-loop transient waveform or peak current. Keep the T25M script labeled as accounting and the encrypted-model 10 µs result as a limited engine smoke.
+
+## T25N inductor ratings vs transient behavior
+
+- Read the **exact manufacturer part row** and its test definitions: for Murata `DFE322512F-1R0M=P2`, 4.8 A is a DC current causing **30% inductance reduction**; 3.8 A is the DC current causing **40°C rise on Murata's six-layer test board**. Neither is an unlimited peak rating or the TPS631000 current limit. Different layers/ambient/AC core loss can change the board thermal result.
+- Compare a converter's inductor to TI's **boost peak formula plus 20% saturation margin** using explicitly stated VIN, load, assumed efficiency, inductance under current and switching frequency. Nominal L tolerance in TI's recommended interval and a successful static example cannot prove startup, transient, weak-cell full-load behavior, or L(I,T) at actual current.
