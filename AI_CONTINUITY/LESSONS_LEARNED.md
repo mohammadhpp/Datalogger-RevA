@@ -108,3 +108,8 @@ These are project-specific lessons intended to prevent repeated mistakes across 
    - T24 PcbLib courtyard repair attempts v2/v3/v4 all produced the same native null-read Access Violation in `ScriptingSystem.DLL`, even after removing iterator mutation, component navigation, state rebuilds, and exception flow.
    - The same PCBServer object-creation transaction pattern is proven on PcbDoc in T23, while Altium's documented PcbLib interfaces still crash natively in this environment.
    - Treat this as an Altium scripting-engine/PcbLib implementation defect or build regression until proven otherwise. Use native PcbLib UI editing for persistent footprint changes, and never save the library after such a crash.
+
+24. **Separate PSpice engine evidence from wrapper process status and project qualification.**
+   - A v4 `Start-Process` invocation returned no usable `ExitCode`, so a direct `$exit -ne 0` check falsely labeled a successful simulator run `NO_PASS`. If exit is unavailable, require independently verified `JOB CONCLUDED`, job time, no error/fatal markers, and actual trace data; a known nonzero exit remains a failure.
+   - For hand-written PSpice decks, named net voltages in `.PROBE64` and `.PRINT TRAN` use square-bracket node names such as `V([VOUT])`. The earlier `V(VOUT)` generated `ORPSIM-15090`; `V(alias(*))` selected no traces and raised `ORPSIM-16527`.
+   - Bound first encrypted-model engine smoke runs by both short simulation duration and process wall time. A 0.6 ms attempt consumed more than 30 minutes without usable completion evidence; a distinctly labeled 10 µs tool smoke completed cleanly in 30.98 seconds but cannot validate a 3.3 V startup or actual SD/OLED load step.
