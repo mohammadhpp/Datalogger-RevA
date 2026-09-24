@@ -128,3 +128,8 @@ This is a compact milestone history, not a replacement for Git commit history.
 
 - PSpice 25.1.0 completed the isolated 10 µs tool smoke of the official encrypted TPS631000 model in 30.98 seconds. `.out` ended `JOB CONCLUDED`, produced 1000 printed voltage rows and raw DAT, with no simulator errors or warnings. At 10 µs, simulated VOUT was 0.1182 V under a TI-example test source/load and project nominal passives. The v4 wrapper's `NO_PASS` was a false negative due to an unavailable process exit code; classifier corrected in Git. This is a limited model/engine runtime PASS, not converter regulation or board startup qualification.
 - T25E TPS2116 isolated model smoke v1 was prepared from the verified TI archive and exact physical-to-subcircuit mapping; Windows runtime remains pending. Canonical Altium files and the last T24 0/0 DRC were not changed.
+
+## T25E — TPS2116 PSpice isolated runtime gate — 2026-09-24
+
+- Verified original TI ZIP/header and built a versioned standalone PSpice model smoke. User's Windows PSpice 25.1.0 finished the 7 ms fixed-source fixture cleanly in 0.83 seconds, with 701 printed rows, raw DAT, `JOB CONCLUDED`, and zero simulator errors/warnings. **Limited isolated model/runtime PASS**; no controlled source transfer or board power-tree PASS.
+- Corrected the fixture interpretation: its 3.3 Ω load actually drew 1.498 A at simulated final VOUT 4.944 V, so it did not reproduce TI's stated 1 A example. The next project step is a sourced battery/USB/load requirements matrix followed by bounded staged integrated tests. No canonical Altium change or new DRC.
