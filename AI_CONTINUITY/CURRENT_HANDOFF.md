@@ -1,5 +1,11 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — user clarified intentional cleanup; keep only corrected T25D v2 pair — 2026-09-24
+
+- User intentionally deleted unsuccessful earlier script files. This corrects the prior interpretation that all four deletions were accidental. Preserve staged deletion of legacy `AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke.cmd` and `T25D_PSpice_Converter_Smoke_v1.ps1`.
+- The same local stash conflict also includes deletion of the **current** `Run_T25D_PSpice_Smoke_v2.cmd` and `T25D_PSpice_Converter_Smoke_v2.ps1`; those are required to run the corrected path to the user's observed `C:\Cadence\OrCADX_25.1\tools\bin\psp_cmd.exe`. Only restore the two v2 files from local HEAD into index and worktree with `git restore --source=HEAD --staged --worktree --` and their exact paths. Expect `git status --short` to show exactly two staged deletions for the legacy v1 CMD/PS1 and no unmerged paths. Then `Git_Save.cmd` can sync GitHub documentation and commit intentional old-script cleanup. Do not pop the preserved pre-sync stash.
+- The Windows recovery and v2 model runtime have not yet been performed. Canonical Altium/DRC status remains T24 129/129 and 0/0. The previous handoff instruction to restore **all four** files is superseded by this correction.
+
 ## CURRENT EXACT POINT — local Git_Save v2.5.1 stash-apply conflict; safe recovery before PSpice test — 2026-09-24
 
 - User posted Git_Save log: GitHub fast-forward `c0743db..d747e79` succeeded, then stash restore failed because local edits deleted four T25D scripts, while updated upstream modified `T25D_PSpice_Converter_Smoke_v2.ps1`. Three deletion paths are staged and the v2 PS1 is unmerged (`deleted by them`). `Git_Save.cmd` stopped without pushing. The protected stash entry (`Git_Save v2.5.1 pre-sync 2026-09-24 14:51:50`) was kept. GitHub main still contains all four T25D scripts; it has not lost engineering files.
