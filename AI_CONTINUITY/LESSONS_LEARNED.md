@@ -119,3 +119,7 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 
 26. **Separate a mux's status indication from measured current and sampled voltage limits.**
    - T25G ST went low in the first sampled 1.65–1.66 ms interval, but VOUT remained above the 3 V VIN2 fixture and only decayed toward 3 V later under 22 µF nominal output capacitance and 330 Ω load. ST confirms the model's selection state, not that VIN2 delivered a given current at that instant. An 801-point trace spaced 10 µs apart cannot establish sub-sample worst-case dip or precise switching time; add branch-current probes and adequate resolution before asserting either.
+
+27. **A panel datasheet is not a four-pin carrier's supply-current model.**
+   - User-supplied WEO012864V PDF specifies a bare 20-pin OLED requiring distinct logic and display voltages; the existing OLED connector is four pins and switched 3.3 V. A related PCB module WEA012864V has a compatible pin order/pitch on paper and a 50%-on 3 V current spec, but the user's physical assembly has not been identified. Verify exact assembly, supply arrangement and mating before importing current ratings, making a connector substitution or claiming a load-step result.
+   - For an unbranded microSD and unspecified chargers/power banks, distinguish declared source/load scenario sweeps from measured hardware behavior. A 25 mA alkaline capacity rating cannot define pulsed AA source resistance.
