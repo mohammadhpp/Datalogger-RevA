@@ -1,5 +1,11 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25D PSpice 25.1 launches; probe directive fixed, rerun pending — 2026-09-24
+
+- User ZIP `Datalogger_T25D_Result_20260924_150032.zip` has result/diagnostic/deck/console/out. PSpice CLI at `C:\Cadence\OrCADX_25.1\tools\bin\psp_cmd.exe` runs version 25.1.0 and indexes all four TI libraries, but exits 1 before transient. The `.out` has 3 `ORPSIM-15090` undefined PROBE devices (`VIN`, `VOUT`, `FB`) and 0 warnings. Cause: our generated selector `.PROBE64 V(VIN) V(VOUT) V(FB)`, not a demonstrated license, encrypted TI model or circuit failure.
+- Updated only current `AI_SCRIPTS/T25/T25D_PSpice_Converter_Smoke_v2.ps1` selector to `.PROBE64 V(alias(*))`. This corrected script has **not** run on Windows yet. Legacy v1 script and CMD were intentionally removed by user and verified absent from GitHub; retain only v2 pair. Current Altium binaries untouched; last DRC 0/0 and courtyard 129/129 remain T24 evidence.
+- NEXT EXACT ACTION: user runs one-click `Git_Save.cmd` to fetch this one-line script correction, then double-clicks `AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke_v2.cmd` and uploads newest `Documents/Datalogger_T25D_Result_*.zip`. Inspect `.out` for subsequent model/dependency/licensing/convergence results. No model-runtime PASS or Datalogger 3V3 startup/load-step PASS yet. See T25D report for archive SHA and details.
+
 ## CURRENT EXACT POINT — user clarified intentional cleanup; keep only corrected T25D v2 pair — 2026-09-24
 
 - User intentionally deleted unsuccessful earlier script files. This corrects the prior interpretation that all four deletions were accidental. Preserve staged deletion of legacy `AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke.cmd` and `T25D_PSpice_Converter_Smoke_v1.ps1`.
