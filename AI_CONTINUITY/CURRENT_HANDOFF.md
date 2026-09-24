@@ -1,5 +1,12 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — PSpice executable FOUND; model/runtime test pending — 2026-09-24
+
+- User Windows search screenshots show `psp_cmd.exe` and `pspice.exe` at `C:\Cadence\OrCADX_25.1\tools\bin` (also `parpspice.exe`). This resolves the v1 `psp_cmd.exe not found` preflight: its search assumed a different directory. It proves a simulator binary exists, **not** that licensing/model runtime succeeds.
+- Updated `AI_SCRIPTS/T25/T25D_PSpice_Converter_Smoke_v2.ps1` to try the screenshot-confirmed CLI path directly and skip expensive recursive discovery if found; one-click entry stays `AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke_v2.cmd`. No Windows run of v2 has been received.
+- NEXT EXACT ACTION: user runs `Git_Save.cmd` once to fetch the corrected v2 script, double-clicks its v2 CMD, then uploads the **newest** `Documents/Datalogger_T25D_Result_*.zip` (containing `T25D_Install_Diagnostic.txt`). Inspect output for launch/license/dependency/convergence evidence before further T25D claims. Do not edit canonical Altium engineering files.
+- T23/T24 remain CLOSED/PASS; last courtyard 129/129 and Full Batch DRC 0 warnings / 0 violations. No project transient PASS or new DRC.
+
 ## CURRENT EXACT POINT — T25D first PSpice smoke NO_RUN; expanded v2 discovery READY — 2026-09-24
 
 - User-uploaded `Datalogger_T25D_Result_20260924_000020.zip` has only `T25D_Result.txt`: `NO_PASS` because v1 did not find `psp_cmd.exe` in its limited paths. There is no input deck, simulator log, model execution or transient result. Treat this as **preflight location failure**, not evidence of an invalid TPS631000 model, failed converter, or missing PSpice installation/license.
