@@ -1,6 +1,12 @@
 # T25Q — One-click bounded TPS631000 startup feasibility gate
 
-Date: 2026-09-24. Status: **v1 runner prepared, code/static checks executed; Windows run NOT YET EXECUTED; startup and integrated T25 sign-off OPEN**.
+Date: 2026-09-24. Status: **v1 ParserError confirmed before simulator start; corrected ASCII-only v2 runner READY, Windows v2 result PENDING; startup and integrated T25 sign-off OPEN**.
+
+## T25Q v2 correction after first Windows attempt
+
+- User's v1 console shows a **PowerShell ParserError before simulation** near line 152: UTF-8 without BOM `—` in script string literals was read as legacy Windows text and became `â€”`, breaking quoted expressions. The console then opened Documents although **no T25Q ZIP had been produced**. This is an **automation encoding failure**, not a TI model, convergence, capacitor or PCB failure; do not record it as a failed startup waveform.
+- **v1 launcher/script are superseded.** Use only `AI_SCRIPTS/T25/Run_T25Q_Bounded_Startup_v2.cmd` and `T25Q_Bounded_Startup_v2.ps1`. The new files have unique names/output `Documents/Datalogger_T25Q_v2_Result_<timestamp>.zip` and were authored/verified **ASCII-only with CRLF** in this workspace; all user-facing and result strings use plain ASCII hyphens. Their references, file names, vendor hash, limits and instance pin mapping were inspected. No Windows PowerShell or PSpice engine exists in this execution workspace, so **v2 parse/runtime and any simulation result remain PENDING** until the user's run.
+- `Git_Save.cmd` normally fetches these new GitHub files without altering the original v1; run the **v2 CMD**, wait for its printed v2 ZIP path, then provide that ZIP. Do not upload the old T25G archive or rerun v1.
 
 ## Why the runtime gate precedes a full transient
 
