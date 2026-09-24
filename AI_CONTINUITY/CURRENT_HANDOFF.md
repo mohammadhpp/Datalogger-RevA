@@ -1,5 +1,11 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25D v3 reached transient; 30-minute run stopped; bounded v4 READY — 2026-09-24
+
+- User `Datalogger_T25D_v3_Result_20260924_152648.zip`: PSpice 25.1 reads/checks the actual isolated model deck and all four TI libraries **without circuit syntax errors**, then prints `Transient Analysis`. User ended `psp_cmd.exe` after ~30.5 minutes of active CPU. Result `NO_PASS` exit 1, 0 failure markers, 1 `ORPSIM-16527` warning (no DAT because aliased selector chose no traces). No time-step progress, final job time or output-voltage evidence. This is neither a model PASS nor proof of model failure; no project startup or load-step results. See T25D report and ZIP SHA.
+- Added new v4 PS1/CMD under `AI_SCRIPTS/T25`: **10 µs tool-only transient**, named-node PROBE/PRINT selectors for VIN/VOUT/FB, automated 180-second wall-clock limit and ten-second status prints, unique `Documents/Datalogger_T25D_v4_Result_*.zip`. It terminates only the PSpice process on timeout and packages available evidence. 2.8 V/3.3 Ω are TI-example stimulus, nominal project passives are sourced; 10 µs is merely an engine smoke duration and cannot qualify startup. v4 is statically checked, Windows runtime pending.
+- NEXT EXACT ACTION: user runs `Git_Save.cmd` to fetch v4; double-clicks **`AI_SCRIPTS/T25/Run_T25D_PSpice_Smoke_v4.cmd`** and sends its new v4 ZIP. Do not rerun v3. If v4 completes, inspect warnings/voltages; if timeout, evaluate operational practicality of encrypted TI model and consider separately labeled behavioral system-level sensitivity, reserving exact converter qualification for compatible simulation/bench. Canonical Altium files untouched, last courtyard 129/129 and Full Batch DRC 0/0 unchanged.
+
 ## CURRENT EXACT POINT — T25D v3 unique runner READY; user reports v2 output missing — 2026-09-24
 
 - User reports no new file from the latest PowerShell attempt and requests a distinct version so results cannot be confused. No new ZIP/log from that attempt exists for AI inspection; **do not infer a simulation failure or success**. Previous v2 ZIP `...150032.zip` definitively stopped during netlist parsing because our `.PROBE64 V(VIN) V(VOUT) V(FB)` selector caused three `ORPSIM-15090` errors. Its corrected selector `.PROBE64 V(alias(*))` has not yet been confirmed by Windows output.
