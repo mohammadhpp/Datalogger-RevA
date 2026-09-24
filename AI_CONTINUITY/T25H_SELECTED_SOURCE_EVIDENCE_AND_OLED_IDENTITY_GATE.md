@@ -1,6 +1,6 @@
 # T25H — User-selected source evidence and OLED identity gate
 
-Date: 2026-09-24. Status: **source identifiers partly resolved; photographed four-pin OLED pinout CONFLICT with J_OLED; integrated transient OPEN**.
+Date: 2026-09-24. Status: **source identifiers partly resolved; T25I photo conflict RETRACTED by correct user module image in T25J; integrated transient OPEN**.
 
 ## Inputs and traceability
 
@@ -15,7 +15,11 @@ Date: 2026-09-24. Status: **source identifiers partly resolved; photographed fou
 | `J_SD` / `SD_VDD` | User's actual card described only as **4 GB unbranded**; board socket `MR01A-01245`, branch capacitors 54.1 µF nominal before bias. | Card capacity is no write/idle/inrush current spec; do not generate an alleged actual-card load step without current measurement. |
 | `J1` / `USB_VBUS_RAW` | User uses unspecified standard USB chargers and power banks. The board expects a USB-C 5 V sink connection through the discrete OVP and TPS2116 path (T25F). Nominal 5 V may be an explicitly labeled **fixture stimulus**. | No specific adapter current limit, USB negotiation/PD capability, cable resistance, ramp, droop or OVP transient; generic “standard” does not establish a regulated on-board source under dynamic load. The board schematic is **not** a battery charger. |
 
-## Follow-up T25I — photographed four-pin module has opposite power-pin order
+## Follow-up T25J — user corrected the earlier OLED photos
+
+The user explicitly said the T25I photos were of the **wrong module**. The correct photo `1000072574.jpg` SHA256 `0e92be2af1f0d28e52f1394d3be7abe9f1af1a7ad23d2a71fe9fb90d8f56039e` shows four holes silked **VCC, GND, SCL, SDA**, left-to-right from the display face, matching the schematic's electrical signal order **OLED_VDD, GND, OLED_SCL, OLED_SDA**. **Withdraw the reversed-power blocker and do not swap pins/cross wires because of the prior photo.** The actual module's supply rating/input current, mating orientation and 1:1 pad continuity still need independent evidence. The WEO bare-panel PDF and WEA separate PCB module's 16.5/33 mA specification cannot establish this specific carrier's current. See `AI_CONTINUITY/T25J_CORRECTED_OLED_MODULE_PHOTO.md`.
+
+## Follow-up T25I — photographed four-pin module has opposite power-pin order (historical / RETRACTED)
 
 The user subsequently provided clear front/back photographs of an assembled four-pin OLED carrier, separately documented with SHA256 and pin table in `AI_CONTINUITY/T25I_OLED_4PIN_PINOUT_CONFLICT.md`. Its front silk reads **1 GND, 2 VDD, 3 SCK, 4 SDA**. Canonical project `J_OLED` reads **1 OLED_VDD, 2 GND, 3 OLED_SCL, 4 OLED_SDA**. Same-number direct connection therefore reverses power and ground on pins 1/2; **do not directly connect/power**. The manufacturer WEA module described below has the *opposite first-two-pin order* to this photographed carrier; its supply current is not a valid profile for the photographed hardware. Confirm the photographed board is the intended physical assembly and intended cable/direct mating, and then choose a documented cross-wired harness or controlled schematic/PCB correction with new ECO/DRC. The uploaded raw-panel PDF is still not a carrier current specification.
 
