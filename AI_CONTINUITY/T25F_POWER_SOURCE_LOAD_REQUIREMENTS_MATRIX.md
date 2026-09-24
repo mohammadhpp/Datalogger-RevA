@@ -1,0 +1,50 @@
+# T25F — Power source / load / parameter evidence matrix
+
+Date: 2026-09-24. Status: **source and dependency inventory COMPLETE; physical source/load profiles and integrated transient PASS PENDING**. This matrix is for constructing tests; empty specifications are deliberate, not zero-valued inputs.
+
+## Source boundary
+
+- Canonical current schematic files inspected: GitHub `main` `01_POWER.SchDoc`, `02_MCU_CORE.SchDoc`, `03_MICROSD.SchDoc`, `05_RTC.SchDoc`, `06_OLED_SHT3X.SchDoc` and `07_EXPANSION.SchDoc`; T25A records their verified Git blob hashes and decoded connectivity. This T25F pass rechecked local copies of those same audited blobs (no newer engineering edit is asserted), extracted component MPN/value parameters and reconstructed capacitor and mux pin nets. The older 2026-09-08 offline ZIP is not used as a live source.
+- Model gates already passed in **separate** Windows PSpice runs: TPS631000 encrypted **10 µs engine smoke** T25D, and TPS2116 **7 ms static-source isolated model smoke** T25E. Neither result validates power-source transfer or `3V3_SYS` startup.
+- Official [TI TPS2116 datasheet Rev. A](https://www.ti.com/lit/ds/symlink/tps2116.pdf), electrical characteristics / truth table / priority switching, gives PR1 reference **0.92–1.08 V** (typical 1.00 V) and selection of VIN1 when PR1 exceeds VREF. The model's own static runtime data (T25E) are checked separately. Exact TDK part pages for [22 µF `C_IN`](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C2012X5R1V226M125AC) and [47 µF `C_OUT`](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C2012X5R1A476M125AC) advertise DC-bias PSpice model options. The actual vendor model payload and its runtime have **not** been downloaded/verified/qualified for this board.
+
+## Supply and switching paths
+
+| Real path and required probe | Schematic evidence | Known now | Missing before a board-level waveform claim |
+| --- | --- | --- | --- |
+| `BT1 → BAT_RAW → F1 → S1.A → BAT_SW` | `BT1` logical off-board `2xAA ALKALINE`; `F1` JFC2410-1200FS 2 A fuse; `S1` off-board four-contact maintained switch; `C1` TDK C2012X5R1H475K125AB **4.7 µF nominal** on `BAT_SW`. | Topology, nominal chemistry/cell count, fuse and capacitor MPN. | Actual cell make/model, discharge/SOC/temperature, open-circuit voltage trajectory, ESR under pulsed load, holder/contact/fuse resistance and any switch bounce. The 2 A fuse rating is not a load-current limit or source-impedance model. |
+| `J1 → USB_VBUS_RAW → S1.B → USB_OVP_IN → Q_OVP → USB_VBUS_PROT` | USB-C off-board logical connector; `Q_OVP` FSS2301S, `Q_OVP_DRV` BC857BLT1G, `U_OVP_REF` TS431BCX RFG and `Z_OVP` BZT52C6V2-7-F; `C_USB1/2` TDK C2012X5R1V226M125AC, **22 µF each nominal**, both on `USB_VBUS_PROT`. | Exact board nets, two protected USB capacitors **44 µF nominal together**, discrete part identities and schematic resistor values. | Chosen adapter/cable, VBUS voltage/current limit and impedance/transient, USB contact behavior, validated OVP device models and actual effective capacitor values. An ideal protected-USB source bypasses OVP timing and cannot verify that network. |
+| `U_PMUX VIN1/2 → VIN_MUX` | TPS2116DRLR: VIN1=`USB_VBUS_PROT`; VIN2=`BAT_SW`; both VOUT pins=`VIN_MUX`; MODE=`USB_VBUS_PROT`; PR1 from 30 kΩ ±1% top (`R_PR_TOP`) and 10 kΩ ±0.5% bottom (`R_PR_BOTTOM`); ST pull-up 10 kΩ to downstream `3V3_SYS`; `C_IN` TDK C2012X5R1V226M125AC, **22 µF nominal** on `VIN_MUX`. | Exact model positional pin map in T25B; isolated TPS2116 PSpice runtime PASS T25E. Actual ST bias is linked to converter output, not the isolated 3.3 V ST supply used by T25E. | Time-varying source profiles, actual `VIN_MUX` downstream load during switch, effective `C_IN`, validated OVP and ST rail history; no measured handoff dip/time. |
+| `U_SYS VIN/EN → 3V3_SYS` | TPS631000DRLR: VIN and EN both `VIN_MUX`, MODE via 0 Ω to ground, L1 Murata DFE322512F-1R0M=P2 **1 µH nominal**; `C_OUT` TDK C2012X5R1A476M125AC **47 µF nominal**; 510 kΩ / 91 kΩ feedback. | Physical pin map and 10 µs encrypted-model PSpice engine PASS only. | Effective capacitor values at bias, inductor DCR/saturation under actual current, battery/USB drive and `3V3_SYS` time-varying current, stable final rail and device limits. T25D's 0.1182 V at 10 µs is an unfinished fixture startup, not a voltage defect verdict. |
+
+## PR1 threshold derived from real resistor values
+
+For ideal divider loading, `V(PR1)=V(VIN1) × Rbottom/(Rtop+Rbottom)`. The estimated VIN1 transfer boundary is `VREF × (1 + Rtop/Rbottom)`:
+
+| Case | Source of numbers | Derived VIN1 boundary |
+| --- | --- | ---: |
+| Typical | TI VREF 1.00 V; schematic 30 kΩ/10 kΩ | **4.000 V** |
+| Minimum combination | TI VREF 0.92 V; top 29.7 kΩ (−1%); bottom 10.05 kΩ (+0.5%) | **3.639 V** |
+| Maximum combination | TI VREF 1.08 V; top 30.3 kΩ (+1%); bottom 9.95 kΩ (−0.5%) | **4.369 V** |
+
+This is a first-order **static component-tolerance range**, not a simulated dynamic switchover threshold, a USB cutoff requirement or measured board result. In the T25E fixture VIN1=3.3 V gives PR1=0.825 V, below TI's minimum 0.92 V reference; its final VOUT=4.944 V and ST low are consistent with VIN2=5 V supplying the output. No external USB→battery transition occurred in that fixture. The actual protected USB rail must cross this threshold with real source and OVP history before priority handoff can be assessed. The TI datasheet states break-before-make switchover and a possible output dip dependent on load and output capacitance; this matrix assigns no unmeasured dip limit.
+
+## Downstream 3V3 loads and branches
+
+| Branch | Fixed schematic information | Missing load/timing information |
+| --- | --- | --- |
+| `3V3_SYS` background | `U_MCU` STM32G070KBT6, `U_RTC` DS3231SN#, `U_SD_BUF` 74HC125D,653, `U_OLED_SW` 74HC4066D,653, pull-ups/ESD/expansion, `C_MCU_BULK` 4.7 µF plus local 0.1 µF. RTC `BT2` is separate backup path. | Firmware clock/modes and active current, pin/sensor/expansion loads, actual quiescent profiles. MCU/device datasheet ranges cannot be added as one constant without selecting operating modes. |
+| Switched `SD_VDD` | `Q_SD` AO3401A and `Q_SD_DRV` BC847B, control `SD_PWR_CTL`; `J_SD` MR01A-01245 is **only a socket**. `C_SD_HF` 0.1 µF, `C_SD_MID` 10 µF and `C_SD_BULK1/2` 22 µF each: **54.1 µF nominal**, before DC bias/tolerance. | Selected microSD card model and its idle/write/inrush waveform, enable slew and effective capacitances. No card MPN is in the inspected schematic. |
+| Switched `OLED_VDD` | `Q_OLED` AO3401A and `Q_OLED_DRV` BC847B, `J_OLED` PBS 1×4 female header; `C_OLED_BULK` 10 µF and `C_OLED_HF` 0.1 µF: **10.1 µF nominal**. | Actual OLED module/controller MPN, display-update current and startup, firmware timing; header MPN is not an OLED load specification. |
+| `SENSOR_3V3` | `FB_SENSOR` BLM21PG221SN1D, `C_SENSOR_BULK` 10 µF + 0.1 µF, internal SHT3x harness connector. | Exact off-board sensor/module supply load and harness transient. |
+| `J_EXP` and `J_EXP_PWR` | Project expansion power connectors and control paths exist. | Which optional loads are fitted; do not silently count as zero in a whole-board worst case. |
+
+## Test readiness gates
+
+1. **Gated board source model:** record chosen AA cells, state/cold condition, USB adapter/cable and switch/contact/OVP evidence. Until then, only explicitly labeled voltage and impedance **fixture sweeps** are valid; they cannot be called one real battery/USB case.
+2. **Gated capacitors/passives:** qualify exact MPN DC-bias PSpice models or effective capacitance at each rail voltage, include tolerances and ESR/DCR/saturation if sourced. Nominal 4.7 / 44 / 22 / 47 / 54.1 / 10.1 µF entries above are inventory labels, not effective circuit values.
+3. **Gated load functions:** identify SD card and OLED module or measure representative current-vs-time; fix MCU/RTC/sensor/expansion modes and firmware sequencing. Leave `I_SD(t)`, `I_OLED(t)`, `I_BASE(t)` as **UNSPECIFIED**, never implicitly 0 A in a claimed integrated run.
+4. **Component characterization before integrated claims:** a controlled TPS2116 priority-mux fixture may use declared supply/load sweep parameters and observe VIN1, VIN2, PR1, ST and `VIN_MUX`, with source/load values explicitly marked **fixtures**. This can test model response around the derived boundary, not board transfer. A bounded TPS631000 fixture must separately finish full startup before its 3V3 load-step response is interpretable; the earlier 0.6 ms attempt was stopped after ~30 minutes.
+5. **Acceptance criteria:** derive `3V3_SYS`, SD, OLED and MCU rail limits and timing from selected hardware and actual system behavior, then correlate with physical measurements. Until criteria and stimuli are supplied, **integrated T25 power-tree status is OPEN / UNVERIFIED**.
+
+No Altium schematic/PCB/library change or new DRC was performed. Last physical gate remains T24 courtyard 129/129 and Full Batch DRC 0 warnings / 0 violations.
