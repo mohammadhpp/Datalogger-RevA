@@ -123,3 +123,8 @@ This is a compact milestone history, not a replacement for Git commit history.
 - All 115 components in the six inspected power-related sheets contain only PCB footprint model records; no attached simulation model was found. TI's TPS631000 encrypted PSpice and TPS2116 unencrypted transient PSpice packages are external candidates requiring compatibility and pin-map tests.
 - Detailed report: `AI_CONTINUITY/T25A_POWER_TREE_SIMULATION_MODEL_AUDIT.md`.
 - No simulation waveform, changed engineering source, or new DRC result was claimed. Next: T25B exact-part model qualification and sourced stimulus/load profiles.
+
+## T25D — first encrypted TPS631000 PSpice runtime evidence — 2026-09-24
+
+- PSpice 25.1.0 completed the isolated 10 µs tool smoke of the official encrypted TPS631000 model in 30.98 seconds. `.out` ended `JOB CONCLUDED`, produced 1000 printed voltage rows and raw DAT, with no simulator errors or warnings. At 10 µs, simulated VOUT was 0.1182 V under a TI-example test source/load and project nominal passives. The v4 wrapper's `NO_PASS` was a false negative due to an unavailable process exit code; classifier corrected in Git. This is a limited model/engine runtime PASS, not converter regulation or board startup qualification.
+- T25E TPS2116 isolated model smoke v1 was prepared from the verified TI archive and exact physical-to-subcircuit mapping; Windows runtime remains pending. Canonical Altium files and the last T24 0/0 DRC were not changed.
