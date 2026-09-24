@@ -133,3 +133,8 @@ This is a compact milestone history, not a replacement for Git commit history.
 
 - Verified original TI ZIP/header and built a versioned standalone PSpice model smoke. User's Windows PSpice 25.1.0 finished the 7 ms fixed-source fixture cleanly in 0.83 seconds, with 701 printed rows, raw DAT, `JOB CONCLUDED`, and zero simulator errors/warnings. **Limited isolated model/runtime PASS**; no controlled source transfer or board power-tree PASS.
 - Corrected the fixture interpretation: its 3.3 Ω load actually drew 1.498 A at simulated final VOUT 4.944 V, so it did not reproduce TI's stated 1 A example. The next project step is a sourced battery/USB/load requirements matrix followed by bounded staged integrated tests. No canonical Altium change or new DRC.
+
+## T25F/T25G — source/load matrix and isolated mux priority behavior — 2026-09-24
+
+- T25F enumerated actual project power nets, exact component MPNs, nominal capacitors and unknown cell/adapter/card/display load parameters. The TI TPS2116 reference and project PR1 divider imply a static VIN1 selection boundary of 3.639–4.369 V including stated device/resistor tolerances, nominal 4.000 V; this is not a measured dynamic threshold.
+- T25G PSpice 25.1.0 isolated TPS2116 fixture completed in 1.11 s with 801 printed points, DAT, no simulator error/warning. Status/output traces confirm the vendor model switched from VIN1 to VIN2 and back under one explicitly defined 5→3.3→5 V fixture ramp, VIN2=3 V, 330 Ω load. **Limited model priority-state PASS**; board USB/AA handoff, full TPS631000 startup and SD/OLED load response remain open. No engineering source change or new DRC.
