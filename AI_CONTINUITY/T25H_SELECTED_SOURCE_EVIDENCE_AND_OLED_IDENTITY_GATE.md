@@ -1,6 +1,6 @@
 # T25H — User-selected source evidence and OLED identity gate
 
-Date: 2026-09-24. Status: **source identifiers partly resolved; OLED identity / integrated transient OPEN**.
+Date: 2026-09-24. Status: **source identifiers partly resolved; photographed four-pin OLED pinout CONFLICT with J_OLED; integrated transient OPEN**.
 
 ## Inputs and traceability
 
@@ -14,6 +14,10 @@ Date: 2026-09-24. Status: **source identifiers partly resolved; OLED identity / 
 | `BT1` two series AA Camelion Digi Alkaline LR6 | Manufacturer [Camelion product page](https://camelion.com/product/camelion-digi-alkaline-lr6-mignon-bp2/): nominal **1.5 V per cell**; listed **2700 mAh per cell** only for 25 mA continuous load at 20 ±2 °C to 0.9 V endpoint. Series pair nominal 3.0 V and does **not** double Ah. Product-page package variant BP2 is illustrative of the named family, not confirmed package SKU. | No cell internal resistance versus discharge, temperature and frequency; no holder/contact/fuse series impedance; no measured pulsed voltage or actual runtime from the low-current capacity rating. |
 | `J_SD` / `SD_VDD` | User's actual card described only as **4 GB unbranded**; board socket `MR01A-01245`, branch capacitors 54.1 µF nominal before bias. | Card capacity is no write/idle/inrush current spec; do not generate an alleged actual-card load step without current measurement. |
 | `J1` / `USB_VBUS_RAW` | User uses unspecified standard USB chargers and power banks. The board expects a USB-C 5 V sink connection through the discrete OVP and TPS2116 path (T25F). Nominal 5 V may be an explicitly labeled **fixture stimulus**. | No specific adapter current limit, USB negotiation/PD capability, cable resistance, ramp, droop or OVP transient; generic “standard” does not establish a regulated on-board source under dynamic load. The board schematic is **not** a battery charger. |
+
+## Follow-up T25I — photographed four-pin module has opposite power-pin order
+
+The user subsequently provided clear front/back photographs of an assembled four-pin OLED carrier, separately documented with SHA256 and pin table in `AI_CONTINUITY/T25I_OLED_4PIN_PINOUT_CONFLICT.md`. Its front silk reads **1 GND, 2 VDD, 3 SCK, 4 SDA**. Canonical project `J_OLED` reads **1 OLED_VDD, 2 GND, 3 OLED_SCL, 4 OLED_SDA**. Same-number direct connection therefore reverses power and ground on pins 1/2; **do not directly connect/power**. The manufacturer WEA module described below has the *opposite first-two-pin order* to this photographed carrier; its supply current is not a valid profile for the photographed hardware. Confirm the photographed board is the intended physical assembly and intended cable/direct mating, and then choose a documented cross-wired harness or controlled schematic/PCB correction with new ECO/DRC. The uploaded raw-panel PDF is still not a carrier current specification.
 
 ## Critical OLED identity / interface conflict
 
