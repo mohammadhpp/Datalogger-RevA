@@ -11,6 +11,8 @@ Purpose: keep project continuity inside Git so a new AI/session can resume accur
 5. Inspect latest Git commits.
 6. Inspect the current engineering files relevant to the requested task. For BOM and SD/OLED claims inspect current SchDocs and matching T25/T23 records; distinguish the connector MPN from an off-board card/module. Look up already provided PDF/photo evidence in stored project files; an absent Git-tracked PDF is not evidence that the user never supplied it.
 7. If any handoff statement conflicts with newer Git/file evidence, newer Git/file evidence wins and the handoff must be corrected.
+8. Read `AI_CONTINUITY/SOURCE_REGISTRY_AND_RETENTION_RULE_FA.md` and the machine-readable source archive registry before declaring a historical PDF/BOM or ZIP unavailable or safe to delete. The Git exports of workbook cells and PDF text are accessible evidence but cannot substitute for the original binary/ZIP.
+9. Before making a quantitative claim, keep **measured prototype value / historical design envelope / current-board verified value** separate. User's final correction: 19 mA old DMM reading, 280 mA basis for *all power calculations and part selections*, no accepted 85 mA reading.
 
 ## At every meaningful milestone
 
@@ -76,3 +78,9 @@ A good handoff must answer all of these without needing the old chat:
 Git continuity does not eliminate the value of periodic full offline backups.
 
 At major release/milestone boundaries, preserve a complete offline continuity package containing source, state/handoff, decisions, validation status, roadmap, relevant history/checkpoints, and hashes where practical. Treat it as disaster recovery; normal day-to-day continuation should use the Git repo.
+
+## Archive deletion and automated continuity guard (T25V)
+
+- Full T22 and stage T23 binary ZIPs, plus the curated ZIP, live in stored project files and are indexed by SHA256 in `SOURCE_ARCHIVE_REGISTRY_2026-09-25.json`. None of the three full ZIP payloads is committed to GitHub. A manifest, PDF text extraction, Excel-cell export or GitHub Actions PASS **does not** authorize deleting an original archive; first restore its full bytes from an independently verified replacement and compare whole-file SHA256 and ZIP integrity.
+- `.github/workflows/continuity_guard.yml` runs `AI_SCRIPTS/Continuity/check_source_continuity.py` at pushes to main and on request. It verifies required live continuity/CAD paths, the single exact-point heading, presence of the source registry, hashes of known external archives, the 14-tab workbook export and `B6=0.28 A`. Its PASS concerns **Git-readable continuity only**, never storage of absent ZIPs, physical DRC or functional simulation.
+- At each new session read `AI_START_HERE.md`, its linked archive registry, recovered source text/workbook cell export, then current relevant SchDocs. If any evidence is only in an archived ZIP/Library, use its registry path and hash. Never mistake stale historical blocks for the current circuit.
