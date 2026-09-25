@@ -91,9 +91,11 @@ def run():
     print("Isolated vendor ZENER DC submodel at 25 C, VIN=12 V, Rgate=10k:")
     print("  Iz=%.6f mA; Vsource-Vgate=%.6f V; Vgate=%.6f V" %
           (1000 * current, clamp, V_FAULT - clamp))
-    print("  FSS2301S 10 V gate-source rating has %.6f V nominal-model" %
+    print("  Compared with a 10 V MAGNITUDE screen, difference %.6f V" %
           (10.0 - clamp))
-    print("  difference ONLY in this disconnected PNP/Rhyst, DC fixture.")
+    print("  ONLY in this disconnected PNP/Rhyst, DC fixture.")
+    print("  FOSAN PDF prints '+10 V'; negative VGS absolute rating is")
+    print("  NOT explicit there. This difference is NOT a qualified margin.")
     print("  No Zener lot/temp bounds or complete OVP switching validated.")
 
 
