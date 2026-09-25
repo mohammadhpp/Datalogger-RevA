@@ -29,6 +29,29 @@ def cell(sheet, address):
     raise ValueError("missing workbook cell: " + address)
 
 
+def isolated_zener_gate(v_source, r_gate=10000.0, temp_c=25.0):
+    """DC-only nominal vendor zener model, no PNP, hysteresis or MOS gate.
+
+    Diodes BZT52C6V2.spice.txt: VZ=5.14 V, DR IS=6.65f A, RS=2.30 ohm,
+    N=1.49; D1 reverse leakage/capacitance omitted. No process corners.
+    """
+    isat = 6.65e-15
+    vt = 8.617333262e-5 * (temp_c + 273.15)
+
+    def v_zener(i):
+        return 5.14 + 1.49 * vt * math.log1p(i / isat) + 2.30 * i
+
+    lo, hi = 0.0, max(v_source / r_gate, 0.0)
+    for _ in range(120):
+        i = (lo + hi) / 2.0
+        if i > max((v_source - v_zener(i)) / r_gate, 0.0):
+            hi = i
+        else:
+            lo = i
+    i = (lo + hi) / 2.0
+    return i, v_zener(i)
+
+
 def run():
     book = json.loads(BOOK.read_text(encoding="utf-8"))
     assert book["source_workbook_sha256"] == BOOK_SHA256
@@ -64,6 +87,14 @@ def run():
     print("These times assume a completely ON linear RC switch, no load, and")
     print("an ideal source. No Rtotal, Ceff, turnoff time or current has been")
     print("measured for the actual assembly. Fault protection remains OPEN.")
+    current, clamp = isolated_zener_gate(V_FAULT)
+    print("Isolated vendor ZENER DC submodel at 25 C, VIN=12 V, Rgate=10k:")
+    print("  Iz=%.6f mA; Vsource-Vgate=%.6f V; Vgate=%.6f V" %
+          (1000 * current, clamp, V_FAULT - clamp))
+    print("  FSS2301S 10 V gate-source rating has %.6f V nominal-model" %
+          (10.0 - clamp))
+    print("  difference ONLY in this disconnected PNP/Rhyst, DC fixture.")
+    print("  No Zener lot/temp bounds or complete OVP switching validated.")
 
 
 if __name__ == "__main__":
