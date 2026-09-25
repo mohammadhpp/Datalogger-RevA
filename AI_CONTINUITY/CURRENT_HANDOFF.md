@@ -21,6 +21,11 @@
 - Current Git has no tracked PDFs or separately exported received-parts BOM; Sept 8 T23 Stage2 ZIP contains no PDFs. The user-provided WEO bare OLED panel PDF was already analyzed in T25K. The user's final purchased parts remain a user-confirmed fact; do not infer a procurement shortfall from historic quantity differences.
 - At the T22 snapshot (29 Aug), 133 schematic symbols /129 footprint links and 0 Error /12 accepted warnings had been recorded; current T23/T24 PASS and 0/0 DRC supersede its physical-stage status. The previous oversized handoff is preserved in `HANDOFF_ARCHIVE_THROUGH_T25T_2026-09-25.md`; this file remains the sole live exact point.
 
+### Source retention and continuous lookup, 2026-09-25
+
+- **Neither the 72,765,718-byte T22 full ZIP, the 105,917,226-byte T23 Stage2 ZIP, nor the 8 MB curated T25V ZIP is tracked as a binary in GitHub.** The T23 ZIP exceeds GitHub's regular 100 MiB per-file limit. Do not tell the user to delete an original based on the short report, manifest or curated ZIP. Their full stored-file identities, SHA256, member manifests and non-Git retention status are in `AI_CONTINUITY/SOURCE_ARCHIVE_REGISTRY_2026-09-25.json` and `SOURCE_REGISTRY_AND_RETENTION_RULE_FA.md`.
+- Git now contains Git-readable exports: `T25V_RECOVERED_BLOCK_DOCUMENT_TEXT.md` for nine principal PDF/baseline sources and `T25V_PURCHASE_BOM_V017_CELL_EXPORT.json` for every cell/formula in the historic 14-tab workbook. These are secondary historical reading copies, not original PDF/XLSX byte payloads or current CAD. `AI_START_HERE.md` links them; `AI_SCRIPTS/Continuity/check_source_continuity.py` and GitHub Actions workflow `continuity_guard.yml` check that core sources and corrected 19 mA / 280 mA provenance remain discoverable on every push. A green workflow is not a ZIP-backup or electrical PASS.
+
 ### NEXT EXACT ACTION inside authorized T25
 
 1. Use the recovered historical sources and current `01_POWER.SchDoc` / all seven sheets to finish pre-fabrication source-bounded simulation screening; prioritize the static OVP max threshold 5.916 V versus TPS2116 absolute VIN 6.0 V, loaded AA startup-drop budget <150 mV, TPS631000 Ceff minima and switched SD/OLED sensitivity. Treat any unmeasured current/source/aging values as explicit scenario parameters; **no integrated rail, OVP or selected external-load PASS exists**.
