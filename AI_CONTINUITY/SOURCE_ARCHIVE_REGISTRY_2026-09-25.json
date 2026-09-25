@@ -3148,7 +3148,14 @@
         "state": "uploaded",
         "size_bytes": 72765718,
         "github_computed_digest": "sha256:22502ef489575150f849f394d5db9e67546c592243e48c0e49deb7ff9983a96b",
-        "github_api_checked_utc_date": "2026-09-25"
+        "github_api_checked_utc_date": "2026-09-25",
+        "user_windows_restore_check": {
+          "date": "2026-09-25",
+          "downloaded": true,
+          "opened": true,
+          "sha256_matches_registry": true,
+          "evidence": "user verbal attestation in project conversation; PowerShell log not uploaded"
+        }
       }
     },
     {
@@ -3844,7 +3851,14 @@
         "state": "uploaded",
         "size_bytes": 105917226,
         "github_computed_digest": "sha256:1576ed0e29aa6f59926ab778dca46ab8aef43207b080da867b8cb1cce2c6cdea",
-        "github_api_checked_utc_date": "2026-09-25"
+        "github_api_checked_utc_date": "2026-09-25",
+        "user_windows_restore_check": {
+          "date": "2026-09-25",
+          "downloaded": true,
+          "opened": true,
+          "sha256_matches_registry": true,
+          "evidence": "user verbal attestation in project conversation; PowerShell log not uploaded"
+        }
       }
     },
     {
@@ -4075,7 +4089,14 @@
         "state": "uploaded",
         "size_bytes": 7981136,
         "github_computed_digest": "sha256:dabdbf320e9cf477cbc037c14ba7ed300d5a965c0eafb776224326cd8d098062",
-        "github_api_checked_utc_date": "2026-09-25"
+        "github_api_checked_utc_date": "2026-09-25",
+        "user_windows_restore_check": {
+          "date": "2026-09-25",
+          "downloaded": true,
+          "opened": true,
+          "sha256_matches_registry": true,
+          "evidence": "user verbal attestation in project conversation; PowerShell log not uploaded"
+        }
       }
     }
   ],
@@ -4288,6 +4309,6 @@
     "url": "https://github.com/mohammadhpp/Datalogger-RevA/releases/tag/continuity-archives-2026-09-25",
     "kind": "private prerelease; historical continuity archives, not manufacturing release",
     "server_verification": "GitHub Release API reported state=uploaded and GitHub-computed sha256 digest and size identical to independently hashed original for every asset on 2026-09-25.",
-    "independent_download_and_zip_extraction": "PENDING: download and unzip/hash a Release asset on Windows before deleting its original local archive."
+    "independent_download_and_zip_extraction": "USER_ATTESTED_2026-09-25: user downloaded and opened all three GitHub Release ZIP assets, ran Windows Get-FileHash SHA256 on each, and reported all three matched the registry. No screenshot/console transcript retained in Git; this is user-reported restore verification, not a local reproduction by AI."
   }
 }
