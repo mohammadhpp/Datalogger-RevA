@@ -256,9 +256,11 @@ R_LOAD_FIXTURE VIN_MUX 0 @LOAD@
     ) | Set-Content -LiteralPath $report -Encoding UTF8
     $files.Add($report)
     if (Test-Path -LiteralPath $manifest -PathType Leaf) { $files.Add($manifest) }
-    foreach ($pattern in @('*.cir','*.out','*.console.txt','*.stderr.txt')) {
+    foreach ($pattern in @('*.cir','*.out','*.console.txt','*.stderr.txt','*.dat')) {
         foreach ($f in @(Get-ChildItem -LiteralPath $work -File -Filter $pattern -ErrorAction SilentlyContinue)) {
-            if (-not $files.Contains($f.FullName)) { $files.Add($f.FullName) }
+            if ($f.Extension -ne '.dat' -or $f.Length -le 24MB) {
+                if (-not $files.Contains($f.FullName)) { $files.Add($f.FullName) }
+            }
         }
     }
     $present = @($files.ToArray() | Where-Object { Test-Path -LiteralPath $_ -PathType Leaf })
