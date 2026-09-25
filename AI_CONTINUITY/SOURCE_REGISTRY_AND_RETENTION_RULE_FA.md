@@ -1,16 +1,16 @@
 # Datalogger RevA — نقشهٔ اسناد و شرط حذف امن بکاپ
 
-تاریخ: 2026-09-25. **این سند، manifest و خروجی متنی، جای فایل ZIP کامل نیستند.** منبع شماتیک و PCB فعلی GitHub خصوصی `mohammadhpp/Datalogger-RevA/main` است. فایل‌های تاریخی صرفاً منشأ تصمیم‌ها و بازگشت به وضعیت پیشین هستند.
+تاریخ: 2026-09-25. [Release خصوصی آرشیوهای تاریخی](https://github.com/mohammadhpp/Datalogger-RevA/releases/tag/continuity-archives-2026-09-25) شامل **هر سه ZIP کامل** است؛ این Release پیش‌انتشار است و مجوز تولید برد نیست. خود manifest و خروجی متنی، جای فایل‌های کامل را نمی‌گیرند. منبع شماتیک و PCB فعلی GitHub خصوصی `mohammadhpp/Datalogger-RevA/main` است. فایل‌های تاریخی صرفاً منشأ تصمیم‌ها و بازگشت به وضعیت پیشین هستند.
 
-| فایل | اندازه / SHA256 | محل نسخهٔ کامل | وضعیت GitHub |
+| فایل | اندازه (بایت) / SHA256 | دارایی کامل در GitHub خصوصی | بررسی |
 | --- | --- | --- | --- |
-| T22 کامل، `Datalogger_RevA_FULL_OFFLINE_CONTINUITY_BACKUP_T22_RELEASE_EXACT_2026-08-29.zip` | 72,765,718 بایت؛ `22502ef489575150f849f394d5db9e67546c592243e48c0e49deb7ff9983a96b` | فایل ذخیره‌شدهٔ پروژه `/dataloger/`؛ 768 عضو، شامل 30 مدخل PDF و Purchase BOM v0.17 | **خود ZIP در Git نیست**؛ فقط این manifest و نسخهٔ متنی بعضی مدارک در Git هستند. |
-| T23 Stage2، `Datalogger_RevA_FULL_OFFLINE_CONTINUITY_BACKUP_T23_ROUTING_STAGE2_V3_2026-09-08(1).zip` | 105,917,226 بایت؛ `1576ed0e29aa6f59926ab778dca46ab8aef43207b080da867b8cb1cce2c6cdea` | فایل پیوست‌شدهٔ ذخیره‌شدهٔ پروژه | **خود ZIP در Git نیست**. از 100 MiB بیشتر است و به‌صورت فایل عادی GitHub قابل ثبت نیست؛ Git LFS یا دارایی انتشار لازم دارد. این ZIP PDFهای T22 را هم ندارد. |
-| T25V گزیدهٔ بازیابی، `Datalogger_T25V_Recovered_Design_Documents_2026-09-25.zip` | حدود 8 MB؛ هش نسخهٔ جاری در `SOURCE_ARCHIVE_REGISTRY_2026-09-25.json`؛ این ZIP هنگام اصلاح گزارش نسخه‌گذاری می‌شود. | فایل ذخیره‌شدهٔ پروژه `/dataloger/` | **خود ZIP در Git نیست** و چون فقط 39 فایل از T22 را حمل می‌کند، جانشین کامل T22 یا T23 نیست. |
+| T22 کامل | 72,765,718؛ `22502ef489575150f849f394d5db9e67546c592243e48c0e49deb7ff9983a96b` | [ZIP اصلی در Release](https://github.com/mohammadhpp/Datalogger-RevA/releases/download/continuity-archives-2026-09-25/Datalogger_RevA_FULL_OFFLINE_CONTINUITY_BACKUP_T22_RELEASE_EXACT_2026-08-29.zip)؛ PDFهای طراحی و Purchase BOM v0.17 | بارگذاری‌شده؛ SHA-256 محاسبه‌شدهٔ GitHub مطابق اصل |
+| T23 Stage2 کامل | 105,917,226؛ `1576ed0e29aa6f59926ab778dca46ab8aef43207b080da867b8cb1cce2c6cdea` | [ZIP اصلی در Release](https://github.com/mohammadhpp/Datalogger-RevA/releases/download/continuity-archives-2026-09-25/Datalogger_RevA_FULL_OFFLINE_CONTINUITY_BACKUP_T23_ROUTING_STAGE2_V3_2026-09-08.zip)؛ نام دارایی Release با اصل فرق دارد ولی هش بایت‌ها یکی است | بارگذاری‌شده؛ SHA-256 محاسبه‌شدهٔ GitHub مطابق اصل؛ فاقد PDFهای T22 |
+| T25V گزیده | 7,981,136؛ `dabdbf320e9cf477cbc037c14ba7ed300d5a965c0eafb776224326cd8d098062` | [ZIP گزیده در Release](https://github.com/mohammadhpp/Datalogger-RevA/releases/download/continuity-archives-2026-09-25/Datalogger_T25V_Recovered_Design_Documents_2026-09-25.zip)؛ 39 فایل منتخب از T22 | بارگذاری‌شده؛ SHA-256 محاسبه‌شدهٔ GitHub مطابق اصل؛ جانشین T22/T23 نیست |
 
 ## چهار مدرک متنی که از این پس در خود Git قابل خواندن‌اند
 
-1. `AI_CONTINUITY/SOURCE_ARCHIVE_REGISTRY_2026-09-25.json`: SHA256 کل هر ZIP و مسیر/اندازه/SHA256 همهٔ اعضای ۳ بسته؛ برچسب آشکار `NOT_TRACKED` برای باینری‌ها. این فقط **فهرست** است.
+1. `AI_CONTINUITY/SOURCE_ARCHIVE_REGISTRY_2026-09-25.json`: SHA256 کل هر ZIP و مسیر/اندازه/SHA256 همهٔ اعضای ۳ بسته؛ برچسب `NOT_TRACKED` فقط یعنی باینری‌ها در شاخهٔ `main` commit نشده‌اند؛ لینک Release، اندازهٔ دقیق و SHA-256 محاسبه‌شدهٔ GitHub هم در رجیستری آمده است. رجیستری فقط فهرست است.
 2. `AI_CONTINUITY/T25V_PURCHASE_BOM_V017_CELL_EXPORT.json`: هر ۱۴ برگهٔ Excel تاریخی، آدرس سلول، مقدار/فرمول و cached value اگر در فایل مبنا موجود بود. `Power Calculations!B6=0.28 A`. برای ویرایش BOM یا احراز قطعات تحویلی از PDF/شماتیک و خود Excel استفاده شود.
 3. `AI_CONTINUITY/T25V_RECOVERED_BLOCK_DOCUMENT_TEXT.md`: متن ۹ مأخذ پاور، MCU، MicroSD، OLED/SHT3x، RTC، کلید، توسعه و بودجهٔ پایه‌ها با مسیر اصلی/SHA. استخراج متن تصاویر/جدول‌های PDF را به‌طور کامل حفظ نمی‌کند.
 4. `AI_CONTINUITY/T25V_RECOVERED_DESIGN_BASIS_AND_GAPS_FA.md`: تحلیل اعتبار و اختلافات؛ `AI_CONTINUITY/CURRENT_HANDOFF.md`: یک نقطهٔ ادامهٔ زنده.
@@ -19,10 +19,10 @@
 
 ## قانون حذف فایل
 
-هیچ‌کدام از سه ZIP را به این دلیل که «manifest/PDF متن/ZIP گزیده در Git هست» پاک نکنید. پیش از حذف یک اصل، همان **نسخهٔ کامل و یکسان** را از نگهدارندهٔ جایگزین بازگردانید، `SHA256` کل فایل را با رجیستری بالا تطبیق دهید، آزمون سالم بودن ZIP را اجرا کنید و وجود نسخهٔ دوم مستقل را تأیید کنید. برای ادعای «روی GitHub ذخیره است» باید خود blob کامل، دارایی Release یا Git LFS بازیابی و بایت به بایت کنترل شده باشد. GitHub فقط گزارش را دارد؛ ZIPهای بزرگ هنوز بارگذاری نشده‌اند. فایل‌های قدیمی به‌هیچ‌وجه مرجع جایگزین PCB فعلی نیستند.
+اکنون هر سه فایل اصلی در GitHub **به‌صورت دارایی Release** ذخیره شده‌اند؛ هیچ‌یک به شاخهٔ `main` افزوده نشده‌اند. API گیت‌هاب وضعیت `uploaded`، اندازه و SHA-256 یکسان با اصل را برای هر سه گزارش کرد. پیش از حذف نسخهٔ قدیمیِ محلی، همان ZIP را از لینک Release روی ویندوز دوباره دانلود کنید، SHA-256 فایل بازیابی‌شده را با سطر جدول تطبیق دهید، ZIP را باز کنید/سالم بودنش را بسنجید و یک نسخهٔ مستقل دوم را نگه دارید. دانلود و آزمون ZIP بازیابی‌شده هنوز در این محیط تأیید نشده است؛ بنابراین حذف نسخهٔ یگانه یا حذف آرشیو مستقل دوم را هنوز امن اعلام نمی‌کنیم. این ZIPهای تاریخی مرجع PCB جاری نیستند.
 
 ## سازوکار جلوگیری از گم‌شدن اطلاعات
 
 - `AI_START_HERE.md` باید **قبل از تصمیم طراحی** به این رجیستری، گزارش و متن مأخذها ارجاع دهد؛ اگر سندی در Git نبود، رجیستری محل نسخهٔ آرشیوی و SHA را نشان می‌دهد.
-- `AI_SCRIPTS/Continuity/check_source_continuity.py` با Python استاندارد و بدون ویرایش فایل، وجود هفت شیت/PCB/PcbLib، یک عنوان زندهٔ handoff، هش‌های بکاپ، ۱۴ برگهٔ BOM و سلول ۰٫۲۸ A را چک می‌کند. اجرای خودکار هنگام هر push در `.github/workflows/continuity_guard.yml` نیز همین وضعیت **متنی** را کنترل می‌کند؛ موفقیت آن اثبات ذخیرهٔ ZIPها در Git نیست.
+- `AI_SCRIPTS/Continuity/check_source_continuity.py` با Python استاندارد و بدون ویرایش فایل، وجود هفت شیت/PCB/PcbLib، یک عنوان زندهٔ handoff، هش‌های بکاپ، ۱۴ برگهٔ BOM و سلول ۰٫۲۸ A را چک می‌کند. اجرای خودکار هنگام هر push در `.github/workflows/continuity_guard.yml` نیز همین وضعیت **متنی** را کنترل می‌کند؛ موفقیت آن فقط درستی پیوستگی متنی را تأیید می‌کند؛ اثبات آنلاین موجود بودن و سلامت دارایی‌های Release از API و بازآزمایی دانلود حاصل می‌شود.
 - هر تصمیم تازه باید در handoff کوتاه ثبت و در صورت تغییر طراحی، با Git/DRC همان مرحله همراه شود. هر محاسبه باید منبع، مقدار فرض‌شده، شرط اعتبار و وضعیت PASS/OPEN داشته باشد. اگر داده در منبع اصلی نیست، آن را از حافظه حدس نزنید.
