@@ -140,3 +140,9 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 
 - The v1 `.ps1` in Git contained UTF-8 without a BOM and em dashes inside string literals. The user's Windows PowerShell read it using a legacy code page, producing a `ParserError` near line 152 **before any PSpice run** and before ZIP creation. This is an automation failure, not an electrical or vendor-model result.
 - For one-click scripts targeting Windows PowerShell 5.1, use **ASCII-only source text** (or an explicitly verified UTF-8 BOM), check bytes before Git publishing and use new versioned names/output folders after a failed attempt. Do not classify a launcher that prints its final static instructions as evidence the called PowerShell script actually ran; require its unique result ZIP.
+
+## T25Q bounded PSpice runtime evidence — 2026-09-25
+
+- A **finished short PSpice pilot** can establish model compatibility without establishing startup. The exact TPS631000 v2 pilot independently showed `JOB CONCLUDED`, 1001 rows and VOUT 0.1182 V at 10 µs, while TI soft start takes milliseconds. Do not label the incomplete voltage as a startup failure or success.
+- A **runtime projection is a gating heuristic**, never an observed full transient. In T25Q v2 a 31.13 s / 10 µs pilot projected 37356 s for 12 ms; the full job was skipped before launch. Preserve `FULL_RUN_SKIPPED_SLOW_MODEL` separately from simulator abort, convergence error or an electrical failure. No repeated microsecond runs convert a missing millisecond waveform into evidence.
+- For exact TDK C2012 parts, a downloadable *series* PSpice model link does not prove either exact model exists inside. Scan actual archive for both full part numbers and inspect units/conditions before deriving a reference C(V); account for tolerance, temperature and aging separately before claiming TI effective-C minima are met. Manufacturer characteristic charts explicitly label reference data as nonguaranteed.
