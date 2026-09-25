@@ -138,3 +138,9 @@ This is a compact milestone history, not a replacement for Git commit history.
 
 - T25F enumerated actual project power nets, exact component MPNs, nominal capacitors and unknown cell/adapter/card/display load parameters. The TI TPS2116 reference and project PR1 divider imply a static VIN1 selection boundary of 3.639–4.369 V including stated device/resistor tolerances, nominal 4.000 V; this is not a measured dynamic threshold.
 - T25G PSpice 25.1.0 isolated TPS2116 fixture completed in 1.11 s with 801 printed points, DAT, no simulator error/warning. Status/output traces confirm the vendor model switched from VIN1 to VIN2 and back under one explicitly defined 5→3.3→5 V fixture ramp, VIN2=3 V, 330 Ω load. **Limited model priority-state PASS**; board USB/AA handoff, full TPS631000 startup and SD/OLED load response remain open. No engineering source change or new DRC.
+
+## T25P/T25Q/T25R — model-audit verdict, bounded startup gate and capacitor-model retrieval — 2026-09-24–25
+
+- Closed the **T25A source/model audit** with an explicit T25P verdict: TPS631000/TPS2116 isolated model fixtures can run, but full `3V3_SYS` startup, biased capacitor compliance, mux source handoff and SD/OLED transient **remain OPEN / NO PASS**; last physical DRC is T24 0/0.
+- Fixed T25Q v1 Windows PowerShell legacy-encoding ParserError by shipping ASCII-only v2. User's actual T25Q v2 ZIP proved the 10 µs TPS631000 model pilot completed in ~31 s; the 12 ms full run **was not attempted** because a 37356 s linear *heuristic* exceeded the 600 s limit. Result and ZIP hash are recorded in `T25Q_V2_WINDOWS_RESULT_AND_RUNTIME_VERDICT.md`.
+- Official TDK exact-part pages expose a shared C2012-series DC-bias PSpice archive. Published T25R one-click collector for the user's Windows machine; its result and any exact-part C(V,T) qualification are **pending**. No Altium source edit or fresh DRC accompanied these simulation-documentation milestones.
