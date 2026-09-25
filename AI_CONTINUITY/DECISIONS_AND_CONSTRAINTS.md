@@ -72,3 +72,9 @@ No off-board logical component may remain without a physical PCB connection path
 - `main` should continue tracking `localbackup/main`; do not casually change upstream to GitHub.
 - Git AutoSave v2.4 performs dual backup.
 - AI continuity documents in `AI_CONTINUITY/` are part of the engineering history and should be committed at meaningful milestones.
+
+## Pre-fabrication verification order (user-confirmed 2026-09-25)
+
+- The **final BOM is selected, purchased and physically available**. Do not treat absence of an exported BOM file in GitHub as absence of ordered components or restart part selection without a demonstrated design/BOM mismatch.
+- No RevA PCB has yet been fabricated. The agreed sequence is **functional/simulation risk review first**, then an explicit user decision about manufacturing outputs and factory submission. T26A is a deferred preflight, not a release authorization.
+- Do not label an isolated PSpice engine smoke, hypothetical load waveform or DRC-clean PCB as validated integrated 3V3/SD/OLED behavior. Preserve explicit source and model limitations. Ask the user before commencing a new stage; independent read-only preparation within the already authorized simulation stage remains allowed.
