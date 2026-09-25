@@ -1,7 +1,7 @@
 {
   "schema": "Datalogger RevA source archive registry v1",
   "generated_utc": "2026-09-25",
-  "scope": "Inventory and hashes only; full binary payloads remain in Library, NOT GitHub; do not infer upload from this manifest.",
+  "scope": "Inventory of three full historical ZIP payloads uploaded as private GitHub Release assets; NOT_TRACKED means absent from Git main only. Their local/Library copies and original per-member hashes remain indexed here.",
   "live_engineering_authority": "private GitHub main seven current SchDocs, canonical PcbDoc and PcbLib",
   "archive_replacement_rule": "Never delete an original until its identical full payload has been restored from an independently verified replacement, compared with whole-file SHA256 and confirmed available to future sessions; curated selections/manifests/PDF text cannot replace a full archive.",
   "archive_assets": [
@@ -3141,7 +3141,15 @@
           "bytes": 675,
           "sha256": "15c4dd267fe6a5cce7c91e6b9195d14fabcf2ecc53e33defef3874c3a4301faa"
         }
-      ]
+      ],
+      "github_release_asset": {
+        "file_name": "Datalogger_RevA_FULL_OFFLINE_CONTINUITY_BACKUP_T22_RELEASE_EXACT_2026-08-29.zip",
+        "download_url": "https://github.com/mohammadhpp/Datalogger-RevA/releases/download/continuity-archives-2026-09-25/Datalogger_RevA_FULL_OFFLINE_CONTINUITY_BACKUP_T22_RELEASE_EXACT_2026-08-29.zip",
+        "state": "uploaded",
+        "size_bytes": 72765718,
+        "github_computed_digest": "sha256:22502ef489575150f849f394d5db9e67546c592243e48c0e49deb7ff9983a96b",
+        "github_api_checked_utc_date": "2026-09-25"
+      }
     },
     {
       "label": "T23 stage-specific offline backup",
@@ -3829,7 +3837,15 @@
           "bytes": 478,
           "sha256": "9a2400d3f657df1e657029bc287674325816d2a7c533b425317dfc0433c954ba"
         }
-      ]
+      ],
+      "github_release_asset": {
+        "file_name": "Datalogger_RevA_FULL_OFFLINE_CONTINUITY_BACKUP_T23_ROUTING_STAGE2_V3_2026-09-08.zip",
+        "download_url": "https://github.com/mohammadhpp/Datalogger-RevA/releases/download/continuity-archives-2026-09-25/Datalogger_RevA_FULL_OFFLINE_CONTINUITY_BACKUP_T23_ROUTING_STAGE2_V3_2026-09-08.zip",
+        "state": "uploaded",
+        "size_bytes": 105917226,
+        "github_computed_digest": "sha256:1576ed0e29aa6f59926ab778dca46ab8aef43207b080da867b8cb1cce2c6cdea",
+        "github_api_checked_utc_date": "2026-09-25"
+      }
     },
     {
       "label": "T25V curated selection from T22",
@@ -4052,7 +4068,15 @@
           "bytes": 19956,
           "sha256": "8d156787edf36ba52e662ca0c6d8174e3f467d3ca971cc35b77af2a1f1d4439b"
         }
-      ]
+      ],
+      "github_release_asset": {
+        "file_name": "Datalogger_T25V_Recovered_Design_Documents_2026-09-25.zip",
+        "download_url": "https://github.com/mohammadhpp/Datalogger-RevA/releases/download/continuity-archives-2026-09-25/Datalogger_T25V_Recovered_Design_Documents_2026-09-25.zip",
+        "state": "uploaded",
+        "size_bytes": 7981136,
+        "github_computed_digest": "sha256:dabdbf320e9cf477cbc037c14ba7ed300d5a965c0eafb776224326cd8d098062",
+        "github_api_checked_utc_date": "2026-09-25"
+      }
     }
   ],
   "recovered_selected_39": [
@@ -4258,5 +4282,12 @@
     "revA_power_design_current_mA": 280,
     "load_note": "User reconfirmed all RevA power calculations and power component selections were based on 280mA; do not scale them to 19mA or revive erroneous 85mA.",
     "source": "2026-09-25 user correction and historical v0.17 workbook Power Calculations!B6"
+  },
+  "github_release": {
+    "tag": "continuity-archives-2026-09-25",
+    "url": "https://github.com/mohammadhpp/Datalogger-RevA/releases/tag/continuity-archives-2026-09-25",
+    "kind": "private prerelease; historical continuity archives, not manufacturing release",
+    "server_verification": "GitHub Release API reported state=uploaded and GitHub-computed sha256 digest and size identical to independently hashed original for every asset on 2026-09-25.",
+    "independent_download_and_zip_extraction": "PENDING: download and unzip/hash a Release asset on Windows before deleting its original local archive."
   }
 }
