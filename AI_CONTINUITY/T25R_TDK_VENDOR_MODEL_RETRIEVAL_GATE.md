@@ -1,6 +1,10 @@
 # T25R — Exact TDK capacitor bias-model retrieval gate
 
-Date: 2026-09-25. Status: **manufacturer download links verified; unique ASCII/CRLF Windows one-click evidence collector READY; download/model parse not yet executed on Windows; no Ceff PASS.**
+Date: 2026-09-25. Updated status: **T25R v1 Windows collector executed; official TDK model ZIP request returned HTTP 403; no archive/model/biased Ceff available; electrical sign-off OPEN.**
+
+## Windows result supersedes pending download instructions
+
+User's `Datalogger_T25R_v1_Result_20260925_105939.zip` independently inspected: it contains only a diagnostic report and records TDK `DownloadFile` **(403) Forbidden**. No vendor model was downloaded or parsed. Do not rerun the same script without changed authorized access. Full evidence and restricted next route: `AI_CONTINUITY/T25R_V1_WINDOWS_HTTP403_RESULT.md`. The historical one-click instructions below describe the executed attempt, not a pending task.
 
 ## Manufacturer sources and identity
 
