@@ -2,8 +2,10 @@
 """Read-only continuity guard for Datalogger RevA Git checkout (Python stdlib)."""
 import argparse
 import json
+import os
 from pathlib import Path
 import sys
+from urllib.request import Request, urlopen
 
 REQUIRED = [
     'AI_START_HERE.md',
@@ -26,6 +28,7 @@ REQUIRED = [
 def main():
     ap = argparse.ArgumentParser(description='Check continuity/source evidence; does not change files or upload archives.')
     ap.add_argument('--root',type=Path,default=Path(__file__).resolve().parents[2])
+    ap.add_argument('--verify-release', action='store_true', help='Query the private GitHub Release API and compare all three asset sizes and digests (requires GITHUB_TOKEN).')
     args=ap.parse_args();root=args.root;failures=[]
     for relative in REQUIRED:
         if not (root/relative).is_file():failures.append('MISSING '+relative)
@@ -61,11 +64,35 @@ def main():
     rows=bom.get('sheets',{}).get('Power Calculations',[])
     cell=next((row['B6']['value'] for row in rows if 'B6' in row),None)
     if cell!=0.28:failures.append(f'Power Calculations B6 expected 0.28 A; got {cell!r}')
+    if args.verify_release and not failures:
+        token=os.environ.get('GITHUB_TOKEN')
+        if not token:
+            failures.append('GITHUB_TOKEN needed to inspect the private GitHub Release')
+        else:
+            tag=reg['github_release']['tag']
+            url='https://api.github.com/repos/mohammadhpp/Datalogger-RevA/releases/tags/'+tag
+            req=Request(url, headers={'Accept':'application/vnd.github+json', 'Authorization':'Bearer '+token, 'User-Agent':'Datalogger-RevA-continuity-guard', 'X-GitHub-Api-Version':'2022-11-28'})
+            try:
+                with urlopen(req, timeout=30) as response:
+                    live=json.load(response)
+                if live.get('draft') or not live.get('prerelease'):
+                    failures.append('Historical backup Release is no longer published as a pre-release')
+                online={a['name']:a for a in live.get('assets',[])}
+                for asset in reg['archive_assets']:
+                    expected=asset['github_release_asset']
+                    found=online.get(expected['file_name'])
+                    if not found:
+                        failures.append('Missing GitHub Release asset: '+expected['file_name'])
+                    elif (found.get('state')!='uploaded' or found.get('size')!=asset['bytes']
+                          or found.get('digest')!='sha256:'+asset['sha256']):
+                        failures.append('GitHub Release asset size/digest mismatch: '+expected['file_name'])
+            except Exception as exc:
+                failures.append('Could not verify private GitHub Release: '+str(exc))
     if failures:
         for message in failures:print('FAIL:',message)
         return 2
     print('PASS: source registry, full-backup hashes, 14-tab 280mA BOM, one live handoff and current design file presence.')
-    print('ARCHIVES: three full ZIPs are indexed as GitHub Release assets, absent from Git main. CI does not perform a live download or ZIP-integrity verification.')
+    print('ARCHIVES: three full ZIPs are absent from Git main; '+('live GitHub Release asset metadata confirmed.' if args.verify_release else 'Release assets are indexed; remote not queried.')+' This check does not download/extract ZIP contents.')
     return 0
 
 if __name__=='__main__':sys.exit(main())
