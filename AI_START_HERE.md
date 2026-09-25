@@ -20,9 +20,12 @@ Read these files before making project decisions:
 5. `AI_CONTINUITY/CHAT_MANAGEMENT_RULE.md`
 6. `AI_CONTINUITY/UPDATE_PROTOCOL.md`
 
-Then inspect the latest Git commits and the current engineering files relevant to the task.
+Then inspect the latest Git commits and the current engineering files relevant to the task. `CURRENT_HANDOFF.md` has one live CURRENT EXACT POINT; historical checkpoints are preserved in `AI_CONTINUITY/HANDOFF_ARCHIVE_THROUGH_T25T_2026-09-25.md`. For SD/OLED or other block decisions read the matching schematic and T25/T23 evidence reports, not only the first handoff paragraph. Check user-supplied PDFs in the stored project files as well as tracked Git files, and record which source each fact came from.
 
 ## Current high-level state
+
+- **Current continuity repair:** GitHub `main` includes no PDFs as of 2026-09-25, though `.gitignore` does not exclude them and the user's Windows files have not been inventoried. The already-provided WEO OLED PDF is preserved in the conversation's `/dataloger` stored files and analyzed in `T25K_OLED_PDF_GROUNDED_LOAD_BOUNDARY.md`; the correct OLED photo/pin-order correction is in `T25J_CORRECTED_OLED_MODULE_PHOTO.md`. `03_MICROSD.SchDoc` and saved T23 routing verify the SD interface. Do not ask for those same sources again. Older `Composite Drawing.pdf` in stored files is a PCB print, not a block datasheet.
+
 
 - Project: Datalogger RevA, Altium, **2-layer PCB**.
 - T23 routing: **CLOSED / PASS**.
