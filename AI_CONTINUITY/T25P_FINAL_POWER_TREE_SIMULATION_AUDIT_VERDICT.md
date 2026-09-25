@@ -2,6 +2,10 @@
 
 Date: 2026-09-24. Scope: **final verdict for the source/model audit to date, not a board simulation or electrical sign-off**. Source: private GitHub `main` canonical Altium files and continuity reports T25A–T25O. The Sept 8 T23 ZIP is historical rollback only.
 
+## Subsequent T25Q v2 runtime evidence (2026-09-25)
+
+User's actual Windows result ZIP was reviewed: the official TPS631000 isolated **10 µs pilot completed** in PSpice 25.1 with **1001** rows, no warnings/errors, last VOUT **0.1182 V**, PSpice job time **30.92 s**. The bounded runner **did not start** a 12 ms full startup because its *linear heuristic* projection exceeded its 600 s runtime gate (37356 s projection). This corroborates the model/engine smoke and adds **no** full converter startup or board transient PASS. Evidence and hash: `AI_CONTINUITY/T25Q_V2_WINDOWS_RESULT_AND_RUNTIME_VERDICT.md`. The verdict table below remains unchanged.
+
 ## Direct answer
 
 **The RevA power tree is traceable and the two key TI macromodels can execute in the user's OrCAD X/PSpice 25.1. The complete Datalogger startup, transient response, and switched SD/OLED power integrity are NOT VERIFIED and must NOT be labeled PASS or release-ready from this evidence.** The missing data cannot be replaced with invented numerical profiles. Nominal passive matching to the TI typical application is not effective-capacitance compliance.
