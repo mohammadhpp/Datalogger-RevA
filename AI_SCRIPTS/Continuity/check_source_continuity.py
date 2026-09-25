@@ -45,7 +45,17 @@ def main():
         assets=reg['archive_assets']
         if assets[0].get('sha256')!='22502ef489575150f849f394d5db9e67546c592243e48c0e49deb7ff9983a96b':failures.append('T22 full backup hash changed')
         if assets[1].get('sha256')!='1576ed0e29aa6f59926ab778dca46ab8aef43207b080da867b8cb1cce2c6cdea':failures.append('T23 stage backup hash changed')
-        if any(a.get('git_full_payload_status')!='NOT_TRACKED' for a in assets):failures.append('Registry incorrectly claims full archive is in GitHub; verify actual blobs before changing status')
+        if any(a.get('git_full_payload_status')!='NOT_TRACKED' for a in assets):failures.append('Registry incorrectly claims full archive binaries are tracked in Git main')
+        release=reg.get('github_release',{})
+        expected_tag='continuity-archives-2026-09-25'
+        if release.get('tag')!=expected_tag:failures.append('Historical GitHub Release tag missing or changed')
+        for asset in assets:
+            entry=asset.get('github_release_asset',{})
+            if entry.get('state')!='uploaded':failures.append('Release asset upload status missing: '+asset['label'])
+            if entry.get('size_bytes')!=asset.get('bytes'):failures.append('Release asset size mismatches original: '+asset['label'])
+            if entry.get('github_computed_digest')!='sha256:'+asset['sha256']:failures.append('Release asset digest mismatches original: '+asset['label'])
+            url=entry.get('download_url','')
+            if not url.startswith('https://github.com/mohammadhpp/Datalogger-RevA/releases/download/'+expected_tag+'/') or not url.endswith('/'+entry.get('file_name','')):failures.append('Release URL/tag mismatch: '+asset['label'])
         if sum(a['path'].lower().endswith('.pdf') for a in assets[0]['members'])!=30:failures.append('T22 PDF entry count drift')
     if len(bom.get('sheets',{}))!=14:failures.append('Historical purchase BOM must contain 14 sheets')
     rows=bom.get('sheets',{}).get('Power Calculations',[])
@@ -55,7 +65,7 @@ def main():
         for message in failures:print('FAIL:',message)
         return 2
     print('PASS: source registry, full-backup hashes, 14-tab 280mA BOM, one live handoff and current design file presence.')
-    print('ARCHIVES: full binary ZIPs are NOT in GitHub; do not delete the only original on this basis.')
+    print('ARCHIVES: three full ZIPs are indexed as GitHub Release assets, absent from Git main. CI does not perform a live download or ZIP-integrity verification.')
     return 0
 
 if __name__=='__main__':sys.exit(main())
