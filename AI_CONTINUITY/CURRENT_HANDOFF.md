@@ -1,5 +1,12 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25Q v2 Windows pilot PASS limited; exact 12 ms SKIPPED by runtime gate; integrated startup OPEN — 2026-09-25
+
+- User supplied `Datalogger_T25Q_v2_Result_20260925_104259.zip` SHA-256 `bab09295c26b696d1174f8d7c8940a68c869b10e9cd245975489a5bbf1832f68`. Independently inspected `Pilot_10us.out`: `JOB CONCLUDED`, PSpice job time **30.92 s**, **1001** rows through 10 µs, VIN **2.8 V**, final VOUT **0.1182 V**, FB **0.01841 V**, no simulator errors or warnings; result elapsed **31.13 s**, DAT present. Corrected PowerShell v2 ran successfully. This is a **10 µs isolated vendor-model smoke PASS only**, not 3V3 startup.
+- `FULL_RUN_SKIPPED_SLOW_MODEL`: script estimated **37356 s (~10 h 22 min)** for 12 ms by a simple linear heuristic, above its 600 s gate. ZIP contains **no** full 12 ms deck/result; no full transient was attempted. The estimate is not measured runtime and no electrical failure can be inferred. No repeated short pilot or blind unbounded exact-model multi-ms run.
+- **NEXT EXACT ACTION:** continue autonomous read-only sourcing of exact TDK capacitor C(V,T)/aging data and any manufacturer-supported TPS631000 reduced-order model; document identifiable parameter sources. Then execute **separately labeled** conditional behavioral/system scenario sweeps with explicit source/load/Ceff ranges only when inputs are traceable. Board-signoff 3V3 startup, source transfer and SD/OLED transient remain **OPEN / NO PASS** pending measured/qualified loads and a validated long-time simulation or bench data. Full adjudication: `AI_CONTINUITY/T25Q_V2_WINDOWS_RESULT_AND_RUNTIME_VERDICT.md`; T25P audit remains valid.
+- Canonical Altium schematic/PCB/PcbLib unchanged; no new DRC. Last T24 physical checkpoint 129/129 courtyards and Full Batch DRC **0 warnings / 0 violations** at `3ea38daf1998dc926ec7ee77df95ce5ccf42d3b8`. GitHub `main` is continuity source; user's Windows `Git_Save.cmd` syncs latest documentation. Historical next-actions below have been superseded by this current exact point.
+
 ## CURRENT EXACT POINT — T25Q v1 Windows ParserError FIXED as ASCII-only v2; simulator evidence PENDING — 2026-09-24
 
 - User ran v1 CMD; PowerShell failed **before execution** around line 152 due UTF-8 non-ASCII em dash being decoded under legacy Windows PowerShell 5.1. No v1 ZIP was generated and no PSpice test took place. This is an encoding/parser defect in the automation, **not** a converter/model failure. Detailed erratum: `AI_CONTINUITY/T25Q_BOUNDED_TPS631000_STARTUP_FEASIBILITY_GATE.md`.
