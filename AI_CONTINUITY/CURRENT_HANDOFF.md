@@ -1,5 +1,12 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25R official TDK C2012 model retrieval READY; Windows evidence PENDING — 2026-09-25
+
+- Following independently reviewed **T25Q v2 pilot PASS limited / full 12 ms NOT RUN**, found official TDK **PSpice DC-bias/superimposition model links** for exact `C_OUT=C2012X5R1A476M125AC` and `C_IN=C2012X5R1V226M125AC`; both refer to a C2012 **series** archive. Exact part definitions inside it and numerical C(V,T) have **not** yet been inspected; no effective-C compliance, board startup or SD/OLED load-step PASS.
+- Created unique, ASCII CRLF `AI_SCRIPTS/T25/Run_T25R_TDK_Capacitor_Model_Audit_v1.cmd` and `T25R_TDK_Capacitor_Model_Audit_v1.ps1`: bounded read-only official download and exact-part text scan, result ZIP under Documents even on handled failures, no Altium edits. Static source inspected here; Windows download/parse **PENDING**. Source gate: `AI_CONTINUITY/T25R_TDK_VENDOR_MODEL_RETRIEVAL_GATE.md`.
+- **NEXT EXACT ACTION:** user's normal `Git_Save.cmd` fetches new GitHub scripts; double-click `AI_SCRIPTS\T25\Run_T25R_TDK_Capacitor_Model_Audit_v1.cmd` once and upload **`Documents/Datalogger_T25R_v1_Result_<timestamp>.zip`**. Independently review TDK model payload, derive any nominal bias dependence only from present exact part models, then qualify tolerance/temperature/aging before a Ceff verdict. PSpice/Windows cannot run in this cloud workspace; no approval for engineering design change is requested.
+- Canonical schematic/PCB/PcbLib unchanged; no new DRC. Last T24 physical checkpoint remains courtyard **129/129**, Full Batch DRC **0 warnings / 0 violations**. Earlier T25Q next-action lines below are historical; this top entry controls continuation.
+
 ## CURRENT EXACT POINT — T25Q v2 Windows pilot PASS limited; exact 12 ms SKIPPED by runtime gate; integrated startup OPEN — 2026-09-25
 
 - User supplied `Datalogger_T25Q_v2_Result_20260925_104259.zip` SHA-256 `bab09295c26b696d1174f8d7c8940a68c869b10e9cd245975489a5bbf1832f68`. Independently inspected `Pilot_10us.out`: `JOB CONCLUDED`, PSpice job time **30.92 s**, **1001** rows through 10 µs, VIN **2.8 V**, final VOUT **0.1182 V**, FB **0.01841 V**, no simulator errors or warnings; result elapsed **31.13 s**, DAT present. Corrected PowerShell v2 ran successfully. This is a **10 µs isolated vendor-model smoke PASS only**, not 3V3 startup.
