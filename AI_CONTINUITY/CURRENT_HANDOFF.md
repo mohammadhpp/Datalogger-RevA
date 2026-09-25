@@ -1,5 +1,11 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25R Windows retrieval BLOCKED by official TDK HTTP 403; exact Ceff OPEN — 2026-09-25
+
+- User supplied `Datalogger_T25R_v1_Result_20260925_105939.zip` SHA-256 `0f3acfb704569694865f8627642ceb6f04a2cb2cb9d05afd5437e97ddbea6c95`. Independently opened ZIP: **one 534-byte report**, status `FETCH_OR_INSPECTION_FAILED`, `DownloadFile` returned **(403) Forbidden** at the official TDK C2012 PSpice archive URL. Script ran and packaged diagnostics; **no vendor archive, exact-part model check, numeric C(V,T) or Ceff PASS**. This is an HTTP access error, not a capacitor failure.
+- **NEXT EXACT ACTION:** Do not rerun unchanged T25R script or posit DC-bias numbers. The only currently identified official model is on the [TDK C_OUT product page](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C2012X5R1A476M125AC) under `DC Bias / Superimposition Model (PSpice)` (same C2012-series ZIP for C_IN). If user browser can download the **official TDK ZIP**, analyze it independently; if browser also 403, stop that route and obtain exact-part manufacturer data or direct characterization. No third-party mirror, disabled security, invented model or extra simulator installation. Detailed result: `AI_CONTINUITY/T25R_V1_WINDOWS_HTTP403_RESULT.md`.
+- Preserve **T25Q isolated 10 µs PASS limited / full 12 ms NOT RUN** and T25P model-audit COMPLETE / board `3V3_SYS` startup, source transfer, capacitor effective minima and SD/OLED transients **OPEN / NO PASS**. No Altium edit, no new DRC; T24 checkpoint 129/129 and Full Batch DRC 0 warnings / 0 violations. Historical NEXT ACTION entries below are superseded.
+
 ## CURRENT EXACT POINT — T25R official TDK C2012 model retrieval READY; Windows evidence PENDING — 2026-09-25
 
 - Following independently reviewed **T25Q v2 pilot PASS limited / full 12 ms NOT RUN**, found official TDK **PSpice DC-bias/superimposition model links** for exact `C_OUT=C2012X5R1A476M125AC` and `C_IN=C2012X5R1V226M125AC`; both refer to a C2012 **series** archive. Exact part definitions inside it and numerical C(V,T) have **not** yet been inspected; no effective-C compliance, board startup or SD/OLED load-step PASS.
