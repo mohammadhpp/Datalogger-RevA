@@ -33,3 +33,5 @@
 3. Before any separate manufacturing stage, follow the user's preference to ask first. No fabrication outputs/part substitution without an evidence-based decision.
 
 No PCB source change; no fresh DRC. Update this short handoff by replacing current status and linking a dated history entry; do not append another `CURRENT EXACT POINT` section.
+
+- **Continuity automation:** GitHub Actions `continuity_guard.yml` runs on every `main` push and weekly; latest live Release API asset existence/size/SHA256 verification PASS at commit `c2db1e3fcd72c3e5753d37a30d73e821eae612f4`. The workflow does not download ZIP bytes or grant engineering release; downloaded ZIP verification still required before local deletion.
