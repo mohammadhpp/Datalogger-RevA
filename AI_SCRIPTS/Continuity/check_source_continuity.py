@@ -16,6 +16,8 @@ REQUIRED = [
     'AI_CONTINUITY/CHAT_MANAGEMENT_RULE.md',
     'AI_CONTINUITY/UPDATE_PROTOCOL.md',
     'AI_CONTINUITY/T25V_RECOVERED_DESIGN_BASIS_AND_GAPS_FA.md',
+    'AI_CONTINUITY/T25W_PRE_FAB_POWER_RISK_BOUNDS_FA.md',
+    'AI_SCRIPTS/T25/T25W_Power_Risk_Bounds_v1.py',
     'AI_CONTINUITY/T25V_RECOVERED_BLOCK_DOCUMENT_TEXT.md',
     'AI_CONTINUITY/T25V_PURCHASE_BOM_V017_CELL_EXPORT.json',
     'AI_CONTINUITY/SOURCE_ARCHIVE_REGISTRY_2026-09-25.json',
@@ -54,6 +56,8 @@ def main():
         if release.get('tag')!=expected_tag:failures.append('Historical GitHub Release tag missing or changed')
         for asset in assets:
             entry=asset.get('github_release_asset',{})
+            reported=entry.get('user_windows_restore_check',{})
+            if reported.get('sha256_matches_registry') is not True or reported.get('opened') is not True:failures.append('User-confirmed restored ZIP hash/opening record missing: '+asset['label'])
             if entry.get('state')!='uploaded':failures.append('Release asset upload status missing: '+asset['label'])
             if entry.get('size_bytes')!=asset.get('bytes'):failures.append('Release asset size mismatches original: '+asset['label'])
             if entry.get('github_computed_digest')!='sha256:'+asset['sha256']:failures.append('Release asset digest mismatches original: '+asset['label'])
