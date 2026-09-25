@@ -9,7 +9,7 @@ Purpose: keep project continuity inside Git so a new AI/session can resume accur
 3. Read durable decisions and lessons.
 4. Read `AI_CONTINUITY/CHAT_MANAGEMENT_RULE.md`.
 5. Inspect latest Git commits.
-6. Inspect the current engineering files relevant to the requested task.
+6. Inspect the current engineering files relevant to the requested task. For BOM and SD/OLED claims inspect current SchDocs and matching T25/T23 records; distinguish the connector MPN from an off-board card/module. Look up already provided PDF/photo evidence in stored project files; an absent Git-tracked PDF is not evidence that the user never supplied it.
 7. If any handoff statement conflicts with newer Git/file evidence, newer Git/file evidence wins and the handoff must be corrected.
 
 ## At every meaningful milestone
@@ -25,7 +25,7 @@ Update `AI_CONTINUITY/CURRENT_HANDOFF.md` with:
 - next recommended step,
 - any warning that must not be forgotten.
 
-Then commit the handoff update together with, or immediately after, the engineering checkpoint.
+Keep exactly one active `CURRENT EXACT POINT` in the live handoff. Replace the previous current status instead of appending dated copies; archive detailed old snapshots in a separate file linked from the live handoff. Aim to keep the live entry short enough to read in full before working. Never move/delete historic content without preserving an exact copy. Then commit the handoff update together with, or immediately after, the engineering checkpoint.
 
 ## When to update other continuity files
 
