@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '23 6 * * 1'
 
 permissions:
   contents: read
@@ -13,5 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check required sources and provenance
-        run: python3 AI_SCRIPTS/Continuity/check_source_continuity.py
+      - name: Check sources and live historical Release assets
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 AI_SCRIPTS/Continuity/check_source_continuity.py --verify-release
