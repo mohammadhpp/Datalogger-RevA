@@ -2,6 +2,10 @@
 
 Date: 2026-09-24. Scope: **final verdict for the source/model audit to date, not a board simulation or electrical sign-off**. Source: private GitHub `main` canonical Altium files and continuity reports T25A–T25O. The Sept 8 T23 ZIP is historical rollback only.
 
+## T25S scope and validation-route clarification (2026-09-25)
+
+`AI_CONTINUITY/T25S_CONSOLIDATED_POWER_TREE_DESIGN_REVIEW.md` reconciles the original pre-schematic/datasheet arithmetic with the subsequent simulator limits. T25A's requested source/model audit is **complete**; no observed simulation result overturns a documented nominal design calculation. The `Decision and next executable gate` below was phrased as a proposed *PSpice route*; it must **not** be read as requiring an impractical encrypted PSpice full-startup run if an instrumented prototype and qualified effective-capacitance/source/load data can validate the real board instead. Both routes need actual acceptance criteria before claiming integration PASS. T25R's official model download HTTP 403 does not constitute a component failure. No further repeated vendor-model downloader is a next action.
+
 ## Subsequent T25Q v2 runtime evidence (2026-09-25)
 
 User's actual Windows result ZIP was reviewed: the official TPS631000 isolated **10 µs pilot completed** in PSpice 25.1 with **1001** rows, no warnings/errors, last VOUT **0.1182 V**, PSpice job time **30.92 s**. The bounded runner **did not start** a 12 ms full startup because its *linear heuristic* projection exceeded its 600 s runtime gate (37356 s projection). This corroborates the model/engine smoke and adds **no** full converter startup or board transient PASS. Evidence and hash: `AI_CONTINUITY/T25Q_V2_WINDOWS_RESULT_AND_RUNTIME_VERDICT.md`. The verdict table below remains unchanged.
