@@ -2,6 +2,12 @@
 
 Date: 2026-09-25. Status: **source-based design audit closed at its evidentiary boundary; actual board power-integrity verification OPEN**. This is the practical deliverable after the T25Q 10 µs engine pilot and T25R TDK HTTP 403. It is not a new circuit design, a substitute for initial datasheet selection, or permission to claim production electrical sign-off.
 
+## User-controlled sequence correction: simulation before manufacturing (2026-09-25)
+
+The user confirmed **no physical PCB has been made** and the **BOM is final; all selected parts have already been purchased and are available**. The project agreement is to perform a practical **pre-fabrication functional/simulation risk review before any manufacturing outputs or factory submission**. T26A's manufacturing-file suggestion is deferred. No new part selection, procurement or PCB change is justified by a missing vendor simulator ZIP.
+
+The current private GitHub tree has no exported BOM file, even though the actual purchased BOM exists with the user. The Altium component parameters and T25A/F evidence are a useful base, but to tie SD and OLED simulation loads to the **actual purchased devices** requires the finalized purchased BOM or unequivocal part markings; the known unbranded 4GB card and four-pin display carrier lack qualified current-vs-time waveforms. First reconcile the purchased BOM to existing schematic MPNs, then run source-identified functional checks: vendor TPS2116 model for priority/source transfer within its isolated scope; TPS631000 exact model only where time-bounded runtime can cover the relevant interval; a **separately labeled reduced-order scenario** may screen system timing/load margins if its parameters are traceable, but cannot be called full switching or actual-board PASS. Analyze USB, 2×AA, startup, SD/OLED enables and combined load with explicit tested inputs and defined device rail limits. Report each PASS/OPEN and remaining uncertainty **before** any manufacturing action. No identical download/pilot retry or invented card/OLED current is an acceptable substitute for these inputs.
+
 ## Authoritative inputs and arithmetic replay
 
 - Live private GitHub `main`, canonical `01_POWER.SchDoc` Git blob **`da2d005712c47000eb8c16157eca464d3fee4fe1`**, same as independently decoded in T25A; related six sheets and component map in T25A/T25F. Old September 8 T23 offline ZIP is historical rollback only. No canonical schematic, PCB or PcbLib edits in T25.
