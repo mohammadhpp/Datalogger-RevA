@@ -57,3 +57,5 @@ At every meaningful milestone, update `AI_CONTINUITY/CURRENT_HANDOFF.md` in the 
 The chat-management threshold is approximately **70% of usable conversation context**. Before the chat becomes heavy or continuity degrades, proactively create/update the complete Git handoff and recommend migration to a fresh chat.
 
 Do not rely on chat memory alone for project continuity.
+
+**Automatic backup check:** `.github/workflows/continuity_guard.yml` runs on every `main` push, on manual request, and weekly. It queries the private GitHub Release API using its read-only token and verifies that all three complete assets still exist with expected size and SHA256 digest. This is metadata verification, not downloaded ZIP extraction or electrical simulation.
