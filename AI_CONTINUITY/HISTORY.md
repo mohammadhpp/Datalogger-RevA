@@ -174,3 +174,7 @@ This is a compact milestone history, not a replacement for Git commit history.
 - Updated the registry, entry point, live handoff, retention guide and guard to distinguish Release assets from Git-tracked files. CI checks local continuity and recorded digests, not remote asset availability or simulation.
 
 - Extended GitHub Actions continuity guard to query live private Release API on every main push and once a week with `contents:read`; compares all three actual asset states, sizes and server-computed digests. First live check passed at commit `c2db1e3fcd72c3e5753d37a30d73e821eae612f4`, run 36162669117. Does not download or extract ZIPs.
+
+## T25V user operational confirmation — 2026-09-25
+
+- User reported that Windows `Git_Save.cmd` completed and that ZIPs are OK. No console log or SHA-256/ZIP extraction result for Release redownload was supplied, so independent download/hash validation before deleting a sole original remains an open evidence check; do not infer new DRC, engineering simulation PASS or fabrication release.
