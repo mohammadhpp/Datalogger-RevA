@@ -1,3 +1,7 @@
+# SUPERSEDED AS NEXT ACTION — T26A fabrication preflight is deferred until pre-fabrication functional simulation review
+
+User correction (2026-09-25): The agreed order is **complete the pre-fabrication simulation/functional risk review BEFORE manufacturing files or a factory order**. The BOM has already been finalized, the components purchased and are in the user's possession. This preflight's branch `If no prototype exists -> make Gerbers` must **not** be treated as the current next step. Preserve the Git tree observation for a later stage only; current authoritative continuation is the top `CURRENT_HANDOFF.md`. Do not request part selection or re-open the purchased BOM without an evidenced mismatch.
+
 # T26A — Prototype fabrication/bench decision preflight
 
 Date: 2026-09-25. **PREFLIGHT ONLY / NOT RELEASED FOR FABRICATION**. This follows T25S's closed source/model audit and open integrated electrical validation. The user has not reported whether a physical prototype already exists; this report does not infer that from GitHub contents.
