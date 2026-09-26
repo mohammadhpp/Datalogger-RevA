@@ -21,6 +21,9 @@ SCHDOC_GIT_BLOB = "da2d005712c47000eb8c16157eca464d3fee4fe1"
 V_RAIL_V = 3.3  # purchased workbook design rail, not a verified actual waveform
 TI_RECOMMENDED_COUT_EFF_MIN_UF = 10.4  # TI TPS631000 Rev C, section 5.3
 TDK_COUT_NAMEPLATE_UF = 47.0  # exact part C2012X5R1A476M125AC
+MCU_VDD_MIN_V = 2.0  # STM32G070KBT6, ST DS12766 Rev 3, section 3.7.1
+MCU_VPDR_MAX_V = 2.04  # ST DS12766 Rev 3, Table 22; falling reset threshold maximum
+MCU_VPOR_MAX_V = 2.14  # ST DS12766 Rev 3, Table 22; rising release threshold maximum
 
 
 def cell(book, sheet, address):
@@ -97,10 +100,23 @@ def main():
             "nameplate_illustration_droop_mv_per_us_if_zero_converter_current":
                 slope_mv_per_us(TDK_COUT_NAMEPLATE_UF),
         },
+        "mcu_only_reference_not_system_acceptance": {
+            "exact_mcu": "STM32G070KBT6",
+            "datasheet": "ST DS12766 Rev 3 sections 3.7.1/3.7.2 and Table 22",
+            "VDD_min_operating_v": MCU_VDD_MIN_V,
+            "VPDR_max_falling_reset_v": MCU_VPDR_MAX_V,
+            "VPOR_max_rising_release_v_if_reset_has_happened": MCU_VPOR_MAX_V,
+            "nominal_start_to_VPDR_max_margin_v_if_at_MCU_VDD": V_RAIL_V - MCU_VPDR_MAX_V,
+            "conditional_zero_converter_time_us_at_TI_effective_reference_COUT":
+                TI_RECOMMENDED_COUT_EFF_MIN_UF * (V_RAIL_V - MCU_VPDR_MAX_V) / load,
+            "conditional_zero_converter_time_us_at_TDK_NAMEPLATE_only":
+                TDK_COUT_NAMEPLATE_UF * (V_RAIL_V - MCU_VPDR_MAX_V) / load,
+            "limitations": "Requires MCU-pin VDD tracking C_OUT without local losses, constant effective C and load; says nothing about SD/OLED integrity or other resets.",
+        },
         "unknown_for_no_reset": [
             "Actual biased, aged, populated C_OUT effective capacitance",
             "Maximum no-power interval including TPS2116 and converter response",
-            "Minimum allowed rail at MCU BOR, SD during write, OLED and other active loads",
+            "Actual waveform at MCU VDD/NRST and SD/OLED supply thresholds during write and display operation",
             "Actual rail current profile, converter current and transient control",
         ],
     }
