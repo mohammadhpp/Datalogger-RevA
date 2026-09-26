@@ -201,3 +201,9 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 
 - A newly opened `.sdf` tab alone does not prove successful model parsing or convergence. In T25AK the fake resistor subcircuit produced plausible 200us voltages while the official TI model inline opened `.sdf*` with a roughly `1e20` axis and no discernible curves. Interpret only after checking Messages or numeric traces.
 - Running a 200us fixture with an unplug event scheduled at 1ms cannot establish source transfer. If both external `.LIB` and inline-model variants lack valid data, do not blame `.LIB` alone or expand to 20ms before distinguishing parse, solver, and plot issues.
+
+## T25AP — Use exact mounted MCU and each switched rail's own limits
+
+- The earlier prototype used STM32G030F6, but current `02_MCU_CORE.SchDoc` / T25T inventory has `STM32G070KBT6`. ST DS12766 Rev3 specifies POR/PDR for this device, VDD operation 2.0–3.6V and maximum falling VPDR 2.04V. Do not ask for an unverified programmable BOR option byte or transfer G071/G030 electrical limits to G070.
+- A MCU that stays above its reset threshold does not prove an in-progress SD write survives. SD Association's conventional first-row microSD VDD range starts at 2.7V; check `SD_VDD` at the socket after its switch and local capacitor, not only `3V3_SYS` or MCU VDD. The user's unbranded 4GB card has no qualified current profile.
+- The user-supplied WEO PDF concerns a 20-pin bare panel, not the photographed four-pin carrier. Its 2.8V logic minimum is conditional until that carrier's actual panel and power circuit are confirmed. Do not call the panel current or voltage a measured module rail requirement.
