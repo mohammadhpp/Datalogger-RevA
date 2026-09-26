@@ -1,6 +1,12 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — T25AH USB unplug capacitor energy screen / no-reset HOLD, 2026-09-26
+## CURRENT EXACT POINT — T25AI isolated Altium MixedSim readiness / execution PENDING, 2026-09-26
+
+User explicitly chose Altium's built-in simulator for the USB/battery transfer gate and authorized preparation. Committed one-click generator `AI_SCRIPTS/T25/Run_T25AI_Altium_Prepare_v1.cmd` plus `T25AI_Prepare_Altium_MixedSim_v1.ps1`, and full rationale `AI_CONTINUITY/T25AI_ALTIUM_MIXEDSIM_ISOLATED_COMPATIBILITY_GATE_FA.md`. Independent netlists from the real power schematic and SHA-verified official TI TPS2116 model: (1) USB C_USB1/PR1 RC smoke, then (2) two vendor-model unplug cases, VIN2=1.8V and 3V. Ideal cable switch, nominal capacitances, test-only 330ohm load; actual OVP, buck-boost 3V3, SD/OLED and physical reset are excluded. Altium accepts standalone .nsx starting AD22 per official docs, but these specific vendor-model netlists have NOT been run in the user's Windows Altium. Linux static checks passed; PowerShell and Altium were not available here. Previously confirmed PSpice-model-to-physical discrepancy still blocks hardware transfer verdict even if Altium parses the model.
+
+**NEXT EXACT ACTION:** User runs `Run_T25AI_Altium_Prepare_v1.cmd` from local Git after `Git_Save.cmd` sync. In Altium open output `01_CORE_RC_SMOKE.nsx` as free document and press F9. Return Altium Messages/result or the first error. Only then run the 1.8V and 3V vendor-model controls if RC succeeds; preserve raw output. Diagnose parser/model mismatch before touching canonical CAD. Maintain existing P9 gates (1.80V loaded AA, 5.50V normal USB, 280mA design load, no reset) and **NO FABRICATION PASS**. T23/T24 physical DRC remains 0/0 and has not been rerun.
+
+## Previous checkpoint — T25AH USB unplug capacitor energy screen / no-reset HOLD, 2026-09-26
 
 **Authoritative project:** private GitHub `mohammadhpp/Datalogger-RevA`, `main`, and user's local working repo `C:\#MHP FILES\DataLoger`. Canonical `DATALOGER_RevA.PcbDoc`, `Datalogger_RevA_Clean.PcbLib`, seven current `*.SchDoc` sheets. Do not use the 2026-09-08 T23 offline ZIP as the live source.
 
@@ -42,7 +48,7 @@
 
 - **T25AH bounded unplug screen, 2026-09-26:** Live 01_POWER.SchDoc re-fetched, blob unchanged; T25V v0.17 workbook locked 1.80V loaded pack/280mA/5.50V USB/P9 no-reset gates re-read. TI TPS2116 §7.4 fast-collapse condition 2.5V still risks the 1.80V corner. Separate analytic C_USB1 (USB_VBUS_PROT) and C_IN (VIN_MUX) energy at PR1 static 3.638806..4.368844V using [T25AH report](T25AH_HARD_UNPLUG_ENERGY_ENVELOPE_FA.md) and [reproducible script](../AI_SCRIPTS/T25/T25AH_Hard_Unplug_Envelope_v1.py). With only constant 0.924W output / η and no other path/load, C_USB1 would need >=2.539295/η uF at latest PR1 to avoid >1V/10us local fall; C_IN=4.2uF hypothetical gives 23.91η us to 1.65V at same late PR1. 22uF labels are NOT qualified effective capacitances. Actual source sink path, Ceff, η, mux gap/RCB, converter behavior and SD/OLED timing absent; **NO HANDOFF PASS**. Vendor-model discrepancy persists; no CAD edit/new DRC.
 
-### NEXT EXACT ACTION inside authorized T25
+### Earlier T25AH follow-up guidance (historical; still OPEN)
 
 1. **T25AH next: close the real fast-unplug condition with qualified inputs or a pre-fabrication instrumented power-path fixture.** Preserve the previously locked 1.80V pack / 280mA load / 5.50V USB / zero-reset P9 conditions. These conditions and P9 gate statuses were already recorded in 2026-08-16 purchase v0.17 workbook; user reconfirmed continuous operation. Preserve them unless user explicitly authorizes a concrete, evidence-based redesign. Evaluate especially TI TPS2116 §7.4 warning for fast USB collapse when VIN2=1.80V (<2.5V); no simulation result or hardware measurement currently proves no-reset at that corner. Check OVP 5.50V no-nuisance against >5.5V static trip and 5.5V maximum recommended VIN separately. This determines whether the existing OVP threshold family can be revised, or a different input-protection architecture/source envelope needs analysis. Make any change only after a concrete source-backed calculation and separate user decision; purchase is final and no board is built. Continue source-grounded independent TPS631000/AA/SD/OLED audits without claiming integration PASS, but do not rerun defective TPS2116 vendor-model transfer or invent missing OVP model/Cmin/source ramp. No fabrication output/prototype work yet.
 
