@@ -1,12 +1,10 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — T25AP downstream rail floor audited / no integrated PASS, 2026-09-26
+## CURRENT EXACT POINT — T25AQ PSpice conditional rail-gap runner ready / Windows execution PENDING, 2026-09-26
 
-TPS2116 TI model fails Altium OP in both 06/07 (T25AN); PSpice handoff is physically discrepant (T25AE). T25AO executed `T25AO_3V3_Isolated_Rail_Hold_Screen_v1.py` using real `01_POWER.SchDoc`/workbook: only if TPS631000 output is ZERO and 280mA design load constant, C_OUT droop is 26.923mV/us for **unverified TI 10.4uF effective reference** or 5.957mV/us for **TDK 47uF NAMEPLATE illustration**. Actual Ceff unknown; do not sum C_USB1/C_IN/C_OUT. See T25AO report.
+Four explicit PSpice 25.1 downstream rail-gap scenarios (10/50us illustrative interruption, C_OUT 10.4uF TI effective reference / 47uF TDK nameplate) are staged at `AI_SCRIPTS/T25/Run_T25AQ_Rail_Gap_v1.cmd` and its `.ps1`. Real `3V3_SYS`, switched `SD_VDD` and `OLED_VDD` topology, distinct nameplate branch capacitors, hypothetical 140+100+40=280mA load allocation; **neither real TI mux/converter nor actual card/module currents/gap/Ceff are modeled**. Static deck checks PASS, **user Windows PSpice execution has NOT happened**. Technical scope and commands: `T25AQ_PSPICE_DOWNSTREAM_GAP_RUN_READINESS_FA.md`; earlier T25AP floor audit remains valid.
 
-T25AP source audit: current MCU STM32G070KBT6 VDD working min 2.0V, max falling PDR 2.04V; earlier configurable BOR suggestion retracted. SD standard first-row microSD VDD range 2.7..3.6V, but actual unbranded 4GB write integrity unknown. WEO 20-pin panel PDF logic VDD 2.8..3.3V is **conditional** for the actual four-pin carrier. In a further idealization with all branch voltages identical to C_OUT, zero converter current and fixed 280mA, 10.4uF reference reaches 2.8/2.7/2.04V in 18.57/22.29/46.80us; **NOT accepted gaps or board PASS**. Details/sources: `T25AP_DOWNSTREAM_3V3_FLOOR_SD_MCU_OLED_FA.md`.
-
-**NEXT EXACT ACTION:** Within pre-fabrication T25, seek qualified C_OUT Ceff, mux/converter gap and SD/OLED switched-load evidence; compare actual SD_VDD, OLED_VDD, MCU VDD/NRST during both USB transitions. Until then 1.8V pack fast-fall warning and no-reset/write gates OPEN. No board exists; purchased BOM and CAD untouched; last T24 DRC 0/0. **NO FABRICATION PASS.**
+**NEXT EXACT ACTION:** User runs established `Git_Save.cmd` (safe GitHub fast-forward) once, then double-clicks `AI_SCRIPTS\T25\Run_T25AQ_Rail_Gap_v1.cmd` and uploads the printed `Datalogger_T25AQ_v1_Result_*.zip` from Documents. Inspect raw PSpice `.out/.dat` and fix failures under a new version, then revisit qualified handoff/no-reset/SD-write gates. 19 mA was old prototype average; 280 mA is RevA design basis. TPS2116 vendor model discrepancy and 1.8V-pack fast-unplug warning remain OPEN; no board exists; BOM/CAD unchanged; last T24 DRC 0/0. **NO FABRICATION PASS.**
 
 ## Previous checkpoint — T25AH USB unplug capacitor energy screen / no-reset HOLD, 2026-09-26
 
