@@ -4,9 +4,8 @@
 This is an intentionally simple screening model, NOT a TPS2116/TPS631000
 simulation, and never a hardware qualification. Run from the Git checkout:
   python AI_SCRIPTS/T25/T25AH_Hard_Unplug_Envelope_v1.py
-Optional independently qualified inputs:
-  --eta-min 0.8 --cusb1-eff-uf 12 --cin-eff-uf 12 --gap-max-us 25
-These example values are a CLI syntax example, not facts about this product.
+Optional independently qualified inputs: --eta-min, --cusb1-eff-uf,
+--cin-eff-uf and --gap-max-us. No assumed hardware values are defaulted.
 """
 import argparse
 import json
@@ -85,7 +84,10 @@ def main():
     def reservoir_us(c_uf, v_hi, v_lo, efficiency):
         return efficiency * c_uf * (v_hi*v_hi - v_lo*v_lo) / (2 * P_OUTPUT_W)
 
-    c_usb_needed_eta1 = P_OUTPUT_W / (pr1_max * TI_FAST_COLLAPSE_LIMIT_V_PER_US)
+    # The lower PR1 corner is the LAST transfer: smaller VIN1 gives faster
+    # constant-power discharge and less C_IN energy to the 1.65V screen.
+    # The upper PR1 corner is the FIRST transfer: less C_USB1 time before it.
+    c_usb_needed_eta1 = P_OUTPUT_W / (pr1_min * TI_FAST_COLLAPSE_LIMIT_V_PER_US)
     output = {
         "verdict": "CONDITIONAL_SCREEN_ONLY_NO_VENDOR_MODEL_NO_HARDWARE_PASS",
         "source": {"power_schdoc_git_blob": "da2d005712c47000eb8c16157eca464d3fee4fe1",
@@ -104,18 +106,18 @@ def main():
                          "typical_sw_us_not_a_guaranteed_max": TI_TSW_TYP_AT_1P8_US},
         "isolated_USB_VBUS_PROT_cap_only": {
             "historic_C_USB1_nameplate_uf_not_Ceff": c_usb_nom,
-            "ceff_needed_at_pr1_upper_for_fall_slower_than_TI_boundary_uf":
+            "ceff_needed_at_pr1_lower_for_fall_slower_than_TI_boundary_uf":
                 "%.9g / eta" % c_usb_needed_eta1,
-            "illustrative_nameplate_and_eta1_5p5_to_pr1_upper_us":
+            "illustrative_nameplate_and_eta1_5p5_to_earliest_pr1_upper_us":
                 reservoir_us(c_usb_nom, v_usb, pr1_max, 1),
             "unmodeled": "USB source sink impedance, upstream MOSFET path, OVP currents, actual Ceff and extra input loads"},
         "isolated_VIN_MUX_cap_only": {
             "ti_min_effective_CIN_uf_not_verified_installed": TI_CIN_EFF_MIN_UF,
             "historic_CIN_nameplate_uf_not_Ceff": 22.0,
-            "illustrative_ti_min_CIN_eta1_pr1_upper_to_1p65_us":
-                reservoir_us(TI_CIN_EFF_MIN_UF, pr1_max, v_start_min, 1),
-            "illustrative_nameplate_CIN_eta1_pr1_upper_to_1p65_us":
-                reservoir_us(22.0, pr1_max, v_start_min, 1),
+            "illustrative_ti_min_CIN_eta1_latest_pr1_lower_to_1p65_us":
+                reservoir_us(TI_CIN_EFF_MIN_UF, pr1_min, v_start_min, 1),
+            "illustrative_nameplate_CIN_eta1_latest_pr1_lower_to_1p65_us":
+                reservoir_us(22.0, pr1_min, v_start_min, 1),
             "unmodeled": "Actual energy flow, C_OUT rail buffering, converter control, battery supply and RCB waiting time"},
         "optional_qualified_inputs": {},
     }
@@ -125,15 +127,15 @@ def main():
         q["required_USB_Ceff_uf_if_only_regulator_draws"] = c_usb_needed_eta1 / eta
     if c_usb is not None:
         q["qualified_USB_Ceff_uf"] = c_usb
-        q["conditional_USB_fall_at_pr1_v_per_us"] = P_OUTPUT_W / (eta*c_usb*pr1_max)
-        q["conditional_USB_to_pr1_upper_us"] = reservoir_us(c_usb, v_usb, pr1_max, eta)
+        q["conditional_USB_fall_at_latest_pr1_lower_v_per_us"] = P_OUTPUT_W / (eta*c_usb*pr1_min)
+        q["conditional_USB_to_earliest_pr1_upper_us"] = reservoir_us(c_usb, v_usb, pr1_max, eta)
     if c_in is not None:
         q["qualified_CIN_Ceff_uf"] = c_in
-        q["conditional_CIN_reservoir_to_1p65_us"] = reservoir_us(c_in, pr1_max, v_start_min, eta)
+        q["conditional_CIN_reservoir_to_1p65_us"] = reservoir_us(c_in, pr1_min, v_start_min, eta)
     if gap is not None:
         q["qualified_gap_max_us"] = gap
         q["required_CIN_Ceff_uf_if_isolated_constant_power"] = (
-            2*P_OUTPUT_W*gap / (eta*(pr1_max*pr1_max - v_start_min*v_start_min)))
+            2*P_OUTPUT_W*gap / (eta*(pr1_min*pr1_min - v_start_min*v_start_min)))
         if c_in is not None:
             q["simplified_gap_energy_screen"] = ("ENOUGH_IN_IDEAL_ENERGY_MODEL" if
                 q["conditional_CIN_reservoir_to_1p65_us"] > gap else "NOT_ENOUGH_IN_IDEAL_ENERGY_MODEL")
