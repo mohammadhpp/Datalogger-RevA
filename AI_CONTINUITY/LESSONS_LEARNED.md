@@ -196,3 +196,8 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 
 - The purchased C_USB1 is on protected USB_VBUS_PROT (TPS2116 VIN1), while C_IN is on VIN_MUX (TPS631000 VIN). For unplug, one shapes the selected USB input fall and the other bridges the break-before-make interval after selection; do not silently add their nameplate values or substitute a 10us ideal voltage drop imposed directly at VIN1 for cable removal on the actual topology.
 - PR1 resistor/reference tolerance has two distinct relevant corners: upper 4.368844V transfers earliest and minimizes time from 5.5V to the command, while lower 3.638806V transfers latest, yields the highest constant-power VIN1 fall slope and least isolated C_IN energy before 1.65V. Comparing a conditional energy time against the manufacturer's *typical* 17.7us switch time does not prove a maximum gap, prevent RCB delays, qualify capacitance under bias or validate MCU rail continuity.
+
+## T25AL — Altium simulation output must contain usable trace data
+
+- A newly opened `.sdf` tab alone does not prove successful model parsing or convergence. In T25AK the fake resistor subcircuit produced plausible 200us voltages while the official TI model inline opened `.sdf*` with a roughly `1e20` axis and no discernible curves. Interpret only after checking Messages or numeric traces.
+- Running a 200us fixture with an unplug event scheduled at 1ms cannot establish source transfer. If both external `.LIB` and inline-model variants lack valid data, do not blame `.LIB` alone or expand to 20ms before distinguishing parse, solver, and plot issues.
