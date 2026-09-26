@@ -52,7 +52,6 @@ try {
 * FAKE subcircuit ONLY for simulator syntax test. Never represents TPS2116.
 .SUBCKT TPS2116_TRANS GND MODE PR1 ST VIN1 VIN2 VOUT_0 VOUT_1
 R_FAKE_USB_ONLY VIN1 VOUT_0 50m
-R_FAKE_OUTPUT_TIE VOUT_0 VOUT_1 1m
 .ENDS TPS2116_TRANS
 '@
     Save-Deck '03_OUTER_SYNTAX_FAKE_DEVICE.nsx' $deck.Replace($include.Value, $dummy.TrimEnd([char[]]@("`r", "`n")))
