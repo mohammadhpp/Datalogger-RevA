@@ -47,7 +47,7 @@ def positive(value, label):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--eta-min", type=float, help="Qualified minimum converter efficiency during transition")
-    p.add_argument("--cusb1-eff-uf", type=float, help="Qualified installed minimum effective C_USB1 at 4.37-5.5V")
+    p.add_argument("--cusb1-eff-uf", type=float, help="Qualified installed minimum effective C_USB1 at 3.64-5.50V")
     p.add_argument("--cin-eff-uf", type=float, help="Qualified installed minimum effective C_IN at 1.65-4.37V")
     p.add_argument("--gap-max-us", type=float, help="Qualified maximum time of unavailable mux power path")
     a = p.parse_args()
