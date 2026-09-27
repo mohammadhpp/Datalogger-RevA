@@ -66,6 +66,10 @@ A good handoff must answer all of these without needing the old chat:
 6. What should happen next?
 7. What must the next AI avoid changing?
 
+## Git API tree integrity
+
+When constructing Git trees via an API, fetch and explicitly set the real current parent tree SHA in the same turn. Before updating the branch ref, compare the proposed commit with the last known good commit and refuse any unexpected removals, especially CAD files and workflows. Do not rely on temporary values stored in a previous user turn. Preserve shared history if a repair is needed, then verify critical blob SHA and the GitHub Actions continuity run.
+
 ## Git discipline
 
 - Never rewrite shared history merely to make continuity notes prettier.
