@@ -1,0 +1,60 @@
+{
+  "status": "PARTIAL_EVIDENCE_BASED_CURRENT_RECALCULATION__NO_ACTUAL_PEAK_CLAIM",
+  "design_envelope": {
+    "3v3_design_load_ma_NOT_MEASURED_PEAK": 280.0,
+    "observed_old_prototype_ma_CAPTURE_BANDWIDTH_UNKNOWN": 19.0,
+    "ratio_ceiling_to_observed": 14.73684,
+    "output_power_w_at_design_ceiling": 0.924,
+    "ideal_1p8v_input_ma_at_design_ceiling_LOWER_BOUND": 513.33333,
+    "actual_battery_input_ma": "UNKNOWN: efficiency, source ESR and operating mode"
+  },
+  "partial_known_3v3_load_ma_WITH_CONDITION_MISMATCH": {
+    "MCU_flash_run_16MHz_max_at85C_no_peripherals": 3.0,
+    "MCU_flash_run_64MHz_max_at85C_no_peripherals_ALTERNATE": 8.4,
+    "bare_SHT3x_measuring_max_heater_off": 1.5,
+    "DS3231_temp_conversion_max_at3p63V": 0.575,
+    "both_I2C_lines_low_2p12mA_each_SCENARIO": 4.23049,
+    "16MHz_partial_sum_NOT_DEVICE_PEAK": 9.30549,
+    "64MHz_partial_sum_NOT_DEVICE_PEAK": 14.70549,
+    "remaining_to_280mA_16MHz_NOT_CARD_ALLOWANCE": 270.69451,
+    "remaining_to_280mA_64MHz_NOT_CARD_ALLOWANCE": 265.29451,
+    "excluded": [
+      "unknown unbranded microSD idle/write/inrush",
+      "unknown four-pin OLED module input at all pixels on",
+      "MCU peripherals/GPIO",
+      "74HC125D/74HC4066D switching",
+      "power-path quiescent draw",
+      "sensor-module electronics/heater",
+      "expansion current",
+      "capacitor charging"
+    ]
+  },
+  "nameplate_switched_capacitor_charge_ONLY_NOT_DEVICE_CURRENT": {
+    "SD_VDD": {
+      "nameplate_uf_NOT_BIASED_CEFF": 54.1,
+      "charge_uc_if_0_to_3p3v_NAMEPLATE_ONLY": 178.53,
+      "average_charge_current_ma_if_1ms_NAMEPLATE_ONLY": 178.53,
+      "average_charge_current_ma_if_0p1ms_NAMEPLATE_ONLY": 1785.3
+    },
+    "OLED_VDD": {
+      "nameplate_uf_NOT_BIASED_CEFF": 10.1,
+      "charge_uc_if_0_to_3p3v_NAMEPLATE_ONLY": 33.33,
+      "average_charge_current_ma_if_1ms_NAMEPLATE_ONLY": 33.33,
+      "average_charge_current_ma_if_0p1ms_NAMEPLATE_ONLY": 333.3
+    },
+    "both_if_enabled_simultaneously": {
+      "nameplate_uf_NOT_BIASED_CEFF": 64.2,
+      "charge_uc_if_0_to_3p3v_NAMEPLATE_ONLY": 211.86,
+      "average_charge_current_ma_if_1ms_NAMEPLATE_ONLY": 211.86,
+      "average_charge_current_ma_if_0p1ms_NAMEPLATE_ONLY": 2118.6
+    }
+  },
+  "400mA_in_microSD_block_PDF": "Switch-drop sizing example, NOT measured current, and NOT a compatible whole-system 280mA guarantee",
+  "source_urls": {
+    "ST_MCU": "https://www.st.com/resource/en/datasheet/stm32g070rb.pdf",
+    "Sensirion_sensor": "https://sensirion.com/media/documents/213E6A3B/63A5A569/Datasheet_SHT3x_DIS.pdf",
+    "ADI_RTC": "https://www.analog.com/media/en/technical-documentation/data-sheets/ds3231.pdf",
+    "OLED_user_document": "ChatGPT Library 6ce9958b2ddbf8913aec06c1a6201e59.pdf: bare WEO012864V, not exact 4-pin module",
+    "MicroSD_design": "Datalogger_MicroSD_Final_BOM_RevA_v1.3_FA.pdf page 4"
+  }
+}
