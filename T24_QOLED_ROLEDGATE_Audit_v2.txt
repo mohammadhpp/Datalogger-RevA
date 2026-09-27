@@ -1,0 +1,34 @@
+Datalogger RevA - T24 Q_OLED / R_OLED_GATE focused audit v2
+READ ONLY - selection boundary diagnostic
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc
+
+============================================================
+RefDes: Q_OLED
+X/Y mil: 5710 / 6665
+Rotation deg: 0
+BoundingRectangle L/B/R/T mil: 5580.444 / 6599.055 / 5770.039 / 6805.213
+BoundingRectangleForSelection L/B/R/T mil: 5649.961 / 6599.055 / 5770.039 / 6730.945
+BoundingRectangleForPainting L/B/R/T mil: 5580.444 / 6599.055 / 5770.039 / 6730.945
+COURTYARD M2/M4 | Count=4 | L/B/R/T mil=5649.961 / 6599.055 / 5770.039 / 6730.945
+
+============================================================
+RefDes: R_OLED_GATE
+X/Y mil: 5570 / 6594.528
+Rotation deg: 270
+BoundingRectangle L/B/R/T mil: 5487.766 / 6540.846 / 5600.059 / 6855.19
+BoundingRectangleForSelection L/B/R/T mil: 5541.457 / 6542.362 / 5598.543 / 6646.693
+BoundingRectangleForPainting L/B/R/T mil: 5539.941 / 6540.846 / 5600.059 / 6648.209
+COURTYARD M2/M4 | Count=4 | L/B/R/T mil=5541.457 / 6542.362 / 5598.543 / 6646.693
+
+SELECTION BBOX axis gap | DX=51.4180000000006 mil | DY=0 mil
+COURTYARD axis gap | DX=51.4180000000006 mil | DY=0 mil
+
+=== COMPONENT CLEARANCE RULES ===
+Rule Name: ComponentClearance
+Gap mil: 10
+VerticalGap mil: 10
+CollisionCheckMode: 3
+Scope1: All
+Scope2: All
+
+Nothing changed.

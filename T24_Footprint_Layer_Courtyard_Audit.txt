@@ -1,0 +1,303 @@
+Datalogger RevA - T24 Footprint Layer / Courtyard Audit v1
+READ ONLY
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA.PcbDoc
+
+Expected representative footprint families: 12.
+
+============================================================
+RefDes: U_PMUX
+Component Layer: Top Layer
+X mil: 4539.842
+Y mil: 6009.134
+Rotation deg: 90
+Component BBox L/B/R/T mil: 4484.193 / 5954.468 / 4655.213 / 6212.234
+Primitive #1 | PAD | Layer=Top Layer
+Primitive #2 | PAD | Layer=Top Layer
+Primitive #3 | PAD | Layer=Top Layer
+Primitive #4 | PAD | Layer=Top Layer
+Primitive #5 | PAD | Layer=Top Layer
+Primitive #6 | PAD | Layer=Top Layer
+Primitive #7 | PAD | Layer=Top Layer
+Primitive #8 | PAD | Layer=Top Layer
+Primitive #9 | TRACK | Layer=Mechanical Layer 1
+Primitive #10 | TRACK | Layer=Mechanical Layer 1
+Primitive #11 | TRACK | Layer=Mechanical Layer 1
+Primitive #12 | TRACK | Layer=Mechanical Layer 1
+Primitive #13 | TRACK | Layer=Mechanical Layer 1
+Primitive #14 | TRACK | Layer=Mechanical Layer 1
+Primitive #15 | TRACK | Layer=Top Overlay
+Primitive #16 | TRACK | Layer=Top Overlay
+Primitive #17 | TRACK | Layer=Top Overlay
+Primitive #18 | TRACK | Layer=Top Overlay
+Primitive #19 | TRACK | Layer=Mechanical Layer 2
+Primitive #20 | TRACK | Layer=Mechanical Layer 2
+Primitive #21 | TRACK | Layer=Mechanical Layer 2
+Primitive #22 | TRACK | Layer=Mechanical Layer 2
+PrimitiveCount: 22
+
+============================================================
+RefDes: R_SER3
+Component Layer: Top Layer
+X mil: 7068.425
+Y mil: 6585.63
+Rotation deg: 270
+Component BBox L/B/R/T mil: 6876.192 / 6514.232 / 7108.327 / 6700.213
+Primitive #1 | PAD | Layer=Top Layer
+Primitive #2 | PAD | Layer=Top Layer
+Primitive #3 | TRACK | Layer=Mechanical Layer 1
+Primitive #4 | TRACK | Layer=Mechanical Layer 1
+Primitive #5 | TRACK | Layer=Mechanical Layer 1
+Primitive #6 | TRACK | Layer=Mechanical Layer 1
+Primitive #7 | TRACK | Layer=Top Overlay
+Primitive #8 | TRACK | Layer=Top Overlay
+Primitive #9 | TRACK | Layer=Top Overlay
+Primitive #10 | TRACK | Layer=Top Overlay
+Primitive #11 | TRACK | Layer=Mechanical Layer 2
+Primitive #12 | TRACK | Layer=Mechanical Layer 2
+Primitive #13 | TRACK | Layer=Mechanical Layer 2
+Primitive #14 | TRACK | Layer=Mechanical Layer 2
+PrimitiveCount: 14
+
+============================================================
+RefDes: R_SCL_SER
+Component Layer: Top Layer
+X mil: 4714.528
+Y mil: 6505
+Rotation deg: 0
+Component BBox L/B/R/T mil: 4402.801 / 6474.941 / 4768.209 / 6535.059
+Primitive #1 | PAD | Layer=Top Layer
+Primitive #2 | PAD | Layer=Top Layer
+Primitive #3 | TRACK | Layer=Mechanical Layer 1
+Primitive #4 | TRACK | Layer=Mechanical Layer 1
+Primitive #5 | TRACK | Layer=Mechanical Layer 1
+Primitive #6 | TRACK | Layer=Mechanical Layer 1
+Primitive #7 | TRACK | Layer=Top Overlay
+Primitive #8 | TRACK | Layer=Top Overlay
+Primitive #9 | TRACK | Layer=Top Overlay
+Primitive #10 | TRACK | Layer=Top Overlay
+Primitive #11 | TRACK | Layer=Mechanical Layer 2
+Primitive #12 | TRACK | Layer=Mechanical Layer 2
+Primitive #13 | TRACK | Layer=Mechanical Layer 2
+Primitive #14 | TRACK | Layer=Mechanical Layer 2
+PrimitiveCount: 14
+
+============================================================
+RefDes: R_FB_TOP
+Component Layer: Top Layer
+X mil: 5028.976
+Y mil: 5885
+Rotation deg: 0
+Component BBox L/B/R/T mil: 4882.766 / 5826.796 / 5123.996 / 6053.204
+Primitive #1 | PAD | Layer=Top Layer
+Primitive #2 | PAD | Layer=Top Layer
+Primitive #3 | TRACK | Layer=Mechanical Layer 1
+Primitive #4 | TRACK | Layer=Mechanical Layer 1
+Primitive #5 | TRACK | Layer=Mechanical Layer 1
+Primitive #6 | TRACK | Layer=Mechanical Layer 1
+Primitive #7 | TRACK | Layer=Top Overlay
+Primitive #8 | TRACK | Layer=Top Overlay
+Primitive #9 | TRACK | Layer=Top Overlay
+Primitive #10 | TRACK | Layer=Top Overlay
+Primitive #11 | TRACK | Layer=Mechanical Layer 2
+Primitive #12 | TRACK | Layer=Mechanical Layer 2
+Primitive #13 | TRACK | Layer=Mechanical Layer 2
+Primitive #14 | TRACK | Layer=Mechanical Layer 2
+PrimitiveCount: 14
+
+============================================================
+RefDes: Q_SD_DRV
+Component Layer: Top Layer
+X mil: 6656.535
+Y mil: 5350
+Rotation deg: 270
+Component BBox L/B/R/T mil: 6594.98 / 5282.539 / 6718.091 / 5653.204
+Primitive #1 | PAD | Layer=Top Layer
+Primitive #2 | PAD | Layer=Top Layer
+Primitive #3 | PAD | Layer=Top Layer
+Primitive #4 | TRACK | Layer=Mechanical Layer 1
+Primitive #5 | TRACK | Layer=Mechanical Layer 1
+Primitive #6 | TRACK | Layer=Mechanical Layer 1
+Primitive #7 | TRACK | Layer=Mechanical Layer 1
+Primitive #8 | TRACK | Layer=Mechanical Layer 1
+Primitive #9 | TRACK | Layer=Mechanical Layer 1
+Primitive #10 | TRACK | Layer=Top Overlay
+Primitive #11 | TRACK | Layer=Top Overlay
+Primitive #12 | TRACK | Layer=Top Overlay
+Primitive #13 | TRACK | Layer=Top Overlay
+Primitive #14 | TRACK | Layer=Mechanical Layer 2
+Primitive #15 | TRACK | Layer=Mechanical Layer 2
+Primitive #16 | TRACK | Layer=Mechanical Layer 2
+Primitive #17 | TRACK | Layer=Mechanical Layer 2
+PrimitiveCount: 17
+
+============================================================
+RefDes: Q_OLED
+Component Layer: Top Layer
+X mil: 5710
+Y mil: 6665
+Rotation deg: 0
+Component BBox L/B/R/T mil: 5580.444 / 6600.039 / 5769.055 / 6805.213
+Primitive #1 | PAD | Layer=Top Layer
+Primitive #2 | PAD | Layer=Top Layer
+Primitive #3 | PAD | Layer=Top Layer
+Primitive #4 | TRACK | Layer=Mechanical Layer 1
+Primitive #5 | TRACK | Layer=Mechanical Layer 1
+Primitive #6 | TRACK | Layer=Mechanical Layer 1
+Primitive #7 | TRACK | Layer=Mechanical Layer 1
+Primitive #8 | TRACK | Layer=Mechanical Layer 1
+Primitive #9 | TRACK | Layer=Mechanical Layer 1
+Primitive #10 | FILL | Layer=Top Overlay
+PrimitiveCount: 10
+
+============================================================
+RefDes: L1
+Component Layer: Top Layer
+X mil: 5215.118
+Y mil: 5630
+Rotation deg: 180
+Component BBox L/B/R/T mil: 5129.941 / 5562.539 / 5344.901 / 5697.461
+Primitive #1 | PAD | Layer=Top Layer
+Primitive #2 | PAD | Layer=Top Layer
+Primitive #3 | TRACK | Layer=Mechanical Layer 1
+Primitive #4 | TRACK | Layer=Mechanical Layer 1
+Primitive #5 | TRACK | Layer=Mechanical Layer 1
+Primitive #6 | TRACK | Layer=Mechanical Layer 1
+Primitive #7 | TRACK | Layer=Top Overlay
+Primitive #8 | TRACK | Layer=Top Overlay
+Primitive #9 | TRACK | Layer=Top Overlay
+Primitive #10 | TRACK | Layer=Top Overlay
+Primitive #11 | TRACK | Layer=Mechanical Layer 2
+Primitive #12 | TRACK | Layer=Mechanical Layer 2
+Primitive #13 | TRACK | Layer=Mechanical Layer 2
+Primitive #14 | TRACK | Layer=Mechanical Layer 2
+PrimitiveCount: 14
+
+============================================================
+RefDes: J_NAV
+Component Layer: Top Layer
+X mil: 7091.575
+Y mil: 6900
+Rotation deg: 180
+Component BBox L/B/R/T mil: 6793.799 / 6783.327 / 7389.35 / 7067.234
+Primitive #1 | PAD | Layer=Multi Layer
+Primitive #2 | PAD | Layer=Multi Layer
+Primitive #3 | PAD | Layer=Multi Layer
+Primitive #4 | PAD | Layer=Multi Layer
+Primitive #5 | PAD | Layer=Multi Layer
+Primitive #6 | TRACK | Layer=Mechanical Layer 1
+Primitive #7 | TRACK | Layer=Mechanical Layer 1
+Primitive #8 | TRACK | Layer=Mechanical Layer 1
+Primitive #9 | TRACK | Layer=Mechanical Layer 1
+Primitive #10 | TRACK | Layer=Top Overlay
+Primitive #11 | TRACK | Layer=Top Overlay
+Primitive #12 | TRACK | Layer=Top Overlay
+Primitive #13 | TRACK | Layer=Top Overlay
+PrimitiveCount: 13
+
+============================================================
+RefDes: J_EXT
+Component Layer: Top Layer
+X mil: 6616.85
+Y mil: 4135
+Rotation deg: 180
+Component BBox L/B/R/T mil: 6323.543 / 3947.767 / 6910.158 / 4239.331
+Primitive #1 | PAD | Layer=Multi Layer
+Primitive #2 | PAD | Layer=Multi Layer
+Primitive #3 | PAD | Layer=Multi Layer
+Primitive #4 | PAD | Layer=Multi Layer
+Primitive #5 | PAD | Layer=Multi Layer
+Primitive #6 | PAD | Layer=Multi Layer
+Primitive #7 | PAD | Layer=Multi Layer
+Primitive #8 | TRACK | Layer=Mechanical Layer 1
+Primitive #9 | TRACK | Layer=Mechanical Layer 1
+Primitive #10 | TRACK | Layer=Mechanical Layer 1
+Primitive #11 | TRACK | Layer=Mechanical Layer 1
+Primitive #12 | TRACK | Layer=Top Overlay
+Primitive #13 | TRACK | Layer=Top Overlay
+Primitive #14 | TRACK | Layer=Top Overlay
+Primitive #15 | TRACK | Layer=Top Overlay
+Primitive #16 | TRACK | Layer=Mechanical Layer 2
+Primitive #17 | TRACK | Layer=Mechanical Layer 2
+Primitive #18 | TRACK | Layer=Mechanical Layer 2
+Primitive #19 | TRACK | Layer=Mechanical Layer 2
+Primitive #20 | TEXT | Layer=Top Overlay
+PrimitiveCount: 20
+
+============================================================
+RefDes: D_NAV1
+Component Layer: Top Layer
+X mil: 7123.425
+Y mil: 6720
+Rotation deg: 90
+Component BBox L/B/R/T mil: 7057.933 / 6666.319 / 7395.548 / 6773.681
+Primitive #1 | PAD | Layer=Top Layer
+Primitive #2 | PAD | Layer=Top Layer
+Primitive #3 | PAD | Layer=Top Layer
+Primitive #4 | PAD | Layer=Top Layer
+Primitive #5 | PAD | Layer=Top Layer
+Primitive #6 | PAD | Layer=Top Layer
+Primitive #7 | TRACK | Layer=Mechanical Layer 1
+Primitive #8 | TRACK | Layer=Mechanical Layer 1
+Primitive #9 | TRACK | Layer=Mechanical Layer 1
+Primitive #10 | TRACK | Layer=Mechanical Layer 1
+Primitive #11 | TRACK | Layer=Mechanical Layer 1
+Primitive #12 | TRACK | Layer=Mechanical Layer 1
+Primitive #13 | TRACK | Layer=Top Overlay
+Primitive #14 | TRACK | Layer=Top Overlay
+Primitive #15 | TRACK | Layer=Top Overlay
+Primitive #16 | TRACK | Layer=Top Overlay
+Primitive #17 | TRACK | Layer=Mechanical Layer 2
+Primitive #18 | TRACK | Layer=Mechanical Layer 2
+Primitive #19 | TRACK | Layer=Mechanical Layer 2
+Primitive #20 | TRACK | Layer=Mechanical Layer 2
+PrimitiveCount: 20
+
+============================================================
+RefDes: D_ESD1
+Component Layer: Top Layer
+X mil: 7244.724
+Y mil: 5812.598
+Rotation deg: 0
+Component BBox L/B/R/T mil: 7155 / 5761.417 / 7348.048 / 5922.234
+Primitive #1 | PAD | Layer=Top Layer
+Primitive #2 | PAD | Layer=Top Layer
+Primitive #3 | PAD | Layer=Top Layer
+Primitive #4 | PAD | Layer=Top Layer
+Primitive #5 | PAD | Layer=Top Layer
+Primitive #6 | PAD | Layer=Top Layer
+Primitive #7 | TRACK | Layer=Mechanical Layer 1
+Primitive #8 | TRACK | Layer=Mechanical Layer 1
+Primitive #9 | TRACK | Layer=Mechanical Layer 1
+Primitive #10 | TRACK | Layer=Mechanical Layer 1
+Primitive #11 | TRACK | Layer=Mechanical Layer 1
+Primitive #12 | TRACK | Layer=Mechanical Layer 1
+Primitive #13 | FILL | Layer=Top Overlay
+PrimitiveCount: 13
+
+============================================================
+RefDes: C_OUT
+Component Layer: Top Layer
+X mil: 5085
+Y mil: 5766.417
+Rotation deg: 90
+Component BBox L/B/R/T mil: 4878.783 / 5701.909 / 5125.886 / 5830.925
+Primitive #1 | PAD | Layer=Top Layer
+Primitive #2 | PAD | Layer=Top Layer
+Primitive #3 | TRACK | Layer=Mechanical Layer 1
+Primitive #4 | TRACK | Layer=Mechanical Layer 1
+Primitive #5 | TRACK | Layer=Mechanical Layer 1
+Primitive #6 | TRACK | Layer=Mechanical Layer 1
+Primitive #7 | TRACK | Layer=Top Overlay
+Primitive #8 | TRACK | Layer=Top Overlay
+Primitive #9 | TRACK | Layer=Top Overlay
+Primitive #10 | TRACK | Layer=Top Overlay
+Primitive #11 | TRACK | Layer=Mechanical Layer 2
+Primitive #12 | TRACK | Layer=Mechanical Layer 2
+Primitive #13 | TRACK | Layer=Mechanical Layer 2
+Primitive #14 | TRACK | Layer=Mechanical Layer 2
+PrimitiveCount: 14
+
+============================================================
+SUMMARY
+Representative components found: 12
+PASS: all 12 representative footprint families were found.

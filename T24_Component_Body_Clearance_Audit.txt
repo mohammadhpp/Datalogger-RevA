@@ -1,0 +1,220 @@
+Datalogger RevA - T24 Component Body Clearance Audit v1
+READ ONLY
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA.PcbDoc
+
+Run while the current 21 Component Clearance violation markers remain.
+
+============================================================
+Violation #1
+Violation Name: 0161: Component / Component
+A RefDes: D_NAV1
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_SER3
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #2
+Violation Name: 0163: Component / Component
+A RefDes: D_NAV1
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_SER2
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #3
+Violation Name: 0165: Component / Component
+A RefDes: R_SCL_SER
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_SDA_SER
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #4
+Violation Name: 0167: Component / Component
+A RefDes: R_SCL_PU
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_SDA_PU
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #5
+Violation Name: 0157: Component / Component
+A RefDes: R_PR_TOP
+A Height mil: 0
+A BodyCount: 0
+B RefDes: U_PMUX
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #6
+Violation Name: 0173: Component / Component
+A RefDes: R_OLED_BASE
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_OLED_BASE_PD
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #7
+Violation Name: 0183: Component / Component
+A RefDes: R_FB_BOTTOM
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_FB_TOP
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #8
+Violation Name: 0189: Component / Component
+A RefDes: D_ESD1
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_CS_PU
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #9
+Violation Name: 0169: Component / Component
+A RefDes: R_BASE_PD
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_SD_DRV_BASE
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #10
+Violation Name: 0177: Component / Component
+A RefDes: Q_SD_DRV
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_GATE
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #11
+Violation Name: 0191: Component / Component
+A RefDes: Q_SD_DRV
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_BASE_PD
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #12
+Violation Name: 0171: Component / Component
+A RefDes: Q_OLED
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_OLED_GATE
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #13
+Violation Name: 0159: Component / Component
+A RefDes: C1
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_ST_PU
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #14
+Violation Name: 0179: Component / Component
+A RefDes: C_OUT
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_FB_TOP
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #15
+Violation Name: 0193: Component / Component
+A RefDes: C_OUT
+A Height mil: 0
+A BodyCount: 0
+B RefDes: L1
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #16
+Violation Name: 0175: Component / Component
+A RefDes: C_IN
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_MODE
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #17
+Violation Name: 0181: Component / Component
+A RefDes: C_IN
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_FB_TOP
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #18
+Violation Name: 0199: Component / Component
+A RefDes: C_IN
+A Height mil: 0
+A BodyCount: 0
+B RefDes: C_OUT
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #19
+Violation Name: 0195: Component / Component
+A RefDes: D_NAV1
+A Height mil: 0
+A BodyCount: 0
+B RefDes: J_NAV
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #20
+Violation Name: 0185: Component / Component
+A RefDes: J_EXT
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_EXT_REF
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+Violation #21
+Violation Name: 0187: Component / Component
+A RefDes: J_EXT
+A Height mil: 0
+A BodyCount: 0
+B RefDes: R_EXT_IN
+B Height mil: 0
+B BodyCount: 0
+
+============================================================
+SUMMARY
+Component Clearance violations: 21
+Resolved component/component pairs: 21

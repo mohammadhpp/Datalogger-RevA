@@ -1,0 +1,15 @@
+# T25AK — سکوت Altium در دو آزمون TPS2116؛ تفکیک علت
+
+تاریخ 2026-09-26. **گزارش کاربر:** روی هر دو فایل T25AI مدل TPS2116، اجرای F9 خروجی قابل مشاهده نداشته است. تصویر `Screenshot 2026-09-26 221400.png` با SHA256 `fffd43072443504c56d18355d1c9bb830c4b336baf29efb59291cb038b16acca` (فایل پیوست گفت‌وگو؛ در Git کپی نشده) نشان می‌دهد هر دو `02_TPS2116_USB_UNPLUG_BAT_1p8.nsx` و `...3p0.nsx` واقعاً به‌صورت تب در Altium باز بوده‌اند و متن فایل 3.0V شامل `.LIB "C:\Users\mohei\OneDrive\Documents\Datalogger_T25AI_Altium_v1_20260926_215759\vendor\TPS2116_PSPICE_TRANS\TPS2116_TRANS.LIB` است. تشخیص قبلی «فایل دوم باز نشده/تب اشتباه فعال است» **پس گرفته شد**. تصویر فقط متن فایل را دارد و نه Messages، وضعیت CPU، نتیجهٔ `.sdf` یا log؛ از آن به تنهایی نمی‌توان خطای قطعی parser، مکان فایل مدل یا همگرایی عددی را نتیجه گرفت.
+
+در مقابل، [T25AJ](T25AJ_ALTIUM_RC_SMOKE_SCREENSHOT_RESULT_FA.md) تصویر موج‌های Altium RC ساده را دارد. **علت باید میان مدل/پیوند/مدار پیرامونی تفکیک شود.** [مستندات Altium](https://www.altium.com/documentation/knowledge-base/altium-designer/run-mixed-signal-simulation-off-of-netlist-generated-externally-to-compare-the-results-from-other-engines-directly) اجرای netlist مستقل را تأیید می‌کند؛ [فهرست مدل‌های پشتیبانی‌شده](https://www.altium.com/documentation/knowledge-base/altium-designer/understand-spice-models-supported-in-altium) فقط پشتیبانی از *بخشی* از PSpice را ادعا می‌کند. مدل TI رمزگذاری نشده، ولی از ABM `IF`, `TABLE`, `VSWITCH`, پرانتز/آکولادهای تو در تو استفاده می‌کند. نمی‌توان بدون اجرای شاهد علت را قطعی نامید؛ سابقهٔ اختلاف فیزیکی مدل با TI/EVM در T25AE نیز پابرجاست.
+
+فایل‌های جدید مستقل، نسخهٔ یکتا: `Run_T25AK_Altium_Diagnostic_v1.cmd` و `T25AK_Altium_Model_Diagnostic_v1.ps1`. PowerShell از پوشهٔ قبلی T25AI در Documents، ZIP رسمی با SHA256 `730DD922475B68183CB2D3ECAC3259C8F5637E6458764CED7F3FBC0C89DA80A7` و deck آزمون 1.8V را می‌خواند. مدل اصلی و ترتیب پایه‌ها را چک می‌کند؛ سپس سه netlist کنترل **فقط 200µs پیش از قطع USB در 1ms** می‌سازد و `I(V_BAT)` را از plot حذف می‌کند:
+
+| فایل | آزمایش تفکیکی، بدون اعتبار سخت‌افزاری |
+| --- | --- |
+| `03_OUTER_SYNTAX_FAKE_DEVICE.nsx` | همان مدار با یک زیرمدار مقاومتی جعلی به جای TPS2116؛ فقط صحت نحوِ مدار خارجی. خروجی جعلی هرگز ملاک انتخاب باتری نیست. |
+| `04_TI_LIB_PATH_VOLTAGE_ONLY.nsx` | همان مدار با کتابخانهٔ اصلی به‌صورت `.LIB`، فقط پروب ولتاژ و 200µs؛ تفکیک جریان‌پروب/مدت اجرای v1. |
+| `05_TI_MODEL_INLINE_VOLTAGE_ONLY.nsx` | همان deck با مدل واقعی درج‌شده درون netlist، بدون ارجاع مسیر خارجی؛ تفکیک `.LIB`/path از parser. کاراکتر غیر ASCII در **یک خط توضیحیِ مدل** به ASCII تبدیل می‌شود؛ دستورات الکتریکی دست‌نخورده‌اند. |
+
+**روش خواندن نتیجه:** اگر 03 اجرا نشود، به مدل TI نسبت نده؛ مشکل در نحو مدار خارجی/تنظیم اجرای netlist است. اگر 03 اجرا شود و 04 نه، 05 را اجرا کن. اگر 05 اجرا شد، پیوند مدل از فایل خارجی مظنون است؛ اگر نشد، ناسازگاری نحوی/حل عددی مدل محتمل است، نه قطعی، و باید Messages/CPU و `.sdf` کنترل شود. اگر 04 اجرا شد، طول 20ms یا جریان‌پروب آزمون قبلی باید جداگانه بررسی شود. **هیچ کدام آزمون قطع USB، انتقال باتری، 3V3 یا بدون ریست نیستند.** هیچ شماتیک، PCB، BOM یا POP دست‌کاری نشده؛ DRC جدیدی اجرا نشده و آخرین صفر/صفر T24 است.

@@ -1,0 +1,122 @@
+Datalogger RevA - T24 Mechanical Layer Role Audit v1
+READ ONLY
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA.PcbDoc
+
+=== MECHANICAL LAYERS ===
+
+Layer ID: Mechanical Layer 1
+Name: Mechanical 1
+Used by primitives: TRUE
+Mechanical enabled: TRUE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 2
+Name: Mechanical 2
+Used by primitives: TRUE
+Mechanical enabled: TRUE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 3
+Name: Mechanical 3
+Used by primitives: TRUE
+Mechanical enabled: TRUE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 4
+Name: Mechanical 4
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 5
+Name: Mechanical 5
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 6
+Name: Mechanical 6
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 7
+Name: Mechanical 7
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 8
+Name: Mechanical 8
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 9
+Name: Mechanical 9
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 10
+Name: Mechanical 10
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 11
+Name: Mechanical 11
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 12
+Name: Mechanical 12
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 13
+Name: Mechanical 13
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 14
+Name: Mechanical 14
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 15
+Name: Mechanical 15
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+Layer ID: Mechanical Layer 16
+Name: Mechanical 16
+Used by primitives: FALSE
+Mechanical enabled: FALSE
+Displayed single-layer mode: FALSE
+Linked to sheet: FALSE
+
+=== MECHANICAL LAYER PAIRS ===
+Pair count: 0
+
+Mechanical1 paired with Mechanical2: FALSE

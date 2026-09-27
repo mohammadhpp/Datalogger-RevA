@@ -1,0 +1,29 @@
+Datalogger RevA - T24 Final Generated PcbLib Binary Audit
+Source file: DATALOGER_RevA(1).PcbLib
+Size bytes: 294912
+SHA256: a2f2aea3592b79934fbeb8042ce90b2089791ea83b71c2a39a27efa3ba9514a2
+
+RESULT: PASS for T24 target courtyard persistence and layer placement.
+
+Binary container: OLE/CFB Altium PCB 6.0 Binary Library File
+Generated library footprint count: 37
+
+Target footprint courtyard audit:
+MAXIM_W16H2_SO16_90_0107 | M2 courtyard tracks=4 | width=11.449987 mm | height=10.599976 mm | center=(-0.000008,0.000000) mm | PASS
+AOS_SOT23_AO3401A_3P | M2 courtyard tracks=4 | width=3.000017 mm | height=3.300016 mm | center=(-0.000003,-0.000003) mm | PASS
+GOSUN_PLS_2P54_1X5_THT | M2 courtyard tracks=4 | width=12.799972 mm | height=2.639972 mm | center=(0.000000,0.000000) mm | PASS
+WIRE_DRAIN_1P_D1P20_P2P40_THT | M2 courtyard tracks=4 | width=2.500018 mm | height=2.500018 mm | center=(0.000000,0.000000) mm | PASS
+ATOM_MR01A_01245_10P | M2 courtyard tracks=4 | width=16.800015 mm | height=12.499998 mm | center=(0.000000,5.099990) mm | PASS
+SHOUHAN_2P50_1X05_ZZMS_THT | M2 courtyard tracks=4 | width=15.099993 mm | height=5.900011 mm | center=(-0.000005,0.000000) mm | PASS
+ST_SOT23_6L_USBLC6_6P | M2 courtyard tracks=4 | width=3.600016 mm | height=2.599992 mm | center=(-0.000003,0.000010) mm | PASS
+MURATA_GRM21_0805_CAP_2P | M2 courtyard tracks=4 | width=2.499992 mm | height=1.350007 mm | center=(0.000010,0.000000) mm | PASS
+
+Special check:
+MAXIM_W16H2_SO16_90_0107 (U_RTC source footprint) now has its 4 new courtyard tracks on Mechanical2 / Top Courtyard.
+Previous candidate had these 4 tracks on Mechanical4; this candidate corrects that exact defect.
+
+Library composition note:
+Native Make PCB Library generated 37 currently-used footprints. Two unused legacy footprints from the older canonical library are not present:
+- OMRON_B3F_12X12_THT_4P
+- CR2032_HOLDER_P20_2P_THT
+Their current replacement footprints are present on the board/generated library. This is not a current-board functional defect, but it is a library-history difference.

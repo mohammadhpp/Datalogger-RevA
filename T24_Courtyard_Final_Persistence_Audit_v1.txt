@@ -1,0 +1,26 @@
+Datalogger RevA - T24 Final Courtyard Persistence Audit v1
+READ ONLY
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA.PcbDoc
+
+TOTAL COMPONENTS: 129
+COURTYARD COVERED: 129 / 129
+
+U_RTC | PASS | M2=0 M4=4
+Q_SD | PASS | M2=4 M4=0
+Q_OLED | PASS | M2=4 M4=0
+J_SWD | PASS | M2=4 M4=0
+J_SHIELD | PASS | M2=4 M4=0
+J_NAV | PASS | M2=4 M4=0
+J_SD | PASS | M2=4 M4=0
+D_EXT1 | PASS | M2=4 M4=0
+D_EXT2 | PASS | M2=4 M4=0
+D_EXT3 | PASS | M2=4 M4=0
+D_ESD | PASS | M2=4 M4=0
+D_ESD1 | PASS | M2=4 M4=0
+D_ESD2 | PASS | M2=4 M4=0
+C_SENSOR_BULK | PASS | M2=4 M4=0
+C_SD_MID | PASS | M2=4 M4=0
+C_OLED_BULK | PASS | M2=4 M4=0
+
+FINAL STATE: PASS - 129 / 129 persistent courtyard coverage.
+Nothing changed.

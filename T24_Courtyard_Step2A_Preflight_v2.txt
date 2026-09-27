@@ -1,0 +1,25 @@
+T24 Step2A Preflight v2 - READ ONLY
+U_RTC L/B/R/T mil: 6024.055 / 4681.339 / 6494.842 / 5118.661
+Q_SD L/B/R/T mil: 6722.283 / 5283.543 / 6872.205 / 5421.654
+Q_OLED L/B/R/T mil: 5640.945 / 6590.039 / 5779.055 / 6739.961
+J_SWD L/B/R/T mil: 6813.032 / 5758.032 / 6936.968 / 6281.968
+J_SHIELD L/B/R/T mil: 4250.787 / 6650.787 / 4369.213 / 6769.213
+J_NAV L/B/R/T mil: 6784.331 / 6773.858 / 7398.819 / 7026.142
+D_EXT3 L/B/R/T mil: 6391.417 / 4434.409 / 6513.779 / 4596.142
+D_EXT2 L/B/R/T mil: 6716.417 / 4434.409 / 6838.779 / 4596.142
+D_EXT1 L/B/R/T mil: 6556.417 / 4434.409 / 6678.779 / 4596.142
+D_ESD L/B/R/T mil: 4583.819 / 6548.858 / 4706.181 / 6710.591
+D_ESD2 L/B/R/T mil: 7168.858 / 5523.819 / 7330.591 / 5646.181
+D_ESD1 L/B/R/T mil: 7163.858 / 5751.417 / 7325.591 / 5873.779
+C_SENSOR_BULK L/B/R/T mil: 4866.221 / 6568.425 / 4984.646 / 6641.575
+C_SD_MID L/B/R/T mil: 7085.354 / 5638.425 / 7203.779 / 5711.575
+C_OLED_BULK L/B/R/T mil: 5665.787 / 6743.425 / 5784.213 / 6816.575
+BASELINE PASS ONLY - not a clearance or fabrication PASS
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc
+129 components / 113 courtyard-covered / 15 targets verified.
+Candidate: 15 rectangles / 60 tracks; pad/M1 union + 10 mil per side.
+J_SD unresolved. J_SHIELD solder land only; wire envelope needs review.
+KNOWN REVIEW: C_SD_MID / D_ESD2 candidate rectangles overlap.
+KNOWN REVIEW: C_OLED_BULK / Q_OLED gap 3.464 mil, below 10 mil.
+Existing neighbours also need review. No collision PASS claimed.
+Courtyard layer type requires UI confirmation. Silk remains pending.

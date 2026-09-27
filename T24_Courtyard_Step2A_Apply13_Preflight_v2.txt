@@ -1,0 +1,6 @@
+T24 Step2A Apply13 v2 - BASELINE PREFLIGHT ONLY
+PCB: C:\#MHP FILES\DataLoger\DATALOGER_RevA_T24_Courtyard_PENDING.PcbDoc
+13 candidate rectangles / 52 component-owned tracks.
+Geometry: audited PAD/M1 union; 0.05 mm track width.
+Deferred: D_ESD1, D_ESD2, J_SD. Silk unchanged.
+Static/live collision screen must be followed by full DRC after Apply.
