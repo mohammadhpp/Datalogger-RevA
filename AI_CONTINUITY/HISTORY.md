@@ -253,3 +253,7 @@ This is a compact milestone history, not a replacement for Git commit history.
 
 - Rechecked live 01_POWER and 03_MICROSD Git blobs, exact purchased workbook v0.17 identity and STM32G070KBT6 PDR falling maximum 2.04V; Q_SD is AO3401A with BC847B/10k/100k drive, 54.1uF local SD capacitors nominal, C_OUT 47uF nominal. Conservative 280 mA design load preserved; old 19 mA prototype reading remains historical.
 - With declared **hypothetical** 10us/50us charge-to-2.04V, charge balance needs 10.006/2.2252A at assumed 10.4uF effective C_OUT, or 5.3944/1.30288A at unqualified 47uF nameplate C_OUT and 54.1uF SD nameplate. Neither cap bias nor real Q_SD/converter dynamics established; T25AQ ideal-source current at its worst rail floor could approach 17.24A. Reproducible source-hash gated script and limitations in T25AS report. No new PSpice run, CAD/BOM edit, fresh DRC or factory PASS.
+
+## T25AT — clarify 1.80V battery source rating; stage representative test gate — 2026-09-27
+
+- Rechecked TI TPS631000 product Rev C: 1.5A output capability stated with VIN>=2.7V, VOUT=3.3V; do not use that headline or ~2.9A typical internal switch current as guaranteed output at historical 1.80V loaded AA corner. AOS AO3401A 3.5ns turn-on rise is for a -10V/3ohm test, not the 3V3 BC847B/10k/100k SD driver. Reparsed exact SD capacitor MPNs in live 03_MICROSD.SchDoc. Updated source-qualified validation requirements and a concrete small power-path test protocol in T25AT report; no new PSpice, no CAD/BOM edit, no fabrication release.

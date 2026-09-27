@@ -211,3 +211,7 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 ## T25AR — inspect full simulation history, including load enabling
 
 - A wrapper that summarizes only planned handoff windows can miss a worse *different* event. T25AQ handoff-window minima were all >3.08V in a simplified model, while independently scanning its entire PSpice .out found 3V3_SYS=1.576V during initial enabling of nominal 54.1uF SD decoupling in the C_OUT=10.4uF reference scenario. Future simulation reviewers must inspect raw waveforms across startup, every branch enable, both source transfers and recovery, and report threshold crossings with timestep and actual model scope. Neither simulated sub-2.04V nor >2.04V under illustrative switch/nominal capacitance proves actual MCU reset or safety. Do not equate a microSD card's expected power-up below its 2.7V working limit with an SD-write error.
+
+## T25AT — datasheet headline ratings need their stated input and driver conditions
+
+- TI's TPS631000 1.5A *output* specification is tied to VIN>=2.7V and VOUT=3.3V; the ~2.9A *typical internal switch* rating is different. Neither value qualifies converter transient output when the two-AA pack is 1.80V under load. AOS AO3401A nanosecond switching data uses a -10V gate and 3ohm test generator, not the actual 3V3/BC847B/10k/100k driver. Keep conditional charge screens distinct from validated SD-on timing, MCU no-reset and SD-write integrity.
