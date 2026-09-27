@@ -270,3 +270,8 @@ This is a compact milestone history, not a replacement for Git commit history.
 
 - Executed deterministic RK4 12-case capacitor-only sensitivity against unchanged live power/SD identities and authenticated workbook cells. Assumed background 19/280mA, hypothetical source ceilings 0.5/1.0/1.5A, and conductance 0/100us. The lower background improved rail minima about 31–104mV; nominal 47uF output and 54.1uF SD charge sharing dominated. Minima span 1.545–2.085V. Only 19mA/1.5A/100us exceeded 2.04V, by 44.7mV, but source capability at VIN=1.80V, biased Ceff and switch timing remain unqualified. Evidence SHA256 97f6963a14d5dd6b77fc7b95cf45d9ef8d2adc3579ea41ee52ab2faf35e456f5. No board/fabrication PASS.
 - Committed T25BA one-click CMD and ASCII PowerShell fixture for 12 PSpice 25.1 runs with timeout, solver/waveform gates and ZIP evidence. Windows execution is the only pending user action. Fixture excludes real converter/mux/card/OLED behavior; no CAD/BOM edit, DRC or factory output.
+
+## T25BA/T25BB — failed fixture audited and corrected unique PSpice run staged — 2026-09-27
+
+- Audited user ZIP Datalogger_T25BA_v1_Result_20260927_233357.zip, SHA256 486adc32760c820bba1d08ed9164f63934e3fa9ca86b71a250646b502ce1e4d3, 2497 bytes and six safe members. Wrapper status INCOMPLETE_0_OF_12; first case stopped at PSpice ORPSIM-15142 floating 3V3_SYS. No DAT or transient rows exist, so T25BA has no electrical verdict. Failure manifest committed.
+- Root cause is the fixture's ABM-driven rail lacking a topology-check DC reference. Staged unique T25BB v1 with R_RAIL_DC=1G, only 3.3nA at 3.3V, plus independent per-case failure capture. Windows rerun pending; no CAD/BOM/DRC/factory change and no board PASS.
