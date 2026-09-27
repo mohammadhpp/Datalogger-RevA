@@ -15,6 +15,7 @@ REQUIRED = [
     'AI_CONTINUITY/HISTORY.md',
     'AI_CONTINUITY/CHAT_MANAGEMENT_RULE.md',
     'AI_CONTINUITY/UPDATE_PROTOCOL.md',
+    'AI_CONTINUITY/T25_EXECUTION_TO_RESULT_RULE_FA.md',
     'AI_CONTINUITY/T25V_RECOVERED_DESIGN_BASIS_AND_GAPS_FA.md',
     'AI_CONTINUITY/T25W_PRE_FAB_POWER_RISK_BOUNDS_FA.md',
     'AI_SCRIPTS/T25/T25W_Power_Risk_Bounds_v1.py',
@@ -43,6 +44,9 @@ def main():
     bom=json.loads((root/'AI_CONTINUITY/T25V_PURCHASE_BOM_V017_CELL_EXPORT.json').read_text(encoding='utf-8-sig'))
     if 'SOURCE_ARCHIVE_REGISTRY_2026-09-25.json' not in start: failures.append('AI_START_HERE does not link the source registry')
     if hand.count('## CURRENT EXACT POINT')!=1:failures.append('CURRENT_HANDOFF must have exactly one live CURRENT EXACT POINT')
+    if 'T25_EXECUTION_TO_RESULT_RULE_FA.md' not in start:failures.append('AI_START_HERE does not link the T25 execution rule')
+    for marker in ('**NEXT EXECUTABLE ACTION:**','**BLOCKER REQUIRING USER:**'):
+        if marker not in hand:failures.append('CURRENT_HANDOFF lacks explicit execution dependency: '+marker)
     if len(hand)>20000:failures.append('CURRENT_HANDOFF exceeds 20k characters and risks truncation')
     if not ('19 mA' in hand and '280 mA' in hand):failures.append('CURRENT_HANDOFF lacks corrected 19mA sample / 280mA design provenance')
     if len(reg.get('archive_assets',[]))!=3:failures.append('Expected T22, T23 and curated archive records')

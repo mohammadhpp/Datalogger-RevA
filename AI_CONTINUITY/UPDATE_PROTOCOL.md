@@ -14,6 +14,10 @@ Purpose: keep project continuity inside Git so a new AI/session can resume accur
 8. Read `AI_CONTINUITY/SOURCE_REGISTRY_AND_RETENTION_RULE_FA.md` and the machine-readable source archive registry before declaring a historical PDF/BOM or ZIP unavailable or safe to delete. The Git exports of workbook cells and PDF text are accessible evidence but cannot substitute for the original binary/ZIP.
 9. Before making a quantitative claim, keep **measured prototype value / historical design envelope / current-board verified value** separate. User's final correction: 19 mA old DMM reading, 280 mA basis for *all power calculations and part selections*, no accepted 85 mA reading.
 
+## Completion discipline for the T25 verification task
+
+Follow [the user-authorized T25 execution rule](T25_EXECUTION_TO_RESULT_RULE_FA.md). A report-only outcome is not a completed verification task. Pursue executable simulation or a prepared representative physical test, inspect raw evidence, and continue fixes while work is possible here. If the next step requires the user's Windows PSpice run, oscilloscope or spending on an experimental board, prepare the exact action first and name that dependency. Never interpret GitHub continuity PASS or the T24 DRC as functional PASS.
+
 ## At every meaningful milestone
 
 Update `AI_CONTINUITY/CURRENT_HANDOFF.md` with:

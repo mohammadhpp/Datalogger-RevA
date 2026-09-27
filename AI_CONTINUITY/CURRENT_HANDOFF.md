@@ -6,6 +6,10 @@ Manufacturer recheck changes interpretation of prior illustrative current: TI sp
 
 **NEXT EXACT ACTION:** Seek credible AO3401A gate behavior / actual biased C and TPS631000 output-current waveform at VIN2=1.80V loaded, then use a settled, bounded PSpice transient if achievable. If model/runtimes block that, first agree a small representative power-path test arrangement and fast multi-node capture of SD enabling and both USB/battery directions; never claim no-reset or SD-write PASS from a coupon without MCU/firmware. Keep OVP and weak-AA TPS2116 hard-unplug risk OPEN. Old prototype **19 mA** average, RevA design **280 mA**. No RevA PCB fabricated; bought BOM/CAD unchanged; last T24 DRC 0 warnings / 0 violations. **FABRICATION HOLD.**
 
+**NEXT EXECUTABLE ACTION:** Prepare a bounded SD-on/weak-AA test with real component behavior and raw VDD/NRST/SD_VDD capture, or a representative small power-path fixture if vendor dynamics cannot be qualified. Continue beyond report-only milestones; follow `T25_EXECUTION_TO_RESULT_RULE_FA.md`.
+
+**BLOCKER REQUIRING USER:** PSpice 25.1 runs on the user's Windows PC; physical verification needs oscilloscope access and a representative fixture. Once prepared, request only the necessary run or equipment detail. No remote Windows/scope access here.
+
 ## Previous checkpoint — T25AH USB unplug capacitor energy screen / no-reset HOLD, 2026-09-26
 
 **Authoritative project:** private GitHub `mohammadhpp/Datalogger-RevA`, `main`, and user's local working repo `C:\#MHP FILES\DataLoger`. Canonical `DATALOGER_RevA.PcbDoc`, `Datalogger_RevA_Clean.PcbLib`, seven current `*.SchDoc` sheets. Do not use the 2026-09-08 T23 offline ZIP as the live source.
