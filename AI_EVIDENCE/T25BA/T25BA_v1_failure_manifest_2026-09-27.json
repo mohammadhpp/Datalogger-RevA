@@ -1,0 +1,28 @@
+{
+  "status": "INCOMPLETE_0_OF_12_NO_TRANSIENT_DATA",
+  "archive": {
+    "file_name": "Datalogger_T25BA_v1_Result_20260927_233357.zip",
+    "bytes": 2497,
+    "sha256": "486adc32760c820bba1d08ed9164f63934e3fa9ca86b71a250646b502ce1e4d3",
+    "safe_regular_members": 6,
+    "path_traversal_or_symlink": false
+  },
+  "pspice": {
+    "version": "25.1.0 (18 July 2026)",
+    "first_case": "BG_19mA_IMAX_0P5A_TAU_0us",
+    "job_concluded": false,
+    "dat_present": false,
+    "printed_waveform_rows": 0,
+    "error": "ERROR(ORPSIM-15142): Node 3V3_SYS is floating"
+  },
+  "member_sha256": {
+    "BG_19mA_IMAX_0P5A_TAU_0us.cir": "8492a729738455c1f3a23077960f4d72b63072073768ddba3ed13415245112f4",
+    "BG_19mA_IMAX_0P5A_TAU_0us.console.txt": "e49cddaa7371539bcf764f5cbb9530793973555e8f44b31bcfc83884c5fafe00",
+    "BG_19mA_IMAX_0P5A_TAU_0us.out": "67f2f5c5c5fe9ffa2f64881ca979e86c5b7ba81604863c6be44a07c00574c7c1",
+    "BG_19mA_IMAX_0P5A_TAU_0us.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "T25BA_v1_Manifest.txt": "c3e774dde6d37835f13563d839526fc550c3cf16e94b74b1ab22ba976019d842",
+    "T25BA_v1_Result.txt": "9feecf6626121ed7e6e1045d642d1b7ba8e951e46d71e32afaa9790d99cf893c"
+  },
+  "interpretation": "Fixture topology failure only; no RevA electrical verdict and no fabrication pass.",
+  "corrected_stage": "T25BB v1 adds a 1G DC rail reference and independent per-case error capture."
+}
