@@ -1,16 +1,18 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — T25BA PSpice 19mA/280mA cross-check staged, 2026-09-27
+## CURRENT EXACT POINT — T25BB corrected PSpice cross-check staged after T25BA fixture failure, 2026-09-27
 
-No RevA board exists. Continue pre-fabrication simulation; do not request physical tests or release factory files. Workbook v0.17 B6=**280 mA maximum design load**, not measured peak. User's **19 mA** is an older-prototype reading with unknown bandwidth, not a guaranteed RevA average/peak. Historical SD 400mA is only a switch-drop sizing point.
+No RevA board exists. Continue pre-fabrication simulation; no physical test or factory release. Workbook 280 mA is a maximum design load, while 19 mA is an older-prototype reading with unknown bandwidth; neither is a measured RevA peak.
 
-T25AZ **EXECUTED** 12 capacitor-only SD-enable cases: background 19/280mA, hypothetical instantaneous source ceilings 0.5/1.0/1.5A and conductance trajectories 0/100us. Reducing background to 19mA improved minimum rail only about 31–104mV; nominal C_OUT=47uF and C_SD=54.1uF charge sharing dominated. Minima were 1.545–2.085V. Only 19mA/1.5A/100us exceeded the 2.04V PDR screen, by 44.7mV, but 1.5A at VIN=1.80V, Ceff and timing are unqualified: **NO BOARD/FABRICATION PASS**. Raw JSON SHA256 **97f6963a14d5dd6b77fc7b95cf45d9ef8d2adc3579ea41ee52ab2faf35e456f5**. See `T25AZ_EXECUTED_19_VS_280_SD_CHARGE_SENSITIVITY_FA.md`, `AI_EVIDENCE/T25AZ/` and `T25AZ_SD_Charge_19_vs_280_Sensitivity_v1.py`.
+T25AZ already executed 12 conditional capacitor-only cases. Reducing assumed background 280mA→19mA improved the calculated rail floor only about 31–104mV; nominal C_OUT=47uF and C_SD=54.1uF charge sharing dominated. Calculated minima 1.545–2.085V are not board PASS because source capability at VIN=1.80V, biased Ceff and actual switch/card behavior remain unknown.
 
-T25BA is **TEST_STAGED_AWAITING_USER_RUN**. The one-click PSpice 25.1 package runs the same 12 cases with 45s/case, solver/waveform gates and evidence ZIP. It is a second-engine check, not a real TPS631000/TPS2116/card/OLED model. BOM/CAD unchanged; T24 DRC remains 0/0.
+User ran T25BA v1 and uploaded ZIP SHA256 **486adc32760c820bba1d08ed9164f63934e3fa9ca86b71a250646b502ce1e4d3**, 2497 bytes. Audit: safe six-member archive, `INCOMPLETE_0_OF_12`, no DAT/waveform, exact PSpice error `ORPSIM-15142: Node 3V3_SYS is floating`. This is a fixture-topology failure, not a RevA electrical result. Evidence: `AI_EVIDENCE/T25BA/T25BA_v1_failure_manifest_2026-09-27.json`.
 
-**NEXT EXECUTABLE ACTION:** Run Git Save, then double-click `AI_SCRIPTS\T25\Run_T25BA_SD_Charge_19_vs_280_v1.cmd`. Wait for `TWELVE_CONDITIONAL_PSPICE_CASES_COMPLETED` and upload the printed Result ZIP. If INCOMPLETE, upload that same ZIP. AI then audits it without requesting another script or physical measurement.
+T25BB v1 is **TEST_STAGED_AWAITING_USER_RUN**. It adds a 1G DC rail reference (3.3nA at 3.3V) so PSpice accepts the ABM-driven rail, and captures each of 12 cases independently. It remains a conditional second-engine check, not real TPS631000/TPS2116/card/OLED behavior. CAD/BOM unchanged; T24 DRC remains 0/0.
 
-**BLOCKER REQUIRING USER:** Only this Windows PSpice run. Do not alter the 280mA design envelope, purchased components, CAD, population or manufacturing state from this fixture.
+**NEXT EXECUTABLE ACTION:** Run Git Save, then double-click `AI_SCRIPTS\T25\Run_T25BB_SD_Charge_19_vs_280_v1.cmd`. Wait for the Result ZIP path and upload `Datalogger_T25BB_v1_Result_*.zip` whether status is complete or incomplete. AI must audit it immediately and continue simulation.
+
+**BLOCKER REQUIRING USER:** Only this Windows PSpice run. Do not alter the 280mA design envelope, purchased components, CAD, population or manufacturing state.
 
 ## Previous checkpoint — T25AH USB unplug capacitor energy screen / no-reset HOLD, 2026-09-26
 
