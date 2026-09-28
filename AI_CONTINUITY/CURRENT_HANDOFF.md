@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — all T25BL new parts technical PASS + Iran availability PASS; consolidated ECO ready for user approval, 2026-09-28
+## CURRENT EXACT POINT — whole power block closure before one-shot purchase; no partial ECO/purchase, 2026-09-28
 
 ### Live project baseline
 
@@ -150,6 +150,21 @@ Official TDK data was checked for both exact MPNs. The 4.7nF NP0 part is technic
 All newly introduced T25BL parts now meet:
 `TECHNICAL PASS + IRAN AVAILABILITY PASS`.
 
+### Consolidated power closure rule — locked 2026-09-28
+
+User requires the **entire power block to be closed before buying new parts**, so purchases can be placed once.
+
+No partial T25BL purchase or CAD ECO is allowed now even though the SD branch parts have cleared technical/procurement gates.
+
+The active closure sequence is:
+1. battery path at the locked 1.80V pack-under-load corner, including S1/path resistance;
+2. USB input protection/OVP architecture;
+3. USB<->battery no-reset handoff with weak battery;
+4. TPS631000 / 3V3 source margin with the controlled SD branch;
+5. consolidate every required new/replacement part into one Iran-qualified purchase list;
+6. request one explicit user approval for the consolidated power ECO/purchase;
+7. only then modify Altium.
+
 ### Remaining engineering gates
 
 - T25BL requires explicit user approval before changing schematic/PCB/purchased-BOM assumptions.
@@ -162,15 +177,12 @@ All newly introduced T25BL parts now meet:
 
 ## NEXT EXECUTABLE ACTION
 
-Present the consolidated T25BL ECO for explicit user approval.
+Continue engineering without partial purchasing:
+1. close the 1.80V battery-path resistance/current gate and identify whether S1 must change;
+2. qualify a safe USB input/OVP conditioner that preserves the 5.50V no-nuisance requirement;
+3. redesign/check TPS2116 PR threshold and hold-up for USB hard-unplug at weak battery;
+4. close TPS631000 1.80V / 280mA source-margin gate with bounded evidence;
+5. combine the already-qualified TPS22918 SD change with all other required power changes;
+6. issue one exact Iran-qualified purchase list and consolidated ECO for user approval.
 
-If approved:
-1. replace Q_SD/AO3401A + Q_SD_DRV/BC847B + associated 10k/100k gate network with TPS22918DBVT;
-2. use exact CT part TDK C1608NP01H472J080AA, 4.7nF, NP0, 50V, 0603;
-3. use exact VIN bypass TDK C2012X7R1H105K125AB, 1uF, X7R, 50V, 0805;
-4. reuse 100k existing MPN as ON pulldown;
-5. compile/ERC, verify DBV pin mapping, ECO to PCB, place/route, repour, Full Batch DRC;
-6. footprint/courtyard/pin-1 audit, fresh snapshot and Git checkpoint;
-7. continue remaining TPS631000 1.80V source / USB handoff / OVP gates before fabrication release.
-
-No T25BF rerun. Fabrication Hold remains.
+No partial CAD edit. No staged purchase. No T25BF rerun. Fabrication Hold remains.
