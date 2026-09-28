@@ -15,20 +15,20 @@
 - The former T25BR 110uF nominal VIN_MUX recommendation does not guarantee no reset: conditional energy at 0.924W, η=0.75, 2.7325→1.84V needs 15.09/30.19/60.38uF effective for 25/50/100us; neither 55% retention nor mux maximum interruption is established, and reverse direction must be tested. No R_ST_PU/PR1/capacitor ECO yet.
 - Next independent work: complete a **single candidate USB/preregulator bill of materials and netlist** with all exact Iran-sourced passives, safe EN and source fault bounds; compare to existing OVP. If models and guaranteed Ceff cannot prove transfer, specify one instrumented power prototype gate. No repeat of invalid T25BT/T25AE fixture; no purchase, CAD unchanged, fabrication hold.
 
-## CURRENT EXACT POINT — T25BY three-pole ECO map and Iran sourcing audit, 2026-09-28
+## PRIOR CHECKPOINT — T25BY three-pole ECO map and Iran sourcing audit, 2026-09-28
 
 - `AI_CONTINUITY/T25BY_THREE_POLE_S1_ECO_MAP_AND_IRAN_SOURCING_FA.md` defines P1 BAT_FUSED→BAT_SW, P2 USB_VBUS_RAW→USB_OVP_IN, P3 joining **only the return ends** of the two distinct 5.1k CC Rd resistors to GND. User-approved three-pole decision remains the target; current four-pole CAD remains unchanged.
 - Searching Iranian listings did **not** establish an exact, available, maintained 3PST MPN with three independent contacts and justified BAT contact drop. Six terminals in a listing can denote a two-pole illuminated or momentary device. Foreign APEM 4651A32 is an identified 3PST type, not Iran-qualified. Exact holder/contact resistance/fit also open. Do not substitute a two-pole or buy an unqualified switch.
 - One ECO must audit the six wire/pin map, current off-board switch footprint/termination, PCB routing, ERC and Full DRC, in conjunction with OVP/no-reset power-gate closure; no partial CAD/purchase. No new Windows ZIP/PSpice cycle requested. **FABRICATION HOLD.**
 
-## CURRENT EXACT POINT — T25BX corrected for user-approved three-pole S1, 2026-09-28
+## PRIOR CHECKPOINT — T25BX corrected for user-approved three-pole S1, 2026-09-28
 
 - User explicitly states the **latest Claude decision approved a three-pole switch**. GitHub main `01_POWER.SchDoc` blob `da2d005712c47000eb8c16157eca464d3fee4fe1` still draws four independent S1 contacts: A BAT_FUSED→BAT_SW, B USB_VBUS_RAW→USB_OVP_IN, C CC1_RD_RET→GND, D CC2_RD_RET→GND. Distinguish approved design from unmodified CAD.
 - Three-pole implementation inferred from those nets: one BAT pole, one USB pole, third joins only the **return ends** of the two separate CC Rd resistors to GND. Verify against the exact earlier three-pole decision/pinout before ECO; do not join raw CC1/CC2 nets. The third-pole map is an inference, not a witnessed Claude wiring drawing.
 - T25BO_P1's DPST procurement/architecture pass and T25BX's initial preference for EN/SPST are **retracted**. The current corrected report is `AI_CONTINUITY/T25BX_LIVE_S1_TOPOLOGY_AND_OFF_ARCHITECTURE_FA.md`. It keeps the conditional battery resistance budget and lists exact three-pole MPN/holder/Iran sourcing as OPEN.
 - CAD, BOM and buying unchanged. OVP 5.50V/limited fault, weak 1.80V battery path, and no-reset handoff remain OPEN. No repeated invalid vendor fixture. One consolidated ECO and purchase after a complete proposal/prototype gate. Last accepted T24 DRC 0/0 is for unchanged CAD. **FABRICATION HOLD.**
 
-## CURRENT EXACT POINT — T25BW consolidated power decision; no repeated vendor-model loop, 2026-09-28
+## PRIOR CHECKPOINT — T25BW consolidated power decision; no repeated vendor-model loop, 2026-09-28
 
 ### Live project baseline
 
