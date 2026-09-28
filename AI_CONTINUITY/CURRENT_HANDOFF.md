@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — T25BT raw official-model audit complete; both 19mA→280mA prestates invalid, 2026-09-28
+## CURRENT EXACT POINT — T25BW consolidated power decision; no repeated vendor-model loop, 2026-09-28
 
 ### Live project baseline
 
@@ -222,13 +222,18 @@ The generated `T25BT_v1_Summary.txt` has a cross-line parser defect: 6,001 alleg
 Verdict:
 `ACTUAL_TEST_WITH_RAW_EVIDENCE / OFFICIAL_MODEL_JOBS_COMPLETED / BOTH_PRESTATES_INVALID / POST_STEP_REJECTED / NO_HARDWARE_FAILURE_INFERRED / NO_BOARD_PASS / FABRICATION_HOLD`.
 
+## T25BW — consolidated power decision after user approved shorter workflow
+
+Read `AI_CONTINUITY/T25BW_CONSOLIDATED_POWER_DECISION_GATE_FA.md`. User explicitly agreed to one integrated power-block review and one eventual Iran-qualified purchase decision, with no further routine Windows PSpice scripts, partial CAD edits or staged orders. Reviewed GitHub main current SchDoc hashes, workbook requirements, vendor evidence and candidate local procurement.
+
+Decisions: 280mA design ceiling remains and 19mA old prototype reading is not a substitute. TI typical TPS631000 current graph does not justify replacing the converter solely from T25BT's invalid prestate. Existing TPS2116, L1 and F1 retained pending actual weak-pack series-drop gate. TPS22918 + exact two TDK capacitors are technically and Iran-market qualified candidates for the SD sub-branch, but remain unpurchased/unapplied. Current OVP and no-reset handoff are still unqualified. T25BO/BP/BR exploratory architecture changes and arbitrary 110uF hold-up are **not selected**. Do not represent the three SD candidate parts as a complete power purchase list.
+
+**NO BOARD PASS / NO PARTIAL PURCHASE / NO CAD ECO / FABRICATION HOLD.**
+
 ## NEXT EXECUTABLE ACTION
 
-1. Do not rerun T25BF/T25BT or interpret T25BT post-step voltages as circuit behavior.
-2. Inspect official TPS631000 model initialization guidance/source and existing T25D/Q/BF/BT runtime evidence for one **distinct** bounded way to obtain a regulated 3.3V pre-event state at VIN=1.80V and a credible 2.80V control. Require plausible raw source current and a real 19mA→TOTAL 280mA event; end an unproductive vendor-model route if its initialization remains inaccessible.
-3. In parallel continue the authorized whole-power closure: battery path S1/resistance, USB/OVP, weak-AA no-reset handoff, source/SD controlled-inrush; reuse existing T25BD/BE and T25BJ/BK evidence, keeping model assumptions explicit.
-4. Only after all power changes are defined produce one Iran-qualified purchase list and request one consolidated ECO/purchase decision. No partial CAD change or staged purchase; fabrication hold remains.
+Develop one coherent battery/USB/OVP/handoff design proposal using the current schematic and the locked 1.80V/5.50V/no-reset conditions. Resolve exact S1/holder series resistance, USB fault source and protected VIN1 limit, and whether a credible validated model can close TPS2116 handoff. If the vendor-model route cannot do so, specify a small instrumented power prototype (separate from production RevA) and its acceptance signals/conditions instead of requesting the user rerun invalid fixtures. Confirm MPN, footprint, electrical minimum and Iranian seller for **every** new part before any consolidated ECO/purchase decision. Keep user intervention at one concrete reviewable decision; do not ask for routine screenshots, ZIPs or another T25BF/BT run.
 
 ## BLOCKER REQUIRING USER
 
-None for the T25BT ZIP audit. The original unbranded microSD transient and exact OLED carrier dynamic current remain uncharacterized; a later representative test or source evidence is needed for final hardware qualification, after the pre-fabrication simulation review.
+None now. A later approval will be needed only for a fully specified consolidated power ECO/purchase or a concrete limited power prototype. User has authorized independent read-only engineering work and asked to reduce repeated execution burden.
