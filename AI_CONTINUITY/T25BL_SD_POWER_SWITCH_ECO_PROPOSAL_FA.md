@@ -112,3 +112,19 @@ T25BL is now ready for user approval. Applying it changes the final purchased-BO
 
 Status:
 `EXACT_SD_SWITCH_ECO_PROPOSED / AWAITING_USER_APPROVAL / CAD_UNCHANGED / FABRICATION_HOLD`.
+
+
+## Procurement status update — 2026-09-28
+
+User locked a new constraint: every newly proposed RevA component must be practically available in Iran before it can enter an executable ECO/BOM change.
+
+Current web procurement check:
+- `TPS22918DBVT/DBVR`: **Iran-local stock not verified** in the searched Iranian sellers/indexes. Therefore the TPS22918 implementation in this document is now a **technical reference only**, not an executable procurement-approved ECO.
+- `C_SD_SW_IN=1uF 0603 X5R`: an Iranian seller (Digikapart) lists `06035C105KAT2A`, 1uF, 0603, X5R, +/-10%, 50V as **موجود**.
+- Exact 4.7nF 0603 X7R Iranian stock was not verified in the current search; an Iranian listing for 4.7nF SMD 0805 exists, but changing package/spec requires review.
+- `SY6280` appears in recent Iranian SkyTech stock/replenishment lists and is therefore an Iran-available candidate for a new technical evaluation. It is **not** pin/function equivalent to TPS22918: it uses programmable current limit, SOT23-5, automatic output discharge, and has no adjustable CT slew pin in the available preliminary datasheet.
+
+Accordingly:
+`T25BL_TPS22918_ECO = PROCUREMENT_BLOCKED / TECHNICAL_REFERENCE_ONLY`.
+
+Do not apply this ECO to CAD. Next design work must evaluate an Iran-available load-switch solution and then issue a replacement ECO only after technical and procurement qualification.
