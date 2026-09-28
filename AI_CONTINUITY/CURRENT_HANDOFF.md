@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — TPS22918DBVT technical PASS + Iran availability PASS; finish passive procurement checks before T25BL ECO approval, 2026-09-28
+## CURRENT EXACT POINT — all T25BL new parts technical PASS + Iran availability PASS; consolidated ECO ready for user approval, 2026-09-28
 
 ### Live project baseline
 
@@ -138,9 +138,17 @@ Updated evidence:
 
 The earlier TPS22918 procurement block is superseded. Do not switch to SY6280 unless TPS22918 later becomes unavailable or another engineering reason arises.
 
-Remaining local-procurement check for T25BL:
-- exact acceptable 4.7nF CT capacitor;
-- exact acceptable 1uF input bypass capacitor (Iranian listing already identified previously, but reverify before final BOM freeze).
+T25BL local-procurement gate is now fully cleared by user-provided Lion Electronic evidence:
+
+- `TPS22918DBVT(13MW)`: PASS, SkyTech Iran.
+- `C_SD_CT`: **TDK C1608NP01H472J080AA**, 4.7nF +/-5%, 50V, NP0/C0G, 0603 — Lion screenshot stock 3,940 pcs.
+- `C_SD_SW_IN`: **TDK C2012X7R1H105K125AB**, 1uF +/-10%, 50V, X7R, 0805 — Lion screenshot stock 6,460 pcs.
+- 100k ON pulldown: existing project part.
+
+Official TDK data was checked for both exact MPNs. The 4.7nF NP0 part is technically stronger for CT stability than the earlier provisional X7R +/-10% choice. The 1uF part is 0805 rather than provisional 0603, so the final PCB ECO must use the correct 0805 footprint.
+
+All newly introduced T25BL parts now meet:
+`TECHNICAL PASS + IRAN AVAILABILITY PASS`.
 
 ### Remaining engineering gates
 
@@ -154,10 +162,15 @@ Remaining local-procurement check for T25BL:
 
 ## NEXT EXECUTABLE ACTION
 
-1. Keep TPS22918DBVT as the preferred SD load switch; technical and Iran-local availability gates are both PASS.
-2. Verify Iran-local purchasability of the exact/new passive parts required by T25BL, especially the 4.7nF CT capacitor and 1uF VIN bypass.
-3. Once all new parts have `TECHNICAL PASS + IRAN AVAILABILITY PASS`, present the final consolidated T25BL ECO for explicit user approval.
-4. After approval only: apply schematic ECO, verify/create TI DBV SOT-23-6 footprint, ECO to PCB, route/repour, Full Batch DRC, courtyard/pin-1 audit, snapshot and Git checkpoint.
-5. Continue remaining TPS631000 1.80V source / USB handoff / OVP gates before fabrication release.
+Present the consolidated T25BL ECO for explicit user approval.
+
+If approved:
+1. replace Q_SD/AO3401A + Q_SD_DRV/BC847B + associated 10k/100k gate network with TPS22918DBVT;
+2. use exact CT part TDK C1608NP01H472J080AA, 4.7nF, NP0, 50V, 0603;
+3. use exact VIN bypass TDK C2012X7R1H105K125AB, 1uF, X7R, 50V, 0805;
+4. reuse 100k existing MPN as ON pulldown;
+5. compile/ERC, verify DBV pin mapping, ECO to PCB, place/route, repour, Full Batch DRC;
+6. footprint/courtyard/pin-1 audit, fresh snapshot and Git checkpoint;
+7. continue remaining TPS631000 1.80V source / USB handoff / OVP gates before fabrication release.
 
 No T25BF rerun. Fabrication Hold remains.
