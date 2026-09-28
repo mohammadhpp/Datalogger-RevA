@@ -1,0 +1,64 @@
+{
+  "status": "2_OFFICIAL_MODEL_TRACES_COMPLETE_0_VALID_LOADSTEP_PRESTATES_NO_BOARD_PASS",
+  "archive": {
+    "file_name": "01-Datalogger_T25BF_v1_Result_20260928_101716.zip",
+    "bytes": 708083,
+    "sha256": "ef3a96ed867491a93662109932ec8e908c48ac7902f0139c3e8d60c22817eea9",
+    "members": 14,
+    "uncompressed_bytes": 1510235,
+    "unsafe_members": []
+  },
+  "cases": [
+    {
+      "case": "VIN_1P8V",
+      "job_concluded": true,
+      "errors": 0,
+      "warnings": 0,
+      "printed_rows": 2001,
+      "runtime_seconds": 4.69,
+      "trace_complete": true,
+      "pre_VOUT_min_V": 1.485,
+      "pre_VOUT_max_V": 1.95,
+      "pre_abs_input_current_avg_A": 0.00022525690607734807,
+      "post_VOUT_min_V": 0.7788,
+      "post_VOUT_end_V": 0.7788,
+      "post_abs_input_current_avg_A": 0.000290815984015984,
+      "regulated_3V3_prestate_valid": false,
+      "load_step_interpretation_valid": false
+    },
+    {
+      "case": "VIN_2P8V_CONTROL",
+      "job_concluded": true,
+      "errors": 0,
+      "warnings": 0,
+      "printed_rows": 2001,
+      "runtime_seconds": 46.77,
+      "trace_complete": true,
+      "pre_VOUT_min_V": 2.632,
+      "pre_VOUT_max_V": 2.635,
+      "pre_abs_input_current_avg_A": 1.0700077662983425,
+      "post_VOUT_min_V": 2.639,
+      "post_VOUT_end_V": 2.998,
+      "post_abs_input_current_avg_A": 2.2448029287412585,
+      "regulated_3V3_prestate_valid": false,
+      "load_step_interpretation_valid": false
+    }
+  ],
+  "interpretation": "Both official encrypted-model jobs completed, but neither had a regulated 3.3V pre-event state. Post-step voltages are not valid load-step response evidence. The 1.8V trace drew only sub-mA input current in the prewindow; the short precharged run did not bypass internal startup state. This is a fixture/model-state limitation, not proof of board failure.",
+  "member_sha256": {
+    "T25BF_v1_Manifest.txt": "25656114efa5fa7d5a4b00485b4ac98b7e386f9e9c4c792948ebace8d899c66d",
+    "T25BF_v1_Result.txt": "3fcce471161be12b05e496f6ca7301fdacc38f8621ab88ea4197478ad59a06ab",
+    "VIN_1P8V.cir": "314d09b479f4ef9ceb3e9a47e29cfd9051a1b8eb8679e23cefc8e1f1dc63e83b",
+    "VIN_1P8V.console.txt": "ebce7b174f6001e7cb2aede6f3f9b2048e35cc21bd4b149b3c25ae738bc57c53",
+    "VIN_1P8V.dat": "6fbbd86553467e9358910a6ae41f28b052a3c788f154460c1a3c91d2ef1f75cf",
+    "VIN_1P8V.mif": "8ef6f5d93a62a4b3966e4de3dbe2a825feb4637bbb54078f32dc6479d18c4449",
+    "VIN_1P8V.out": "6896b46be9e7cf4197414331e7a2d6c2b54b127752e6eb376e1db35f55ddb7b2",
+    "VIN_1P8V.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "VIN_2P8V_CONTROL.cir": "5bcc86463cfd93bd65918df4ec7a0345a03c675fb4acd6871002e18706d57103",
+    "VIN_2P8V_CONTROL.console.txt": "95698713b965684a25fab56c2cd1d0797cf5b774384881d94554e834bdeffaa0",
+    "VIN_2P8V_CONTROL.dat": "3ce9932f699ff291edb693c6a34cdda5bed1439411994b07070eca71e8839572",
+    "VIN_2P8V_CONTROL.mif": "8ef6f5d93a62a4b3966e4de3dbe2a825feb4637bbb54078f32dc6479d18c4449",
+    "VIN_2P8V_CONTROL.out": "29153055a5c6e61c98793969448e565d4c93b461fb6cedcefd1c28173457ed42",
+    "VIN_2P8V_CONTROL.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
