@@ -212,14 +212,18 @@ The active closure sequence is:
 - Exact installed effective capacitances under bias remain open.
 - No integrated startup/handoff/SD/OLED or fabrication PASS exists.
 
+## T25BU — T25BT result uploaded; raw ZIP audit pending, 2026-09-28
+
+User supplied `Datalogger_T25BT_v1_Result_20260928_220315.zip`. This session cannot read local scratch ZIP bytes with the exposed execution tools; no T25BT waveform value, solver verdict, pre-state PASS or failure has been inferred from the filename. Do not rerun T25BT. To eliminate manual table transcription, `AI_SCRIPTS/T25/T25BU_Audit_T25BT_Result_v1.ps1` was added in commit `4d47e18a42b826b231e27ad1a90d58a4a05b35c0`. It reads the existing result ZIP only, locates two separate raw PSpice PRINT tables per case, checks solver completion and 3V3 prestate, and emits a short plain-text report. The auditor has not been executed or independently tested in this session; its output requires review.
+
 ## NEXT EXECUTABLE ACTION
 
-1. Run `AI_SCRIPTS\T25\Run_T25BT_TPS631000_SS1_19_to_280_LoadStep_v1.cmd`.
-2. Upload `Datalogger_T25BT_v1_Result_*.zip`.
-3. Independently audit the raw voltage and source-current PRINT tables.
-4. Accept the 19mA->280mA load-step only if the official-model pre-event 3V3 state is valid and stable; otherwise reject it and do not infer hardware behavior.
-5. Do not run T25BQ and do not execute T25BO/T25BP/T25BR CAD/BOM proposals.
-6. Preserve the completed TPS22918 SD controlled-inrush sub-gate.
-7. Only after the TPS631000 1.80V source/load gate is resolved, resume whole-power closure and the one-shot Iran-qualified purchase plan.
+1. On user's Windows PC, run the existing `Git_Save.cmd` once to pull the new auditor.
+2. Run the one audit command shown in the new chat; path to result ZIP: `$([Environment]::GetFolderPath('MyDocuments'))\\Datalogger_T25BT_v1_Result_20260928_220315.zip`. If the ZIP is stored elsewhere, pass its actual path.
+3. User pastes the **plain-text console output** (including any error). Do not upload another ZIP for this gate if plain-text access still cannot be established.
+4. Cross-check summary against separate raw PRINT tables and decide whether VIN=1.80V and the 2.80V control established a valid 3.3V pre-event state; only then interpret load-step and source-current metrics. If invalid, reject the post-step result and choose a valid source-verification route, without rerunning T25BF.
+5. Preserve TPS22918 official-model sub-gate, one-shot Iran-qualified whole-power purchase rule and fabrication hold. No partial CAD or purchase.
 
-No partial CAD edit. No staged purchase. No T25BF rerun. Fabrication Hold remains.
+## BLOCKER REQUIRING USER
+
+The two raw PSpice `.out` traces are enclosed in the supplied ZIP but this session exposes no local file-reading/execution tool. A compact auditor console transcript is required to establish the actual T25BT outcome. The Windows command reads existing output; it does **not** run PSpice again, purchase parts or change CAD.
