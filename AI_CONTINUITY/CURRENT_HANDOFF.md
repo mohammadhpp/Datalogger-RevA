@@ -1,16 +1,16 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — T25BD prestate-gated PSpice rerun staged after T25BC audit, 2026-09-28
+## CURRENT EXACT POINT — T25BF official TPS631000 precharged load-step staged, 2026-09-28
 
-No RevA board exists. Continue pre-fabrication simulation; no physical test or factory release. Workbook **280 mA** is a maximum design load; **19 mA** is an older-prototype reading with unknown bandwidth, not a measured RevA peak.
+No RevA board exists. Continue pre-fabrication simulation; no physical test or factory release. Workbook **280 mA** is maximum design load; **19 mA** is an older-prototype reading with unknown bandwidth.
 
-T25BB user ZIP SHA256 **bf1a473606c605103af248a0002717591dacdd8581953d52449b830abb8a3997**, 2,318,583 bytes, 62 safe members. All 12 PSpice jobs concluded with 12,501 printed rows, DAT and zero error/warning, but independent T25BC pre-state audit accepts only **10/12**. The two `19mA/0.5A` cases invoked PSpice pseudo-transient and had CTL/SD_VDD already active before the intended 1ms event; their reported 3.298V minima are invalid. Ten valid cases match T25AZ within **3.697mV** rail minimum and **1.3us** SD-to-2.7V time. This cross-check is only for the conditional capacitor fixture; no board/fabrication PASS. Evidence: `AI_EVIDENCE/T25BC/T25BC_T25BB_raw_audit_2026-09-28.json`, SHA256 **47c4a61cc4b00a6c51dda875312d308bea5e910c1cbd0edb23c97d6e4c8f79b9**.
+T25BD is **EXECUTED / 12 VALID PRESTATES**. User ZIP SHA256 **9258c18c9c0ab4b9edc9809e4a69f68eb9e16f53a1062dfa59fc1436d284c628**, 3,110,762 bytes, 62 safe members. Independent T25BE audit: all 12 PSpice jobs concluded, 12,501 rows/case, DAT, zero warning/error, no pseudo-transient and valid pre-event rail/SD/control. All cases match T25AZ within **2.321mV** rail minimum and **0.55us** SD-to-2.7V time. Eleven of twelve conditional minima are below the 2.04V MCU PDR screen; only 19mA/1.5A/100us is 2.087V. These are hypothetical source ceilings, nominal capacitances and assumed switch trajectories, so this closes only the capacitor-fixture cross-check, not board/fabrication PASS. Raw audit `AI_EVIDENCE/T25BE/T25BE_T25BD_raw_audit_2026-09-28.json`, SHA256 **b05fc2b0ea6c525b8b92f23dea7375c62bd99409c836e355b50903e34e41c929**.
 
-T25BD v1 is **TEST_STAGED_AWAITING_USER_RUN**. It starts with SKIPBP, charges C_OUT for 1ms while SD control is off, rejects pseudo-transient, and requires at least 400 pre-state samples, rail>3.25V, SD<20mV, CTL<1mV before the event and CTL>0.99V after it. It reruns all 12 cases consistently. CAD/BOM unchanged; T24 DRC remains 0/0.
+T25BF v1 is **TEST_STAGED_AWAITING_USER_RUN**. It verifies official TI SLVMDV2 hash, runs encrypted `TPS631000_STARTUP` at ideal VIN=1.80V and 2.80V control, project nominal L/C/FB, precharged 3.3V output, and a total constant-current step 19mA→280mA at 10us in a bounded 20us window. It records input current and VOUT before/after. Precharge does not initialize inaccessible controller state; this is not full startup or integrated SD/mux behavior. CAD/BOM unchanged; T24 DRC remains 0/0.
 
-**NEXT EXECUTABLE ACTION:** Run Git Save, then double-click `AI_SCRIPTS\T25\Run_T25BD_SD_Charge_Prestate_Gated_v1.cmd`. Upload `Datalogger_T25BD_v1_Result_*.zip` whether complete or incomplete. AI must audit it and continue simulation.
+**NEXT EXECUTABLE ACTION:** Run Git Save, then double-click `AI_SCRIPTS\T25\Run_T25BF_TPS631000_Precharged_LoadStep_v1.cmd`. Two cases may take several minutes. Upload `Datalogger_T25BF_v1_Result_*.zip` whether complete or incomplete. AI must audit and continue.
 
-**BLOCKER REQUIRING USER:** Only this Windows PSpice run. Do not alter the 280mA design envelope, components, CAD, population or manufacturing state.
+**BLOCKER REQUIRING USER:** Only this Windows PSpice run. Do not alter the 280mA envelope, components, CAD, population or manufacturing state.
 
 ## Previous checkpoint — T25AH USB unplug capacitor energy screen / no-reset HOLD, 2026-09-26
 
