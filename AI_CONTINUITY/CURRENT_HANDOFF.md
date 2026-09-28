@@ -170,6 +170,23 @@ Correct recovered chain:
 
 Steady-load arithmetic does not identify 280mA as obviously excessive: 3.3V*0.28A=0.924W; at VIN=1.80V this corresponds to roughly 0.57..0.73A input for eta=90..70%. The current-limit/inductor static screens have ample numerical headroom, but this is not a guaranteed 1.80V output-current specification and does not close startup/transient behavior.
 
+### T25BT — restored official-model 19mA -> 280mA gate
+
+Prepared files:
+- `AI_CONTINUITY/T25BT_TPS631000_SS1_LOADSTEP_GATE_FA.md`
+- `AI_SCRIPTS/T25/T25BT_TPS631000_SS1_19_to_280_LoadStep_v1.ps1`
+- `AI_SCRIPTS/T25/Run_T25BT_TPS631000_SS1_19_to_280_LoadStep_v1.cmd`
+
+T25BT does **not** rerun T25BF. It uses the same official TI encrypted TPS631000 package but changes the model instance to `SS=1`, with explicit COUT=3.3V and L1 current initial-condition seeds, to test whether the vendor model can establish a valid regulated pre-state quickly.
+
+Two cases:
+- VIN=1.80V project corner, load 19mA -> TOTAL 280mA;
+- VIN=2.80V control, same load step.
+
+The script has a hard pre-state gate. If the 7..9.8us VOUT window is not stable around 3.3V, the post-step waveform is automatically rejected. Source current is intentionally left for independent raw-table audit after upload.
+
+This use of SS=1 follows TI's documented steady-state-initialization convention for multiple official switching-converter PSpice models; it is still an experiment for this TPS631000 model and cannot bypass the pre-state validity requirement.
+
 ### Consolidated power closure rule — locked 2026-09-28
 
 User requires the **entire power block to be closed before buying new parts**, so purchases can be placed once.
@@ -197,11 +214,12 @@ The active closure sequence is:
 
 ## NEXT EXECUTABLE ACTION
 
-1. **Do not run T25BQ and do not execute T25BO/T25BP/T25BR CAD/BOM proposals.**
-2. Preserve T25BE as the completed actual-PSpice 19mA/280mA conditional comparison.
-3. Preserve T25BG verdict: the official TPS631000 short/precharged 19mA->280mA load-step is invalid because the encrypted model had no regulated pre-state; do not rerun T25BF.
-4. Close the **TPS631000 VIN=1.80V startup/source gate** with a startup-valid, explicitly bounded method before choosing any further whole-power redesign.
-5. Keep the already completed TPS22918/4.7nF SD vendor-model result as a valid sub-gate.
-6. After the TPS631000 source/startup gate closes, resume the whole-power closure sequence and only then create one Iran-qualified purchase list and one consolidated ECO.
+1. Run `AI_SCRIPTS\T25\Run_T25BT_TPS631000_SS1_19_to_280_LoadStep_v1.cmd`.
+2. Upload `Datalogger_T25BT_v1_Result_*.zip`.
+3. Independently audit the raw voltage and source-current PRINT tables.
+4. Accept the 19mA->280mA load-step only if the official-model pre-event 3V3 state is valid and stable; otherwise reject it and do not infer hardware behavior.
+5. Do not run T25BQ and do not execute T25BO/T25BP/T25BR CAD/BOM proposals.
+6. Preserve the completed TPS22918 SD controlled-inrush sub-gate.
+7. Only after the TPS631000 1.80V source/load gate is resolved, resume whole-power closure and the one-shot Iran-qualified purchase plan.
 
-No partial CAD edit. No staged purchase. Fabrication Hold remains.
+No partial CAD edit. No staged purchase. No T25BF rerun. Fabrication Hold remains.
