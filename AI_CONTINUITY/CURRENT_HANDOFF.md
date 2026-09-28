@@ -7,7 +7,15 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25BZ USB OVP/handoff bounded review, 2026-09-28
+## CURRENT EXACT POINT — T25CA USB preregulator bill-of-materials and Ceff gate, 2026-09-28
+
+- The user's active rule at the top applies: continue without routine confirmations; S1 exact sourcing deferred. GitHub main remains source of truth.
+- `AI_CONTINUITY/T25CA_USB_PREREG_BOM_CEFF_AND_IRAN_GATE_FA.md` maps the **conditional** TPS54202 USB preregulator netlist (safe floating EN under 12V fault, BOOT 100nF, input C, SW/L/output C, feedback/PR1) and itemizes exact existing/candidate MPNs. This is **not** a selected ECO or complete Iran-qualified purchase list.
+- TI's `f0≈3.95/(VOUT*COUT_eff)` at target 3.576V and `f0<40kHz` pre-feedforward design screen requires COUT_eff>27.615uF. Two 22uF nominal capacitors would need >62.76% combined retention at bias/temp/tolerance/age. 56pF feedforward borrowed from TI's 3.3V reference remains a starting value, not validated for this target. The existing 22uF/35V candidate at 12V input needs Ceff>10uF verified.
+- Existing stock candidates: `C2012X5R1V226M125AC` and `CL10B104KB8NNNC`, `0603WAF1003T5E`. New 20k, Cff and 10uH exact MPNs with dependable **Iran availability** remain unqualified. `TPS54202DDCR` local historic listing is not live-stock proof; `skytech.ir` public indexed site currently displays unrelated content. Do not purchase based on stale listings or generic inductors.
+- Next independent work: try to close valid Iran sourcing/Ceff and compare a final complete candidate against keeping discrete OVP; if models cannot prove weak-battery 0-reset handoff, produce a **single bounded power prototype design/test package**. No new repeat of failed PSpice/ZIP. CAD unchanged, no purchase, fabrication hold.
+
+## PRIOR CHECKPOINT — T25BZ USB OVP/handoff bounded review, 2026-09-28
 
 - User directed **S1 to be found later** and authorized continuing without step-by-step approval. Do not spend next work on S1; its three-pole functional map and unqualified exact MPN are in `T25BY`.
 - `AI_CONTINUITY/T25BZ_USB_OVP_HANDOFF_ARCHITECTURE_SCREEN_FA.md` rechecks the existing pass-through OVP incompatibility with strict 5.50V recommended VIN1 while no nuisance cutoff at 5.50V is required. The historical 5.600692..5.915721V trip calculation leaves only 84.279mV to the 6V absolute corner before dynamics.
