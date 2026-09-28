@@ -1,5 +1,11 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25BY three-pole ECO map and Iran sourcing audit, 2026-09-28
+
+- `AI_CONTINUITY/T25BY_THREE_POLE_S1_ECO_MAP_AND_IRAN_SOURCING_FA.md` defines P1 BAT_FUSED→BAT_SW, P2 USB_VBUS_RAW→USB_OVP_IN, P3 joining **only the return ends** of the two distinct 5.1k CC Rd resistors to GND. User-approved three-pole decision remains the target; current four-pole CAD remains unchanged.
+- Searching Iranian listings did **not** establish an exact, available, maintained 3PST MPN with three independent contacts and justified BAT contact drop. Six terminals in a listing can denote a two-pole illuminated or momentary device. Foreign APEM 4651A32 is an identified 3PST type, not Iran-qualified. Exact holder/contact resistance/fit also open. Do not substitute a two-pole or buy an unqualified switch.
+- One ECO must audit the six wire/pin map, current off-board switch footprint/termination, PCB routing, ERC and Full DRC, in conjunction with OVP/no-reset power-gate closure; no partial CAD/purchase. No new Windows ZIP/PSpice cycle requested. **FABRICATION HOLD.**
+
 ## CURRENT EXACT POINT — T25BX corrected for user-approved three-pole S1, 2026-09-28
 
 - User explicitly states the **latest Claude decision approved a three-pole switch**. GitHub main `01_POWER.SchDoc` blob `da2d005712c47000eb8c16157eca464d3fee4fe1` still draws four independent S1 contacts: A BAT_FUSED→BAT_SW, B USB_VBUS_RAW→USB_OVP_IN, C CC1_RD_RET→GND, D CC2_RD_RET→GND. Distinguish approved design from unmodified CAD.
