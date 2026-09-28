@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — T25BJ official TPS22918 package verified; v2 vendor-model sweep ready, 2026-09-28
+## CURRENT EXACT POINT — T25BK raw vendor-model audit PASS; T25BL exact SD-switch ECO proposed and awaiting user approval, 2026-09-28
 
 ### Live project baseline
 
@@ -71,53 +71,82 @@ For commanded SD-off with VIN held at 3.3V, using datasheet RPD max 35ohm and no
 T25BI status:
 `CONTROLLED_INRUSH_TOPOLOGY_SELECTED_FOR_SIMULATION / CT_4P7NF_INITIAL / OFFICIAL_PSPICE_MODEL_AVAILABLE / CAD_UNCHANGED / FABRICATION_HOLD`.
 
-### T25BJ — official package verified; vendor-model sweep ready
+### T25BJ/T25BK — official TPS22918 sweep executed and independently audited
 
-User result `Datalogger_T25BJ_Model_Preflight_v1_Result_20260928_115306.zip` was independently inspected.
+User result:
+`Datalogger_T25BJ_Sweep_v2_Result_20260928_120158.zip`
 
-Verified provenance:
-- outer result ZIP SHA256 `45d5ffcb8a0ab08118d2c0a0f8aac074668392a0f64a5e80904ac897621387a1`;
-- acquisition source recorded as direct TI HTTPS;
-- nested official TI `SLVMBI6` ZIP SHA256 `C3CFE13A6AA72AFE2FCA9DEC791A6DD4D9B591B6C136C16FAC910F74E153CF00`;
-- `TPS22918_TRANS.LIB` SHA256 `DE4D6521D9E6AE4C6352D52FE26BFFC16A9B5AD91C3CFAC6E75E9EF5B1545FBA`;
-- exact subcircuit interface: `.SUBCKT TPS22918_TRANS VIN ON CT VOUT QOD GND`.
+Result ZIP SHA256:
+`0addb80d7255dad9101b128f1d1cc36fdab867afb25349d6f6b4b61c9cc9ea76`
 
-TI model comments explicitly say it models switching characteristics, RON(VIN), adjustable output rise time, adjustable QOD, quiescent current and shutdown current at room temperature; temperature effects are not modeled.
+All 16 official-model PSpice cases:
+- `JOB CONCLUDED`;
+- zero counted warning;
+- zero counted error/fatal;
+- 7,001 raw voltage rows and 7,001 raw source-current rows each.
 
-Report:
-`AI_CONTINUITY/T25BJ_TPS22918_OFFICIAL_MODEL_PREFLIGHT_RESULT_FA.md`
+**The generated `T25BJ_v2_Summary.csv` is rejected.** PSpice split voltage traces and `I(V_SRC)` into separate PRINT tables; the PowerShell regex consumed the next timestamp as a false seventh field. Raw PSpice outputs are valid and were re-audited independently.
 
-Ready-to-run files:
-- `AI_SCRIPTS/T25/T25BJ_TPS22918_Official_Model_Sweep_v2.ps1`
-- `AI_SCRIPTS/T25/Run_T25BJ_TPS22918_Official_Model_Sweep_v2.cmd`
+Auditor:
+`AI_SCRIPTS/T25/T25BK_Audit_T25BJ_Raw_v1.py`
 
-The v2 fixture uses the **official TI model** and runs 16 bounded cases:
-- CT 2.2 / 4.7 / 10 nF with nominal CSD 54.1 uF and 0 / 100 / 200 / 400 mA equivalent 3.3 V resistive load;
-- extra CSD=27.05 uF sensitivity at CT=4.7 nF with the same four loads;
-- 3.3 V stiff source through 0.1 ohm plus 1 uF local VIN bypass;
-- ON at 0.1 ms, OFF at 25.1 ms, total 35 ms;
-- records rise 10-90%, time to 2.7 V, VIN minimum, peak source current, pre-off VOUT and QOD time to 0.5 V.
+Verdict report:
+`AI_CONTINUITY/T25BK_TPS22918_VENDOR_MODEL_SWEEP_VERDICT_FA.md`
 
-The source is intentionally not current-limited. Peak demand is compared after execution against prior hypothetical 0.5/1.0/1.5 A T25BH ceilings. Therefore this fixture qualifies the load-switch behavior only and cannot prove TPS631000 behavior at VIN=1.80 V.
+Preferred CT=4.7nF, nominal CSD=54.1uF corrected raw results:
+- 0mA fixture: rise 7.060ms, to 2.7V 8.745ms, VINmin 3.298V, source peak 20.24mA, QOD to 0.5V 2.72ms.
+- 100mA fixture: rise 7.320ms, to 2.7V 9.025ms, VINmin 3.289V, source peak 113.4mA.
+- 200mA fixture: rise 7.470ms, to 2.7V 9.200ms, VINmin 3.280V, source peak 202.5mA.
+- 400mA fixture: rise 7.690ms, to 2.7V 9.455ms, VINmin 3.261V, source peak 392.5mA, VOUT pre-off about 3.238V, QOD to 0.5V 0.64ms.
+
+CSD=27.05uF sensitivity at CT=4.7nF confirms nearly the same heavy-load peak; at 400mA fixture source peak remains 392.5mA. Therefore load current dominates the heavy case rather than capacitor inrush.
+
+Device-model verdict:
+`TPS22918_CT_4P7NF_VENDOR_MODEL_GATE_PASS / RAW_OUT_AUDIT_PASS / TPS631000_SOURCE_GATE_STILL_OPEN / NO_BOARD_PASS / FABRICATION_HOLD`.
+
+### T25BL — exact Altium ECO proposed, not applied
+
+Proposal:
+`AI_CONTINUITY/T25BL_SD_POWER_SWITCH_ECO_PROPOSAL_FA.md`
+
+Live `03_MICROSD.SchDoc` remains unchanged at blob `0793ee4aeae92fc5737796ce4631dac9770619f3`.
+
+Proposed replacement:
+- remove active SD switch elements `Q_SD=AO3401A`, `Q_SD_DRV=BC847B`, `R_SD_DRV_BASE=10k` and old PMOS `R_GATE=100k`;
+- add `U_SD_SW=TPS22918DBVT`, DBV/SOT-23-6;
+- physical mapping: pad1 VIN=`3V3_SYS`, pad2 GND, pad3 ON=`SD_PWR_CTL`, pad4 CT=`SD_CT`, pad5 QOD=`SD_VDD`, pad6 VOUT=`SD_VDD`;
+- add `C_SD_CT=4.7nF`, proposed `CL10B472KB8NNNC`, X7R +/-10%, 50V, 0603;
+- add `C_SD_SW_IN=1uF`, proposed `CL10A105KP8NNNC`, X5R +/-10%, 10V, 0603;
+- add/repurpose one 100k `0603WAF1003T5E` as `R_SD_ON_PD` from `SD_PWR_CTL` to GND so TPS22918 ON never floats;
+- tie QOD directly to VOUT;
+- keep the existing downstream SD capacitor bank and SD signal circuitry unchanged;
+- delete `SD_GATE` only if it becomes orphaned after ECO.
+- conservative firmware proposal: keep SD power OFF at least 5ms before re-enable until hardware validation closes the value.
+
+The TPS22918 candidate is an active TI catalog device. TI DBV pinout is 1 VIN, 2 GND, 3 ON, 4 CT, 5 QOD, 6 VOUT. Current CAD has **not** been changed.
 
 ### Remaining engineering gates
 
-- Actual unbranded 4GB card startup/operating transient is unknown.
-- TPS22918 vendor-model sweep has not yet been executed on Windows.
-- TPS631000 1.80V real transient source behavior remains unqualified.
-- Continuous battery->USB->battery no-reset behavior remains a locked requirement, not a PASS.
+- T25BL requires explicit user approval before changing schematic/PCB/purchased-BOM assumptions.
+- Actual unbranded 4GB card transient remains unknown.
+- TPS631000 source capability/transient at loaded battery VIN=1.80V remains unqualified.
+- Continuous battery->USB->battery no-reset behavior remains a requirement, not a PASS.
 - OVP transient gate remains open.
-- Effective installed capacitances under bias remain open.
+- Exact installed effective capacitances under bias remain open.
 - No integrated startup/handoff/SD/OLED or fabrication PASS exists.
 
 ## NEXT EXECUTABLE ACTION
 
-Run on the user's Windows repo:
+Await the user's explicit approval or rejection of T25BL.
 
-`AI_SCRIPTS\T25\Run_T25BJ_TPS22918_Official_Model_Sweep_v2.cmd`
+If approved:
+1. apply the exact T25BL schematic ECO;
+2. compile/ERC;
+3. create/verify the TI DBV SOT-23-6 footprint and exact pad mapping;
+4. ECO to PCB and use the area freed by the old PMOS/NPN gate network;
+5. route/repour and run Full Batch DRC;
+6. require 0 warnings / 0 violations plus footprint/courtyard/pin-1 audit;
+7. export fresh snapshot and Git checkpoint;
+8. continue the remaining T25 source/handoff/OVP gates before any fabrication release.
 
-Then upload `Datalogger_T25BJ_Sweep_v2_Result_*.zip`.
-
-On receipt, independently audit every raw `.out` trace and the summary, compare measured model demand against the T25BH sensitivity ceilings, decide whether CT=4.7nF survives the 400mA fixture and QOD requirements, and **continue directly to the exact proposed Altium ECO** if the vendor-model evidence is acceptable. Do not modify Altium before explicit approval of that ECO.
-
-No T25BF rerun. Fabrication Hold remains.
+Do not rerun T25BF. Fabrication Hold remains.
