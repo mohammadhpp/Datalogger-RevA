@@ -40,25 +40,29 @@ Pin 5 QOD is intentionally tied directly to pin 6/VOUT to enable the internal di
 
 ### C_SD_CT — 4.7nF
 
+- Exact MPN: **TDK C1608NP01H472J080AA**
 - Value: **4.7nF**
-- Dielectric: X7R
-- Tolerance: +/-10%
-- Voltage rating: >=16V
-- Footprint: 0603 metric 1608
-- Proposed exact MPN: **Samsung CL10B472KB8NNNC**, 4.7nF +/-10%, 50V, X7R, 0603.
+- Dielectric: **NP0/C0G**
+- Tolerance: **+/-5%**
+- Voltage rating: **50V**
+- Footprint: **0603 / EIA 1608**
 - Connection: `SD_CT` to GND.
 - Place immediately adjacent to U_SD_SW pin 4 and pin 2 return.
+- Iran-local status: **PASS**, Lion Electronic user-provided screenshot shows 3,940 pcs stock and quantity pricing.
+- Technical note: NP0/C0G is preferred over the earlier provisional X7R +/-10% because CT timing is more stable versus voltage and temperature.
 
 ### C_SD_SW_IN — 1uF
 
+- Exact MPN: **TDK C2012X7R1H105K125AB**
 - Value: **1uF**
-- X5R or X7R
-- +/-10%
-- >=10V
-- Footprint: 0603 metric 1608
-- Proposed exact MPN: **Samsung CL10A105KP8NNNC**, 1uF +/-10%, 10V, X5R, 0603.
+- Dielectric: **X7R**
+- Tolerance: **+/-10%**
+- Voltage rating: **50V**
+- Footprint: **0805 / EIA 2012**
 - Connection: `3V3_SYS` to GND.
 - Place immediately at U_SD_SW VIN/GND pins.
+- Iran-local status: **PASS**, Lion Electronic user-provided screenshot shows 6,460 pcs stock and quantity pricing.
+- This supersedes the earlier provisional 0603 input-bypass choice; final PCB ECO must use an 0805 footprint.
 
 ### R_SD_ON_PD — 100k
 
@@ -125,7 +129,7 @@ Current web procurement check:
 - `SY6280` appears in recent Iranian SkyTech stock/replenishment lists and is therefore an Iran-available candidate for a new technical evaluation. It is **not** pin/function equivalent to TPS22918: it uses programmable current limit, SOT23-5, automatic output discharge, and has no adjustable CT slew pin in the available preliminary datasheet.
 
 Accordingly:
-`T25BL_TPS22918_ECO = PROCUREMENT_BLOCKED / TECHNICAL_REFERENCE_ONLY`.
+`T25BL_TPS22918_ECO = PROCUREMENT_CLEARED / TECHNICALLY_QUALIFIED / AWAITING_USER_APPROVAL`.
 
 Do not apply this ECO to CAD. Next design work must evaluate an Iran-available load-switch solution and then issue a replacement ECO only after technical and procurement qualification.
 
