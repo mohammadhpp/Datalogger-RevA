@@ -1,5 +1,13 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25BX live S1 topology correction, 2026-09-28
+
+- **Authoritative GitHub main** `01_POWER.SchDoc` blob `da2d005712c47000eb8c16157eca464d3fee4fe1` has S1 **four independent maintained poles**: A BAT_FUSED→BAT_SW, B USB_VBUS_RAW→USB_OVP_IN, C CC1_RD_RET→GND, D CC2_RD_RET→GND. S1 is a project-logical mechanical hold, not a qualified purchased MPN.
+- **Retract** T25BO_P1's `S1_DPST_REQUIRED` and its conditional P1 architecture pass as a procurement/ECO instruction; two poles cannot implement the live four-pole schematic. Detailed proof and options: `AI_CONTINUITY/T25BX_LIVE_S1_TOPOLOGY_AND_OFF_ARCHITECTURE_FA.md`.
+- Preferred engineering candidate for one integrated ECO is **SPST controlling TPS631000 EN**, with battery/USB inputs directly retained behind fuse/OVP and both CC Rd returns grounded. Requires removing existing VIN→EN tie, EN pull-down, net renaming, panel/connector/CAD review. OFF then disables 3V3 but does not physically isolate battery/USB; battery-off draw and USB attach when OFF are unqualified. Exact SPST and holder MPN plus Iran supply remain open.
+- No claim of power PASS, no purchase/CAD ECO. USB OVP 5.50V/12V fault and TPS2116 no-reset handoff at 1.80V remain open; do not rerun T25BF/T25BT or the discrepant mux model. If analytical/model work cannot close these gates, develop one instrumented limited power prototype with the points and tests in T25BX, then one consolidated ECO/purchase decision.
+- **FABRICATION HOLD.** Last accepted T24 DRC still 0/0 for unchanged CAD.
+
 ## CURRENT EXACT POINT — T25BW consolidated power decision; no repeated vendor-model loop, 2026-09-28
 
 ### Live project baseline
