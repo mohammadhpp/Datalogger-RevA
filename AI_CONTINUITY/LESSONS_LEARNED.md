@@ -215,3 +215,11 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 ## T25AT — datasheet headline ratings need their stated input and driver conditions
 
 - TI's TPS631000 1.5A *output* specification is tied to VIN>=2.7V and VOUT=3.3V; the ~2.9A *typical internal switch* rating is different. Neither value qualifies converter transient output when the two-AA pack is 1.80V under load. AOS AO3401A nanosecond switching data uses a -10V gate and 3ohm test generator, not the actual 3V3/BC847B/10k/100k driver. Keep conditional charge screens distinct from validated SD-on timing, MCU no-reset and SD-write integrity.
+
+
+## T25BK PSpice PRINT-table parser lesson
+
+- Do not assume every expression in one `.PRINT TRAN` directive appears on the same numeric row in the PSpice `.out` file. In T25BJ, PSpice 25.1 emitted the six voltage columns in one table and `I(V_SRC)` in a second table.
+- A regex expecting seven numeric fields accidentally consumed the **next row's timestamp** as source current, creating impossible summary values such as `VIN_min=0.000105V` and `I_source_peak=0.0251A` even though all 16 simulator jobs had concluded normally.
+- Future auditors must locate each PRINT table by its own header, parse the tables independently by time, and only then combine metrics. Raw `.out` data outranks a generated summary CSV when the two disagree.
+- Preserve the failed/generated summary as evidence, but mark it rejected rather than deleting it. `AI_SCRIPTS/T25/T25BK_Audit_T25BJ_Raw_v1.py` is the reference implementation for this case.
