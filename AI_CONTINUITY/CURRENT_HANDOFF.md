@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — T25BO/P1 and T25BP/P2 architectures selected; T25BR/P3 hold-up architecture selected; T25BQ official TPS54202 model preflight ready, 2026-09-28
+## CURRENT EXACT POINT — continuity restored to the 19mA/280mA TPS631000 source/startup gate; premature whole-power redesign inactive, 2026-09-28
 
 ### Live project baseline
 
@@ -151,70 +151,24 @@ All newly introduced T25BL parts now meet:
 `TECHNICAL PASS + IRAN AVAILABILITY PASS`.
 
 
-### T25BO — P1 weak-battery path architecture selected
+### T25BS continuity correction — authoritative
 
-At the locked 1.80V pack-under-load corner, only 150mV exists above the TPS631000 >1.65V startup boundary. With Pout=0.924W, `Rpath,max=0.267857*eta ohm`. Using F1 catalog cold resistance about 38mOhm and TPS2116 VIN2 RON max 66mOhm at 1.8V leaves only about 83.5..137.1mOhm for holder/wire/copper/contact across eta=0.70..0.90.
+Report: `AI_CONTINUITY/T25BS_CONTINUITY_CORRECTION_19mA_280mA_FA.md`.
 
-Selected consolidated-ECO architecture:
-- remove panel S1 from both battery and USB high-current paths;
-- F1 output goes directly to TPS2116 VIN2;
-- USB-C CC Rd returns are permanently grounded;
-- split TPS631000 EN from VIN_MUX;
-- use a low-current maintained SPST only to connect EN to VIN_MUX; add 100k EN pulldown to GND;
-- target >=50mil BAT_FUSED->VIN2 route where geometry permits, shortest possible pad neck, paired vias if required.
+The project had drifted into T25BO/T25BP/T25BR/T25BQ architecture changes too early. Those documents/scripts are now **inactive exploratory material** and must not drive CAD/BOM/procurement.
 
-Report: `T25BO_WEAK_BATTERY_PATH_ARCHITECTURE_FA.md`.
-Status: `P1_ARCHITECTURE_SELECTED / CAD_UNCHANGED`.
+Correct recovered chain:
+- `19mA` = old prototype observation, unknown bandwidth; not RevA background/peak.
+- `280mA` = RevA purchase-workbook maximum design envelope; not a measured peak.
+- T25AZ transparent analysis compared both.
+- T25BD/T25BE actual PSpice completed **12/12 valid** conditional 19mA/280mA cases and independently matched T25AZ.
+- T25BE showed that lowering background from 280mA to 19mA alone does not remove uncontrolled SD-capacitor inrush: 11/12 conditional cases fell below the 2.04V screen; only 19mA / 1.5A / 100us reached 2.087V.
+- T25BF then used the official encrypted TPS631000 model with an explicit **19mA -> total 280mA** load step at VIN=1.80V and a VIN=2.80V control.
+- Both T25BF simulator jobs completed, but neither had a regulated 3.3V pre-event state; therefore the load-step waveform is invalid for hardware judgment. Do not rerun T25BF.
+- T25BH and the later TPS22918 T25BI/BJ/BK work remain valid as the SD controlled-inrush sub-gate.
+- The unresolved active gate is now **TPS631000 startup/source behavior at the locked 1.80V loaded-pack corner**, not selection of a new OVP/buck/handoff architecture.
 
-### T25BP — P2 USB front-end architecture selected
-
-Preferred replacement for the threshold-only discrete OVP:
-`USB_VBUS_RAW -> TPS54202 buck -> USB_VBUS_PROT -> TPS2116 VIN1`.
-
-Preferred IC: `TPS54202DDCR`, 4.5..28V input, 2A synchronous buck, DDC-6. Iran-local listing evidence exists; exact order-time stock still requires recheck.
-
-Initial target:
-- VOUT ~3.576V;
-- RFB top=100k, bottom=20k;
-- L=10uH;
-- Cin=22uF nominal;
-- Cout=44uF nominal;
-- Cff=56pF;
-- Cboot=0.1uF.
-
-TPS2116 PR1 proposed update:
-- top=20k +/-1%;
-- bottom=existing 10k +/-0.5%;
-- first-order command boundary ~2.733..3.273V.
-
-Report: `T25BP_USB_FRONT_END_BUCK_ARCHITECTURE_FA.md`.
-Status: `P2_WIDE_INPUT_BUCK_ARCHITECTURE_SELECTED / OFFICIAL_MODEL_GATE_PENDING / CAD_UNCHANGED`.
-
-### T25BR — P3 PMUX handoff / hold-up architecture selected
-
-For weak-battery USB removal, energy-balance sensitivity from the low PR boundary to ~1.8V gives effective VIN_MUX C requirements around:
-- 17.7us -> 10.32uF;
-- 50us -> 29.15uF;
-- 100us -> 58.30uF;
-- 200us -> 116.60uF.
-
-Selected starting population for consolidated ECO:
-- nominal ~110uF VIN_MUX bank = five x existing `C2012X5R1V226M125AC` 22uF parts in parallel;
-- one is current C_IN, four additional footprints;
-- populate existing `R_ST_PU` 10k to 3V3_SYS.
-
-55% effective retention of the nominal bank (~60.5uF) is only a screening threshold, not a guaranteed TDK Cmin.
-
-Report: `T25BR_PMUX_HANDOFF_HOLDUP_REDESIGN_FA.md`.
-Status: `P3_ARCHITECTURE_SELECTED / TPS54202_COLLAPSE_MODEL_PENDING / CAD_UNCHANGED`.
-
-### T25BQ — official TPS54202 model preflight prepared
-
-Ready:
-- `AI_SCRIPTS/T25/T25BQ_TPS54202_Model_Preflight_v1.ps1`
-- `AI_SCRIPTS/T25/Run_T25BQ_TPS54202_Model_Preflight_v1.cmd`
-
-It acquires TI package `SLVMBJ5C`, hashes/inventories it, extracts visible subcircuit headers and creates a result ZIP. It does not run PSpice and does not edit Altium/BOM.
+Steady-load arithmetic does not identify 280mA as obviously excessive: 3.3V*0.28A=0.924W; at VIN=1.80V this corresponds to roughly 0.57..0.73A input for eta=90..70%. The current-limit/inductor static screens have ample numerical headroom, but this is not a guaranteed 1.80V output-current specification and does not close startup/transient behavior.
 
 ### Consolidated power closure rule — locked 2026-09-28
 
@@ -243,13 +197,11 @@ The active closure sequence is:
 
 ## NEXT EXECUTABLE ACTION
 
-1. Run `AI_SCRIPTS\T25\Run_T25BQ_TPS54202_Model_Preflight_v1.cmd`.
-2. Upload `Datalogger_T25BQ_Model_Preflight_v1_Result_*.zip`.
-3. Independently verify TI package hash, exact TPS54202 subcircuit pin order and model dependencies.
-4. Build/run the official-model USB preregulator sweep at VIN=5.0/5.5/12V, target VOUT~3.576V and clearly labelled 0/0.3/0.5A fixtures.
-5. Audit raw outputs, including hard-unplug collapse slope through the TPS2116 PR threshold.
-6. Reconcile with the selected 110uF VIN_MUX hold-up bank and weak-battery P1 path.
-7. Continue P4 TPS631000 source-margin and P5 OLED/sensor gates.
-8. Only after all power gates close, issue one Iran-qualified consolidated purchase list and one consolidated ECO for explicit user approval.
+1. **Do not run T25BQ and do not execute T25BO/T25BP/T25BR CAD/BOM proposals.**
+2. Preserve T25BE as the completed actual-PSpice 19mA/280mA conditional comparison.
+3. Preserve T25BG verdict: the official TPS631000 short/precharged 19mA->280mA load-step is invalid because the encrypted model had no regulated pre-state; do not rerun T25BF.
+4. Close the **TPS631000 VIN=1.80V startup/source gate** with a startup-valid, explicitly bounded method before choosing any further whole-power redesign.
+5. Keep the already completed TPS22918/4.7nF SD vendor-model result as a valid sub-gate.
+6. After the TPS631000 source/startup gate closes, resume the whole-power closure sequence and only then create one Iran-qualified purchase list and one consolidated ECO.
 
-No partial CAD edit. No staged purchase. No T25BF rerun. Fabrication Hold remains.
+No partial CAD edit. No staged purchase. Fabrication Hold remains.
