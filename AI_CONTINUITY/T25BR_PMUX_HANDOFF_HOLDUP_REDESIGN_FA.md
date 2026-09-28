@@ -1,3 +1,5 @@
+> **CONTINUITY CORRECTION — 2026-09-28:** This document is an exploratory proposal only and is **NOT an active/selected RevA architecture**. It was produced after continuity drift before the 19mA/280mA TPS631000 simulation path was properly re-established. Do not execute its CAD/BOM/procurement actions. The authoritative point is CURRENT_HANDOFF.md.
+
 # T25BR — TPS2116 handoff / VIN_MUX hold-up redesign screen
 
 Date: 2026-09-28.
