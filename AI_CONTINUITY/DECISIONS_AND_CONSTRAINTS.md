@@ -85,3 +85,12 @@ No off-board logical component may remain without a physical PCB connection path
 - In both directions the device must keep operating **without MCU reset**, including source changes during normal SD/OLED activity. Battery disconnect means power-path standby, not a promise of absolute zero leakage or physical isolation.
 - Existing historical procurement workbook v0.17 already locks the **battery minimum to 1.80V at pack terminals under load** and **3V3_SYS design load to 280mA** (Power Calculations B8/B6/B18), and specifies **no nuisance cutoff at USB 5.50V** (OVP Calc B5). P9 Gates P9-F01, P9-O01, P9-C01/C02/C03 explicitly require path/startup margin, no nuisance at 5.50V, zero MCU resets in both USB handoff directions and no intentional AA backfeed; all were PENDING. These are previously selected design/acceptance requirements, **not validated PASS**. The user reconfirmed uninterrupted operation on 2026-09-26. Do not ask them to select these numbers again or silently lower the original target. Preserve status/provenance from [workbook export](T25V_PURCHASE_BOM_V017_CELL_EXPORT.json). Permitted rail dip and SD integrity thresholds still need manufacturer/firmware evidence.
 - TI TPS2116 priority mode uses break-before-make. TI warns VIN2≥2.5V is needed to prevent internal reset if the selected supply collapses faster than 1V/10µs; this condition must be addressed if USB is removed with a weak two-AA pack. Read [T25AG](T25AG_CONTINUOUS_USB_BATTERY_HANDOFF_REQUIREMENT_FA.md) before any no-reset claim. Do not issue fabrication PASS while this requirement remains unverified.
+
+
+## Iran-local procurement constraint — LOCKED 2026-09-28
+
+- Every **newly proposed component or replacement** for Datalogger RevA must have evidence of practical availability from an Iranian seller/supplier before it can enter an executable ECO/BOM change.
+- Global DigiKey/Mouser/LCSC availability alone is **not sufficient**.
+- Prefer an exact MPN with an Iranian stock/product listing. If only a generic value/package is locally available, the exact electrical minimums and package constraints must be stated and verified before approval.
+- A component that is technically attractive but not verified available in Iran may be used only as a simulation/reference candidate; it must not be presented as the final RevA procurement choice.
+- Existing already-purchased BOM parts are not invalidated by this rule.
