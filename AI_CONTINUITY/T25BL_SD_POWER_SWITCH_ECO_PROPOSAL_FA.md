@@ -128,3 +128,32 @@ Accordingly:
 `T25BL_TPS22918_ECO = PROCUREMENT_BLOCKED / TECHNICAL_REFERENCE_ONLY`.
 
 Do not apply this ECO to CAD. Next design work must evaluate an Iran-available load-switch solution and then issue a replacement ECO only after technical and procurement qualification.
+
+
+## Procurement status update — user-provided SkyTech evidence, 2026-09-28
+
+User provided a direct screenshot of the Iranian SkyTech product page for:
+
+- **TPS22918DBVT(13MW)**
+- Category: Power Switch ICs / Power Management ICs
+- Vendor listing electrical summary: 5.5V, 2A, 52mOhm on-resistance load switch
+- Package: **SOT-23-6**
+- Quality label shown: **ORIGINAL (distributor)**
+- Iranian retail and volume pricing are shown on the page.
+
+This is sufficient evidence that the exact proposed MPN is commercially listed for sale by an Iranian supplier.
+
+Therefore the procurement status changes to:
+
+`TPS22918DBVT = IRAN_AVAILABILITY_PASS`
+
+The previous statement that T25BL was procurement-blocked is superseded.
+
+Important boundary:
+- the screenshot proves Iranian market listing/availability evidence for the exact MPN;
+- exact on-hand stock quantity was not visible in the screenshot and must be reconfirmed at the time of purchase.
+
+Current combined status for the load-switch IC:
+`TPS22918DBVT = TECHNICAL_PASS + IRAN_AVAILABILITY_PASS`
+
+T25BL may proceed to the remaining local-procurement checks for the added passives and then to explicit user ECO approval. CAD remains unchanged until approval.
