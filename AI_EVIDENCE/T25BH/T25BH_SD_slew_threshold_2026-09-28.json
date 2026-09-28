@@ -1,0 +1,100 @@
+{
+  "status": "EXECUTED_CONDITIONAL_SD_SLEW_THRESHOLD_NO_BOARD_PASS",
+  "provenance": {
+    "schematic_git_blob_sha": {
+      "01_POWER.SchDoc": "da2d005712c47000eb8c16157eca464d3fee4fe1",
+      "03_MICROSD.SchDoc": "0793ee4aeae92fc5737796ce4631dac9770619f3"
+    },
+    "original_purchase_workbook_sha256": "88e1e826ebef3ea638586de88447075ffe6630a642eb6f1c1e5eec6bb13a99b4",
+    "parent_fixture": "T25AZ; same differential equations and nominal values",
+    "19mA": "older prototype readout; bandwidth unknown; NOT RevA background",
+    "280mA": "purchase BOM design envelope; NOT measured peak"
+  },
+  "screen": {
+    "rail_floor_v": 2.04,
+    "meaning": "MCU PDR comparison screen only; not a complete system acceptance criterion"
+  },
+  "fixture": {
+    "source_ideal_v": 3.3,
+    "source_series_ohm_ASSUMED": 0.1,
+    "source_ceiling_instantaneous_ASSUMED": [
+      0.5,
+      1.0,
+      1.5
+    ],
+    "SD_switch_on_ohm_ASSUMED": 0.05,
+    "rail_cout_nameplate_uf_NOT_CEFF": 47.0,
+    "sd_local_cap_nameplate_uf_NOT_CEFF": 54.1,
+    "conductance_ramp": "1-exp(-t/tau); tau is NOT MOSFET gate timing",
+    "card_DC_and_startup_load_EXCLUDED": true,
+    "OLED_and_other_RevA_load_EXCLUDED": true,
+    "real_TPS631000_TPS2116_gate_driver_EXCLUDED": true,
+    "rk4_dt_us": 0.05,
+    "convergence_check_dt_us": 0.025,
+    "threshold_resolution_us": 0.125,
+    "3ms": "observation label only; no acceptance deadline is asserted"
+  },
+  "cases": [
+    {
+      "background_ma_ASSUMED": 19.0,
+      "source_ceiling_a_ASSUMED_NOT_TI_RATING": 0.5,
+      "minimum_conductance_tau_us_FOR_2p04V_SCREEN_FIXTURE_ONLY": 783.105,
+      "min_rail_v_at_threshold": 2.040001,
+      "min_rail_time_us": 86.9,
+      "SD_2p7V_time_us_ONLY_NO_CARD": 256.0,
+      "SD_reaches_2p7V_within_3ms_observation": true,
+      "settling_window_us": 9897.3
+    },
+    {
+      "background_ma_ASSUMED": 19.0,
+      "source_ceiling_a_ASSUMED_NOT_TI_RATING": 1.0,
+      "minimum_conductance_tau_us_FOR_2p04V_SCREEN_FIXTURE_ONLY": 188.184,
+      "min_rail_v_at_threshold": 2.0401,
+      "min_rail_time_us": 43.05,
+      "SD_2p7V_time_us_ONLY_NO_CARD": 126.9,
+      "SD_reaches_2p7V_within_3ms_observation": true,
+      "settling_window_us": 2758.25
+    },
+    {
+      "background_ma_ASSUMED": 19.0,
+      "source_ceiling_a_ASSUMED_NOT_TI_RATING": 1.5,
+      "minimum_conductance_tau_us_FOR_2p04V_SCREEN_FIXTURE_ONLY": 81.641,
+      "min_rail_v_at_threshold": 2.040242,
+      "min_rail_time_us": 28.7,
+      "SD_2p7V_time_us_ONLY_NO_CARD": 84.85,
+      "SD_reaches_2p7V_within_3ms_observation": true,
+      "settling_window_us": 1500.0
+    },
+    {
+      "background_ma_ASSUMED": 280.0,
+      "source_ceiling_a_ASSUMED_NOT_TI_RATING": 0.5,
+      "minimum_conductance_tau_us_FOR_2p04V_SCREEN_FIXTURE_ONLY": 3923.242,
+      "min_rail_v_at_threshold": 2.040001,
+      "min_rail_time_us": 192.55,
+      "SD_2p7V_time_us_ONLY_NO_CARD": 561.95,
+      "SD_reaches_2p7V_within_3ms_observation": true,
+      "settling_window_us": 47578.95
+    },
+    {
+      "background_ma_ASSUMED": 280.0,
+      "source_ceiling_a_ASSUMED_NOT_TI_RATING": 1.0,
+      "minimum_conductance_tau_us_FOR_2p04V_SCREEN_FIXTURE_ONLY": 370.605,
+      "min_rail_v_at_threshold": 2.040043,
+      "min_rail_time_us": 59.7,
+      "SD_2p7V_time_us_ONLY_NO_CARD": 174.0,
+      "SD_reaches_2p7V_within_3ms_observation": true,
+      "settling_window_us": 4947.3
+    },
+    {
+      "background_ma_ASSUMED": 280.0,
+      "source_ceiling_a_ASSUMED_NOT_TI_RATING": 1.5,
+      "minimum_conductance_tau_us_FOR_2p04V_SCREEN_FIXTURE_ONLY": 128.418,
+      "min_rail_v_at_threshold": 2.040006,
+      "min_rail_time_us": 35.5,
+      "SD_2p7V_time_us_ONLY_NO_CARD": 103.75,
+      "SD_reaches_2p7V_within_3ms_observation": true,
+      "settling_window_us": 2041.05
+    }
+  ],
+  "interpretation": "These values are conditional design targets for limiting the SD capacitor inrush. They cannot be mapped to the existing AO3401A/BC847B network without a validated gate/driver model and effective capacitances, and they do not prove board pass."
+}
