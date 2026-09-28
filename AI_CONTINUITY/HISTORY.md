@@ -275,3 +275,8 @@ This is a compact milestone history, not a replacement for Git commit history.
 
 - Audited user ZIP Datalogger_T25BA_v1_Result_20260927_233357.zip, SHA256 486adc32760c820bba1d08ed9164f63934e3fa9ca86b71a250646b502ce1e4d3, 2497 bytes and six safe members. Wrapper status INCOMPLETE_0_OF_12; first case stopped at PSpice ORPSIM-15142 floating 3V3_SYS. No DAT or transient rows exist, so T25BA has no electrical verdict. Failure manifest committed.
 - Root cause is the fixture's ABM-driven rail lacking a topology-check DC reference. Staged unique T25BB v1 with R_RAIL_DC=1G, only 3.3nA at 3.3V, plus independent per-case failure capture. Windows rerun pending; no CAD/BOM/DRC/factory change and no board PASS.
+
+## T25BC/T25BD — independent T25BB waveform audit and prestate-gated rerun — 2026-09-28
+
+- Audited user T25BB ZIP SHA256 bf1a473606c605103af248a0002717591dacdd8581953d52449b830abb8a3997: 62 safe members, 12 jobs concluded, 12,501 rows/case, DAT and zero solver error/warning. Pre-state inspection rejects two 19mA/0.5A cases because PSpice pseudo-transient advanced CTL/SD_VDD before 1ms; their 3.298V report values are not valid event minima. Ten valid cases agree with T25AZ within 3.697mV and 1.3us. Deterministic auditor and raw-derived JSON committed; conditional fixture only, no board PASS.
+- Staged unique T25BD v1 for all 12 cases with SKIPBP, a 1ms C_OUT precharge interval and hard gates on sample count, rail, SD, control-before/control-after and pseudo-transient absence. Windows ZIP pending. No CAD/BOM/DRC/factory change.
