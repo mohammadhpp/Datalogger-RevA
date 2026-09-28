@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — T25BL TPS22918 ECO procurement-blocked by Iran-local rule; new Iran-available load-switch qualification required, 2026-09-28
+## CURRENT EXACT POINT — TPS22918DBVT technical PASS + Iran availability PASS; finish passive procurement checks before T25BL ECO approval, 2026-09-28
 
 ### Live project baseline
 
@@ -127,15 +127,20 @@ The TPS22918 candidate is an active TI catalog device. TI DBV pinout is 1 VIN, 2
 
 ### Iran-local procurement rule — locked 2026-09-28
 
-User requires every newly proposed RevA component/replacement to be practically available from an Iranian seller/supplier before it can become an executable ECO or BOM change. Global distributor stock alone is not sufficient.
+Every newly proposed RevA component/replacement must have practical Iranian availability evidence before executable ECO/BOM use.
 
-Immediate effect on T25BL:
-- TPS22918 remains technically validated in the bounded vendor-model fixture but **Iran-local stock was not verified**, so the TPS22918 ECO is **PROCUREMENT_BLOCKED / REFERENCE_ONLY** and must not be applied to CAD.
-- Digikapart currently lists a 1uF 0603 X5R +/-10% 50V MLCC (`06035C105KAT2A`) as available.
-- Exact 4.7nF 0603 X7R Iranian stock was not verified in the current search; an Iranian 4.7nF SMD 0805 listing exists.
-- `SY6280` appears in recent SkyTech Iran stock/replenishment lists and is a candidate for technical evaluation. Available preliminary datasheet: 2.4..5.5V, programmable current limit 0.13..2A range, typical 80mOhm, automatic output discharge, SOT23-5; no adjustable CT slew pin. It is not a drop-in functional equivalent to TPS22918.
+Updated evidence:
+- User supplied a direct screenshot of SkyTech Iran product page for **TPS22918DBVT(13MW)**.
+- The page lists the exact part as a 5.5V / 2A / 52mOhm load switch, SOT-23-6, with Iranian single and volume pricing and quality label `ORIGINAL(distributor)`.
+- Therefore `TPS22918DBVT = IRAN_AVAILABILITY_PASS`.
+- Exact live stock quantity was not shown in the screenshot, so order-time stock must still be reconfirmed.
+- Combined status for U_SD_SW: `TECHNICAL_PASS + IRAN_AVAILABILITY_PASS`.
 
-Do not choose SY6280 merely because it is locally available; first re-run the controlled-inrush/source-margin analysis around its programmable current-limit behavior and card-startup constraints.
+The earlier TPS22918 procurement block is superseded. Do not switch to SY6280 unless TPS22918 later becomes unavailable or another engineering reason arises.
+
+Remaining local-procurement check for T25BL:
+- exact acceptable 4.7nF CT capacitor;
+- exact acceptable 1uF input bypass capacitor (Iranian listing already identified previously, but reverify before final BOM freeze).
 
 ### Remaining engineering gates
 
@@ -149,13 +154,10 @@ Do not choose SY6280 merely because it is locally available; first re-run the co
 
 ## NEXT EXECUTABLE ACTION
 
-Do **not** apply T25BL TPS22918 ECO.
-
-1. Treat TPS22918 result as a validated reference architecture only.
-2. Search/qualify Iran-available load-switch candidates, starting with SY6280 because current Iranian stock evidence exists.
-3. For each candidate, verify datasheet/source quality, package/manual-assembly suitability, input range, RON, discharge behavior, inrush/current-limit mechanism, and compatibility with the 3.3V SD rail.
-4. Re-run a bounded SD startup/inrush analysis against T25BH source sensitivities.
-5. Only after both **technical PASS + Iran-local availability PASS**, issue a replacement exact ECO and ask for explicit user approval.
-6. Then apply schematic/PCB changes, DRC/audits and continue TPS631000/USB handoff/OVP gates before fabrication release.
+1. Keep TPS22918DBVT as the preferred SD load switch; technical and Iran-local availability gates are both PASS.
+2. Verify Iran-local purchasability of the exact/new passive parts required by T25BL, especially the 4.7nF CT capacitor and 1uF VIN bypass.
+3. Once all new parts have `TECHNICAL PASS + IRAN AVAILABILITY PASS`, present the final consolidated T25BL ECO for explicit user approval.
+4. After approval only: apply schematic ECO, verify/create TI DBV SOT-23-6 footprint, ECO to PCB, route/repour, Full Batch DRC, courtyard/pin-1 audit, snapshot and Git checkpoint.
+5. Continue remaining TPS631000 1.80V source / USB handoff / OVP gates before fabrication release.
 
 No T25BF rerun. Fabrication Hold remains.
