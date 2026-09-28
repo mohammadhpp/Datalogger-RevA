@@ -55,3 +55,58 @@ Global reference MPN `CL10B472KB8NNNC` is confirmed as 4.7nF, +/-10%, 50V, X7R, 
 T25BL must remain unapplied until an Iran-available 4.7nF capacitor with adequate documented dielectric/tolerance/voltage is identified, or an alternate CT value with Iran-local availability is technically re-qualified.
 
 CAD unchanged. Fabrication Hold remains.
+
+
+## Lion Electronic user-provided procurement evidence — 2026-09-28
+
+User supplied screenshots from Lion Electronic showing exact TDK parts and live Iranian stock/pricing.
+
+### C_SD_CT — exact local part now PASS
+
+**TDK C1608NP01H472J080AA**
+- 4.7 nF
+- +/-5%
+- 50 VDC
+- NP0/C0G
+- 0603 / EIA 1608
+- Lion Electronic screenshot shows stock: **3,940 pcs**
+- quantity pricing displayed for 20 / 200 / 2000 / 4000 pcs.
+
+TDK official product data confirms: production status, 4.7 nF +/-5%, 50 VDC, NP0 (0 +/-30 ppm/degC), 0603, -55 to +150 C.
+
+This is electrically **better than the earlier proposed 4.7 nF X7R +/-10%** for the TPS22918 CT node because NP0/C0G gives materially lower capacitance variation with voltage and temperature.
+
+TI TPS22918 guidance recommends at least 16 V CT-capacitor rating for VIN=1.2..4 V; TI application support further recommends 25 V minimum for optimal margin because CT can see approximately 3x VIN. The 50 V rating therefore has ample margin at the RevA 3.3 V rail.
+
+Status:
+`C_SD_CT_C1608NP01H472J080AA = TECHNICAL_PASS + IRAN_AVAILABILITY_PASS`.
+
+### C_SD_SW_IN — exact local part now PASS
+
+**TDK C2012X7R1H105K125AB**
+- 1 uF
+- +/-10%
+- 50 VDC
+- X7R
+- 0805 / EIA 2012
+- Lion Electronic screenshot shows stock: **6,460 pcs**
+- quantity pricing displayed for 20 / 200 / 1000 / 2000 pcs.
+
+TDK official product data confirms: production status, 1 uF +/-10%, 50 VDC, X7R, 0805, -55 to +125 C.
+
+TI TPS22918 layout guidance recommends a 1 uF low-ESR ceramic bypass using X5R or X7R placed close to VIN/GND. Therefore this exact part is technically suitable. Its 0805 package differs from the earlier provisional 0603 footprint; the final ECO must use an 0805 footprint and verify local placement clearance.
+
+Status:
+`C_SD_SW_IN_C2012X7R1H105K125AB = TECHNICAL_PASS + IRAN_AVAILABILITY_PASS`.
+
+### Updated T25BL procurement gate
+
+- TPS22918DBVT: PASS
+- C_SD_CT = TDK C1608NP01H472J080AA: PASS
+- C_SD_SW_IN = TDK C2012X7R1H105K125AB: PASS
+- 100k ON pulldown: existing project part, no new procurement dependency
+
+Therefore all newly introduced T25BL parts now satisfy the locked dual requirement:
+`TECHNICAL PASS + IRAN AVAILABILITY PASS`.
+
+T25BL is no longer procurement-blocked. CAD is still unchanged pending explicit user approval of the consolidated ECO.
