@@ -1,5 +1,13 @@
 # CURRENT HANDOFF — Datalogger RevA
 
+## CURRENT EXACT POINT — T25BZ USB OVP/handoff bounded review, 2026-09-28
+
+- User directed **S1 to be found later** and authorized continuing without step-by-step approval. Do not spend next work on S1; its three-pole functional map and unqualified exact MPN are in `T25BY`.
+- `AI_CONTINUITY/T25BZ_USB_OVP_HANDOFF_ARCHITECTURE_SCREEN_FA.md` rechecks the existing pass-through OVP incompatibility with strict 5.50V recommended VIN1 while no nuisance cutoff at 5.50V is required. The historical 5.600692..5.915721V trip calculation leaves only 84.279mV to the 6V absolute corner before dynamics.
+- Exploratory TPS54202 preregulator remains **screen only**, not selected ECO. New critical connection constraint: VIN allows 4.5..28V but EN abs max is 7V and recommended max 5.5V; never tie EN directly to raw USB when the 12V fault must be tolerated. TI permits EN floating, or a separately qualified UVLO network.
+- The former T25BR 110uF nominal VIN_MUX recommendation does not guarantee no reset: conditional energy at 0.924W, η=0.75, 2.7325→1.84V needs 15.09/30.19/60.38uF effective for 25/50/100us; neither 55% retention nor mux maximum interruption is established, and reverse direction must be tested. No R_ST_PU/PR1/capacitor ECO yet.
+- Next independent work: complete a **single candidate USB/preregulator bill of materials and netlist** with all exact Iran-sourced passives, safe EN and source fault bounds; compare to existing OVP. If models and guaranteed Ceff cannot prove transfer, specify one instrumented power prototype gate. No repeat of invalid T25BT/T25AE fixture; no purchase, CAD unchanged, fabrication hold.
+
 ## CURRENT EXACT POINT — T25BY three-pole ECO map and Iran sourcing audit, 2026-09-28
 
 - `AI_CONTINUITY/T25BY_THREE_POLE_S1_ECO_MAP_AND_IRAN_SOURCING_FA.md` defines P1 BAT_FUSED→BAT_SW, P2 USB_VBUS_RAW→USB_OVP_IN, P3 joining **only the return ends** of the two distinct 5.1k CC Rd resistors to GND. User-approved three-pole decision remains the target; current four-pole CAD remains unchanged.
