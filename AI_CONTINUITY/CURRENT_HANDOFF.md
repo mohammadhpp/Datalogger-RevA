@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — continuity restored to the 19mA/280mA TPS631000 source/startup gate; premature whole-power redesign inactive, 2026-09-28
+## CURRENT EXACT POINT — T25BT raw official-model audit complete; both 19mA→280mA prestates invalid, 2026-09-28
 
 ### Live project baseline
 
@@ -212,18 +212,23 @@ The active closure sequence is:
 - Exact installed effective capacitances under bias remain open.
 - No integrated startup/handoff/SD/OLED or fabrication PASS exists.
 
-## T25BU — T25BT result uploaded; raw ZIP audit pending, 2026-09-28
+## T25BV — raw T25BT result independently audited, 2026-09-28
 
-User supplied `Datalogger_T25BT_v1_Result_20260928_220315.zip`. This session cannot read local scratch ZIP bytes with the exposed execution tools; no T25BT waveform value, solver verdict, pre-state PASS or failure has been inferred from the filename. Do not rerun T25BT. To eliminate manual table transcription, `AI_SCRIPTS/T25/T25BU_Audit_T25BT_Result_v1.ps1` was added in commit `4d47e18a42b826b231e27ad1a90d58a4a05b35c0`. It reads the existing result ZIP only, locates two separate raw PSpice PRINT tables per case, checks solver completion and 3V3 prestate, and emits a short plain-text report. The auditor has not been executed or independently tested in this session; its output requires review.
+Report: `AI_CONTINUITY/T25BV_T25BT_RAW_AUDIT_VERDICT_FA.md`.
+User result `Datalogger_T25BT_v1_Result_20260928_220315.zip`, SHA-256 `e85e8677543759a77e9e55ffb665914c00d83510d97eaf2cc9f0a40371c3b916`, was retrieved and independently parsed. Both official TI model jobs concluded, zero counted warning/errors; each raw PRINT table contains 4,001 voltage rows and 4,001 current rows. Pre-step (7..9.8us) VOUT is **1.614..2.268V falling at VIN=1.80V** and **2.652..2.662V at VIN=2.80V control**. Neither is a regulated 3.3V state. Source-current data also contradict credible steady 19mA transfer: mean +0.218mA in the 1.80V pre-window; model-only multi-amp swings in the 2.80V control.
+
+The generated `T25BT_v1_Summary.txt` has a cross-line parser defect: 6,001 alleged voltage rows with timestamps treated as voltages, including `PRE_MIN=7E-06V`. Disregard its numeric fields. Its invalid-prestate label agrees with independent raw evidence. `T25BU_Audit_T25BT_Result_v1.ps1` was patched to use horizontal row separators; **no further user run is required for this result**. The initial request for a user PowerShell bypass was made when local ZIP access temporarily failed and is now superseded.
+
+Verdict:
+`ACTUAL_TEST_WITH_RAW_EVIDENCE / OFFICIAL_MODEL_JOBS_COMPLETED / BOTH_PRESTATES_INVALID / POST_STEP_REJECTED / NO_HARDWARE_FAILURE_INFERRED / NO_BOARD_PASS / FABRICATION_HOLD`.
 
 ## NEXT EXECUTABLE ACTION
 
-1. On user's Windows PC, run the existing `Git_Save.cmd` once to pull the new auditor.
-2. Run the one audit command shown in the new chat; path to result ZIP: `$([Environment]::GetFolderPath('MyDocuments'))\\Datalogger_T25BT_v1_Result_20260928_220315.zip`. If the ZIP is stored elsewhere, pass its actual path.
-3. User pastes the **plain-text console output** (including any error). Do not upload another ZIP for this gate if plain-text access still cannot be established.
-4. Cross-check summary against separate raw PRINT tables and decide whether VIN=1.80V and the 2.80V control established a valid 3.3V pre-event state; only then interpret load-step and source-current metrics. If invalid, reject the post-step result and choose a valid source-verification route, without rerunning T25BF.
-5. Preserve TPS22918 official-model sub-gate, one-shot Iran-qualified whole-power purchase rule and fabrication hold. No partial CAD or purchase.
+1. Do not rerun T25BF/T25BT or interpret T25BT post-step voltages as circuit behavior.
+2. Inspect official TPS631000 model initialization guidance/source and existing T25D/Q/BF/BT runtime evidence for one **distinct** bounded way to obtain a regulated 3.3V pre-event state at VIN=1.80V and a credible 2.80V control. Require plausible raw source current and a real 19mA→TOTAL 280mA event; end an unproductive vendor-model route if its initialization remains inaccessible.
+3. In parallel continue the authorized whole-power closure: battery path S1/resistance, USB/OVP, weak-AA no-reset handoff, source/SD controlled-inrush; reuse existing T25BD/BE and T25BJ/BK evidence, keeping model assumptions explicit.
+4. Only after all power changes are defined produce one Iran-qualified purchase list and request one consolidated ECO/purchase decision. No partial CAD change or staged purchase; fabrication hold remains.
 
 ## BLOCKER REQUIRING USER
 
-The two raw PSpice `.out` traces are enclosed in the supplied ZIP but this session exposes no local file-reading/execution tool. A compact auditor console transcript is required to establish the actual T25BT outcome. The Windows command reads existing output; it does **not** run PSpice again, purchase parts or change CAD.
+None for the T25BT ZIP audit. The original unbranded microSD transient and exact OLED carrier dynamic current remain uncharacterized; a later representative test or source evidence is needed for final hardware qualification, after the pre-fabrication simulation review.
