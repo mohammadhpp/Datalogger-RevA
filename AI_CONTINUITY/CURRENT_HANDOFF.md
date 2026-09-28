@@ -1,6 +1,6 @@
 # CURRENT HANDOFF — Datalogger RevA
 
-## CURRENT EXACT POINT — T25BI complete / T25BJ official TPS22918 model-package preflight prepared, 2026-09-28
+## CURRENT EXACT POINT — T25BJ official TPS22918 package verified; v2 vendor-model sweep ready, 2026-09-28
 
 ### Live project baseline
 
@@ -71,27 +71,40 @@ For commanded SD-off with VIN held at 3.3V, using datasheet RPD max 35ohm and no
 T25BI status:
 `CONTROLLED_INRUSH_TOPOLOGY_SELECTED_FOR_SIMULATION / CT_4P7NF_INITIAL / OFFICIAL_PSPICE_MODEL_AVAILABLE / CAD_UNCHANGED / FABRICATION_HOLD`.
 
-### T25BJ — prepared, external package acquisition required
+### T25BJ — official package verified; vendor-model sweep ready
 
-Files committed:
-- `AI_SCRIPTS/T25/T25BJ_TPS22918_Model_Preflight_v1.ps1`
-- `AI_SCRIPTS/T25/Run_T25BJ_TPS22918_Model_Preflight_v1.cmd`
+User result `Datalogger_T25BJ_Model_Preflight_v1_Result_20260928_115306.zip` was independently inspected.
 
-The launcher:
-1. uses an existing `SLVMBI6*.zip` in Windows Downloads if present, otherwise downloads `https://www.ti.com/lit/zip/SLVMBI6` directly from TI over HTTPS;
-2. expands the package;
-3. records the ZIP SHA256, file inventory and hashes;
-4. extracts model-text filenames and every visible `.SUBCKT` header;
-5. creates `Datalogger_T25BJ_Model_Preflight_v1_Result_<timestamp>.zip`;
-6. performs **no PSpice run**, no Altium edit, no BOM edit.
+Verified provenance:
+- outer result ZIP SHA256 `45d5ffcb8a0ab08118d2c0a0f8aac074668392a0f64a5e80904ac897621387a1`;
+- acquisition source recorded as direct TI HTTPS;
+- nested official TI `SLVMBI6` ZIP SHA256 `C3CFE13A6AA72AFE2FCA9DEC791A6DD4D9B591B6C136C16FAC910F74E153CF00`;
+- `TPS22918_TRANS.LIB` SHA256 `DE4D6521D9E6AE4C6352D52FE26BFFC16A9B5AD91C3CFAC6E75E9EF5B1545FBA`;
+- exact subcircuit interface: `.SUBCKT TPS22918_TRANS VIN ON CT VOUT QOD GND`.
 
-The current AI environment can verify TI's product page and model availability but cannot retrieve the binary ZIP payload itself. Therefore this one external acquisition step is the next unavoidable dependency.
+TI model comments explicitly say it models switching characteristics, RON(VIN), adjustable output rise time, adjustable QOD, quiescent current and shutdown current at room temperature; temperature effects are not modeled.
+
+Report:
+`AI_CONTINUITY/T25BJ_TPS22918_OFFICIAL_MODEL_PREFLIGHT_RESULT_FA.md`
+
+Ready-to-run files:
+- `AI_SCRIPTS/T25/T25BJ_TPS22918_Official_Model_Sweep_v2.ps1`
+- `AI_SCRIPTS/T25/Run_T25BJ_TPS22918_Official_Model_Sweep_v2.cmd`
+
+The v2 fixture uses the **official TI model** and runs 16 bounded cases:
+- CT 2.2 / 4.7 / 10 nF with nominal CSD 54.1 uF and 0 / 100 / 200 / 400 mA equivalent 3.3 V resistive load;
+- extra CSD=27.05 uF sensitivity at CT=4.7 nF with the same four loads;
+- 3.3 V stiff source through 0.1 ohm plus 1 uF local VIN bypass;
+- ON at 0.1 ms, OFF at 25.1 ms, total 35 ms;
+- records rise 10-90%, time to 2.7 V, VIN minimum, peak source current, pre-off VOUT and QOD time to 0.5 V.
+
+The source is intentionally not current-limited. Peak demand is compared after execution against prior hypothetical 0.5/1.0/1.5 A T25BH ceilings. Therefore this fixture qualifies the load-switch behavior only and cannot prove TPS631000 behavior at VIN=1.80 V.
 
 ### Remaining engineering gates
 
 - Actual unbranded 4GB card startup/operating transient is unknown.
-- TPS22918 CT timing with the RevA 54.1uF bank must be checked with the official model; typical datasheet arithmetic alone is not a board PASS.
-- TPS631000 1.80V real transient source behavior remains unqualified; T25BH's 0.5/1.0/1.5A ceilings are sensitivity assumptions only.
+- TPS22918 vendor-model sweep has not yet been executed on Windows.
+- TPS631000 1.80V real transient source behavior remains unqualified.
 - Continuous battery->USB->battery no-reset behavior remains a locked requirement, not a PASS.
 - OVP transient gate remains open.
 - Effective installed capacitances under bias remain open.
@@ -99,12 +112,12 @@ The current AI environment can verify TI's product page and model availability b
 
 ## NEXT EXECUTABLE ACTION
 
-On the user's Windows repo, run:
+Run on the user's Windows repo:
 
-`AI_SCRIPTS\T25\Run_T25BJ_TPS22918_Model_Preflight_v1.cmd`
+`AI_SCRIPTS\T25\Run_T25BJ_TPS22918_Official_Model_Sweep_v2.cmd`
 
-Then upload the generated `Datalogger_T25BJ_Model_Preflight_v1_Result_*.zip`.
+Then upload `Datalogger_T25BJ_Sweep_v2_Result_*.zip`.
 
-On receipt, do **not** stop at inventory. Parse the official model pin order/dependencies, immediately construct the bounded T25BJ TPS22918 fixture (CT 2.2/4.7/10nF; CSD sensitivity; 0/100/200/400mA clearly-labeled load stimuli), provide/run the one-click PSpice wrapper, audit raw waveforms, and only then present the exact proposed Altium ECO. Do not modify CAD before explicit user approval of that ECO.
+On receipt, independently audit every raw `.out` trace and the summary, compare measured model demand against the T25BH sensitivity ceilings, decide whether CT=4.7nF survives the 400mA fixture and QOD requirements, and **continue directly to the exact proposed Altium ECO** if the vendor-model evidence is acceptable. Do not modify Altium before explicit approval of that ECO.
 
 No T25BF rerun. Fabrication Hold remains.
