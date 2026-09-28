@@ -94,3 +94,14 @@ No off-board logical component may remain without a physical PCB connection path
 - Prefer an exact MPN with an Iranian stock/product listing. If only a generic value/package is locally available, the exact electrical minimums and package constraints must be stated and verified before approval.
 - A component that is technically attractive but not verified available in Iran may be used only as a simulation/reference candidate; it must not be presented as the final RevA procurement choice.
 - Existing already-purchased BOM parts are not invalidated by this rule.
+
+
+## Consolidated power-block closure and one-shot purchase — LOCKED 2026-09-28
+
+- Do **not** place staged purchases for T25 power changes.
+- Do **not** apply partial power ECOs to Altium while another power gate remains open.
+- Close the whole RevA power block first: (1) battery path at 1.80V under load, (2) USB/OVP input conditioning, (3) USB<->battery no-reset handoff, (4) TPS631000 / 3V3 source margin including controlled SD startup.
+- After all required power changes are technically defined, produce **one consolidated procurement list** containing exact MPN, quantity, package, Iranian seller/source evidence, and `TECHNICAL PASS + IRAN AVAILABILITY PASS` for every newly introduced/replacement part.
+- Existing purchased parts that remain electrically valid should be reused rather than repurchased.
+- Only after the user explicitly approves the consolidated design and purchase list may the power schematic/PCB ECO be applied.
+- Fabrication Hold remains until the post-ECO compile/DRC/layout/power-validation gates are complete.
