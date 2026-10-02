@@ -1,0 +1,59 @@
+{
+  "captured_utc": "2026-10-02T15:01:31.088705+00:00",
+  "baseline": "e5f1ac0e8127854c482b599b6a5f010b243ba4df",
+  "cad_source_blobs": {
+    "01_POWER.SchDoc": "da2d005712c47000eb8c16157eca464d3fee4fe1",
+    "07_EXPANSION.SchDoc": "8714da5cbc041923e25a1aa647002e88f5b4d9a3"
+  },
+  "executed": [
+    "Python static/LC/cap-only screen",
+    "Python split PRINT table parser self-check",
+    "valid/invalid synthetic prestate audit",
+    "deck interface/unplug/TRAN checks",
+    "PS1/CMD ASCII check",
+    "handoff single active point/size/provenance markers",
+    "byte-exact archived handoff Git blob SHA verification"
+  ],
+  "not_executed": [
+    "Windows PowerShell runtime/syntax engine",
+    "official TPS54202 PSpice numerical run",
+    "hardware",
+    "new Altium DRC"
+  ],
+  "files_sha256": {
+    "AI_SCRIPTS/T25/Run_T25CE_USB_Official_Model_v1.cmd": "48c1c761fc2937c4127f2330ccabd157965cfff1c9b4a9bd2e4ee4c026004ef2",
+    "AI_SCRIPTS/T25/T25CE_Audit_Printed_Output_v1.py": "9239c71724ea3749c716c5031c93b10ba84d81173eff2f5ff59b1644e58aaa9a",
+    "AI_SCRIPTS/T25/T25CE_USB_Official_Model_v1.ps1": "a327c0a6660d42866c9f624c3aba8aa18e4ca4390be63564c8e4224e8257bb16",
+    "AI_SCRIPTS/T25/T25CE_USB_Candidate_Screen_v1.py": "990018add9f5873e0d2053ee9432b082283c0d62d6b2a2b8b7ef2cea7750f04b",
+    "AI_SCRIPTS/T25/T25CE_DECKS/LOAD_0mA_CEFF_22uF.cir": "2a1f6eb2b95b6ffec446c003ec53b2923ab38e9ae4f56c099a1d4656f89c6baf",
+    "AI_SCRIPTS/T25/T25CE_DECKS/LOAD_19mA_CEFF_22uF.cir": "e480be342615b0b420177e14a64fbd21fffee61e91ea0a4d5a17116d815a7697",
+    "AI_SCRIPTS/T25/T25CE_DECKS/LOAD_0mA_CEFF_44uF.cir": "c303fa70577044d2ee16f5ce961666b6408917574c4cfa49a74db2001dd49227",
+    "AI_SCRIPTS/T25/T25CE_DECKS/LOAD_19mA_CEFF_44uF.cir": "d4f3cbb93aac696c4f306a2ca0bdbdc3a084f9c27491cead9f0fbecd5b2d286a",
+    "AI_SCRIPTS/T25/T25CE_DECKS/LOAD_280mA_CEFF_44uF.cir": "d7186c222e8afbfc44e73eb763812fad7d0a08f0c7f6b7cd9d7ee626595ef2ad",
+    "AI_SCRIPTS/T25/T25CE_DECKS/LOAD_280mA_CEFF_22uF.cir": "7c3527700f6c4be41ffb6fffe1dba3846aa9e2aa7e837acd4ab12919a3846d84"
+  },
+  "stock_observations": [
+    {
+      "mpn": "SRN1060-100M",
+      "url": "https://lionelectronic.ir/products/6722-SRN1060-100M",
+      "direct_html_stock": 1980,
+      "manufacturer_DCR_max_mohm": 29,
+      "retailer_DCR_mohm": 290
+    },
+    {
+      "mpn": "SPM6530T-100M",
+      "url": "https://lionelectronic.ir/products/4357-SPM6530T-100M",
+      "direct_html_status": "به زودی"
+    },
+    {
+      "mpn": "TPSM863257RDXR",
+      "url": "https://lionelectronic.ir/products/6542-TPSM863257RDXR",
+      "direct_html_status": "اتمام موجودی"
+    },
+    {
+      "mpn": "0603CG560J500NT",
+      "url": "https://lionelectronic.ir/products/1904-0603CG560J500NT",
+      "direct_html_stock": 3450
+    }
+  ]
+}

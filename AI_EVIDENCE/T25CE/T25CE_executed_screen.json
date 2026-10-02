@@ -1,0 +1,67 @@
+{
+  "status": "ACTUAL_TEST_WITH_RAW_EVIDENCE",
+  "scope": "EXECUTED_STATIC_AND_CAPACITOR_ONLY_SENSITIVITY_NO_HARDWARE_PASS",
+  "vendor_model_status": "TEST_STAGED_AWAITING_USER_RUN_OR_HARDWARE",
+  "cad_unchanged": true,
+  "fabrication_hold": true,
+  "zip_sha256": "39e524bc2cc9a71a22e8afb753ccc5f2f8ee16ca0f491763b52ba1eb9c16271b",
+  "lib_sha256": "2410b7f6f64162ffe6c3ca94565396870aa55e4cafbeccd2382bc2471d933d3d",
+  "model_encrypted_despite_download_title": true,
+  "corners": {
+    "buck_static_min_v": 3.4426417910447755,
+    "buck_static_max_v": 3.7120552763819097,
+    "pr_boundary_min_v": 2.7416915422885575,
+    "pr_boundary_max_v": 3.2617085427135684,
+    "static_selection_margin_v": 0.18093324833120716,
+    "power_at_280mA_W": 0.924,
+    "cout_eff_for_f0_40kHz_at_min_vout_uF": 28.68436683040186,
+    "vin1_cap_eff_for_slope_0p1V_per_us_uF_at_eta_0p70": 4.814545982434492,
+    "I_peak_max_CCM_sweep_A": 0.9314160376411326,
+    "c_mux_eff_100us_to_1p84V_at_eta_0p75_uF": 59.64264018441519
+  },
+  "cases": [
+    {
+      "name": "LOAD_280mA_CEFF_44uF",
+      "load_mA_at_3V3_equivalent": 280,
+      "Cout_effective_scenario_uF": 44,
+      "eta_scenario": 0.75
+    },
+    {
+      "name": "LOAD_280mA_CEFF_22uF",
+      "load_mA_at_3V3_equivalent": 280,
+      "Cout_effective_scenario_uF": 22,
+      "eta_scenario": 0.75
+    },
+    {
+      "name": "LOAD_19mA_CEFF_44uF",
+      "load_mA_at_3V3_equivalent": 19,
+      "Cout_effective_scenario_uF": 44,
+      "eta_scenario": 0.75
+    },
+    {
+      "name": "LOAD_19mA_CEFF_22uF",
+      "load_mA_at_3V3_equivalent": 19,
+      "Cout_effective_scenario_uF": 22,
+      "eta_scenario": 0.75
+    },
+    {
+      "name": "LOAD_0mA_CEFF_44uF",
+      "load_mA_at_3V3_equivalent": 0,
+      "Cout_effective_scenario_uF": 44,
+      "eta_scenario": 0.75
+    },
+    {
+      "name": "LOAD_0mA_CEFF_22uF",
+      "load_mA_at_3V3_equivalent": 0,
+      "Cout_effective_scenario_uF": 22,
+      "eta_scenario": 0.75
+    }
+  ],
+  "warnings": [
+    "PR1 hysteresis/leakage/dynamic margin NOT covered by static corners",
+    "CCM ripple math is a screen; Eco-mode/light load/saturation/temperature NOT proven",
+    "500kHz typical; 400kHz minimum frequency used in LC screen",
+    "No actual TPS2116 gap, no TPS631000 rail, no card-write evidence",
+    "A 12V/1us/0.1ohm fixture is NOT an approved fault envelope"
+  ]
+}

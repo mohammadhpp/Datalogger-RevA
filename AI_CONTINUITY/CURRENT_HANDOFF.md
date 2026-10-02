@@ -7,12 +7,14 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25CD USB fault-domain/architecture gate, 2026-09-29 Tehran
+## CURRENT EXACT POINT — T25CE USB separate-branch executable gate, 2026-10-02 UTC
 
-- Active user rule at top: continue without routine approvals; GitHub main authoritative, S1 exact sourcing deferred. SD TPS22918 sub-gate already screened. TPS631000 and original Murata 1µH L1 retained. No RevA hardware, CAD/ECO/purchase change or new PSpice→ZIP loop.
-- `AI_CONTINUITY/T25CD_USB_FAULT_DOMAIN_AND_ARCHITECTURE_GATE_FA.md` identifies a missing source requirement: workbook v0.17 caps injected USB fault at **12V**, but does not lock its minimum source impedance/maximum current, rising slew, duration or source removal energy. P9-O01/O02/O03 remain PENDING. With an unbounded ideal 12V step, a pass-through FET with nonzero cutoff time cannot be proven to keep VIN1 below the TPS2116 6V stress ceiling by capacitor sizing alone. This is a conditional mathematics screen, not a statement about actual USB behavior. The all-slow-ramp 5.55V/recommended-5.5V issue from T25CC remains conditional on that fault domain; P9's 'qualified limit' is numerically unspecified.
-- Three classes screened without selection: existing discrete pass-through OVP needs bounded fault/model or instrumented P9 evidence; `TPS54202DDCR` has exact Iran IC listings but incomplete separate **USB** inductor/passives/Ceff/PR1/transfer; TI `TPSM863257RDXR` integrates its inductor but no practical exact-MPN Iran offering was established. Neither candidate is in the purchase BOM. No change to L1, SD or S1 architecture.
-- Next useful independent work: seek an exact Iran-qualified complete regulated USB architecture (including Ceff/PR1) or source a documented finite 12V fault envelope for the existing OVP; keep weak 1.80V no-reset handoff OPEN. One consolidated power ECO/purchase only when fully reviewable. Last T24 DRC 0/0 is CAD-only; **FABRICATION HOLD**.
+- User authorized autonomous continuation; S1 sourcing deferred. TPS631000/Murata L1 retained; SD T25BK/T25BL screened. No CAD/ECO/purchase or new hardware/fabrication PASS.
+- Read `AI_CONTINUITY/T25CE_USB_SEPARATE_BRANCH_AND_EXECUTABLE_MODEL_GATE_FA.md`. Live 07_EXPANSION shows USB_VBUS_PROT feeds USB_5V_AUX through zero-ohm R_EXP_PWR_EN: **do not replace that whole rail with3.576V**. Exploratory preregulator needs its own USB_PMUX_REG/VIN1 branch; separate 5V expansion protection remains OPEN.
+- Executed Python static corners/LC sweep/cap-only energy traces, committed raw CSV/JSON. Buck3.442642..3.712055V, proposed PR static2.741692..3.261709V, margin180.933mV; hysteresis/leakage/dynamics excluded. Worst-Vout pre-Cff f0 screen needs Ceff>28.6844uF;44uF nameplate alone is not proof. Conditional CCM Ipeak max0.931416A with declared L/eta/frequency scenarios.
+- Direct Iran pages: SRN1060-100M stock1980, size approximately10x9.8x6mm/fit open; manufacturerDCR29mOhm versus retailer290mOhm discrepancy. TDK SPM6530T-100M is “به زودی”; TPSM863257 exact listing exists but out of stock. Exact Fenghua56pF C0G0603 listing3450 stock; Cff56pF still a fixture start point. No part selected.
+- **New** official TPS54202 USB-only model test staged:6 decks, ASCII PS5.1/CMD with pinned TI ZIP/LIB hashes, pilot prestate gate, per-case180s/total900s stop limits and ZIP logs. Payload encrypted despite download title; Linux has no PSpice/PowerShell. Python numerical execution and split-PRINT/prestate parser self-check passed; Windows vendor numerical and PS runtime remain PENDING. Do not repeat old invalid TPS2116/TPS631000 fixtures.
+- Fault source12V/1us/0.1ohm and22/44uF Ceff are declared sensitivity fixtures, not bounded real fault domain. Full battery startup/no-reset transfer, actual Ceff/card/module, layout and both USB branches still OPEN; FABRICATION HOLD.
 
 ## Accepted design and validation baseline
 
@@ -38,16 +40,18 @@
 
 ## Cleanup and preserved history
 
+Exact pre-T25CE live handoff is also archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CE_2026-10-02.md` (source blob7416df90961a0981cfc3421791806ead75979d9f).
+
 The exact pre-compaction live handoff is preserved byte-for-byte in
 `AI_CONTINUITY/HANDOFF_ARCHIVE_PRE_COMPACTION_2026-10-02.md`
 (source blob `7374eeb3fe3b931a72e22d68cd9438fbbe0b294b`, baseline main `3a1c713a1e371546a2fa72116adc5fe235e5686c`).
 
-Read archived details only when needed; the sole active continuation point is the T25CD section above. Further evidence and older checkpoints remain in `HISTORY.md`, dated T25 reports and source archives.
+Read archived details only when needed; the sole active continuation point is the T25CE section above. Further evidence and older checkpoints remain in `HISTORY.md`, dated T25 reports and source archives.
 
 The 2026-09-28 cleanup audit is `GITHUB_CLEANUP_AUDIT_2026-09-28.md`: canonical SchLib was restored byte-identically; duplicate PcbLib and T23/T24 evidence retained pending dependency/path checks. Do not delete evidence to reduce apparent clutter. This compaction repairs documentation only.
 
-**NEXT EXECUTABLE ACTION:** Continue the T25CD independent engineering work: examine a documented finite USB fault envelope or an exact Iran-qualified complete regulated USB architecture, including Ceff/PR1 and both transfer directions. Preserve existing TPS631000/L1 and screened SD. Develop one consolidated reviewable power proposal; do not repeat invalid vendor fixtures or assume unknown USB source/current/slew/duration bounds.
+**NEXT EXECUTABLE ACTION:** After normal Git_Save.cmd sync, run AI_SCRIPTS\\T25\\Run_T25CE_USB_Official_Model_v1.cmd once. Independently audit the generated Result ZIP with T25CE_Audit_Printed_Output_v1.py before interpreting fault/5.5V/unplug traces. Continue complete two-branch USB protection/Ceff/layout and retained battery/no-reset work; do not repeat invalid old fixtures.
 
-**BLOCKER REQUIRING USER:** None for the independent analysis and documentation now. A later single decision is needed for a fully specified consolidated power ECO/purchase or an explicitly proposed limited prototype. No routine screenshots, ZIP reruns or re-selection of already locked limits.
+**BLOCKER REQUIRING USER:** The new TPS54202 official encrypted model needs the user's existing Windows PSpice engine; prepared one-click run and resulting ZIP are required for this vendor evidence. No routine design approval requested. A consolidated ECO/purchase decision remains later, once technically ready.
 
 **FABRICATION HOLD.** Continuity CI validates file retention and metadata; it does not certify circuit function.
