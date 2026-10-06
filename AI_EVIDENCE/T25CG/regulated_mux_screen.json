@@ -1,0 +1,200 @@
+{
+  "status": "EXECUTED_CAPACITOR_ENERGY_SCREEN_NO_CONVERTER_OR_MUX_SIMULATION",
+  "load_provenance": {
+    "19mA": "old prototype observation, bandwidth unknown",
+    "280mA": "historical design envelope; not measured peak"
+  },
+  "Vstart_scenario_V": 3.135,
+  "backup_condition_margin_to_2p5V_V": 0.6349999999999998,
+  "old_USB_candidate_static_max_V": 3.712055,
+  "direct_MCU_feed_3p6V_excess_V": 0.1120549999999998,
+  "notes": [
+    "3.135V is illustrative -5% rail, not verified TPS631000 or USB minimum.",
+    "Cbus is a new downstream mux capacitor requirement, not existing upstream C_OUT.",
+    "No ESR/wiring/RCB/control/source recovery/SD switch drop included.",
+    "6.2us is TI typical under stated load/cap conditions, not max or qualified system gap.",
+    "All scenarios exclude real card/module characterization and actual source current ceiling."
+  ],
+  "cases": [
+    {
+      "load_3V3_A": 0.019,
+      "power_W": 0.06269999999999999,
+      "gap_us": 6.2,
+      "gap_source": "TI_TYP_AT_3p3V_RL10ohm_CL10uF_NOT_MAX",
+      "Cbus_eff_uF": 10.4,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 3.1230541634259734,
+      "Cbus_req_to_2p7V_uF": 0.3063085423869045
+    },
+    {
+      "load_3V3_A": 0.019,
+      "power_W": 0.06269999999999999,
+      "gap_us": 6.2,
+      "gap_source": "TI_TYP_AT_3p3V_RL10ohm_CL10uF_NOT_MAX",
+      "Cbus_eff_uF": 22.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 3.1293585604720975,
+      "Cbus_req_to_2p7V_uF": 0.3063085423869045
+    },
+    {
+      "load_3V3_A": 0.019,
+      "power_W": 0.06269999999999999,
+      "gap_us": 6.2,
+      "gap_source": "TI_TYP_AT_3p3V_RL10ohm_CL10uF_NOT_MAX",
+      "Cbus_eff_uF": 47.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 3.132360591046379,
+      "Cbus_req_to_2p7V_uF": 0.3063085423869045
+    },
+    {
+      "load_3V3_A": 0.019,
+      "power_W": 0.06269999999999999,
+      "gap_us": 50.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 10.4,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 3.0373245438404144,
+      "Cbus_req_to_2p7V_uF": 2.4702301805395526
+    },
+    {
+      "load_3V3_A": 0.019,
+      "power_W": 0.06269999999999999,
+      "gap_us": 50.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 22.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 3.089211064333416,
+      "Cbus_req_to_2p7V_uF": 2.4702301805395526
+    },
+    {
+      "load_3V3_A": 0.019,
+      "power_W": 0.06269999999999999,
+      "gap_us": 50.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 47.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 3.11365071012804,
+      "Cbus_req_to_2p7V_uF": 2.4702301805395526
+    },
+    {
+      "load_3V3_A": 0.019,
+      "power_W": 0.06269999999999999,
+      "gap_us": 100.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 10.4,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 2.9364018405577204,
+      "Cbus_req_to_2p7V_uF": 4.940460361079105
+    },
+    {
+      "load_3V3_A": 0.019,
+      "power_W": 0.06269999999999999,
+      "gap_us": 100.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 22.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 3.04273314636693,
+      "Cbus_req_to_2p7V_uF": 4.940460361079105
+    },
+    {
+      "load_3V3_A": 0.019,
+      "power_W": 0.06269999999999999,
+      "gap_us": 100.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 47.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 3.092154020963655,
+      "Cbus_req_to_2p7V_uF": 4.940460361079105
+    },
+    {
+      "load_3V3_A": 0.28,
+      "power_W": 0.924,
+      "gap_us": 6.2,
+      "gap_source": "TI_TYP_AT_3p3V_RL10ohm_CL10uF_NOT_MAX",
+      "Cbus_eff_uF": 10.4,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 2.9540705293387446,
+      "Cbus_req_to_2p7V_uF": 4.51402062464912
+    },
+    {
+      "load_3V3_A": 0.28,
+      "power_W": 0.924,
+      "gap_us": 6.2,
+      "gap_source": "TI_TYP_AT_3p3V_RL10ohm_CL10uF_NOT_MAX",
+      "Cbus_eff_uF": 22.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 3.0508072702155404,
+      "Cbus_req_to_2p7V_uF": 4.51402062464912
+    },
+    {
+      "load_3V3_A": 0.28,
+      "power_W": 0.924,
+      "gap_us": 6.2,
+      "gap_source": "TI_TYP_AT_3p3V_RL10ohm_CL10uF_NOT_MAX",
+      "Cbus_eff_uF": 47.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 3.095875688168978,
+      "Cbus_req_to_2p7V_uF": 4.51402062464912
+    },
+    {
+      "load_3V3_A": 0.28,
+      "power_W": 0.924,
+      "gap_us": 50.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 10.4,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 0.9713957048415516,
+      "Cbus_req_to_2p7V_uF": 36.4033921342671
+    },
+    {
+      "load_3V3_A": 0.28,
+      "power_W": 0.924,
+      "gap_us": 50.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 22.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 2.3723880374002895,
+      "Cbus_req_to_2p7V_uF": 36.4033921342671
+    },
+    {
+      "load_3V3_A": 0.28,
+      "power_W": 0.924,
+      "gap_us": 50.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 47.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 2.8039735293314534,
+      "Cbus_req_to_2p7V_uF": 36.4033921342671
+    },
+    {
+      "load_3V3_A": 0.28,
+      "power_W": 0.924,
+      "gap_us": 100.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 10.4,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": null,
+      "Cbus_req_to_2p7V_uF": 72.8067842685342
+    },
+    {
+      "load_3V3_A": 0.28,
+      "power_W": 0.924,
+      "gap_us": 100.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 22.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 1.1950836790785813,
+      "Cbus_req_to_2p7V_uF": 72.8067842685342
+    },
+    {
+      "load_3V3_A": 0.28,
+      "power_W": 0.924,
+      "gap_us": 100.0,
+      "gap_source": "DECLARED_SENSITIVITY_NOT_GUARANTEE",
+      "Cbus_eff_uF": 47.0,
+      "Vstart_scenario_V": 3.135,
+      "Vend_energy_V": 2.4282318889230856,
+      "Cbus_req_to_2p7V_uF": 72.8067842685342
+    }
+  ]
+}

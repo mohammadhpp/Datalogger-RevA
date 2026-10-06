@@ -229,3 +229,8 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 
 - TPS54202 package's Startup/trans.sim explicitly sets20ns maxstep,ABSTOL10n,VNTOL10u,ITL1=1500,ITL2=400,ITL4=100. Copying only encrypted LIB omits reference solver settings. A changed numerical-profile test is justified once; these settings neither guarantee convergence nor certify circuit accuracy. Preserve profile identity and all unchanged electrical lines.
 - JOB CONCLUDED/Simulation complete can coexist with ORPSIM-15139. Check actual end time, solver errors and valid prestate before events; a0.8824V startup value at1.243ms cannot be called regulated output or unplug voltage. If the explicit changed profile also fails, block this macro-model route and move to independent evidence; do not create endless Windows reruns.
+
+## T25CG — timeout has no implicit simulated timestamp
+
+- T25CF's .out stopped in bias listing while stdout announced transient. PRINT tables may be emitted at job completion; zero supplied rows does not prove solver never advanced. Without DAT/progress logs actual simulated endtime is UNKNOWN, not0s. ORPSIM-16534 warns a cost, not a proven cause. Record runtime limits and mark bounded route blocked; no blind timer/solver retry.
+- Moving mux downstream of regulators can remove raw1.80V from the backup pin only if the backup regulator is kept ready and its rail stays>=2.5V dynamically. Do not disable it atUSB attach and then claim instant backup. Retune USB/PR1 for the actual3V3 consumer range; preserve converter outputC upstream and separately qualify load-sideCbus/RCB/SDswitch drop. Nominal rail/static margin/typical switchover do not prove noreset.

@@ -7,12 +7,13 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25CF audited solver stop / TI profile staged, 2026-10-06 UTC
+## CURRENT EXACT POINT — T25CG timeout audited / model route blocked / architecture screen, 2026-10-06 UTC
 
-- Read `AI_CONTINUITY/T25CF_T25CE_SOLVER_RESULT_AND_TI_PROFILE_GATE_FA.md`. Supplied T25CE ZIP independently audited: one of six cases, 623 VOUT rows, ORPSIM-15139 at1.243ms in X_USB.D_U6_D59, last VOUT0.8824V during startup; no13ms prestate/fault/unplug samples. Model hashes correct; **INVALID_OR_INCOMPLETE_FIXTURE**, no hardware failure or power PASS. Raw ZIP SHA2568e785dd57156bfee7a72d7e8416309bb72e791653f9acd11bbc08f7af2f7a551 preserved with audit JSON.
-- TI pinned package Startup/trans.sim uses maxstep20ns, ABSTOL10n/VNTOL10u/ITL1=1500/ITL2=400/ITL4=100; previous maxstep200ns and ADVCONV differed. This is a testable numerical hypothesis, not proven cause or cure. T25CF applies explicit TI options, removes ADVCONV; electrical fixture/model/waveforms/passives unchanged. Do not describe it as the reference TI circuit.
-- New one-click `AI_SCRIPTS/T25/Run_T25CF_USB_TI_Profile_v1.cmd`: verified cached official LIB or pinned download;6ms startup pilot first; only valid5..5.9ms prestate permits six28ms cases. Max240s each/900s total, first failure stops, no retry. Windows engine absent here; raw audit/parser and unchanged electrical-line checks executed, actual PS/PSpice run PENDING. If changed pilot also fails, block this macro-model path and do not create another blind retry loop.
-- TPS631000/Murata L1 retained; SD sub-gate screened, three-poleS1 exact sourcing deferred. Dedicated3.576V USB candidate branch must preserve separate5V expansion branch. Real Ceff, protection of both branches, loaded1.80V startup/no-reset/card/module/layout still OPEN. No CAD/ECO/purchase/fresh DRC/fabrication PASS.
+- Read `AI_CONTINUITY/T25CG_T25CF_TIMEOUT_AND_REGULATED_MUX_SCREEN_FA.md`. T25CF ZIP SHA256543cb3e4d98385f1ee8c61ec4d686275888d8c5286d2c072b4ff407b2527bf1f: pilot CASE_TIMEOUT after240.1857475s, successful parsing/bias and transient announced, no PRINT rows/JOB CONCLUDED/DAT supplied. ORPSIM-16534 warns highITL4 may increase runtime; no new convergence error printed. Actual simulated end time is UNKNOWN. Six USB cases never launched. No hardware verdict.
+- **TPS54202 bounded macro-model route BLOCKED; no further T25CE/T25CF rerun requested.** Timeout is not proof of a faulty model or physical IC. Preserve raw evidence; do not lengthen the timer or relax solver blindly.
+- Independent source-grounded alternative screened: retain TPS631000/L1 as ready battery regulator, place TPS2116 after separate battery/USB regulated rails. Backup>=2.5V would address the datasheet's fast-collapse reset condition only if verified dynamically. This is an UNSELECTED architecture draft; standby battery regulator remains powered and has nonzero losses. Old3.576V USB fixture (static max3.712055V) cannot directly feed STM32G070 3.6V operating limit; new USB setpoint/PR1/Cbus/RCB/SD-drop/sourcing/layout require redesign screening.
+- Executed18 capacitor-energy cases for this draft: illustrative3.135V start,19/280mA power envelopes,6.2us TI typical (not max),50/100us declared gaps and10.4/22/47uF effectiveC scenarios. At280mA, Cbus to2.7V is4.514uF at6.2us and72.807uF at100us, excludingESR/RCB/source/switch drop. No claim these capacitors/gaps represent the board. Script/raw CSV/JSON retained.
+- TPS631000/Murata L1 and SD T25BK/BL preserved; exactS1 deferred; two USB branches/expansion5V protection, realCeff, startup atloaded1.80V and full no-reset remain OPEN. No CAD/ECO/purchase/DRC/fabrication change.
 
 ## Accepted design and validation baseline
 
@@ -38,6 +39,8 @@
 
 ## Cleanup and preserved history
 
+Exact pre-T25CG handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CG_2026-10-06.md` (source blob 540c0318277f1ee1070cc0a618534c0d1f03f28c).
+
 Exact pre-T25CF live handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CF_2026-10-06.md` (source blob e8a342bcb91f580285ef7f27cdc1377668ddbb19).
 
 Exact pre-T25CE live handoff is also archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CE_2026-10-02.md` (source blob7416df90961a0981cfc3421791806ead75979d9f).
@@ -46,13 +49,14 @@ The exact pre-compaction live handoff is preserved byte-for-byte in
 `AI_CONTINUITY/HANDOFF_ARCHIVE_PRE_COMPACTION_2026-10-02.md`
 (source blob `7374eeb3fe3b931a72e22d68cd9438fbbe0b294b`, baseline main `3a1c713a1e371546a2fa72116adc5fe235e5686c`).
 
-Read archived details only when needed; the sole active continuation point is the T25CE section above. Further evidence and older checkpoints remain in `HISTORY.md`, dated T25 reports and source archives.
+Read archived details only when needed; the sole active continuation point is the T25CG section above. Further evidence and older checkpoints remain in `HISTORY.md`, dated T25 reports and source archives.
 
 The 2026-09-28 cleanup audit is `GITHUB_CLEANUP_AUDIT_2026-09-28.md`: canonical SchLib was restored byte-identically; duplicate PcbLib and T23/T24 evidence retained pending dependency/path checks. Do not delete evidence to reduce apparent clutter. This compaction repairs documentation only.
 
-**NEXT EXECUTABLE ACTION:** After normal Git_Save.cmd sync, run AI_SCRIPTS\T25\Run_T25CF_USB_TI_Profile_v1.cmd once and independently audit its Result ZIP with T25CF_Audit_Printed_Output_v1.py. Do not rerun unchanged T25CE or old discrepant TPS2116/TPS631000 fixtures. Continue independent two-branch USB/Ceff/battery/no-reset proposal work.
+**NEXT EXECUTABLE ACTION:** AI continues the consolidated comparison: existing upstream mux versus two regulated inputs/downstream mux. Resolve USB setpoint/PR1 worst-case margin, backup-ready condition at1.80V, new Cbus versus converter C_OUT, reverse-blocking delay, SD rail drop and exact Iran BOM before one ECO/purchase decision. Do not request another unchanged vendor run, fabricate a board or silently apply this draft.
 
-**BLOCKER REQUIRING USER:** The changed official-model numerical fixture needs the existing Windows PSpice engine; upload its generated T25CF Result ZIP. This is execution, not routine design approval. If the pilot fails again, mark model path blocked rather than request endless reruns. Consolidated ECO/purchase decision comes only once technically ready.
+**BLOCKER REQUIRING USER:** None for the remaining independent architecture/sourcing review. Integrated functional evidence remains BLOCKED by unqualified macro-model execution/dynamics and real source/Ceff/card/module parameters; this is not resolved by more ZIP retries. A later bench/fabrication/purchase or material requirement decision needs one concrete reviewed proposal.
 
 **FABRICATION HOLD.** Continuity CI validates file retention and metadata; it does not certify circuit function.
+
 

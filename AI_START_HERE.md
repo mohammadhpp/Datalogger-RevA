@@ -28,7 +28,9 @@ Then inspect the latest Git commits and the current engineering files relevant t
 
 ## Current high-level state
 
-- **T25CF CURRENT EXACT POINT, 2026-10-06:** T25CE user ZIP stopped with ORPSIM-15139 at1.243ms,623 VOUT rows and no event/prestate data; no hardware verdict. Read `AI_CONTINUITY/T25CF_T25CE_SOLVER_RESULT_AND_TI_PROFILE_GATE_FA.md`. New TI-package20ns/iteration/tolerance profile with6ms startup pilot then gated six USB cases staged; electrical fixture and official model unchanged. Run `AI_SCRIPTS/T25/Run_T25CF_USB_TI_Profile_v1.cmd` once after Git_Save.cmd. If this changed pilot also fails, block the macro-model path; no blind retry loop. Separate expansion5V branch, real Ceff/battery/no-reset remain OPEN; no selected part/CAD/purchase/board PASS; fabrication hold.
+- **T25CG CURRENT EXACT POINT, 2026-10-06:** T25CF startup pilot CASE_TIMEOUT after240.1857s, zero PRINT rows, no completion; actual simulated progress unknown. Read `AI_CONTINUITY/T25CG_T25CF_TIMEOUT_AND_REGULATED_MUX_SCREEN_FA.md`. Bounded TPS54202 macro-model route BLOCKED; no new Windows rerun. Independently screened an unselected post-regulator mux option retaining TPS631000/L1; backup readiness, USB3.3V setpoint/PR1, downstreamCbus/RCB/SD-drop/IranBOM still OPEN. Executed18 conditional capacitor-energy cases; no system/board PASS. Continue independent consolidated architecture review, no routine approval, no partialCAD/purchase;fabricationhold.
+
+- **T25CF prior point, 2026-10-06:** Explicit TI20ns/tolerance/iteration profile staged and now audited in T25CG; timeout does not prove hardware failure. Do not rerun the unchanged fixture.
 
 - **T25CE prior point, 2026-10-02:** Separate preregulator branch and six original fixtures prepared; numerical screens are conditional only. User Windows run now audited in T25CF; unchanged T25CE must not be repeated.
 

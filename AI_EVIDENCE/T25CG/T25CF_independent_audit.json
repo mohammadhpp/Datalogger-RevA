@@ -1,0 +1,39 @@
+{
+  "result_zip_sha256": "543cb3e4d98385f1ee8c61ec4d686275888d8c5286d2c072b4ff407b2527bf1f",
+  "members": [
+    "manifest.json",
+    "PILOT_STARTUP_280mA_44uF.cir",
+    "PILOT_STARTUP_280mA_44uF.out",
+    "PILOT_STARTUP_280mA_44uF.stderr.txt",
+    "PILOT_STARTUP_280mA_44uF.stdout.txt"
+  ],
+  "runner_status": "CASE_TIMEOUT",
+  "runtime_s": 240.1857475,
+  "raw_audit": {
+    "status": "INVALID_OR_INCOMPLETE_FIXTURE",
+    "solver_error_warning_count": 1,
+    "vout_samples": 0,
+    "prestate": {
+      "samples": 0,
+      "min": null,
+      "max": null
+    },
+    "fault_12V": {
+      "samples": 0,
+      "min": null,
+      "max": null
+    },
+    "usb_5p5V": {
+      "samples": 0,
+      "min": null,
+      "max": null
+    },
+    "unplug": {},
+    "scope": "NO_MUX_NO_TPS631000_NO_BOARD_OR_FABRICATION_PASS"
+  },
+  "job_concluded": false,
+  "transient_announced": true,
+  "warning": "ORPSIM-16534: high ITL4 at Speed Level > 0 may increase runtime",
+  "progress_time": "UNKNOWN_NO_PRINT_TABLE_OR_DAT_IN_ZIP",
+  "decision": "BLOCKED_BY_NAMED_MODEL_OR_INSTRUMENT_WITHIN_BOUNDED_EXECUTION_NO_PHYSICAL_VERDICT"
+}
