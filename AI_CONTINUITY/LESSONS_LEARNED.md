@@ -242,3 +242,13 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 - A reset supervisor used as source-good signal introduces release delay and usually onlytypicalassertion timing. Check outputtestcondition, unpowered behavior, pulldownloading and watchdog disable; never connectitsRESET toMCUNRST by assumption. Stocklisting isnottechnicalqualification orpurchase.
 - Match exactmanufacturer/MPN: LionMAX809S linksUMW; don'tborrowAnalogspecs. OrdinaryTPS3823-33DBVR is85°C perTI evenifretailer says125°C. Saveddatedexcerpt preservesannouncedstock.
 - TPS631000 IQ atVOUT andVIN aredistinctpin currents/testconditions. AddFBdivider outputload andpowerconversion; headline8uA isnot guaranteedAA-packstandbycurrent.
+
+
+## T25CI — model identity, local control runtime and supply sequencing
+
+- A model ZIP revision labelled encryption removal may have the same electrical core as olderTINA. Compare core/source/hash; do notcallit a new improvedmodel. Low-bias nominalreference validity must precede switching claims. 1mAmodelworking doesnotprovephysical100uA partfails.
+- ngspice canreturn0 after TRANaborted. Requireactualendtime/erroraudit/rawtrace; a completednominalcontrolfixture atidealMON doesnotprove diodeOR/startup,muxbranchcurrent,MCUNRSTorSDwrites. A timeoutwithoutdatahasUNKNOWNsimulatedprogress.
+- MonitorpoweredfrommuxoutputoronlymissingBAT canlatchUSB-onlystartup. IndependentMONOR needsrealdiode/current/clamp evidence; a fixedVF behaviouralOR isonlysensitivity. USB-poweredreference reducesAAstandbybutitsstartup isanotherdynamicgate.
+- LM4040DIM3X-2.5 isLM4040-N,notLM4040D25IDBZR. LM4040-N SOT23pin1K/pin2A differsfromTLV431DBZpin1REF/pin2K/pin3A. BAS70-04seriespair isnotcommoncathode;2packagesusing1diodeeachisintentionaldraft.
+- Readdatasheettablecolumns/conditions:TLV1701VOL900mVisMAXat25C/36V/100mVod,notfulltemp3Vbound;70nAleakand460/560nsdelaysaretypical. Staticmargincannotabsorbunboundedbuckripple. Hysteresiscomparethresholdsofthesamecorner.
+- ExistingMPNpresence isnotsparequantity. NeverreallocateFB/CC/SD/OLEDretainedparts toasourcedraft; selleromittedNOPBsuffixmustnotbeinvented.

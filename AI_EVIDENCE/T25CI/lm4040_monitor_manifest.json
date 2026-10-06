@@ -1,0 +1,159 @@
+{
+  "scope": "ACTUAL_TEST_WITH_RAW_EVIDENCE; isolated official-model nominal controls only. Ideal MON and no converter/mux. No hardware PASS. TOL +/-1 are model-supported extremes, not exhaustive part qualification.",
+  "models": {
+    "vendor/lm4040_nd25/LM4040_ND2P5_PSPICE_TRANS/LM4040_ND2P5_TRANS.lib": "9b14fbb2a64538e15a5bd0be8bed7886ddd037198666fc6512b27c88c7a283dc",
+    "vendor/tlv170_pspice/tlv1701.lib": "e606ad9020c40cbbf23feacfa512a3c32954bedc4a8bcf34c9b420f4566aeca7"
+  },
+  "results": [
+    {
+      "case": "reference_tol-1_100uA",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.012558690000332717,
+      "error_markers": [],
+      "rows": 1,
+      "last_row": " 2.47351313e+00  2.47351313e+00 ",
+      "deck_sha256": "bbbd06a231446e8d9abcade859d86db06dbe395f982aa4bd54562cc283af7eca"
+    },
+    {
+      "case": "reference_tol-1_300uA",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.014432196000598196,
+      "error_markers": [],
+      "rows": 1,
+      "last_row": " 2.47370814e+00  2.47370814e+00 ",
+      "deck_sha256": "392fa1904d0ef46e65864ae63502934a198835cddd78b34b0536e1113d41852d"
+    },
+    {
+      "case": "reference_tol-1_1000uA",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.016088209000372444,
+      "error_markers": [],
+      "rows": 1,
+      "last_row": " 2.47394939e+00  2.47394939e+00 ",
+      "deck_sha256": "f4ad1921da81d1c9c1cf7452574932a00f4ab9c834e4091f1dfa4fea012cb9e8"
+    },
+    {
+      "case": "reference_tol0_100uA",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.013584579999587731,
+      "error_markers": [],
+      "rows": 1,
+      "last_row": " 2.49610650e+00  2.49610650e+00 ",
+      "deck_sha256": "395256fc530b84bee600f6d7517ca7538373feefe785ef237f7b4509942aebf8"
+    },
+    {
+      "case": "reference_tol0_300uA",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.014364063999892096,
+      "error_markers": [],
+      "rows": 1,
+      "last_row": " 2.49630332e+00  2.49630332e+00 ",
+      "deck_sha256": "fdd67cfcb1ea6f3687e5a47148b94db0c859bbafc7328a317b73c840ec05dd67"
+    },
+    {
+      "case": "reference_tol0_1000uA",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.013366510999730963,
+      "error_markers": [],
+      "rows": 1,
+      "last_row": " 2.49654678e+00  2.49654678e+00 ",
+      "deck_sha256": "eecf0d16e5d8fc9ab4682b38290a80f41d3a12658c0ac8f083d4100ca5aa787f"
+    },
+    {
+      "case": "reference_tol1_100uA",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.013473040999997465,
+      "error_markers": [],
+      "rows": 1,
+      "last_row": " 2.52081801e+00  2.52081801e+00 ",
+      "deck_sha256": "d88fdb891378d66621eed88142844085af2da8e5537882e3ceddf11efc714a0c"
+    },
+    {
+      "case": "reference_tol1_300uA",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.013733255999795801,
+      "error_markers": [],
+      "rows": 1,
+      "last_row": " 2.52101682e+00  2.52101682e+00 ",
+      "deck_sha256": "8bf3e5c8cf830fee51895d31770eefd5dfff6b6b3161c5ef3c0f908e989bf5d2"
+    },
+    {
+      "case": "reference_tol1_1000uA",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.0137005840006168,
+      "error_markers": [],
+      "rows": 1,
+      "last_row": " 2.52126269e+00  2.52126269e+00 ",
+      "deck_sha256": "242b6fe86355647d3e201829f016283914a9ba5e6e8c0217f53b23a8b85e96f4"
+    },
+    {
+      "case": "slow_attach_remove",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 3.307591642999796,
+      "error_markers": [],
+      "rows": 62045,
+      "last_row": " 6.10000000e-03  0.00000000e+00  3.30000000e+00  5.07078858e-03 -8.19691623e-06 -1.18900238e-08 -7.87418795e-09  2.10872893e-06 ",
+      "deck_sha256": "0f7e3eb88b7002368a020cb2c785b24d3d22487103fed170e7517b952bbd3701"
+    },
+    {
+      "case": "hard_unplug",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.6806339579998166,
+      "error_markers": [],
+      "rows": 10411,
+      "last_row": " 1.00000000e-03  0.00000000e+00  3.30000000e+00  5.07106878e-03 -8.19691623e-06 -1.18900238e-08 -7.87418795e-09  2.10884568e-06 ",
+      "deck_sha256": "6dda1213549b1f081b7683f783f545dd80d3be43f316a4695202495bde4623ea"
+    },
+    {
+      "case": "attach_priority",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.6248559659998136,
+      "error_markers": [],
+      "rows": 11023,
+      "last_row": " 1.00000000e-03  3.30000000e+00  3.30000000e+00  2.49632377e+00  2.73815545e+00  2.02798250e+00  1.34303477e+00 -7.42989119e-04 ",
+      "deck_sha256": "31a30e4bfd851e001132b328a468da9a4bd3ecc485b586cb38cc62755a368395"
+    },
+    {
+      "case": "brownout_recovery",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 1.936518034999608,
+      "error_markers": [],
+      "rows": 31022,
+      "last_row": " 3.00000000e-03  3.30000000e+00  3.30000000e+00  2.49632377e+00  2.73815545e+00  2.02798250e+00  1.34303477e+00 -7.42989119e-04 ",
+      "deck_sha256": "a3193a900b15e0e54548e7439ca7884b6398e66174dc0e8f86e4676be9542eb0"
+    },
+    {
+      "case": "usb_absent",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.5740651510004682,
+      "error_markers": [],
+      "rows": 10008,
+      "last_row": " 1.00000000e-03  0.00000000e+00  3.30000000e+00  5.07071759e-03 -8.19691623e-06 -1.18900238e-08 -7.87418795e-09  2.10869935e-06 ",
+      "deck_sha256": "726d7f3c25f584fc53e5d8f5c8d49efdb85bfbc9fcfbe092bad89734089f9f4d"
+    },
+    {
+      "case": "usb_only_static",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.6754171069997028,
+      "error_markers": [],
+      "rows": 10008,
+      "last_row": " 1.00000000e-03  3.30000000e+00  3.30000000e+00  2.49632377e+00  2.73815545e+00  2.02798250e+00  1.34303477e+00 -7.42989119e-04 ",
+      "deck_sha256": "6f107571217df69b5fa7aea56f2d668900dffb0f806e51180caeaf3fa2bbc374"
+    }
+  ]
+}

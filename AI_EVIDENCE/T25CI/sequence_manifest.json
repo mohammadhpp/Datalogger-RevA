@@ -1,0 +1,61 @@
+{
+  "scope": "ACTUAL_TEST_WITH_RAW_EVIDENCE, bounded behavioural monitor supply plus official nominal IC models only. No actual source-OR/regulator/mux/hardware PASS.",
+  "results": [
+    {
+      "case": "usb_only_slow",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 4.546423574000073,
+      "error_markers": [],
+      "rows": 65228,
+      "last_row": " 6.10000000e-03  0.00000000e+00  0.00000000e+00  5.07078798e-03 -8.19672265e-06  1.48862824e-10 -5.42744392e-11  2.10872998e-06 ",
+      "deck_sha256": "c27c3c7dda413bb732663691270354af162224f72e5dc232121a07a10d5d5188"
+    },
+    {
+      "case": "usb_only_hard",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.17808873000012682,
+      "error_markers": [
+        "doAnalyses: TRAN:  Timestep too small; time = 0.000100564, timestep = 2.25685e-19: trouble with node \"xref.n30465\"",
+        "tran simulation(s) aborted"
+      ],
+      "rows": 1804,
+      "last_row": " 1.00564491e-04  3.18509400e+00  2.77509400e+00  2.20015494e+00  2.61156093e+00  5.10164723e-02  3.37860556e-02 -1.01056557e-03 ",
+      "deck_sha256": "382e660aadc720a61d55e4b30ab46ab6582d7e54c67eb829a4b32ce64468fa9d"
+    },
+    {
+      "case": "battery_ready_attach",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 0.19099888399978227,
+      "error_markers": [
+        "doAnalyses: TRAN:  Timestep too small; time = 0.000100561, timestep = 1.2e-19: trouble with node \"e.xref.e_estart#branch\"",
+        "tran simulation(s) aborted"
+      ],
+      "rows": 1575,
+      "last_row": " 1.00560507e-04  3.18509400e+00  2.80424200e+00  2.19433310e+00  2.61156093e+00  5.10164464e-02  3.37851527e-02 -1.01299133e-03 ",
+      "deck_sha256": "daae1674078a7df8ee8ca92ddbd1ec7a3b4ea4704a14881770e198c67cc6d26b"
+    },
+    {
+      "case": "battery_ready_unplug",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 2.566180185999656,
+      "error_markers": [],
+      "rows": 10734,
+      "last_row": " 1.00000000e-03  0.00000000e+00  2.80424200e+00  5.07106878e-03 -8.19691683e-06 -1.19267194e-08 -7.89848967e-09  2.10884567e-06 ",
+      "deck_sha256": "55a03f1ea05bab93c842705887b5934c8681bb085176197df76efec9d21cf330"
+    },
+    {
+      "case": "slow_brownout_plateau",
+      "status": "ENGINE_RETURNED",
+      "returncode": 0,
+      "wall_seconds": 5.8920662729997275,
+      "error_markers": [],
+      "rows": 43585,
+      "last_row": " 4.10000000e-03  3.18509400e+00  2.80424200e+00  2.49629513e+00  2.64281259e+00  1.95736813e+00  1.29627029e+00 -6.80912821e-04 ",
+      "deck_sha256": "e5a466c61f2c375a31e432e33e029437cd25f218123975a97ea08e4742f260df"
+    }
+  ]
+}

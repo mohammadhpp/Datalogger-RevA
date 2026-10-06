@@ -1,0 +1,77 @@
+{
+  "status": "ACTUAL_TEST_WITH_RAW_EVIDENCE",
+  "scope": "conditional KCL corner screen; NO_BOARD_PASS",
+  "count": 8192,
+  "nominal": {
+    "fall_V": 3.012976047859691,
+    "rise_V": 3.0490999999999997,
+    "hysteresis_same_corner_V": 0.036123952140308724,
+    "healthy_PR1_V": 1.296007300980452,
+    "low_PR1_V": 0.029801324503311258,
+    "healthy_sense_V": 2.6428142790898437
+  },
+  "summary": {
+    "False": {
+      "fall_V": {
+        "min": 2.9381929680134333,
+        "max": 3.089328174361032
+      },
+      "rise_V": {
+        "min": 2.9560983781291568,
+        "max": 3.1267326342013098
+      },
+      "hysteresis_same_corner_V": {
+        "min": 0.016496559967575042,
+        "max": 0.03888442900416722
+      },
+      "healthy_PR1_V": {
+        "min": 1.248805185466819,
+        "max": 1.3059621858953159
+      },
+      "low_PR1_V": {
+        "min": -0.0003405535820011841,
+        "max": 0.5993823594277766
+      },
+      "attach_static_margin_V": 0.05836136579869011,
+      "low_logic_margin_V": 0.3206176405722234
+    },
+    "True": {
+      "fall_V": {
+        "min": 2.9317082341560274,
+        "max": 3.0963952444925353
+      },
+      "rise_V": {
+        "min": 2.949471509696275,
+        "max": 3.13418814234951
+      },
+      "hysteresis_same_corner_V": {
+        "min": 0.01604288819660038,
+        "max": 0.03966290227659197
+      },
+      "healthy_PR1_V": {
+        "min": 1.2387953888051824,
+        "max": 1.3161083044602
+      },
+      "low_PR1_V": {
+        "min": -0.0003427489582754597,
+        "max": 0.6019869030672433
+      },
+      "attach_static_margin_V": 0.05090585765048994,
+      "low_logic_margin_V": 0.3180130969327567
+    }
+  },
+  "bias": {
+    "RREF_2p4k_1pct": true,
+    "at_USB_min_Iref_A": 0.0002619199669966997,
+    "at_USB_max_Iref_A": 0.0004137878787878787,
+    "at_fall_min_Iref_A": 0.00015738788537789919
+  },
+  "limitations": [
+    "USB3.185094 bound excludes regulator ripple/load transient/FB leakage and resistor TCR.",
+    "Output70nA is typical, no comparator leakage guaranteed maximum.10uA is declared sensitivity.",
+    "VOL0..0.9V is sensitivity based on specified900mVmax only at25C/36Vsupply/100mVoverdrive; no full-temp low-state guarantee at3V.",
+    "All-resistor100ppm/C sensitivity is not exact-MPN TCR qualification.",
+    "Full-temp reference limits assume70uA..1mA, pulse load regulation; thermal self-heating/aging not qualified.",
+    "No delay maximum, input-power sequencing, diode leakage, converters, mux or source currents qualified."
+  ]
+}

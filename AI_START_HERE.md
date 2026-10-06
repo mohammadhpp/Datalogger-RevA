@@ -28,7 +28,9 @@ Then inspect the latest Git commits and the current engineering files relevant t
 
 ## Current high-level state
 
-- **T25CH CURRENT EXACT POINT, 2026-10-06:** Read `AI_CONTINUITY/T25CH_ARCHITECTURE_PR1_CORNER_PROOF_FA.md`. Executed9 divider windows,48 energy and6 source budgets. Downstream passivePR candidate cannot guaranteeUSBpriority and2.7V floor with0.5%resistors; nofinalarchitectureselected. ExactIranTPS3823-33DBVR announces1300stock but120..300msattachmentdelay/25usnomfall/logicmargin remainOPEN. Currentboundedmacro-model routesBLOCKED,noWindowsretry. T25CG/T25CFraw evidence retained; noCAD/purchase/systemPASS;fabricationhold.
+- **T25CI CURRENT EXACT POINT, 2026-10-06:** Read `AI_CONTINUITY/T25CI_PRECISE_MONITOR_EXECUTION_AND_IRAN_DRAFT_FA.md`. Local officialcontrolmodels executed; LM4040-N/TLV1701 six nominal fixtures complete,8192 conditionalKCLcorners; lowMONhard-attach stillnumericblocked. ExactIran64/889/424 comparator/reference/diode stocks observed; suffix/fulltemp/ripple/OR/extraqtyopen. Fullraw evidenceindexed in `AI_EVIDENCE/T25CI/EVIDENCE_INDEX.json`. Noarchitectureselection/CAD/purchase/boardPASS;fabricationhold. Continue5V_AUX/wholepowerdraft,notWindowsretry.
+
+- **T25CH prior point, 2026-10-06:** Read `AI_CONTINUITY/T25CH_ARCHITECTURE_PR1_CORNER_PROOF_FA.md`. Executed9 divider windows,48 energy and6 source budgets. Downstream passivePR candidate cannot guaranteeUSBpriority and2.7V floor with0.5%resistors; nofinalarchitectureselected. ExactIranTPS3823-33DBVR announces1300stock but120..300msattachmentdelay/25usnomfall/logicmargin remainOPEN. Currentboundedmacro-model routesBLOCKED,noWindowsretry. T25CG/T25CFraw evidence retained; noCAD/purchase/systemPASS;fabricationhold.
 
 - **T25CG prior point, 2026-10-06:** T25CFtimeout audited, actualsimulatedprogressUNKNOWN;18 capacitor-energy scenarios and unselecteddownstream draft. T25CH supersedes its passivePR design question.
 

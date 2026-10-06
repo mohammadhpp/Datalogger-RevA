@@ -7,15 +7,16 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25CH architecture/PR1 corner proof and exact Iran monitor candidate, 2026-10-06 UTC
+## CURRENT EXACT POINT — T25CI precise monitor model execution and Iran draft, 2026-10-06 UTC
 
-- Read `AI_CONTINUITY/T25CH_ARCHITECTURE_PR1_CORNER_PROOF_FA.md`. Executed9 PR-divider windows,48 energy sensitivities and6 battery-source budgets; script/CSV/JSON retained. No vendor/system/board PASS.
-- New post-regulator USB FB candidate91k±1% / two10k±0.5%: nominal3.3078V, static3.185094..3.432960V. Retainedbattery FB gives3.214242..3.392396V. Dynamics/ripple/leakage excluded; no resistor reallocated or CAD changed.
-- **Passive PR1 downstream option rejected under these assumptions:** atfloor2.7V and0.5% resistors k_min1.954228>k_max1.929767. Even ideal resistors cannot coverfloor2.72V. Olddivider may never choose healthycornerUSB;18k variant can keep selecting sustained2.65V USB. BiggerCbus cannot fix sustained undervoltage. Highest-voltage mode does not guarantee USBpriority because rails overlap.
-- Exact `TPS3823-33DBVR` Iran listing Lion5418 announces1300 stock; saved rawexcerpt/hash. CandidateONLY: falling2.86..3.00V, release120..300ms underTI timing conditions, assertion25usnom NOT guaranteedmax; logic-hightestcondition/ripple/sequencing/inrush/absence remainOPEN. Do not silently accept attachmentdelay or125°C retailer spec (ordinarypartTI85°C). MAX809T/S listings are“به زودی”; S isUMW, not automaticallyADI-equivalent. Sourcingdeclaredstock isnotpurchase.
-- Upstreammux option still requires verified slowUSBcollapse at1.80V; downstream requires backupregalwaysready, precisePR andnewCbus. Neither selectedasfinal. RetainTPS631000/L1/SDscreen; exactS1deferred; USB5Vexpansion protection remainsOPEN.
-- T25CF audit retained: CASE_TIMEOUT240.1857s, parsing/bias completed, transientannounced, zeroPRINT/noDAT/nocompletion; actualsimulatedprogressUNKNOWN. **BoundedTPS54202 macro-model route BLOCKED; no unchangedT25CE/CF rerun.** No model/IC universalfailureinferred.
-- No CAD/ECO/purchase/DRC/fabricationchange; lastT24DRC0/0CAD-only. **FABRICATION HOLD.**
+- Read `AI_CONTINUITY/T25CI_PRECISE_MONITOR_EXECUTION_AND_IRAN_DRAFT_FA.md`. Locally executed ngspice42 with unmodified official TLV1701, TLV431 and LM4040-N models; decks/logs/full raw data retained. No Windows rerun is requested; no integrated/board PASS.
+- TLV431 low-bias reference prestate was invalid:100/200uA produced1.058467/1.138759V;1/10mA reached~1.24V. SLIM005 PSpice electrical core equals oldTINA; encryption removal is not a new model. Original transient aborted; boundedGear40s timeout actualsimulatedprogressUNKNOWN. Do not repeat this reference/profile loop.
+- New unselected precise monitor: TLV1701AIDBVR plus LM4040DIM3X-2.5 (correct LM4040-N family/SNOM542D2.5), reference bias2.4k fromUSB_REG, Rt2k/Rb10k/Rh100k, pullup10kUSB, OUT->PR1series5.1k/pulldown10k. MON independently diodeORs regulated rails; never depend on muxVOUT for coldstart. Correct physical pins and source map in report.
+- All6 nominal control fixtures atidealMON3.3V completed;9 referenceDC cases completed butTOL=-1 is~1.5mV below25Cgradefloor. VendorTOL isnot exhaustivecornerqualification. New sequencing sensitivity with behaviouralMONfixed0.41Vdrop:3/5initialcasescomplete;2hard-attachabortatinternalreference. C_REF100n closesonlyUSB-onlyhard-attach,notbattery-readyattach; notselected. Noactualdiode/regulator/muxwaveformorNRST/SD-writeevidence.
+- Executed8192 conditionalKCLcorners. In declaredall-resistor100ppm/C sensitivity:fall2.931708..3.096395V,attach2.949472..3.134188V;USBattachmargin50.906mV,minsame-cornerhysteresis16.043mV;PRhighmin1.238795,PRlowmax0.601987. Leakage10uA/VOL0.9/TCR arequalified-as-scenarios,notfulltempdatasheetguarantees. Ripple/FB_TCR/sourcecollapse/open.
+- Iran declaredstock:TLV1701AIDBVR64,LM4040DIM3X-2.5 889,BAS7004E6327HTSA1 424. Diodeisseriespair,use2packages forOR;VF/leakbounds25Conly. SellerLM4040 omitsNOPBsuffix; do notassumeit. Existingresistor/passivetypesneedextraquantities,notstealFB/CC/SD/OLEDparts. OtherintegratedmonitorsnotverifiedIraninthissearch; do notclaimunavailableeverywhere.
+- Raw package preservation and exactSHA are indexed in `AI_EVIDENCE/T25CI/EVIDENCE_INDEX.json`. Noarchitectureselected;mainconverterencrypted/boundedprestate,USBbucktimeout,muxmodeldiscrepancy,actualCeff/source/loadand5V_AUXprotectionremainOPEN. SDsubgateclosed;TPS631000/L1 retained;S1exactdeferred.
+- No CAD/ECO/purchase/DRC/fabricationchange. **FABRICATION HOLD.**
 
 ## Accepted design and validation baseline
 
@@ -41,6 +42,8 @@
 
 ## Cleanup and preserved history
 
+Exact pre-T25CI handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CI_2026-10-06.md` (source blob c9b58bb90bff1a125590200388bd7af182875597).
+
 Exact pre-T25CH handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CH_2026-10-06.md` (source blob 4ac0055e0e3b1a87a5315998e5b5a6756224dbf3).
 
 Exact pre-T25CG handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CG_2026-10-06.md` (source blob 540c0318277f1ee1070cc0a618534c0d1f03f28c).
@@ -53,12 +56,12 @@ The exact pre-compaction live handoff is preserved byte-for-byte in
 `AI_CONTINUITY/HANDOFF_ARCHIVE_PRE_COMPACTION_2026-10-02.md`
 (source blob `7374eeb3fe3b931a72e22d68cd9438fbbe0b294b`, baseline main `3a1c713a1e371546a2fa72116adc5fe235e5686c`).
 
-Read archived details only when needed; the sole active continuation point is the T25CG section above. Further evidence and older checkpoints remain in `HISTORY.md`, dated T25 reports and source archives.
+Read archived details only when needed; the sole active continuation point is the T25CI section above. Further evidence and older checkpoints remain in `HISTORY.md`, dated T25 reports and source archives.
 
 The 2026-09-28 cleanup audit is `GITHUB_CLEANUP_AUDIT_2026-09-28.md`: canonical SchLib was restored byte-identically; duplicate PcbLib and T23/T24 evidence retained pending dependency/path checks. Do not delete evidence to reduce apparent clutter. This compaction repairs documentation only.
 
-**NEXT EXECUTABLE ACTION:** Continue whole-power draft with a precise monitor route and/or qualified upstream USB fall control. Close candidate monitor logic-high/ripple/timing/USB-priority delay and biased capacitor/source/RCB budgets before staging any newly valid integrated model. Do not repeat passive-divider tuning, unchanged Windows macro-model retries or the already screened SD sub-gate. Complete exact Iran whole-BOM/expansion5V protection and a single reviewable ECO/purchase proposal; no silent topology or requirement change.
+**NEXT EXECUTABLE ACTION:** Continue USB_5V_AUX protection and consolidated whole-power draft/exact Iran BOM/Ceff evidence. Monitorfulltemp/ripple/diodeOR/startup and valid power-macromodel gaps remain named. Do not repeat unchanged hard-attach/oldWindows/profile loops or reopen SD. Prepare one reviewable whole proposal; no silent requirement/topology change or partial ECO.
 
-**BLOCKER REQUIRING USER:** None for independent review/sourcing/draft preparation. Integrated pre-fabrication verification remains BLOCKED by valid TPS631000/TPS54202/mux dynamic evidence, actual source/Ceff/load parameters and monitor sequencing. TPS3823 introduces an attachment delay that is not accepted as an immediate-priority requirement change; resolve alternatives before one concrete decision. Do not request hardware spending or another unchanged run as the current step.
+**BLOCKER REQUIRING USER:** None for independent sourcing/review/draft currently. Integrated pre-fabrication verification remains BLOCKED by valid TPS631000/TPS54202/mux dynamic evidence, actualsource/Ceff/load and monitorcoldstart/ripple/leakbounds. No request for blindWindowsrerun, purchase or hardwarebuild at this checkpoint.
 
 **FABRICATION HOLD.** Continuity CI validates file retention and metadata; it does not certify circuit function.

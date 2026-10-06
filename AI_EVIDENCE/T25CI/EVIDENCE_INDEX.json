@@ -1,0 +1,31 @@
+{
+  "status": "RETAINED_RAW_EVIDENCE_VERIFIED",
+  "date": "2026-10-06",
+  "scope": "official-model control fixtures and conditional numerical screens; NO_BOARD_PASS",
+  "archive": {
+    "filename": "T25CI_Control_Evidence.zip",
+    "library_path": "/dataloger/T25CI_Control_Evidence.zip",
+    "library_file_id": "libfile_7ea9bd8f00c881918b346239a4b35206",
+    "file_id": "file_00000000136081fdb8c4b41279da5f58",
+    "version": 1,
+    "size_bytes": 14851390,
+    "sha256": "088a2e9b473d04b26cc638076b7ec0496a7754536af0903df80f282dca04cf4f",
+    "members": 273,
+    "downloaded_verified": true,
+    "ZIP_CRC_and_member_hashes_verified": true
+  },
+  "retention_note": "Initial host-upload version0 was truncated. Version1 replaces it through verified complete transfer; use version1 file_id and hash.",
+  "models": {
+    "vendor/lm4040_nd25/LM4040_ND2P5_PSPICE_TRANS/LM4040_ND2P5_TRANS.lib": "9b14fbb2a64538e15a5bd0be8bed7886ddd037198666fc6512b27c88c7a283dc",
+    "vendor/tlv170_pspice/tlv1701.lib": "e606ad9020c40cbbf23feacfa512a3c32954bedc4a8bcf34c9b420f4566aeca7"
+  },
+  "results": {
+    "nominal_monitor_cases_completed": 6,
+    "conditional_KCL_cases": 8192,
+    "sequence_initial_completed": 3,
+    "sequence_initial_aborted": 2,
+    "Cref_sensitivity_completed": 1,
+    "Cref_sensitivity_aborted": 1
+  },
+  "fabrication_hold": true
+}
