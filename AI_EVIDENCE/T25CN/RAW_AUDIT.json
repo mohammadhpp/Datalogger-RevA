@@ -1,0 +1,114 @@
+[
+  {
+    "case": "iran_31p6_CC19_to_280mA",
+    "rows": 150059,
+    "time_s": 0.003,
+    "csv_sha256": "35e72ee7bd10d3048278897d6a30606e05840377e82e4c531953f53b30df1bc9",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "iran_31p6_line5p5",
+    "rows": 150036,
+    "time_s": 0.003,
+    "csv_sha256": "4d8efec89c7bcb504a69d7bbd9c743873b974c5ca7a2ac14d3dde60282e146cc",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "iran_31p6_load19_to_280mA",
+    "rows": 150059,
+    "time_s": 0.003,
+    "csv_sha256": "821f063f7c1892534159f7d8c2d04b084dbddd8f62641e3f72ffc70799d607a8",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "iran_31p6_startup5",
+    "rows": 151417,
+    "time_s": 0.003,
+    "csv_sha256": "dd80eabdc3e18c36058fa839fb4b869d9f1716e64cab35363b0db46fdd219c4b",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "line_5_to_5p5",
+    "rows": 50035,
+    "time_s": 0.005,
+    "csv_sha256": "933af14d8785d514381a24c181763035e093284b74abda63d01a2a23eeabc653",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "load_19_to_280mA",
+    "rows": 50042,
+    "time_s": 0.005,
+    "csv_sha256": "e380b6881f1fe8c49ed4452f028ec792c56705ed9c0ef26f7b08aef0c43a8371",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "startup_TI_20ns_25C",
+    "rows": 151419,
+    "time_s": 0.003,
+    "csv_sha256": "31379b4a6eb81e09d99dbb995d3785d609cdda6e9df2bf9cd322d9f53f27fc33",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "ef533_5_to_12_1us",
+    "rows": 31722,
+    "time_s": 0.003,
+    "csv_sha256": "1144d313fe904946bdc9a84902c14259cd69b1a8a77e25a798b9c5f0f74f05a2",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "ef533_startup5",
+    "rows": 30484,
+    "time_s": 0.003,
+    "csv_sha256": "625c28688e4f3fb654fababab5512d71f764d5fd6c2aed7f7af162713e81d7ec",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "ef621_5_to_12_100us",
+    "rows": 22166,
+    "time_s": 0.00200741706,
+    "csv_sha256": "420afbf304440e2194f7f9f83b7ba764c571388155ac399bfc01bf3732735ea6",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "ef_5_to_12_1us",
+    "rows": 26269,
+    "time_s": 0.00200009634,
+    "csv_sha256": "4ddecc4d0206930bef5ad8aee80555782f61e772a64dd50194bfac59788f4a83",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "ef_5_to_5p5",
+    "rows": 32018,
+    "time_s": 0.003,
+    "csv_sha256": "01cb3a3d610f73e31567175dc846d96b5913f463c7431679111803a852422ec8",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "ef_startup5",
+    "rows": 31998,
+    "time_s": 0.003,
+    "csv_sha256": "c149b9a8259533331b4d5a956bd659cbfc76e22a0f1b6c3be979432b2369bba1",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "protected533_ldo_settled_5_to_5p5",
+    "rows": 202944,
+    "time_s": 0.004,
+    "csv_sha256": "a16228b8cd1ebdf594823e57eacc18811f036a412c9221a03cffcfd7799f8d38",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "protected533_ldo_startup5",
+    "rows": 152438,
+    "time_s": 0.003,
+    "csv_sha256": "821a7194d7f21dc951a53d2e245a0653433d26b725e02ad40cbe9dc92948d23f",
+    "deck_hash_matches": true
+  },
+  {
+    "case": "protected_ldo_startup5",
+    "rows": 13257,
+    "time_s": 0.000235737496,
+    "csv_sha256": "d6087f9659bbd4261290f0e7473649871bad95bd14f3ffb25575afe70d11137e",
+    "deck_hash_matches": true
+  }
+]

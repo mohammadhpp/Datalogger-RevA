@@ -7,20 +7,17 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25CK/CJ execution and CL runtime blocker, 2026-10-06 UTC
+## CURRENT EXACT POINT — T25CM recovery / T25CN USB LDO / T25CO protection, 2026-10-06 UTC
 
-- Latest user instruction **«ادامه بده متوقف نشو»**: continue independently without routine permission pauses. No CAD/ECO/purchase/new physical stage or fabricated-board claim authorized.
-- Read `T25CK_TPS2121_EXECUTION_AND_LIMITS_FA.md`, `T25CJ_USB_AUX_DNP_AND_IRAN_PROTECTION_FA.md`, `T25CL_LINEAR_USB_SCREEN_AND_RUNTIME_BLOCK_FA.md`.
-- CJ live07_EXPANSION parsedread-only: R_EXP_PWR_EN=SER0603J0R/0R, noDNPparameterobserved;PrjPcbhasNoVariations/noVariantsection. HistoricalT21text + MasterBOM!L50 explicitinitiallinkDNP/Open. ProposedocumentingthatintentintheonefutureECO/BOM; doNOTclaimcurrentCAD/assemblydisconnection. USB3V3preregdoesNOTreplaceaux5V; poweredAUXfutureload/protectionremainsunqualified.
-- ExactIranobservationsCJ:TPS259621DDAR168,TPS25921ADR102,TPS259630DDAR49,TPS259533DSGR35,TPS259250DRCR17,TPS2121RUXR28;TPS63070RNMTsoononly. Fixed5.7clampsdoNOTguarantee5.5ceiling;primaryvarianttable/polarityread. NoeFusechosen.
-- CK unmodifiedofficialTPS2121SLVMCO8 executedlocalngspice42:9fixtures,8complete3ms,LM4040slowattachaborts2.47004216msd.xu.d_u_mos_d2;partialtraceREJECTED,returncode0doesnotmeancompletion. Valid3.285Vprestateincompletedcases. 1nsremovalSYSmin2.370..2.388Vfor22/47/100u;1us/33usfall3.105940/3.075417;hardattach3.037876. IdealregulatedBAT3.3,notAA1.8/TPS631000/MCU/SD.
-- CK conditionalnewcontrolCP2LM4040-NbiasedUSBthrough2.4k,PR1Rt2k/Rb10k;noTLV1701/diodeORinthese9fixtures. UNSELECTED. 32JSstaticcorners:2.884369..3.116252V,attachmargin68.842mVrelativeUSBmin3.185094. Offset+/-40mVconservativescreenNOThysteresisguarantee;TCR/ripple/coldstartfullboundsopen.
-- TPS2121modelnoIQ/thermal;INsourcesdonotaccountoutputloadcurrent;XCOMPideal/UVLO2.5/2.4versusdatabook2.65/2.55typ. DoNOTinterpretmodelinput0currentasAAbackfeedproof. Minimumstart2.8VmeanscannotreplaceupstreammuxonrawAA1.8. NointegratedorfullcornersPASS.
-- NewCLlinearUSBscreen:TLV76133DCYR350stock,TLV76733DRVRsoon,LD1117S33CTR49;76701catalogexactfoundbutstocknotreceived/webopenfailed. TI76701SLVMCY1availablemodelnotdownloaded/executed. LM1117SNOM488downloadedunmodifiedbutnotexecuted/notexactSTorTLVfamily. TLV761DCYtheta95.4scenario,P=.476/.616/2.436W@5/5.5/12V280mA;temperature/reversecurrent/dropoutrecoverygatesopen. TPS631000RevC2026reviewed:revisionchangesLXshortnegative/CDMonly,nonewvalidmodel(TIstillencryptedSLVMDV2).
-- **Real execution blocker:** exec-server transport disconnected; recoverytimedoutafter25s;laterread-onlypendingcellterminated. CLprocess52410outcomeunknown;NO LDOsimulationlaunch. DoNOTclaimmodeltestfailureorapprovalrejection.
-- **Raw retention:** CJ/CKfullCSV/logs/model/PDF/HTMLwerewrittenlocally butnewdurableZIPnotcreated/verifiedbeforeexecutorloss. Gitcontainsreceivedsummary/deckhashes/sourceaudit/32corners,NOTcompleteCKrawtraces. Firstrecoverexisting`/workspace/scratch/38719da73a41/T25CJ,T25CK,T25CL`whenexecutorreturns;save/verifyfullrawbeforeclaimingretainedrawevidence. OriginalCIcompletearchiveversion1remainsverifiedin`AI_EVIDENCE/T25CI/EVIDENCE_INDEX.json`.
-- EarlierCI:6nominalTLV1701/LM4040idealMONcontrolfixtures +8192conditionalcornerscompleted;hardattachatlowMONnumericblocked,TLV431lowbiasprestateinvalid. Noarchitectureselected. Mainencryptedregulator/USBbuck/macromodelandactualCeff/source/loadremainopen. SDsubgateclosed,TPS631000/L1retained,S1exactdeferred.
-- CAD unchanged;lastDRC0/0CAD-only; **FABRICATION HOLD**.
+- User says **«ادامه بده متوقف نشو»** and **«خراب شدی»**. Continue effective independent execution without routine approval or a report-only substitute for tests; one consolidated technical/Iran proposal precedes any CAD/ECO/purchase.
+- Read T25CM_RAW_RECOVERY_AND_RETENTION_FA.md, T25CN_TLV76701_EXECUTION_AND_IRAN_FA.md, T25CO_PROTECTION_MODEL_EXECUTION_AND_LIMITS_FA.md. Runtime recovered. All9 original CK CSVs/counts/endtimes/deck hashes audited, no CK rerun. Complete CJ/CK/CL raw ZIPs saved; pinned versions rematerialized, exact bytes/CRC verified. See AI_EVIDENCE/T25CM/PERSISTENCE_VERIFIED.json and RAW_MANIFEST.json. Prior runtime/raw-pending claims are superseded.
+- CL recovered TLV76701DRVR Lion4876 stock81. Fixed76733 soon only. CN exact official unencrypted SLVMCY1 executed unchanged in ngspice42/ps. First100ns startup wall-timeout45s, simulated progress UNKNOWN; DC and two nominal controls complete. TI SLVMCY2 profile explicitly20ns/3ms/TNOM25; one justified profile change completed startup151419rows/final3.3075142V. Do not retry failed100ns profile.
+- Iran draft FOJAN FRC0603F3162TS31.6k/1%/0603 stock5000, FRC0603F1002TS10k/1%/0603 stock92000; primary FRC datasheet100ppm/C. Four31.6k/10k model fixtures complete: startup peak3.37413896V;5→5.5 line3.32878602..3.35446495V; exact constant-current19→280mA3.30302207..3.34827337V. Resistive equivalent explicitly voltage-dependent;19mA is historical observation, not measured waveform. 192 conditional DC corners3.19503518..3.46709664V. NineCNanalyses:1DC/8TRAN,7TRANcomplete/1timeout.
+- CN no temperature/noise model. DRV exposed-pad/manual assembly open; theta77.7 reference is not actual PCB. IQ80uA max is no-load, not IGND280mA bound. Twelve-volt continuous operation not thermally qualified. OUT>VIN+.3 requires external reverse protection; Ceff/ripple/source/load/thermal/assembly gates open. No LM1117/LD1117/TLV761 model substitution.
+- CO nine new fixtures,6complete/3abort. TPS259621 normal5/5.5 complete;12V1us and100us faults abort; eFuse+LDO startup abort. TPS25953312V fault completes but is REJECTED for physical OVC proof: model has independent5.7V/3us OVLO shutdown, while TI specifies clamp. Do not call its output collapse a physical thermal response; exact path in MODEL_SCOPE_AUDIT.json.
+- TPS259533+TLV76701 startup completes, early1.5..1.9ms window invalid. Justified later3ms event/4ms stop yields valid2.5..2.9ms prestate and normal5→5.5 line result202944rows,REG3.30073012..3.32563870V. This fixture uses31.25k/10k, not CN Iran31.6k. Helpers scoped with nested wrappers, original model bytes unchanged. No fault/wholeboard/NRST/SD PASS.
+- Do not directly couple TPS2121 model to converters: CK inputs omit output load current and would falsely unload upstream regulators. No artificial shadow-current substitute. CK8complete/1abort and32PRcorners remain nominal timing evidence; no AA-backfeed/thermal proof.
+- CJ aux R_EXP_PWR_EN historicalDNP/Open intent versus live0R/noDNP/noVariant remains unapplied population ECO. USB3V3 does not replace futureAUX5V; futuremodule load unqualified. BAT TPS631000 dynamic prestate at loadedAA1.80V remains blocked; keep TPS631000/L1, closed SD TPS22918 subgate and deferred exactS1. No unchanged Windows/CI/CK/CO numerical loops. **FABRICATION HOLD.**
 
 ## Accepted design and validation baseline
 
@@ -46,6 +43,8 @@
 
 ## Cleanup and preserved history
 
+Exact pre-CM/CN/CO handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CM_CN_CO_2026-10-06.md` (source blob 084c6e3e2a1ca8a687f27ad3b07b06f32e6e56f6).
+
 Exact pre-CJ/CK handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CJ_T25CK_2026-10-06.md` (source blob 734e40adb5353bb0d2ff0decfd5d760400eb85de).
 
 Exact pre-T25CI handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CI_2026-10-06.md` (source blob c9b58bb90bff1a125590200388bd7af182875597).
@@ -62,12 +61,12 @@ The exact pre-compaction live handoff is preserved byte-for-byte in
 `AI_CONTINUITY/HANDOFF_ARCHIVE_PRE_COMPACTION_2026-10-02.md`
 (source blob `7374eeb3fe3b931a72e22d68cd9438fbbe0b294b`, baseline main `3a1c713a1e371546a2fa72116adc5fe235e5686c`).
 
-Read archived details only when needed; the sole active continuation point is the T25CK/CJ/CL section above. Further evidence and older checkpoints remain in `HISTORY.md`, dated T25 reports and source archives.
+Read archived details only when needed; the sole active continuation point is the T25CM/CN/CO section above. Further evidence and older checkpoints remain in `HISTORY.md`, dated T25 reports and source archives.
 
 The 2026-09-28 cleanup audit is `GITHUB_CLEANUP_AUDIT_2026-09-28.md`: canonical SchLib was restored byte-identically; duplicate PcbLib and T23/T24 evidence retained pending dependency/path checks. Do not delete evidence to reduce apparent clutter. This compaction repairs documentation only.
 
-**NEXT EXECUTABLE ACTION:** Recover existingCJ/CK/CLrawfileswhenexecutoraccessreturns;preserve/verifyCSV/logs/modelhashes. Finishexact76701stockandlinearUSBthermal/reverse/Ceffscreen,thenexecuteonlyexactvalidLDOmodelifviable. Continueonewholepowerproposal/exactIranBOM. DoNOTrerununchangedWindows/TPS2116/TPS631000/TPS54202/CIhardattachloopsor9CKcaseswhenoriginalrawexists;donotreopenSDorapplypartialECO.
+**NEXT EXECUTABLE ACTION:** Build the one whole-power draft using retained TPS631000/L1 and executed USB LDO screen. Independently screen existing OVP plus wide-input LDO as a bounded alternate; do not reuse invalid eFuse fault output. Resolve reverse protection, assembly/heat, exact biased Ceff/source/load and valid1.80V BAT dynamics. No unchanged TPS2116/TPS631000/TPS54202/CI/CK/CO loops, SD reselection or partial ECO.
 
-**BLOCKER REQUIRING USER:** No routineapprovalorWindowsrerunrequested. Localexecutionisblockedbyexec-servertransport/recoveryfailure;fullCKrawretentionpending. Engineeringpre-fabricationproofstillblockedbyvalidBAT/USB/source/Ceff/load/fullcorner/NRST/SDintegrityevidence. ExactnewCLrouteisUNSELECTEDandnotexecuted;oneconsolidatedECO/purchasedecisionawaitstechnicalreadiness.
+**BLOCKER REQUIRING USER:** No routine approval, Windows rerun or new physical stage requested. Runtime/raw-retention blockers CLOSED. Whole pre-fabrication proof remains blocked by named invalid/abstract BAT/mux/OVC models and missing source/Ceff/load/thermal/reverse bounds. Consolidated technical+Iran PASS list is not ready; nominal USB success is not board/fabrication PASS.
 
 **FABRICATION HOLD.** Continuity CI validates file retention and metadata; it does not certify circuit function.

@@ -1,0 +1,16 @@
+{
+  "model_533_sha256": "1d99a885ae5ac3a4ddcd5dc561652aeda3d9f28b803a133f83b4bd9c277dc026",
+  "datasheet": "TI TPS2595 sec8.3.2.2 + Electrical Characteristics clamp5.2..5.7V@10mA; OVC threshold5.5..5.9V",
+  "code_path": [
+    "X_U1_U8 compares VIN with U1_OVLO_TH",
+    "V_U1_V1 fixes U1_OVLO_TH5.7V",
+    "X_U1_U10 delays comparator output3us",
+    "X_U1_U7 inverts delayed output into U1_OVLO_N",
+    "X_U1_U9 AND gates U1_N16696202 (enable/UVLO) with U1_OVLO_N",
+    "R_U1_R3/C_U1_C2 filter U1_N16696548 into EN_UVLO_FLAG; G_U3_ABM2I6 discharges MOS gate when flag<.5"
+  ],
+  "finding": "VIN>5.7 eventually disables MOS channel via OVLO logic independently of TSD. This model cannot establish physical clamp fault behavior. Header says TPS259531 but subckt active-low EN supports533; header inconsistency alone is not rejection cause.",
+  "nominal_scope": "Completed normal-input startup/5.5V fixture results remain nominal observations, no OVP/thermal/physical PASS.",
+  "namespace": "Nested EF_SCOPE/LDO_SCOPE preserve unmodified original model bytes; helpers including COMPHYS_BASIC_GEN (EF RINP1e8 versus LDO1k) never overwrite each other.",
+  "mux_integration": "Not run: TPS2121 official model inputs fail to account output load current in CK. Coupling directly would falsely unload LDO and battery regulator. No fabricated shadow current substituted for validated integrated proof."
+}

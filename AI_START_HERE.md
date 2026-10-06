@@ -28,7 +28,7 @@ Then inspect the latest Git commits and the current engineering files relevant t
 
 ## Current high-level state
 
-- **T25CK/CJ/CL CURRENT EXACT POINT, 2026-10-06:** Read `AI_CONTINUITY/T25CK_TPS2121_EXECUTION_AND_LIMITS_FA.md`, CJauxDNP/protection andCLlinearUSB/runtime reports.9officialTPS2121fixturesexecuted,8complete/1slowattachabort;32conditionalcorners. AuxDNPintentvsCADpopulationmismatchrecorded;newIranstockschecked. Exec-serverdisconnected;completeCJ/CKrawretentionpending,firstrecoverlocalfiles. LDOrouteunselected/unexecuted. NoCAD/purchase/boardPASS;fabricationhold.
+- **T25CM/CN/CO CURRENT EXACT POINT, 2026-10-06:** Runtime recovered; complete CJ/CK/CL raw archives rematerialized/hash+CRC verified. Read new CM raw recovery, CN exact TLV76701/Iran execution and CO protection scope reports. 18 new analyses, valid nominal USB LDO startup/5.5V/load cases and one settled eFuse+LDO nominal line case; fault OVC model gates blocked/invalid. CN_CO full raw archive independently verified in AI_EVIDENCE/T25CN_CO/EVIDENCE_INDEX.json. No CAD/purchase/wholeboard PASS; fabrication hold. No unchanged Windows retry.
 
 
 - **T25CI prior point, 2026-10-06:** Read `AI_CONTINUITY/T25CI_PRECISE_MONITOR_EXECUTION_AND_IRAN_DRAFT_FA.md`. Local officialcontrolmodels executed; LM4040-N/TLV1701 six nominal fixtures complete,8192 conditionalKCLcorners; lowMONhard-attach stillnumericblocked. ExactIran64/889/424 comparator/reference/diode stocks observed; suffix/fulltemp/ripple/OR/extraqtyopen. Fullraw evidenceindexed in `AI_EVIDENCE/T25CI/EVIDENCE_INDEX.json`. Noarchitectureselection/CAD/purchase/boardPASS;fabricationhold. Continue5V_AUX/wholepowerdraft,notWindowsretry.

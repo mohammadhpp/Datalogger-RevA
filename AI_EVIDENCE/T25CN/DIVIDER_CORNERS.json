@@ -1,0 +1,1958 @@
+{
+  "scope": "conditional DC full reference/tolerance/independent TCR corner screen; no ripple, startup, PCB thermal, mux/dropout guarantee",
+  "assumptions": {
+    "VFB": 0.8,
+    "reference_total_temp_fraction": 0.01,
+    "RT": "FOJAN FRC0603F3162TS 31.6k 1% 100ppm/C",
+    "RB": "FOJAN FRC0603F1002TS 10k 1% 100ppm/C",
+    "feedback_current_signed_conservative_A": 5e-08,
+    "temperature_points_C": [
+      -40,
+      25,
+      125
+    ]
+  },
+  "count": 192,
+  "minimum": {
+    "temperature_C": 125,
+    "reference_fraction": -0.01,
+    "rt_tol": -0.01,
+    "rb_tol": 0.01,
+    "rt_tcr": -0.0001,
+    "rb_tcr": 0.0001,
+    "ifb_A": -5e-08,
+    "vout_V": 3.195035180849133
+  },
+  "maximum": {
+    "temperature_C": 125,
+    "reference_fraction": 0.01,
+    "rt_tol": 0.01,
+    "rb_tol": -0.01,
+    "rt_tcr": 0.0001,
+    "rb_tcr": -0.0001,
+    "ifb_A": 5e-08,
+    "vout_V": 3.4670966350533625
+  },
+  "corners": [
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931456327000004
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962943673000002
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3258938561524407
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3290425907524406
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2608407213983606
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2639487867983608
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931659673
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962740327000004
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.243586820818812
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.246735555418812
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.275686564598927
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.278835299198927
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2119220133964137
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.215030078796414
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.243607155418812
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.246715220818812
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3436738273000004
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3468861727
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.377083631024208
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3802959764242075
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3107162915276205
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.313887146127621
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3436945727
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3468654273000005
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931138273000005
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2963261727
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.325862050752441
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3290743961524405
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2608093267983604
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.263980181398361
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931345727
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2963054273000005
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3597056327000003
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628543673
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.393115436424207
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3962641710242067
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3267476861276206
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.329855751527621
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3597259673
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628340327000004
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3091456327000004
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3122943673000003
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3418938561524407
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3450425907524406
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2768407213983615
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2799487867983617
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3091659673000002
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3122740327000004
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4112552414414146
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4144675868414143
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4453399906954036
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4485523360954033
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3776314777665624
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.380802332366563
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.411275986841414
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4144468414414146
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3596738273000004
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628861727
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.393083631024207
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3962959764242067
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3267162915276205
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.329887146127621
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3596945727
+    },
+    {
+      "temperature_C": -40,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628654273000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931558000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931558000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931558000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931558000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2435969881188123
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.246725388118812
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2435969881188123
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.246725388118812
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2435969881188123
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.246725388118812
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2435969881188123
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.246725388118812
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3436842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3468758000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3436842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3468758000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3436842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3468758000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3436842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3468758000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931242000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2963158000000004
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931242000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2963158000000004
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931242000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2963158000000004
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931242000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2963158000000004
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3597158000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628442
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3597158000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628442
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3597158000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628442
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3597158000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628442
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3091558000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3122842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3091558000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3122842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3091558000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3122842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3091558000000005
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3122842
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4112656141414144
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4144572141414145
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4112656141414144
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4144572141414145
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4112656141414144
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4144572141414145
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4112656141414144
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4144572141414145
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3596842000000002
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628758000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3596842000000002
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628758000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3596842000000002
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628758000000003
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3596842000000002
+    },
+    {
+      "temperature_C": 25,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628758000000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931714420000002
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962685580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.243612630118812
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.246709746118812
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3437001580000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.346859842
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931401580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962998420000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.243612630118812
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.246709746118812
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.195035180849133
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.198132296849133
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931401580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962998420000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.243581346118812
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.246741030118812
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3437001580000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.346859842
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931401580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962998420000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3952496561414147
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.398473172141415
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.343668242
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3468917580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2931401580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2962998420000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.243581346118812
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.246741030118812
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.343668242
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3468917580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.293108242
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": -0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2963317580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.359731442
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628285580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3091714420000002
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3122685580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4112815721414145
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4144412561414144
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3597001580000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.362859842
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3091714420000002
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3122685580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.2596126301188124
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.2627097461188126
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3597001580000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.362859842
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3091401580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": -0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3122998420000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4112815721414145
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4144412561414144
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3597001580000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.362859842
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4638731190533623
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4670966350533625
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4112496561414143
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": -0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4144731721414145
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3597001580000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.362859842
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.3091401580000004
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": -0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3122998420000003
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.4112496561414143
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": -0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.4144731721414145
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": -5e-08,
+      "vout_V": 3.359668242
+    },
+    {
+      "temperature_C": 125,
+      "reference_fraction": 0.01,
+      "rt_tol": 0.01,
+      "rb_tol": 0.01,
+      "rt_tcr": 0.0001,
+      "rb_tcr": 0.0001,
+      "ifb_A": 5e-08,
+      "vout_V": 3.3628917580000004
+    }
+  ]
+}

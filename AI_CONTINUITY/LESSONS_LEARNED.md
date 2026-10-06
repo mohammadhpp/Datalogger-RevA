@@ -261,3 +261,13 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 - Unencryptedofficialmodelcanbeabstract:checkinput/outputpoweraccounting,unmodelledIQ/thermal,internalUVLO/offsetbeforeinterpretingzeroinputcurrentasbackfeedproof. IdealregulatedinputsdoNOTtestAA1.8/converterstartup.
 - Newpartstockdoesnotqualifythermal/reversecurrent/variantmodel. DoNOTuseLM1117modelasLD1117/TLV761/TLV767;doNOTpresentadjustable76701asfixed76733. Package-specificthetaDCY95.4isnotKVU67.2oractualPCBtheta.
 - ExecutortransportfailureisnotcircuitFAIL. Runtimeoutputreceivedandfullrawdurablearchiveareseparategates;pendingrawretentionmustbeexplicit. Recoverexistingfilesbeforeunchangedretests. GitcontinuityCIisnotfunctionalPASS.
+
+
+## T25CM/CN/CO — recovery, scoped models and source accounting
+
+- Recover existing raw files after executor outage before rerunning tests; saved/received/mathematical completion/durable bytes are separate claims. Pin archive version and verify rematerialized SHA/CRC; no upload duplication after unknown outcome.
+- A first nominal model timeout may be a profile issue: TLV76701 explicit TI20ns startup profile completed where100ns timed out. Change official profile once with documented identity; do not infer hardware failure from timeout or blindly increase runtime.
+- Generic SPICE helper subcircuits collide across vendor files: COMPHYS_BASIC_GEN input loading differs. Nested wrappers isolate originals without editing vendor bytes. Model current accounting must be valid before feeding it from a converter; TPS2121 omission would falsely unload BAT/LDO.
+- TPS259533 filename/header alone does not decide validity; source tracing shows5.7V comparator+3us delay+enableAND drivesOVLO shutdown, unlike databookclamp. Reject that fault claim even when full trace completes; do not infer real thermal delay. Preserve valid nominal subset with exact scope.
+- A startup that settles later than pre-event window needs a later event/prewindow, not an invalid transfer result; combined533/LDO3ms event completed normal5.5V case. Do not transplant its31.25k feedback result onto Iran31.6k version.
+- Package JEDECtheta and no-loadIQ max do not guarantee actual PCB temperature or280mA ground current. Exact resistor tolerance/TCR corners are DC conditions, not transient/SDwrite/NRST proof.

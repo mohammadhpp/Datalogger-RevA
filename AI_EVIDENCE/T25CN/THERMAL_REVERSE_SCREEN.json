@@ -1,0 +1,45 @@
+{
+  "scope": "first-order JEDEC-board scenario; actual 2-layer PCB thermal resistance unverified; no indefinite12V qualification",
+  "rows": [
+    {
+      "vin_V": 5,
+      "nominal_vout_V": 3.3,
+      "design_load_A": 0.28,
+      "P_W": 0.4764000000000001,
+      "theta_DRV_reference_C_per_W": 77.7,
+      "delta_T_C": 37.01628000000001,
+      "TA_max_for_TJ125_C": 87.98371999999999
+    },
+    {
+      "vin_V": 5.5,
+      "nominal_vout_V": 3.3,
+      "design_load_A": 0.28,
+      "P_W": 0.6164400000000001,
+      "theta_DRV_reference_C_per_W": 77.7,
+      "delta_T_C": 47.89738800000001,
+      "TA_max_for_TJ125_C": 77.102612
+    },
+    {
+      "vin_V": 5.7,
+      "nominal_vout_V": 3.3,
+      "design_load_A": 0.28,
+      "P_W": 0.6724560000000002,
+      "theta_DRV_reference_C_per_W": 77.7,
+      "delta_T_C": 52.24983120000002,
+      "TA_max_for_TJ125_C": 72.75016879999998
+    },
+    {
+      "vin_V": 12,
+      "nominal_vout_V": 3.3,
+      "design_load_A": 0.28,
+      "P_W": 2.43696,
+      "theta_DRV_reference_C_per_W": 77.7,
+      "delta_T_C": 189.35179200000002,
+      "TA_max_for_TJ125_C": -64.35179200000002
+    }
+  ],
+  "reverse_current": "TLV767 datasheet sec9.1.4 unlimited intrinsic diode current when OUT>VIN+.3; no validated external limiting in draft",
+  "assembly": "DRV exposed pad must be soldered, manufacturer datasheet package drawing note; manual assembly gate remains open",
+  "IQ_term_condition": "80uA is datasheet no-load IQ max, used only as illustrative term; this is NOT a guaranteed ground-current bound at280mA. 1.5mA ground current at1A is typical, also not a280mA maximum.",
+  "ambient_values": "Derived reference scenarios, not qualified ambient limits."
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "mpn": "TLV76133DCYR",
+    "url": "https://lionelectronic.ir/products/6357-TLV76133DCYR",
+    "sha256": "ab771d878421a289002dec26034b43e6c6e0c19716202d9ff8f57b8973bb0198",
+    "stock_fragments": [
+      "                    <span class=\"stock-amount\">350</span>"
+    ]
+  },
+  {
+    "mpn": "TLV76733DRVR",
+    "url": "https://lionelectronic.ir/products/4877-TLV76733DRVR",
+    "sha256": "f204487266c14a48aee6b3929294008aa9d6cb8cc181c2826c608fdb2d5efcb6",
+    "stock_fragments": [
+      "                    <span class=\"stock-amount\">\u0628\u0647 \u0632\u0648\u062f\u06cc</span>"
+    ]
+  },
+  {
+    "mpn": "TLV76701DRVR",
+    "url": "https://lionelectronic.ir/products/4876-TLV76701DRVR",
+    "sha256": "50f84d083f4b3e18e9b5b07de4cae356e186482e162a0eeb8c7e91b73325b205",
+    "stock_fragments": [
+      "                    <span class=\"stock-amount\">81</span>"
+    ]
+  },
+  {
+    "mpn": "LD1117S33CTR",
+    "url": "https://lionelectronic.ir/products/885-LD1117S33CTR",
+    "sha256": "8c03afecdd0fef4259c8e875f501f9fd7d9e22c462d2e6bda92855012a631e71",
+    "stock_fragments": [
+      "                    <span class=\"stock-amount\">49</span>"
+    ]
+  },
+  {
+    "query_url": "https://lionelectronic.ir/products?search=FRC0603F1002TS",
+    "query_sha256": "138e79cfbede0c723d3fee161f1b459a28b6039014f58798460711aa1f929c0e",
+    "matches": [
+      "/products/1219-FRC0603F1002TS"
+    ],
+    "url": "https://lionelectronic.ir/products/1219-FRC0603F1002TS",
+    "html_sha256": "9650a83fbb302b234bedf28866245c0bfc9c8ec7874063b933969a85663cc057",
+    "stock_fragments": [
+      "<span class=\"stock-amount\">92,000</span>"
+    ],
+    "mpn": "FRC0603F1002TS"
+  },
+  {
+    "mpn": "FRC0603F3162TS",
+    "url": "https://lionelectronic.ir/products/6937-FRC0603F3162TS",
+    "stock": 5000,
+    "html_sha256": "32adad7791b4ad4a788487bc6b62d3b7153cc20c2d8d63f19c4cf12161e1ee4b",
+    "R_ohm": 31600,
+    "tolerance_fraction": 0.01,
+    "TCR_abs_ppm_C": 100,
+    "datasheet": "FRC0603F3162TS-FOJAN.pdf"
+  }
+]

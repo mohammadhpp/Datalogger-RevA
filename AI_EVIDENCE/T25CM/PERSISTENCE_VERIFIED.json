@@ -1,0 +1,32 @@
+[
+  {
+    "file_name": "T25CJ_Raw_Evidence.zip",
+    "library_file_id": "libfile_e70214cf5098819188ec6b704f5c3c9f",
+    "file_id": "file_000000009e7881f58d807c4c723c4b3d",
+    "version": 0,
+    "bytes": 11919341,
+    "sha256": "07a082ef389c1ddfdb94b70dfbf88f820c850b8ec743b728bc34c97504e54517",
+    "persisted_bytes_match": true,
+    "crc_pass": true
+  },
+  {
+    "file_name": "T25CK_Raw_Evidence.zip",
+    "library_file_id": "libfile_ee0ca750ade48191b0f0df5744f28c05",
+    "file_id": "file_0000000092ec81fa91c7712db68a4c63",
+    "version": 0,
+    "bytes": 4944419,
+    "sha256": "e09cba9e5c82690cc481f28ba19dfc0ea8b437acf7b5e16da9270bc46e020800",
+    "persisted_bytes_match": true,
+    "crc_pass": true
+  },
+  {
+    "file_name": "T25CL_Raw_Evidence.zip",
+    "library_file_id": "libfile_e54d939b12548191a29c5de1783d8f2a",
+    "file_id": "file_000000004e288209891fd1af76442467",
+    "version": 0,
+    "bytes": 295522,
+    "sha256": "c0770432952e9ec122fedd689152d99ba9975bcde252ef3a75452a82110c3338",
+    "persisted_bytes_match": true,
+    "crc_pass": true
+  }
+]
