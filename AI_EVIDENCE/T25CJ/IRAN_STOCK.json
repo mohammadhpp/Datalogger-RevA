@@ -1,0 +1,58 @@
+[
+  {
+    "mpn": "TPS259621DDAR",
+    "declared_stock": 168,
+    "url": "https://lionelectronic.ir/products/3539-TPS259621DDAR",
+    "html_sha256": "306de8153ac90067b2f92ba004a33d7d85a7d2c22ea7d6d0d7f204e4505afc51",
+    "date": "2026-10-06",
+    "qualification": "AVAILABILITY_OBSERVATION_ONLY; no purchase/technical selection"
+  },
+  {
+    "mpn": "TPS25921ADR",
+    "declared_stock": 102,
+    "url": "https://lionelectronic.ir/products/3538-TPS25921ADR",
+    "html_sha256": "c5c08a64093cd4f809efd6ef9391472579fdb370265bbdafead769da4c91993f",
+    "date": "2026-10-06",
+    "qualification": "AVAILABILITY_OBSERVATION_ONLY; no purchase/technical selection"
+  },
+  {
+    "mpn": "TPS259630DDAR",
+    "declared_stock": 49,
+    "url": "https://lionelectronic.ir/products/3542-TPS259630DDAR",
+    "html_sha256": "45200ec63eff55dd5d3fa1cc023d9f4d2e55cf4a52bb1b2661ebeb1001751e41",
+    "date": "2026-10-06",
+    "qualification": "AVAILABILITY_OBSERVATION_ONLY; no purchase/technical selection"
+  },
+  {
+    "mpn": "TPS259533DSGR",
+    "declared_stock": 35,
+    "url": "https://lionelectronic.ir/products/3540-TPS259533DSGR",
+    "html_sha256": "363afebffd75cbe3d50109ef88edf641f85c4b6889d9744f6751613e93f19d26",
+    "date": "2026-10-06",
+    "qualification": "AVAILABILITY_OBSERVATION_ONLY; no purchase/technical selection"
+  },
+  {
+    "mpn": "TPS259250DRCR",
+    "declared_stock": 17,
+    "url": "https://lionelectronic.ir/products/3541-TPS259250DRCR",
+    "html_sha256": "a357875ad5a5fe8f5711c495ba66730294dc4bb03aa14b63f18b99eaf9157c24",
+    "date": "2026-10-06",
+    "qualification": "AVAILABILITY_OBSERVATION_ONLY; no purchase/technical selection"
+  },
+  {
+    "mpn": "TPS63070RNMT",
+    "declared_stock": "به زودی",
+    "url": "https://lionelectronic.ir/products/5941-TPS63070RNMT",
+    "html_sha256": "1b65a2b6d675d8af4ec9be15aaeba1484cf231e028a34b6274ff90782b74e08e",
+    "date": "2026-10-06",
+    "qualification": "AVAILABILITY_OBSERVATION_ONLY; no purchase/technical selection"
+  },
+  {
+    "mpn": "TPS2121RUXR",
+    "declared_stock": 28,
+    "url": "https://lionelectronic.ir/products/4168-TPS2121RUXR",
+    "html_sha256": "a90fec3a54ae2ece77267ad2ac5e0ecd9c54004e203f9ad8ae6bbf132c78515a",
+    "date": "2026-10-06",
+    "qualification": "AVAILABILITY_OBSERVATION_ONLY; no purchase/technical selection"
+  }
+]

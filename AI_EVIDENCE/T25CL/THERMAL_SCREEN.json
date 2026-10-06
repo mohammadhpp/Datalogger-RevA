@@ -1,0 +1,32 @@
+[
+  {
+    "VIN": 5,
+    "IOUT_A": 0.28,
+    "nominalVOUT_V": 3.3,
+    "P_D_W": 0.4760000000000001,
+    "theta_scenario_C_per_W": 95.4,
+    "deltaTJ_C": 45.41040000000001,
+    "TA_for_TJ125_C": 79.58959999999999,
+    "scope": "First-order JEDEC-theta sensitivity, not actualtwo-layerlayoutthermalqualification;IQnotincluded"
+  },
+  {
+    "VIN": 5.5,
+    "IOUT_A": 0.28,
+    "nominalVOUT_V": 3.3,
+    "P_D_W": 0.6160000000000001,
+    "theta_scenario_C_per_W": 95.4,
+    "deltaTJ_C": 58.76640000000001,
+    "TA_for_TJ125_C": 66.2336,
+    "scope": "First-order JEDEC-theta sensitivity, not actualtwo-layerlayoutthermalqualification;IQnotincluded"
+  },
+  {
+    "VIN": 12,
+    "IOUT_A": 0.28,
+    "nominalVOUT_V": 3.3,
+    "P_D_W": 2.436,
+    "theta_scenario_C_per_W": 95.4,
+    "deltaTJ_C": 232.39440000000002,
+    "TA_for_TJ125_C": -107.39440000000002,
+    "scope": "First-order JEDEC-theta sensitivity, not actualtwo-layerlayoutthermalqualification;IQnotincluded"
+  }
+]

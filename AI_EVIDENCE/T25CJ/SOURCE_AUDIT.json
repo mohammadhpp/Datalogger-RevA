@@ -1,0 +1,159 @@
+{
+  "schematic": {
+    "path": "07_EXPANSION.SchDoc",
+    "blob": "8714da5cbc041923e25a1aa647002e88f5b4d9a3",
+    "sha256": "0ccee60e38ff65b46771abc917b7c0fe882c906d90d6fa0227c442e6ad9c6a20",
+    "link_mpn": "SER0603J0R",
+    "link_designator": "R_EXP_PWR_EN",
+    "link_comment": "0R",
+    "DNP_parameter_observed": false
+  },
+  "project": {
+    "sha": "e30bedd7fa83d52c442a03951222c4a54cb20219",
+    "variant_lines": [
+      "Variant=[No Variations]",
+      "OutputVariantName1=",
+      "OutputVariantName2=",
+      "OutputVariantName3=",
+      "OutputVariantName4=",
+      "OutputVariantName5=",
+      "OutputVariantName6=",
+      "OutputVariantName7=",
+      "OutputVariantName8=",
+      "OutputVariantName9=",
+      "OutputVariantName10=",
+      "OutputVariantName11=",
+      "OutputVariantName12=",
+      "OutputVariantName13=",
+      "OutputVariantName14=",
+      "OutputVariantName15=",
+      "OutputVariantName16=",
+      "OutputVariantName17=",
+      "OutputVariantName18=",
+      "OutputVariantName19=",
+      "OutputVariantName20=",
+      "OutputVariantName21=",
+      "OutputVariantName22=",
+      "OutputVariantName23=",
+      "OutputVariantName1=",
+      "OutputVariantName2=",
+      "OutputVariantName3=",
+      "OutputVariantName1=[No Variations]",
+      "OutputVariantName2=",
+      "OutputVariantName3=",
+      "OutputVariantName4=[No Variations]",
+      "OutputVariantName5=[No Variations]",
+      "OutputVariantName6=[No Variations]",
+      "OutputVariantName7=[No Variations]",
+      "OutputVariantName8=[No Variations]",
+      "OutputVariantName9=[No Variations]",
+      "OutputVariantName10=",
+      "OutputVariantName11=",
+      "OutputVariantName12=",
+      "OutputVariantName13=",
+      "OutputVariantName1=[No Variations]",
+      "OutputVariantName2=[No Variations]",
+      "OutputVariantName3=[No Variations]",
+      "OutputVariantName4=[No Variations]",
+      "OutputVariantName1=",
+      "OutputVariantName2=[No Variations]",
+      "OutputVariantName3=[No Variations]",
+      "OutputVariantName4=[No Variations]",
+      "OutputVariantName5=[No Variations]",
+      "OutputVariantName6=[No Variations]",
+      "OutputVariantName7=[No Variations]",
+      "OutputVariantName8=[No Variations]",
+      "OutputVariantName9=",
+      "OutputVariantName10=[No Variations]",
+      "OutputVariantName11=[No Variations]",
+      "OutputVariantName12=",
+      "OutputVariantName1=[No Variations]",
+      "OutputVariantName2=[No Variations]",
+      "OutputVariantName3=[No Variations]",
+      "OutputVariantName4=[No Variations]",
+      "OutputVariantName5=[No Variations]",
+      "OutputVariantName6=[No Variations]",
+      "OutputVariantName7=[No Variations]",
+      "OutputVariantName8=[No Variations]",
+      "OutputVariantName9=[No Variations]",
+      "OutputVariantName10=[No Variations]",
+      "OutputVariantName11=[No Variations]",
+      "OutputVariantName1=",
+      "OutputVariantName1=",
+      "OutputVariantName2=",
+      "OutputVariantName3=",
+      "OutputVariantName4=",
+      "OutputVariantName5=",
+      "OutputVariantName6=",
+      "OutputVariantName7=",
+      "OutputVariantName1=",
+      "OutputVariantName2=",
+      "OutputVariantName3=",
+      "OutputVariantName4=",
+      "OutputVariantName5=[No Variations]",
+      "OutputVariantName6=[No Variations]",
+      "OutputVariantName7=[No Variations]",
+      "OutputVariantName8=",
+      "OutputVariantName9=",
+      "OutputVariantName10=",
+      "OutputVariantName11=",
+      "OutputVariantName12=",
+      "OutputVariantName13=",
+      "OutputVariantName1=",
+      "UpdateVariants=0",
+      "UpdateVariants=1"
+    ],
+    "variant_sections": null
+  },
+  "historical_source": {
+    "source_path": "AI_CONTINUITY/T25V_RECOVERED_BLOCK_DOCUMENT_TEXT.md",
+    "source_blob_sha": "8962676d21fdda268eab413ee1bc62416b634f14",
+    "excerpt": "  Reference                            GND           16\n\n\n\n                    . MECH-HOLD footprint/‫ دقیق تا انتخاب نمونه‬pitch 2.54mm. MPN ,8×2 :Mechanical target\n\n\n\n                                                             USB-only ‫ توان افزونه‬- J_EXP_PWR .2\n\n\n 2×2 header\n Pin 1 = USB_5V_AUX      Pin 2 = USB_5V_AUX\n Pin 3 = GND              Pin 4 = GND\n\n\n                                             .‫ قابل استفاده است‬USB ‫ در حضور‬S1-B ‫ فقط پس از‬USB_5V_AUX •\n            Type-C/‫ پاوربانک‬capability ‫ میماند تا جریان پیک ماژول واقعی و‬DNP/Open ‫ اولیه‬enable/link ‫• مسیر‬\n                                                                                                 .‫مشخص شود‬\n                                                            .‫ تغذیه نمیشوند‬AA×2 ‫ از‬GSM/LTE/NB-IoT ‫• ماژولهای‬\n\n\n\n                                                 ‫ پورت توسعه خارجی محافظتشده‬- J_EXT .3\n\n                   ‫نقش‬                                               Net                                Pin\n\n\n                               Reference                                                   GND                      1\n\n\n                             Output-only 3V3_SYS                                                                    2\n\n\n                              I2C external PB6 / I2C1_SCL                                                           3\n\n\n                              I2C external PB7 / I2C1_SDA                                                           4\n\n\n                              GPIO/PWM PC6 / EXT_IO1                                                                5\n\n\n                               GPIO/ADC PA3 / EXT_IO2                                                               6\n\n\n\n\n J_EXT connector -> ESD -> series R -> MCU\n 4 external signal lines => 2 × YENJI USBLC6-2SC6 (two data lines/device)\n YENJI pin 2=GND, pin 5=VCC, pins 1/6=line1, pins 3/4=line2.\n\n\n\n  ‫ در شماتیک دستی با توجه به کاربرد پایه و کابل نهایی تعیین میشود؛ از االن‬J_EXT ‫ مکانیکی‬MPN ‫مقدار مقاومت سری و‬\n                                                                                               .‫حدس زده نمیشود‬\n\n\n\n\nDATALOGGER REV-A                                                                                        3 ‫ از‬2 ‫صفحه‬\n\n[PDF PAGE BREAK]\n                                                           ‫ آینده‬Daughterboard ‫ برای‬Power ‫ سیاست‬.4\n\n                                        .‫ هستند؛ تزریق ولتاژ به آنها ممنوع است‬Output-only USB_5V_AUX ‫ و‬3V3_SYS •\n                       level ‫ و‬GND/reference ‫ میتواند منبع تغذیه اختصاصی داشته باشد؛ در آن حالت‬Daughterboard •\n                                                                                               .‫ بررسی میشود‬compatibility\n                    ‫ از طریق‬backfeed ‫ جلوگیری از‬،‫ متصل باشد‬Main ‫ به سیگنالهای‬Daughterboard ‫• اگر پاور مستقل‬\n                                                  .‫ اجباری است‬Revision ‫ متناسب با همان‬isolation/ORing/level-shifting\n                .‫ تخصصی طراحی میشوند‬Daughterboard ‫ روی‬Power Driver ‫ سلونوئید و‬،‫ رله‬،12/24V ‫• خروجیهای‬\n\n\n\n                                                                      ‫ پایههایی که عمدا ً عمومی نمیشوند‬.5\n\n                                  ‫علت‬                                                              ‫پایه‬\n\n\n                                                     ‫ آینده‬oscillator ‫ رزرو‬PC14 / PC15\n\n\n                                                        SWDIO / SWCLK PA13 / PA14\n\n\n                                                   ‫ اختصاصی‬Reset/SWD NRST\n\n\n                                        RTC/OLED/SHT3x :‫ سیستم‬I2C2 PA11 / PA12\n\n\n                                                ‫مالکیت بلوکهای قفلشده‬                                     MicroSD / Navigation pins\n\n\n\n\n                                                                                                                 ‫ وضعیت‬.6\n\n                                     LOCK                                                                    J_EXP electrical pinout\n\n\n                                     LOCK                                                                         J_EXP_PWR policy\n\n\n                                     LOCK                                                                    J_EXT electrical pinout\n\n\n                              MECH-HOLD                                                           Connector exact MPN / footprint\n\n\n                                SCH-HOLD                                                            External series resistor values\n\n\n "
+  },
+  "historical_bom": [
+    {
+      "A50": {
+        "value": 62,
+        "cached_value": 62
+      },
+      "B50": {
+        "value": "Expansion",
+        "cached_value": "Expansion"
+      },
+      "C50": {
+        "value": "J_EXP_PWR 2x2",
+        "cached_value": "J_EXP_PWR 2x2"
+      },
+      "D50": {
+        "value": "USB-only auxiliary power header",
+        "cached_value": "USB-only auxiliary power header"
+      },
+      "E50": {
+        "value": "2x2 header",
+        "cached_value": "2x2 header"
+      },
+      "F50": {
+        "value": 1,
+        "cached_value": 1
+      },
+      "G50": {
+        "value": 2,
+        "cached_value": 2
+      },
+      "H50": {
+        "value": "MECH-HOLD",
+        "cached_value": "MECH-HOLD"
+      },
+      "I50": {
+        "value": "Mechanical MPN intentionally deferred.",
+        "cached_value": "Mechanical MPN intentionally deferred."
+      },
+      "L50": {
+        "value": "2x USB_5V_AUX + 2x GND; source link DNP/open in Rev-A.",
+        "cached_value": "2x USB_5V_AUX + 2x GND; source link DNP/open in Rev-A."
+      }
+    }
+  ],
+  "qualification": "HistoricalDNPintentconfirmed;currentpopulationdisconnectNOTverified;noCADchanges",
+  "raw_retention": "Localrawfilesgenerated;exec-serverdisconnectedbeforedurablesave;notclaimingcompletearchive"
+}

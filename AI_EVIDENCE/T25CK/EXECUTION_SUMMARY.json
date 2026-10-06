@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-06",
+  "engine": "local ngspice42/PSpice compatibility; unmodified vendor model",
+  "scope": "ACTUAL_LOCAL_EXECUTION_COMPLETION_OUTPUT_RETAINED_IN_GIT; full CSV/logs were written but durable raw retention pending after exec-server disconnect. No full-corner/source/thermal/NRST/SD/hardware PASS.",
+  "models": {
+    "TPS2121": {
+      "url": "https://www.ti.com/lit/zip/SLVMCO8",
+      "zip_sha256": "6c7c15d8a590a5a338dc9af38870929cc7ca3162bf6e09c55cd2494363ca1266",
+      "lib_sha256": "e3bacc9dfb1cf6c5b855d0773ce791ea6a2471fe951b1e08be78380b363c5e40",
+      "vendor_version": "27DEC2018 Final1.00, PSPICE16.2",
+      "subckt_pins": "CP2 GND ILIM IN1 IN2 OV1 OV2 PR1 SS ST VOUT_0 VOUT_1",
+      "explicit_unmodelled": "thermal and quiescent current",
+      "audit": "external IN1/IN2 sources do not account for output load current; XCOMP implementation is ideal comparator; UVLO values2.5/2.4, compared with databooktyp2.65/2.55. Not exhaustive datasheet corners."
+    },
+    "LM4040_N_D2P5": {
+      "lib_sha256": "9b14fbb2a64538e15a5bd0be8bed7886ddd037198666fc6512b27c88c7a283dc",
+      "retained_archive": "T25CI version1, seeAI_EVIDENCE/T25CI/EVIDENCE_INDEX.json"
+    }
+  },
+  "stimuli": "USB event at2ms; hard edges1ns; slow33us/1usfall,slowattach500us;idealBAT_REG3.3V;SYS22u/100u/47u through20mOhm;ILIM80k;SS1n;defaultRLOAD11.7857142857Ω;47u_CC uses0.28A above0.1V else2.8*VSYS",
+  "initial_control": "idealCP2=1.24V,PRRt14.3k/Rb10k",
+  "new_unselected_control": "LM4040-N reference biasedUSB_REGthrough2.4k;CP2REF;PRRt2k/Rb10k;noTLV1701/diodeORinthisfixture",
+  "abort": {
+    "case": "lm4040_slow_attach",
+    "marker": "doAnalyses: TRAN: Timestep too small; time = 0.00247004, timestep = 1.25e-19: trouble with d_d1-instance d.xu.d_u_mos_d2; tran simulation(s) aborted",
+    "reject_partial": true
+  },
+  "results": [
+    {
+      "name": "hard_remove_nominal",
+      "rows": 37851,
+      "pre_SYS_min_V": 3.28497546,
+      "post_SYS_min_V": 2.37014931,
+      "final_SYS_V": 3.28509798,
+      "wall_seconds": 19.039256974,
+      "deck_sha256": "a103d8135cee13a9e2357229aa691ef9d17c3e68a5a2778a80a0d172fb4075df",
+      "completed": true,
+      "last_simulated_time_s": 0.003,
+      "engine_returncode": 0,
+      "event_data_accepted": true
+    },
+    {
+      "name": "hard_remove_100u",
+      "rows": 37954,
+      "pre_SYS_min_V": 3.28497546,
+      "post_SYS_min_V": 2.38790969,
+      "final_SYS_V": 3.28509798,
+      "wall_seconds": 21.782070568,
+      "deck_sha256": "45bf93832092fa180689a8c2610d6afb198f15605f58a8e2b6f7a90452fe3e69",
+      "completed": true,
+      "last_simulated_time_s": 0.003,
+      "engine_returncode": 0,
+      "event_data_accepted": true
+    },
+    {
+      "name": "hard_remove_47u_CC",
+      "rows": 38183,
+      "pre_SYS_min_V": 3.28490695,
+      "post_SYS_min_V": 2.38112276,
+      "final_SYS_V": 3.28503068,
+      "wall_seconds": 25.419290351,
+      "deck_sha256": "df4d56ceaeda4deeed9ea732c29624ca778df5668b8a989994208f2c5fc8353a",
+      "completed": true,
+      "last_simulated_time_s": 0.003,
+      "engine_returncode": 0,
+      "event_data_accepted": true
+    },
+    {
+      "name": "hard_attach_nominal",
+      "rows": 37914,
+      "pre_SYS_min_V": 3.28509798,
+      "post_SYS_min_V": 3.03787631,
+      "final_SYS_V": 3.28497546,
+      "wall_seconds": 23.580335126,
+      "deck_sha256": "bb5ecd793375d855c80d07e6b899ba753c3f2808c334c18c5d4f0a65eb2b22c2",
+      "completed": true,
+      "last_simulated_time_s": 0.003,
+      "engine_returncode": 0,
+      "event_data_accepted": true
+    },
+    {
+      "name": "remove_1us_22u",
+      "rows": 37790,
+      "pre_SYS_min_V": 3.28497546,
+      "post_SYS_min_V": 3.1059402,
+      "final_SYS_V": 3.28509798,
+      "wall_seconds": 28.089606566,
+      "deck_sha256": "f6a628df0dbab2deafa1d2b7f7ed54ff7117fb74bbe8ae7d70b35859b821635b",
+      "completed": true,
+      "last_simulated_time_s": 0.003,
+      "engine_returncode": 0,
+      "event_data_accepted": true
+    },
+    {
+      "name": "remove_33us_22u",
+      "rows": 38466,
+      "pre_SYS_min_V": 3.28497546,
+      "post_SYS_min_V": 3.07541664,
+      "final_SYS_V": 3.28509798,
+      "wall_seconds": 23.864046506,
+      "deck_sha256": "c2543bb9da8afaf68cf39b73ceaf53cd1db328a5424b50dc8b932815e1a8a557",
+      "completed": true,
+      "last_simulated_time_s": 0.003,
+      "engine_returncode": 0,
+      "event_data_accepted": true
+    },
+    {
+      "name": "lm4040_hard_remove",
+      "rows": 36648,
+      "pre_SYS_min_V": 3.28497546,
+      "post_SYS_min_V": 2.37008019,
+      "final_SYS_V": 3.28509797,
+      "wall_seconds": 29.009433947,
+      "deck_sha256": "c91ee9b768a80336a8062f967b876661028417180a55d559951eca2b42f9796d",
+      "completed": true,
+      "last_simulated_time_s": 0.003,
+      "engine_returncode": 0,
+      "event_data_accepted": true
+    },
+    {
+      "name": "lm4040_hard_attach",
+      "rows": 39547,
+      "pre_SYS_min_V": 3.28509798,
+      "post_SYS_min_V": 3.03791749,
+      "final_SYS_V": 3.28497546,
+      "wall_seconds": 29.323083464,
+      "deck_sha256": "123f32276a5ee825af654640acd66b2759ae62340317d760bdc826724381a235",
+      "completed": true,
+      "last_simulated_time_s": 0.003,
+      "engine_returncode": 0,
+      "event_data_accepted": true
+    },
+    {
+      "name": "lm4040_slow_attach",
+      "rows": 34397,
+      "pre_SYS_min_V": 3.28509798,
+      "post_SYS_min_V": 3.10515349,
+      "final_SYS_V": 3.10515349,
+      "wall_seconds": 24.164843651,
+      "deck_sha256": "8d9386fa0df77855a81630882f06c90ca29e7234cdb64c893bea1bf75b6ebf91",
+      "completed": false,
+      "last_simulated_time_s": 0.00247004216,
+      "engine_returncode": 0,
+      "event_data_accepted": false
+    }
+  ],
+  "raw_paths": "/workspace/scratch/38719da73a41/T25CK/evidence/*.cir/*.out/*.csv/*.json; source/TPS2121 officialZIP andPDF. Files not deleted; presently inaccessible from executor. No Library save claimed."
+}
