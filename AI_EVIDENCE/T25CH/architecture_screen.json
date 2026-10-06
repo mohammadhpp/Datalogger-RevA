@@ -1,0 +1,618 @@
+{
+  "status": "ACTUAL_TEST_WITH_RAW_EVIDENCE",
+  "scope": "STATIC_CORNER_PROOF_AND_CONDITIONAL_ENERGY_ONLY_NO_BOARD_PASS",
+  "vendor_model_route": "BLOCKED_NO_RERUN",
+  "fabrication_hold": true,
+  "USB_91k_20k_static": {
+    "min_V": 3.1850940298507466,
+    "nom_V": 3.3078,
+    "max_V": 3.4329603015075376
+  },
+  "retained_battery_510k_91k_static": {
+    "min_V": 3.214241649439669,
+    "nom_V": 3.302197802197802,
+    "max_V": 3.3923959373959374
+  },
+  "divider_windows": [
+    {
+      "USB_static_min_V": 3.1850940298507466,
+      "rail_floor_V": 2.7,
+      "resistor_tolerance": 0.0,
+      "k_nom_min": 1.9347826086956523,
+      "k_nom_max": 1.949161138750691,
+      "feasible_ignoring_leakage": true
+    },
+    {
+      "USB_static_min_V": 3.1850940298507466,
+      "rail_floor_V": 2.7,
+      "resistor_tolerance": 0.001,
+      "k_nom_min": 1.9386560473516996,
+      "k_nom_max": 1.9452667109010395,
+      "feasible_ignoring_leakage": true
+    },
+    {
+      "USB_static_min_V": 3.1850940298507466,
+      "rail_floor_V": 2.7,
+      "resistor_tolerance": 0.005,
+      "k_nom_min": 1.954227660039327,
+      "k_nom_max": 1.929766500554167,
+      "feasible_ignoring_leakage": false
+    },
+    {
+      "USB_static_min_V": 3.1850940298507466,
+      "rail_floor_V": 2.72,
+      "resistor_tolerance": 0.0,
+      "k_nom_min": 1.956521739130435,
+      "k_nom_max": 1.949161138750691,
+      "feasible_ignoring_leakage": false
+    },
+    {
+      "USB_static_min_V": 3.1850940298507466,
+      "rail_floor_V": 2.72,
+      "resistor_tolerance": 0.001,
+      "k_nom_min": 1.9604386995691343,
+      "k_nom_max": 1.9452667109010395,
+      "feasible_ignoring_leakage": false
+    },
+    {
+      "USB_static_min_V": 3.1850940298507466,
+      "rail_floor_V": 2.72,
+      "resistor_tolerance": 0.005,
+      "k_nom_min": 1.9761852741970725,
+      "k_nom_max": 1.929766500554167,
+      "feasible_ignoring_leakage": false
+    },
+    {
+      "USB_static_min_V": 3.1850940298507466,
+      "rail_floor_V": 3.0,
+      "resistor_tolerance": 0.0,
+      "k_nom_min": 2.260869565217391,
+      "k_nom_max": 1.949161138750691,
+      "feasible_ignoring_leakage": false
+    },
+    {
+      "USB_static_min_V": 3.1850940298507466,
+      "rail_floor_V": 3.0,
+      "resistor_tolerance": 0.001,
+      "k_nom_min": 2.2653958306132216,
+      "k_nom_max": 1.9452667109010395,
+      "feasible_ignoring_leakage": false
+    },
+    {
+      "USB_static_min_V": 3.1850940298507466,
+      "rail_floor_V": 3.0,
+      "resistor_tolerance": 0.005,
+      "k_nom_min": 2.283591872405505,
+      "k_nom_max": 1.929766500554167,
+      "feasible_ignoring_leakage": false
+    }
+  ],
+  "counterexamples": {
+    "old_20k_over_10k_PR_min_V": 2.7416915422885575,
+    "old_20k_over_10k_PR_max_V": 3.2617085427135684,
+    "old_divider_attach_failure_margin_V": -0.07661451286282173,
+    "18k_over_10k_PR_min_V": 2.5512835820895523,
+    "18k_over_10k_PR_max_V": 3.0533065326633166,
+    "sustained_USB_plateau_V": 2.65,
+    "at_low_threshold_corner_USB_still_selected": true,
+    "plateau_below_SD_rail_reference": true,
+    "automatic_highest_voltage_cannot_guarantee_USB_priority": true
+  },
+  "candidate_TPS3823_33": {
+    "falling_threshold_min_V": 2.86,
+    "falling_threshold_max_V": 3.0,
+    "release_hysteresis_typ_V": 0.03,
+    "release_delay_ms": [
+      120,
+      200,
+      300
+    ],
+    "assertion_delay_typ_us": 25,
+    "assertion_delay_guaranteed_max_us": null,
+    "source": "TI SLVS165O, -40..85C electrical limits; timing test at 25C",
+    "exact_Iran_listing": "https://lionelectronic.ir/products/5418-TPS3823-33DBVR",
+    "listing_stock_observed_2026_10_06": 1300,
+    "selected": false
+  },
+  "standby": {
+    "battery_FB_divider_nom_uA": 5.4945054945054945,
+    "TPS631000_VOUT_IQ_typ_uA": 8.0,
+    "TPS631000_VIN_IQ_typ_uA": 0.15,
+    "warning": "Different pin currents and test conditions; NOT pack-current guarantee."
+  },
+  "energy_cases": [
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": 3.1254797998052823,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 1.4245724731246998
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": 3.1570530529262366,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 1.4245724731246998
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 3.171999325925483,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 1.4245724731246998
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 3.1789462371972994,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 1.4245724731246998
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": 3.039818589309886,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 3.4244530603959134
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": 3.117262257011891,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 3.4244530603959134
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 3.1535246306334987,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 3.4244530603959134
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 3.1702955665033614,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 3.4244530603959134
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": 2.7808785513668894,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 9.131874827722434
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": 3.0008038887922797,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 9.131874827722434
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 3.1001946644870984,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 9.131874827722434
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 3.14547674907809,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 9.131874827722434
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": 2.7934566400787393,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 5.008294930875592
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": 2.8287382346198098,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 5.008294930875592
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 2.8454095917250384,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 5.008294930875592
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 2.85315180107894,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 5.008294930875592
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": 2.697271413284743,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 12.03917050691248
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": 2.784259327002425,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 12.03917050691248
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 2.8247997481275156,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 12.03917050691248
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 2.8435101547207458,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 12.03917050691248
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": 2.4016788999492706,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 32.104454685099945
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": 2.653224453377437,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 32.104454685099945
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 2.7651370632797576,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 32.104454685099945
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 2.815812493757352,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 32.104454685099945
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": 2.14495314144409,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 20.993699603942947
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": 2.742995439112298,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 20.993699603942947
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 2.9863132006175035,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 20.993699603942947
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 3.0932584727097847,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 20.993699603942947
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": null,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 50.46562404793978
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": 1.9608222711380219,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 50.46562404793978
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 2.6825152019658907,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 50.46562404793978
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 2.9595310403830655,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 50.46562404793978
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": null,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 134.57499746117273
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": null,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 134.57499746117273
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 1.5102960609618323,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 134.57499746117273
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 3.1850940298507466,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 2.539453480375427,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 134.57499746117273
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": 1.6234531098864542,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 73.80645161290346
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": 2.3577107541002564,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 73.80645161290346
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 2.636824331120958,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 73.80645161290346
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 31.2,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 2.7573581559166374,
+      "above_2p72V_scenario": true,
+      "required_Ceff_to_2p72V_uF": 73.80645161290346
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": null,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 177.41935483871023
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": 1.3709850473291092,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 177.41935483871023
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 2.2870644568501413,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 177.41935483871023
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 75.0,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 2.6064535292231854,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 177.41935483871023
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 10.4,
+      "energy_only_end_V": null,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 473.118279569894
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 22.0,
+      "energy_only_end_V": null,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 473.118279569894
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 47.0,
+      "energy_only_end_V": 0.5619343491600745,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 473.118279569894
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "start_scenario_V": 2.86,
+      "total_no_source_interval_us": 200.0,
+      "Ceff_scenario_uF": 100.0,
+      "energy_only_end_V": 2.1174512981412343,
+      "above_2p72V_scenario": false,
+      "required_Ceff_to_2p72V_uF": 473.118279569894
+    }
+  ],
+  "source_cases": [
+    {
+      "load_at_3V3_A": 0.019,
+      "eta_scenario": 0.7,
+      "upstream_pack_current_at_1p65V_A": 0.05428571428571429,
+      "upstream_total_resistance_budget_ohm": 2.7631578947368416,
+      "upstream_external_R_if_mux_R_0p066_scenario_ohm": 2.6971578947368418,
+      "downstream_external_R_if_output_mux_R_0p059_scenario_ohm": 2.762219577116858
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "eta_scenario": 0.8,
+      "upstream_pack_current_at_1p65V_A": 0.047499999999999994,
+      "upstream_total_resistance_budget_ohm": 3.1578947368421058,
+      "upstream_external_R_if_mux_R_0p066_scenario_ohm": 3.091894736842106,
+      "downstream_external_R_if_output_mux_R_0p059_scenario_ohm": 3.156822373847838
+    },
+    {
+      "load_at_3V3_A": 0.019,
+      "eta_scenario": 0.9,
+      "upstream_pack_current_at_1p65V_A": 0.042222222222222223,
+      "upstream_total_resistance_budget_ohm": 3.552631578947368,
+      "upstream_external_R_if_mux_R_0p066_scenario_ohm": 3.4866315789473683,
+      "downstream_external_R_if_output_mux_R_0p059_scenario_ohm": 3.551425170578817
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "eta_scenario": 0.7,
+      "upstream_pack_current_at_1p65V_A": 0.8000000000000002,
+      "upstream_total_resistance_budget_ohm": 0.18749999999999994,
+      "upstream_external_R_if_mux_R_0p066_scenario_ohm": 0.12149999999999994,
+      "downstream_external_R_if_output_mux_R_0p059_scenario_ohm": 0.18656603910122654
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "eta_scenario": 0.8,
+      "upstream_pack_current_at_1p65V_A": 0.7,
+      "upstream_total_resistance_budget_ohm": 0.2142857142857143,
+      "upstream_external_R_if_mux_R_0p066_scenario_ohm": 0.1482857142857143,
+      "downstream_external_R_if_output_mux_R_0p059_scenario_ohm": 0.21321833040140178
+    },
+    {
+      "load_at_3V3_A": 0.28,
+      "eta_scenario": 0.9,
+      "upstream_pack_current_at_1p65V_A": 0.6222222222222223,
+      "upstream_total_resistance_budget_ohm": 0.24107142857142852,
+      "upstream_external_R_if_mux_R_0p066_scenario_ohm": 0.17507142857142852,
+      "downstream_external_R_if_output_mux_R_0p059_scenario_ohm": 0.239870621701577
+    }
+  ],
+  "exclusions": [
+    "No actual mux gap or backup recovery is qualified.",
+    "2.72V is an illustrative 20mV allowance above SD rail 2.7V, not a qualified switch drop.",
+    "31.2us = 25us typical supervisor plus 6.2us typical mux; not maximum.",
+    "75/200us are declared total-gap sensitivities, not manufacturer limits.",
+    "Energy excludes ESR, wiring, RCB sequencing and real load profile.",
+    "Regulator static corners exclude ripple, load transients and FB leakage.",
+    "RON table is tested at 200mA; its use at other currents here is a scenario.",
+    "19 mA old prototype observation; 280 mA historical design envelope.",
+    "A sustained low selected source cannot be fixed with finite hold-up capacitance."
+  ]
+}

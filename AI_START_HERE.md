@@ -28,7 +28,9 @@ Then inspect the latest Git commits and the current engineering files relevant t
 
 ## Current high-level state
 
-- **T25CG CURRENT EXACT POINT, 2026-10-06:** T25CF startup pilot CASE_TIMEOUT after240.1857s, zero PRINT rows, no completion; actual simulated progress unknown. Read `AI_CONTINUITY/T25CG_T25CF_TIMEOUT_AND_REGULATED_MUX_SCREEN_FA.md`. Bounded TPS54202 macro-model route BLOCKED; no new Windows rerun. Independently screened an unselected post-regulator mux option retaining TPS631000/L1; backup readiness, USB3.3V setpoint/PR1, downstreamCbus/RCB/SD-drop/IranBOM still OPEN. Executed18 conditional capacitor-energy cases; no system/board PASS. Continue independent consolidated architecture review, no routine approval, no partialCAD/purchase;fabricationhold.
+- **T25CH CURRENT EXACT POINT, 2026-10-06:** Read `AI_CONTINUITY/T25CH_ARCHITECTURE_PR1_CORNER_PROOF_FA.md`. Executed9 divider windows,48 energy and6 source budgets. Downstream passivePR candidate cannot guaranteeUSBpriority and2.7V floor with0.5%resistors; nofinalarchitectureselected. ExactIranTPS3823-33DBVR announces1300stock but120..300msattachmentdelay/25usnomfall/logicmargin remainOPEN. Currentboundedmacro-model routesBLOCKED,noWindowsretry. T25CG/T25CFraw evidence retained; noCAD/purchase/systemPASS;fabricationhold.
+
+- **T25CG prior point, 2026-10-06:** T25CFtimeout audited, actualsimulatedprogressUNKNOWN;18 capacitor-energy scenarios and unselecteddownstream draft. T25CH supersedes its passivePR design question.
 
 - **T25CF prior point, 2026-10-06:** Explicit TI20ns/tolerance/iteration profile staged and now audited in T25CG; timeout does not prove hardware failure. Do not rerun the unchanged fixture.
 
@@ -90,4 +92,3 @@ The chat-management threshold is approximately **70% of usable conversation cont
 Do not rely on chat memory alone for project continuity.
 
 **Automatic backup check:** `.github/workflows/continuity_guard.yml` runs on every `main` push, on manual request, and weekly. It queries the private GitHub Release API using its read-only token and verifies that all three complete assets still exist with expected size and SHA256 digest. This is metadata verification, not downloaded ZIP extraction or electrical simulation.
-

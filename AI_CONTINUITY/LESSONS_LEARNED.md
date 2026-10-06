@@ -234,3 +234,11 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 
 - T25CF's .out stopped in bias listing while stdout announced transient. PRINT tables may be emitted at job completion; zero supplied rows does not prove solver never advanced. Without DAT/progress logs actual simulated endtime is UNKNOWN, not0s. ORPSIM-16534 warns a cost, not a proven cause. Record runtime limits and mark bounded route blocked; no blind timer/solver retry.
 - Moving mux downstream of regulators can remove raw1.80V from the backup pin only if the backup regulator is kept ready and its rail stays>=2.5V dynamically. Do not disable it atUSB attach and then claim instant backup. Retune USB/PR1 for the actual3V3 consumer range; preserve converter outputC upstream and separately qualify load-sideCbus/RCB/SDswitch drop. Nominal rail/static margin/typical switchover do not prove noreset.
+
+
+## T25CH — PR threshold window, precise monitor and standby provenance
+
+- Moving a mux after regulators requires proving the PR1 window, not merely changing resistor nominal. Reject an emptycornerwindow before vendor simulation. FiniteCbus does not repair a sustained selected undervoltage; higher-voltageautomatic mode does not imply USBpriority withoverlappingrails.
+- A reset supervisor used as source-good signal introduces release delay and usually onlytypicalassertion timing. Check outputtestcondition, unpowered behavior, pulldownloading and watchdog disable; never connectitsRESET toMCUNRST by assumption. Stocklisting isnottechnicalqualification orpurchase.
+- Match exactmanufacturer/MPN: LionMAX809S linksUMW; don'tborrowAnalogspecs. OrdinaryTPS3823-33DBVR is85°C perTI evenifretailer says125°C. Saveddatedexcerpt preservesannouncedstock.
+- TPS631000 IQ atVOUT andVIN aredistinctpin currents/testconditions. AddFBdivider outputload andpowerconversion; headline8uA isnot guaranteedAA-packstandbycurrent.

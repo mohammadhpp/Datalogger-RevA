@@ -1,0 +1,19 @@
+{
+  "status": "LOCAL_EQUATION_AND_CONTINUITY_CHECKS_COMPLETED_NO_BOARD_PASS",
+  "executed_cases": {
+    "divider": 9,
+    "energy": 48,
+    "source": 6
+  },
+  "checks": [
+    "independent direct USB resistor extrema",
+    "empty 2.72V ideal-divider window",
+    "empty 0.5pct divider windows",
+    "capacitor energy conservation",
+    "source I*R budget conservation",
+    "single current exact point and live handoff size",
+    "prior history/lessons prefixes retained"
+  ],
+  "captured_excerpt_sha256": "b882947890329378984e5f2f0c315b273cc8ba966c2519b66fa8dfad8d36d6fa",
+  "captured_excerpt_bytes": 10715
+}

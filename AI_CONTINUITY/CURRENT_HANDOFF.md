@@ -7,13 +7,15 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25CG timeout audited / model route blocked / architecture screen, 2026-10-06 UTC
+## CURRENT EXACT POINT — T25CH architecture/PR1 corner proof and exact Iran monitor candidate, 2026-10-06 UTC
 
-- Read `AI_CONTINUITY/T25CG_T25CF_TIMEOUT_AND_REGULATED_MUX_SCREEN_FA.md`. T25CF ZIP SHA256543cb3e4d98385f1ee8c61ec4d686275888d8c5286d2c072b4ff407b2527bf1f: pilot CASE_TIMEOUT after240.1857475s, successful parsing/bias and transient announced, no PRINT rows/JOB CONCLUDED/DAT supplied. ORPSIM-16534 warns highITL4 may increase runtime; no new convergence error printed. Actual simulated end time is UNKNOWN. Six USB cases never launched. No hardware verdict.
-- **TPS54202 bounded macro-model route BLOCKED; no further T25CE/T25CF rerun requested.** Timeout is not proof of a faulty model or physical IC. Preserve raw evidence; do not lengthen the timer or relax solver blindly.
-- Independent source-grounded alternative screened: retain TPS631000/L1 as ready battery regulator, place TPS2116 after separate battery/USB regulated rails. Backup>=2.5V would address the datasheet's fast-collapse reset condition only if verified dynamically. This is an UNSELECTED architecture draft; standby battery regulator remains powered and has nonzero losses. Old3.576V USB fixture (static max3.712055V) cannot directly feed STM32G070 3.6V operating limit; new USB setpoint/PR1/Cbus/RCB/SD-drop/sourcing/layout require redesign screening.
-- Executed18 capacitor-energy cases for this draft: illustrative3.135V start,19/280mA power envelopes,6.2us TI typical (not max),50/100us declared gaps and10.4/22/47uF effectiveC scenarios. At280mA, Cbus to2.7V is4.514uF at6.2us and72.807uF at100us, excludingESR/RCB/source/switch drop. No claim these capacitors/gaps represent the board. Script/raw CSV/JSON retained.
-- TPS631000/Murata L1 and SD T25BK/BL preserved; exactS1 deferred; two USB branches/expansion5V protection, realCeff, startup atloaded1.80V and full no-reset remain OPEN. No CAD/ECO/purchase/DRC/fabrication change.
+- Read `AI_CONTINUITY/T25CH_ARCHITECTURE_PR1_CORNER_PROOF_FA.md`. Executed9 PR-divider windows,48 energy sensitivities and6 battery-source budgets; script/CSV/JSON retained. No vendor/system/board PASS.
+- New post-regulator USB FB candidate91k±1% / two10k±0.5%: nominal3.3078V, static3.185094..3.432960V. Retainedbattery FB gives3.214242..3.392396V. Dynamics/ripple/leakage excluded; no resistor reallocated or CAD changed.
+- **Passive PR1 downstream option rejected under these assumptions:** atfloor2.7V and0.5% resistors k_min1.954228>k_max1.929767. Even ideal resistors cannot coverfloor2.72V. Olddivider may never choose healthycornerUSB;18k variant can keep selecting sustained2.65V USB. BiggerCbus cannot fix sustained undervoltage. Highest-voltage mode does not guarantee USBpriority because rails overlap.
+- Exact `TPS3823-33DBVR` Iran listing Lion5418 announces1300 stock; saved rawexcerpt/hash. CandidateONLY: falling2.86..3.00V, release120..300ms underTI timing conditions, assertion25usnom NOT guaranteedmax; logic-hightestcondition/ripple/sequencing/inrush/absence remainOPEN. Do not silently accept attachmentdelay or125°C retailer spec (ordinarypartTI85°C). MAX809T/S listings are“به زودی”; S isUMW, not automaticallyADI-equivalent. Sourcingdeclaredstock isnotpurchase.
+- Upstreammux option still requires verified slowUSBcollapse at1.80V; downstream requires backupregalwaysready, precisePR andnewCbus. Neither selectedasfinal. RetainTPS631000/L1/SDscreen; exactS1deferred; USB5Vexpansion protection remainsOPEN.
+- T25CF audit retained: CASE_TIMEOUT240.1857s, parsing/bias completed, transientannounced, zeroPRINT/noDAT/nocompletion; actualsimulatedprogressUNKNOWN. **BoundedTPS54202 macro-model route BLOCKED; no unchangedT25CE/CF rerun.** No model/IC universalfailureinferred.
+- No CAD/ECO/purchase/DRC/fabricationchange; lastT24DRC0/0CAD-only. **FABRICATION HOLD.**
 
 ## Accepted design and validation baseline
 
@@ -39,6 +41,8 @@
 
 ## Cleanup and preserved history
 
+Exact pre-T25CH handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CH_2026-10-06.md` (source blob 4ac0055e0e3b1a87a5315998e5b5a6756224dbf3).
+
 Exact pre-T25CG handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CG_2026-10-06.md` (source blob 540c0318277f1ee1070cc0a618534c0d1f03f28c).
 
 Exact pre-T25CF live handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CF_2026-10-06.md` (source blob e8a342bcb91f580285ef7f27cdc1377668ddbb19).
@@ -53,10 +57,8 @@ Read archived details only when needed; the sole active continuation point is th
 
 The 2026-09-28 cleanup audit is `GITHUB_CLEANUP_AUDIT_2026-09-28.md`: canonical SchLib was restored byte-identically; duplicate PcbLib and T23/T24 evidence retained pending dependency/path checks. Do not delete evidence to reduce apparent clutter. This compaction repairs documentation only.
 
-**NEXT EXECUTABLE ACTION:** AI continues the consolidated comparison: existing upstream mux versus two regulated inputs/downstream mux. Resolve USB setpoint/PR1 worst-case margin, backup-ready condition at1.80V, new Cbus versus converter C_OUT, reverse-blocking delay, SD rail drop and exact Iran BOM before one ECO/purchase decision. Do not request another unchanged vendor run, fabricate a board or silently apply this draft.
+**NEXT EXECUTABLE ACTION:** Continue whole-power draft with a precise monitor route and/or qualified upstream USB fall control. Close candidate monitor logic-high/ripple/timing/USB-priority delay and biased capacitor/source/RCB budgets before staging any newly valid integrated model. Do not repeat passive-divider tuning, unchanged Windows macro-model retries or the already screened SD sub-gate. Complete exact Iran whole-BOM/expansion5V protection and a single reviewable ECO/purchase proposal; no silent topology or requirement change.
 
-**BLOCKER REQUIRING USER:** None for the remaining independent architecture/sourcing review. Integrated functional evidence remains BLOCKED by unqualified macro-model execution/dynamics and real source/Ceff/card/module parameters; this is not resolved by more ZIP retries. A later bench/fabrication/purchase or material requirement decision needs one concrete reviewed proposal.
+**BLOCKER REQUIRING USER:** None for independent review/sourcing/draft preparation. Integrated pre-fabrication verification remains BLOCKED by valid TPS631000/TPS54202/mux dynamic evidence, actual source/Ceff/load parameters and monitor sequencing. TPS3823 introduces an attachment delay that is not accepted as an immediate-priority requirement change; resolve alternatives before one concrete decision. Do not request hardware spending or another unchanged run as the current step.
 
 **FABRICATION HOLD.** Continuity CI validates file retention and metadata; it does not certify circuit function.
-
-

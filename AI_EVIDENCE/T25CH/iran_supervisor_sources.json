@@ -1,0 +1,39 @@
+{
+  "scope": "Retailer announcements, not authenticated stock/IC identity or approval",
+  "sources": [
+    {
+      "part": "TPS3823-33DBVR",
+      "retailer": "Lion Electronic",
+      "url": "https://lionelectronic.ir/products/5418-TPS3823-33DBVR",
+      "retrieved_date_UTC": "2026-10-06",
+      "full_html_sha256": "c9e54c06af8664e4ebe0c7d912f14caaff76b83c28532d290da58e282dc47eb4",
+      "declared_status": "ANNOUNCED_STOCK_1300",
+      "declared_stock": 1300,
+      "primary_datasheet": "TI SLVS165O ordinary -33DBVR",
+      "purchase_or_reservation": false
+    },
+    {
+      "part": "MAX809TEUR+T",
+      "retailer": "Lion Electronic",
+      "url": "https://lionelectronic.ir/products/5779-MAX809TEUR%2BT",
+      "retrieved_date_UTC": "2026-10-06",
+      "full_html_sha256": "f4b1a8d713c439fa22de8eb4e9c06ea3d7eb0f743930e80bc7b4027ea4e105d8",
+      "declared_status": "COMING_SOON",
+      "declared_stock": null,
+      "primary_datasheet": "ADI Rev11",
+      "purchase_or_reservation": false
+    },
+    {
+      "part": "MAX809S",
+      "retailer": "Lion Electronic",
+      "url": "https://lionelectronic.ir/products/6008-MAX809S",
+      "retrieved_date_UTC": "2026-10-06",
+      "full_html_sha256": "e51f277ffca680737999bfb721b61edec3c743ebe4a8b8fe824137156457e3fb",
+      "declared_status": "COMING_SOON_UMW_NOT_ADI",
+      "declared_stock": null,
+      "primary_datasheet": "retailer links MAX809S-UMW.pdf; not qualified",
+      "purchase_or_reservation": false
+    }
+  ],
+  "search_scope": "Lion direct catalog: STM809, MAX809, APX803, TLV3012, TPS3700, TPS3808, TLV6700, TLV3011, TPS3702, TPS3890. Empty listings do not establish Iran-wide unavailability."
+}
