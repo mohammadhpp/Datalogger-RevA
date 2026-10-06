@@ -28,7 +28,9 @@ Then inspect the latest Git commits and the current engineering files relevant t
 
 ## Current high-level state
 
-- **T25CE CURRENT EXACT POINT, 2026-10-02:** Read `AI_CONTINUITY/T25CE_USB_SEPARATE_BRANCH_AND_EXECUTABLE_MODEL_GATE_FA.md`. Live expansion 5V depends on USB_VBUS_PROT; preregulator must have a separate VIN1 branch. Python sensitivity executed with raw CSV/JSON; Bourns10uH/Fenghua56pF exact Iran candidates found, Ceff/layout/full transfer open. A new TPS54202 official-model Windows test is staged, not executed; `AI_SCRIPTS/T25/Run_T25CE_USB_Official_Model_v1.cmd`. Old invalid fixtures are not repeated. No selected part/CAD/purchase/board PASS; fabrication hold.
+- **T25CF CURRENT EXACT POINT, 2026-10-06:** T25CE user ZIP stopped with ORPSIM-15139 at1.243ms,623 VOUT rows and no event/prestate data; no hardware verdict. Read `AI_CONTINUITY/T25CF_T25CE_SOLVER_RESULT_AND_TI_PROFILE_GATE_FA.md`. New TI-package20ns/iteration/tolerance profile with6ms startup pilot then gated six USB cases staged; electrical fixture and official model unchanged. Run `AI_SCRIPTS/T25/Run_T25CF_USB_TI_Profile_v1.cmd` once after Git_Save.cmd. If this changed pilot also fails, block the macro-model path; no blind retry loop. Separate expansion5V branch, real Ceff/battery/no-reset remain OPEN; no selected part/CAD/purchase/board PASS; fabrication hold.
+
+- **T25CE prior point, 2026-10-02:** Separate preregulator branch and six original fixtures prepared; numerical screens are conditional only. User Windows run now audited in T25CF; unchanged T25CE must not be repeated.
 
 - **T25CD prior point, 2026-09-29:** `AI_CONTINUITY/T25CD_USB_FAULT_DOMAIN_AND_ARCHITECTURE_GATE_FA.md` shows workbook's 12V fault ceiling lacks source current/impedance, slew and duration bounds; no unbounded ideal-step guarantee for current pass-through OVP. TPS54202 exact IC has Iran listings but its full BOM/transfer is open; TI TPSM863257 integrated-inductor module has no verified Iran supply. No candidate selected, SD sub-gate screened, original L1 retained, one ECO/purchase still pending; fabrication hold. Read the sole live point in `CURRENT_HANDOFF.md`.
 
@@ -86,3 +88,4 @@ The chat-management threshold is approximately **70% of usable conversation cont
 Do not rely on chat memory alone for project continuity.
 
 **Automatic backup check:** `.github/workflows/continuity_guard.yml` runs on every `main` push, on manual request, and weekly. It queries the private GitHub Release API using its read-only token and verifies that all three complete assets still exist with expected size and SHA256 digest. This is metadata verification, not downloaded ZIP extraction or electrical simulation.
+

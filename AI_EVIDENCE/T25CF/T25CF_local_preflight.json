@@ -1,0 +1,33 @@
+{
+  "LOAD_0mA_CEFF_44uF.cir": {
+    "electrical_lines_unchanged": true,
+    "sha256": "841348474e63668513aa3daba9521719901f01b094219f4e49c8aeab03680e35"
+  },
+  "LOAD_19mA_CEFF_22uF.cir": {
+    "electrical_lines_unchanged": true,
+    "sha256": "f6d8faeff189b6dfc098d08e7bd4605c92caabadaed4c31cd8b780b4c2dcac21"
+  },
+  "LOAD_280mA_CEFF_22uF.cir": {
+    "electrical_lines_unchanged": true,
+    "sha256": "7f9b4dc4d11bc6692dad83b87659d51e53a5516b50f128c04be488f4b844338b"
+  },
+  "LOAD_19mA_CEFF_44uF.cir": {
+    "electrical_lines_unchanged": true,
+    "sha256": "ce1a399707b8976d1d2eb1aba9f54ff5a452f2a1a0e5bb0b7c19630fd2fcbbc1"
+  },
+  "LOAD_0mA_CEFF_22uF.cir": {
+    "electrical_lines_unchanged": true,
+    "sha256": "4a569b76a1e273f0b10db73d60f2581993561a72d19e0fe46d94ef2546e8721a"
+  },
+  "LOAD_280mA_CEFF_44uF.cir": {
+    "electrical_lines_unchanged": true,
+    "sha256": "798913259b5dfce7967c021b7e424159e4ac03205b754933fbab61875af1822c"
+  },
+  "runner": {
+    "ascii": true,
+    "cases": 7,
+    "case_budget_s": 240,
+    "total_budget_s": 900,
+    "windows_runtime": "NOT_EXECUTED_NO_ENGINE"
+  }
+}

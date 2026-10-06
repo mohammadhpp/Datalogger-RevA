@@ -1,0 +1,55 @@
+{
+  "status": "INVALID_OR_INCOMPLETE_FIXTURE",
+  "solver_error_warning_count": 1,
+  "vout_samples": 623,
+  "prestate": {
+    "samples": 0,
+    "min": null,
+    "max": null
+  },
+  "fault_12V": {
+    "samples": 0,
+    "min": null,
+    "max": null
+  },
+  "usb_5p5V": {
+    "samples": 0,
+    "min": null,
+    "max": null
+  },
+  "unplug": {
+    "V(VIN)": {
+      "samples": 0,
+      "min": null,
+      "max": null
+    },
+    "V(VOUT)": {
+      "samples": 0,
+      "min": null,
+      "max": null
+    },
+    "V(EN)": {
+      "samples": 0,
+      "min": null,
+      "max": null
+    },
+    "I(L_USB)": {
+      "samples": 0,
+      "min": null,
+      "max": null
+    },
+    "I(V_SRC)": {
+      "samples": 0,
+      "min": null,
+      "max": null
+    }
+  },
+  "scope": "NO_MUX_NO_TPS631000_NO_BOARD_OR_FABRICATION_PASS",
+  "end_s": 0.001243,
+  "last_vout_V": 0.8824,
+  "solver_error": "ORPSIM-15139",
+  "reported_time_step_s": 1.33e-19,
+  "device": "X_USB.D_U6_D59",
+  "zip_sha256": "8e785dd57156bfee7a72d7e8416309bb72e791653f9acd11bbc08f7af2f7a551",
+  "raw_job_time_s": 142.55
+}

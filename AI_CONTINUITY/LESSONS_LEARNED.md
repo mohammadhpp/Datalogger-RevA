@@ -223,3 +223,9 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 - A regex expecting seven numeric fields accidentally consumed the **next row's timestamp** as source current, creating impossible summary values such as `VIN_min=0.000105V` and `I_source_peak=0.0251A` even though all 16 simulator jobs had concluded normally.
 - Future auditors must locate each PRINT table by its own header, parse the tables independently by time, and only then combine metrics. Raw `.out` data outranks a generated summary CSV when the two disagree.
 - Preserve the failed/generated summary as evidence, but mark it rejected rather than deleting it. `AI_SCRIPTS/T25/T25BK_Audit_T25BJ_Raw_v1.py` is the reference implementation for this case.
+
+
+## T25CF — import the official numerical profile before interpreting model failure
+
+- TPS54202 package's Startup/trans.sim explicitly sets20ns maxstep,ABSTOL10n,VNTOL10u,ITL1=1500,ITL2=400,ITL4=100. Copying only encrypted LIB omits reference solver settings. A changed numerical-profile test is justified once; these settings neither guarantee convergence nor certify circuit accuracy. Preserve profile identity and all unchanged electrical lines.
+- JOB CONCLUDED/Simulation complete can coexist with ORPSIM-15139. Check actual end time, solver errors and valid prestate before events; a0.8824V startup value at1.243ms cannot be called regulated output or unplug voltage. If the explicit changed profile also fails, block this macro-model route and move to independent evidence; do not create endless Windows reruns.
