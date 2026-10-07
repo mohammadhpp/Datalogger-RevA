@@ -7,17 +7,16 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25CM recovery / T25CN USB LDO / T25CO protection, 2026-10-06 UTC
+## CURRENT EXACT POINT — T25CP LDO fault edges / reverse-model scope, 2026-10-06 UTC
 
-- User says **«ادامه بده متوقف نشو»** and **«خراب شدی»**. Continue effective independent execution without routine approval or a report-only substitute for tests; one consolidated technical/Iran proposal precedes any CAD/ECO/purchase.
-- Read T25CM_RAW_RECOVERY_AND_RETENTION_FA.md, T25CN_TLV76701_EXECUTION_AND_IRAN_FA.md, T25CO_PROTECTION_MODEL_EXECUTION_AND_LIMITS_FA.md. Runtime recovered. All9 original CK CSVs/counts/endtimes/deck hashes audited, no CK rerun. Complete CJ/CK/CL raw ZIPs saved; pinned versions rematerialized, exact bytes/CRC verified. See AI_EVIDENCE/T25CM/PERSISTENCE_VERIFIED.json and RAW_MANIFEST.json. Prior runtime/raw-pending claims are superseded.
-- CL recovered TLV76701DRVR Lion4876 stock81. Fixed76733 soon only. CN exact official unencrypted SLVMCY1 executed unchanged in ngspice42/ps. First100ns startup wall-timeout45s, simulated progress UNKNOWN; DC and two nominal controls complete. TI SLVMCY2 profile explicitly20ns/3ms/TNOM25; one justified profile change completed startup151419rows/final3.3075142V. Do not retry failed100ns profile.
-- Iran draft FOJAN FRC0603F3162TS31.6k/1%/0603 stock5000, FRC0603F1002TS10k/1%/0603 stock92000; primary FRC datasheet100ppm/C. Four31.6k/10k model fixtures complete: startup peak3.37413896V;5→5.5 line3.32878602..3.35446495V; exact constant-current19→280mA3.30302207..3.34827337V. Resistive equivalent explicitly voltage-dependent;19mA is historical observation, not measured waveform. 192 conditional DC corners3.19503518..3.46709664V. NineCNanalyses:1DC/8TRAN,7TRANcomplete/1timeout.
-- CN no temperature/noise model. DRV exposed-pad/manual assembly open; theta77.7 reference is not actual PCB. IQ80uA max is no-load, not IGND280mA bound. Twelve-volt continuous operation not thermally qualified. OUT>VIN+.3 requires external reverse protection; Ceff/ripple/source/load/thermal/assembly gates open. No LM1117/LD1117/TLV761 model substitution.
-- CO nine new fixtures,6complete/3abort. TPS259621 normal5/5.5 complete;12V1us and100us faults abort; eFuse+LDO startup abort. TPS25953312V fault completes but is REJECTED for physical OVC proof: model has independent5.7V/3us OVLO shutdown, while TI specifies clamp. Do not call its output collapse a physical thermal response; exact path in MODEL_SCOPE_AUDIT.json.
-- TPS259533+TLV76701 startup completes, early1.5..1.9ms window invalid. Justified later3ms event/4ms stop yields valid2.5..2.9ms prestate and normal5→5.5 line result202944rows,REG3.30073012..3.32563870V. This fixture uses31.25k/10k, not CN Iran31.6k. Helpers scoped with nested wrappers, original model bytes unchanged. No fault/wholeboard/NRST/SD PASS.
-- Do not directly couple TPS2121 model to converters: CK inputs omit output load current and would falsely unload upstream regulators. No artificial shadow-current substitute. CK8complete/1abort and32PRcorners remain nominal timing evidence; no AA-backfeed/thermal proof.
-- CJ aux R_EXP_PWR_EN historicalDNP/Open intent versus live0R/noDNP/noVariant remains unapplied population ECO. USB3V3 does not replace futureAUX5V; futuremodule load unqualified. BAT TPS631000 dynamic prestate at loadedAA1.80V remains blocked; keep TPS631000/L1, closed SD TPS22918 subgate and deferred exactS1. No unchanged Windows/CI/CK/CO numerical loops. **FABRICATION HOLD.**
+- Continued from authoritative CM/CN/CO commit258d351; Windows local repo remained e6f9a36/T25CF, CAD blobs01_POWER/07_EXPANSION/PCB identical. No edits to the user's working repo, CAD, population, purchase or physical stage.
+- Read T25CP_LDO_FAULT_EDGE_AND_REVERSE_SCOPE_FA.md and T25CP_WHOLE_POWER_DRAFT_FA.md. Exact CN SLVMCY1 LIB and RevD PDF re-fetched with matching hashes. Portable official Windows ngspice42 executed13 NEW analyses:1DC/12TRAN, all completed; every transient valid1.5..1.9ms prestate and3ms finish. Independent CSV audit includes all rounded-equal timestamps and extrema. No CJ/CK/CL/CN/CO repeat.
+- Ten imposed-input line fixtures at25C,31.6k/10k,1uF ideal CIN,10mohm output ESR:12V pulses with1us edges/10 or100us plateau,10uF output yield minima2.526850/2.535699V on falling edges;10us edge/100us plateau/10uF gives3.039326..3.664428V.100us-edge cases and four historical5.915721V-ceiling cases remain inside the illustrative2.7..3.6 rail screen. These are nominal sensitivity results, not qualified source/Ceff/OVP/SD/MCU limits;5.915721 is historic trip, not physical peak cap.
+- NEW reverse-model gap: forced OUT3.3/IN0 DC draws only+1.5uA; vendor G_ABMII1 and ideal VIN_ORG omit physical OUT-to-IN body diode. Two collapse transients exceed OUT-IN+.3, so reject their physical reverse/hold-up inference. I(V_SRC) includes ideal CIN displacement current; negative edge spikes are not isolated LDO reverse current.
+- TI reverse guidance separates OUT-to-IN bypass from a series diode before CIN. Bypass protects the LDO path but does not block upstream energy. Exact new diode MPN/Iran/VF/IR/surge, CIN retention, assembly/heat, source bounds and actual mux backfeed remain OPEN. No generic diode or substitute model selected.
+- PSpice NEW DC attempt timed out60s without log/data, progressUNKNOWN; no repeat. Initial ngspice launcher quoted codemodel paths incorrectly; preserved loader output and fixed only quoting before valid runs. No blind numerical retry.
+- Full raw ZIP11625345bytes, SHA256d270b43e1a98a202099984868fe9eb22a9e6173c15390a4d8f89b7b5c182db65; local ZIP CRC and all member hashes verified. Raw Git blob cf37183bc949fd5ee47a7ecc35f262cfe589e65f matches the full local archive; user explicitly authorized publication on2026-10-07. Included in this same Git transaction. Prior CJ/CK/CL/CN_CO retention remains valid and superseded pending claims remain superseded.
+- Retain TPS631000/L1, closed SD TPS22918 subgate, deferred exactS1, separate futureAUX5V with unappliedR_EXP_PWR_EN DNP correction. Do not integrate abstract TPS2121 via artificial shadow current. No board/fabrication PASS; FABRICATION HOLD.
 
 ## Accepted design and validation baseline
 
@@ -43,6 +42,8 @@
 
 ## Cleanup and preserved history
 
+Exact pre-T25CP handoff is preserved in `HANDOFF_ARCHIVE_BEFORE_T25CP_2026-10-06.md` (blob ec23ab520c9428f1b6d1bda4219b7bda6d05d5f6).
+
 Exact pre-CM/CN/CO handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CM_CN_CO_2026-10-06.md` (source blob 084c6e3e2a1ca8a687f27ad3b07b06f32e6e56f6).
 
 Exact pre-CJ/CK handoff archived in `AI_CONTINUITY/HANDOFF_ARCHIVE_BEFORE_T25CJ_T25CK_2026-10-06.md` (source blob 734e40adb5353bb0d2ff0decfd5d760400eb85de).
@@ -61,12 +62,12 @@ The exact pre-compaction live handoff is preserved byte-for-byte in
 `AI_CONTINUITY/HANDOFF_ARCHIVE_PRE_COMPACTION_2026-10-02.md`
 (source blob `7374eeb3fe3b931a72e22d68cd9438fbbe0b294b`, baseline main `3a1c713a1e371546a2fa72116adc5fe235e5686c`).
 
-Read archived details only when needed; the sole active continuation point is the T25CM/CN/CO section above. Further evidence and older checkpoints remain in `HISTORY.md`, dated T25 reports and source archives.
+Read archived details only when needed; the sole active continuation point is the T25CP section above. Further evidence and older checkpoints remain in `HISTORY.md`, dated T25 reports and source archives.
 
 The 2026-09-28 cleanup audit is `GITHUB_CLEANUP_AUDIT_2026-09-28.md`: canonical SchLib was restored byte-identically; duplicate PcbLib and T23/T24 evidence retained pending dependency/path checks. Do not delete evidence to reduce apparent clutter. This compaction repairs documentation only.
 
-**NEXT EXECUTABLE ACTION:** Build the one whole-power draft using retained TPS631000/L1 and executed USB LDO screen. Independently screen existing OVP plus wide-input LDO as a bounded alternate; do not reuse invalid eFuse fault output. Resolve reverse protection, assembly/heat, exact biased Ceff/source/load and valid1.80V BAT dynamics. No unchanged TPS2116/TPS631000/TPS54202/CI/CK/CO loops, SD reselection or partial ECO.
+**NEXT EXECUTABLE ACTION:** Qualify the exact series/bypass diode and its Iran source, and obtain a validated or bounded TS431BCX/BC857BLT1G/FSS2301S OVP waveform for the LDO input. Use the CP edge matrix to define the next distinct input-protection fixture; do not rerun it unchanged or use a historical trip as a dynamic clamp. Keep BAT1.80V and model-current-valid mux integration as separate unresolved gates. The whole-power draft is prepared, not selected.
 
-**BLOCKER REQUIRING USER:** No routine approval, Windows rerun or new physical stage requested. Runtime/raw-retention blockers CLOSED. Whole pre-fabrication proof remains blocked by named invalid/abstract BAT/mux/OVC models and missing source/Ceff/load/thermal/reverse bounds. Consolidated technical+Iran PASS list is not ready; nominal USB success is not board/fabrication PASS.
+**BLOCKER REQUIRING USER:** None for routine continuation or publication: user explicitly approved transferring the CP raw archive and documents to this private repo on2026-10-07. No Windows rerun or physical stage requested. Technical whole-power proof remains blocked by named BAT/mux/reverse/OVP model gaps and real source/Ceff/load/thermal bounds; consolidated purchase/ECO is not ready.
 
 **FABRICATION HOLD.** Continuity CI validates file retention and metadata; it does not certify circuit function.

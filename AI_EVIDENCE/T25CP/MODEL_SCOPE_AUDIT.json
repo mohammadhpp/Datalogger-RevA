@@ -1,0 +1,22 @@
+{
+  "model_sha256": "8dc150de2dfdf2e7562dd0656970ffc7750537d0f88966fc4f776bf5f71a2e2a",
+  "reverse_finding": "VIN pin supplied by behavioral current source G_ABMII1; VIN_ORG is an ideal sensed voltage, no physical VOUT-to-VIN body diode. Forced OUT3.3/IN0 reports only +1.5uA source delivery.",
+  "reject": "Do not interpret collapse hold-up or absent negative input current as actual reverse blocking.",
+  "source_current_warning": "I(V_SRC) includes the ideal 1uF input capacitor current; negative edge spikes are not isolated LDO reverse current.",
+  "excluded": [
+    "temperature",
+    "noise",
+    "guaranteed hardware line response",
+    "real TS431/PNP/FSS2301S OVP",
+    "AA or mux or NRST or SD writing"
+  ],
+  "baseline_commit": "258d35194e3d91e7795ba1ee8c42765ca0143c34",
+  "local_cad_blobs_match": {
+    "01_POWER.SchDoc": "da2d005712c47000eb8c16157eca464d3fee4fe1",
+    "07_EXPANSION.SchDoc": "8714da5cbc041923e25a1aa647002e88f5b4d9a3",
+    "DATALOGER_RevA.PcbDoc": "c1ad1e246ad0489a1e2879e16b3a5f959489d3af"
+  },
+  "runtime_sha256": "f86062f3bb1016dcf1552a57f38954891b4e71aee6defbebde6de589ee55682f",
+  "runtime_archive_sha256": "aa98b3c74743260a38835bd2698f58221b7237939798d1fdf2297f44ecf1d6ec",
+  "runtime_url": "https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/old-releases/42/ngspice-42_64.7z"
+}

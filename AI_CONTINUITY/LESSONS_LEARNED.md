@@ -271,3 +271,11 @@ These are project-specific lessons intended to prevent repeated mistakes across 
 - TPS259533 filename/header alone does not decide validity; source tracing shows5.7V comparator+3us delay+enableAND drivesOVLO shutdown, unlike databookclamp. Reject that fault claim even when full trace completes; do not infer real thermal delay. Preserve valid nominal subset with exact scope.
 - A startup that settles later than pre-event window needs a later event/prewindow, not an invalid transfer result; combined533/LDO3ms event completed normal5.5V case. Do not transplant its31.25k feedback result onto Iran31.6k version.
 - Package JEDECtheta and no-loadIQ max do not guarantee actual PCB temperature or280mA ground current. Exact resistor tolerance/TCR corners are DC conditions, not transient/SDwrite/NRST proof.
+
+
+## T25CP — line-edge and reverse-model scope
+
+- TLV767 wide input rating is not a promise of unchanged output during fast line edges. Inspect both rising and falling events, output extrema and real source/Ceff limits; larger COUT did not monotonically improve every nominal overshoot.
+- Vendor TLV767 model omits physical OUT-to-IN body diode. Forced output with zero input reports only1.5uA behavioral shutdown current; reject reverse safety/hold-up inference. Source-current edge spikes also include CIN current; distinguish current at LDO pin from total source current.
+- Schottky OUT-to-IN bypass and series diode before CIN have different purposes. Neither proves AA/mux reverse blocking by itself. Do not turn generic diode name or typical guidance into full-temperature exact-part qualification.
+- Windows ngspice codemodel command kept literal quotation marks in the library filename; fix loader path syntax while preserving failed output, not electrical parameters. Printed adaptive timestamps can round equal; retain their samples/extrema and prohibit backwards time, rather than discard rows.

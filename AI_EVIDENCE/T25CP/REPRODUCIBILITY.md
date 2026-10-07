@@ -1,0 +1,5 @@
+# T25CP replay contract
+
+Raw archive includes complete existing CSV/deck/log data and original vendor model/PDF. Analyze existing data first; do not rerun unchanged simulations. Extract into a fresh writable directory. Portable engine is separately available at the official URL/hash in MODEL_SCOPE_AUDIT.json; expected relative path runtime/Spice64/bin/ngspice_con.exe. run_ng_t25cp.py and run_edge_matrix.py refuse overwriting their existing case decks. audit_and_package.py audits existing raw rows and preserves all rounded-equal timestamps. PSpice timeout and initial ngspice loader failure are intentionally retained. The engine archive itself is not redistributed in the evidence ZIP.
+
+User explicitly approved publication of the raw archive and documents to this private repository on2026-10-07. Full raw ZIP is tracked beside this file; its Git blob is cf37183bc949fd5ee47a7ecc35f262cfe589e65f. CRC and every member SHA256 were verified locally. Git blob identity verifies matching stored bytes; it is not a new electrical test or a separate download/extraction claim.
