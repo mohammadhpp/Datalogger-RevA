@@ -36,3 +36,7 @@ Immediately previous T25CW live handoff is retained byte-for-byte at `AI_CONTINU
 
 - One CURRENT EXACT POINT only. Existing final T24 DRC 0/0 is a geometry checkpoint, NOT a functional power PASS.
 - Current CAD, PCB, procurement and two-layer constraint unchanged. All new power parts require exact Iran source and ONE consolidated design/purchase decision before Altium ECO. No fabrication, no Gerbers.
+
+**NEXT EXECUTABLE ACTION:** Obtain physically valid, current-accounting TPS631000 at loaded BAT1.80V and mux priority model or qualified actual waveforms, then run both source transfers through the exact T25CX trace verifier with MCU/SD/NRST/write evidence. Work independently on exact Iran BOM and USB12V OVP/regulated input. No repeated invalid prior fixtures.
+
+**BLOCKER REQUIRING USER:** None for continuing read-only independent engineering or preparing valid fixtures. A real hardware test, consolidated purchase/ECO and manufacturing action require their specific separate explicit approval. **FABRICATION HOLD.**
