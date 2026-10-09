@@ -1,0 +1,42 @@
+{
+  "stage": "T25CV",
+  "source_pdf": "https://www.ti.com/lit/ds/symlink/tps631000.pdf",
+  "status": "ACTUAL_TEST_WITH_RAW_EVIDENCE__CONDITIONAL_POWER_BALANCE_ONLY",
+  "tested_cases": 35,
+  "pack_loaded_terminal_V": 1.8,
+  "device_startup_input_min_V": "must exceed 1.65V",
+  "design_output_W": 0.924,
+  "post_pack_path_Rlimit_scenarios": [
+    {
+      "eta": 0.7,
+      "R_ohm": 0.1875
+    },
+    {
+      "eta": 0.75,
+      "R_ohm": 0.20089285714285715
+    },
+    {
+      "eta": 0.8,
+      "R_ohm": 0.21428571428571427
+    },
+    {
+      "eta": 0.85,
+      "R_ohm": 0.22767857142857142
+    },
+    {
+      "eta": 0.9,
+      "R_ohm": 0.24107142857142858
+    }
+  ],
+  "full_local_zip_sha256": "5dd8bdafbf119fb05ea8144cf6682062a5322c4ad8251c818a5373426edf0cd9",
+  "physical_PASS": false,
+  "pcb_change": false,
+  "unverified": [
+    "Input pin voltage under actual transient pulse",
+    "Efficiency vs loaded 1.80V across all temps",
+    "S1/holder path resistance",
+    "NRST/SD no-reset",
+    "Ceff",
+    "mux input current model"
+  ]
+}

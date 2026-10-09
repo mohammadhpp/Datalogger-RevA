@@ -7,7 +7,16 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25CU TPS54202 EN floating vs divider gate, 2026-10-09
+## CURRENT EXACT POINT — T25CV two-AA pack1.80V post-pack path budget, 2026-10-09
+
+- Autonomous continuation from T25CU, source is current TI TPS631000 Rev C August 2026. Vendor gives VIN 1.6..5.5V recommended, **startup device VIN >1.65V**; this is NOT loaded AA pack terminal VIN or guaranteed regulated 280mA operation.
+- ACTUAL_TEST_WITH_RAW_EVIDENCE / CONDITIONAL_DC_POWER_BALANCE_ONLY: Python executed 35 power-conserving self-consistent scenarios for 1.80V pack terminal, 3.3V*0.280A=0.924W output and hypothetical efficiencies0.70..0.90 and Rpost-pack. Max Rpath for Vpin threshold1.65: 0.1875Ω at eta0.70;0.20089Ω eta0.75;0.21429Ω eta0.80;0.22768Ω eta0.85;0.24107Ω eta0.90. These are threshold equalities, actual startup needs margin/greater Vpin.
+- Path includes holder/S1 BAT/wires/vias/traces AFTER pack-terminal loaded-voltage measurement; do not double count AA internal resistance. Source eta, current limit and pulsed input not guaranteed; not a pass/fail for assembled design. Battery must remain load-ready during USB softstart; mux current and NRST/SD no-reset still OPEN.
+- Full executed 35-row JSON, reproducible Python and SHA256 manifest in local T25CV ZIP; compact Git executable and evidence under AI_SCRIPTS/T25 and AI_EVIDENCE/T25CV. No invalid BF/BT fixture replay. TPS631000 and Murata original 1uH L1 retained; S1 exact MPN sourcing deferred.
+- NEXT EXECUTABLE ACTION: verify S1+holder+PCB path R range from exact current MPN/source, then prepare physically valid BAT1.80V/USB5/5.50 current-conserving mux test with 3V3_SYS/MCU.NRST/SD writes. Obtain original TI TPS54202 SLVMBJ5C bytes separately before any claim of buck source PSpice.
+- BLOCKER REQUIRING USER: none for independent research; all new CAD/ECO/purchase/manufacturing decisions only via one consolidated choice. FABRICATION HOLD.
+
+## PRIOR VERIFIED POINT — T25CU TPS54202 EN floating vs divider gate, 2026-10-09
 
 - Continued from Git b2bcbb06 (T25CT), verified exact TI RevC February 2026 datasheet EN and VIN UVLO specs. User rule reinforced: do not stop for routine approval; keep advancing executable pre-fabrication gates, no repeat of invalid T25 fixtures.
 - TI explicitly permits EN FLOAT to enable TPS54202. Vendor internal rising VIN UVLO 3.9..4.4V, EN recommended max5.5/abs7V, rising EN1.21..1.28V. EN typical sourcing currents Ip0.7uA, Ih1.55uA are NOT guaranteed upper bounds. Preferred un-applied topological screen: FLOAT EN, keep S1 USB pole; no unsafe direct EN-to-raw12V wire.
