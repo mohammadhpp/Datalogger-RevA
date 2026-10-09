@@ -1,0 +1,13 @@
+{
+  "classification": "AUDIT_PASS_OF_CONDITIONAL_EQUATIONS_ONLY",
+  "rows_checked": 66,
+  "source_json_sha256": "db1b0bf2db79cb1ed27ffeac84f628470cdd2e4e86abbae430757f74b2646083",
+  "explicit_nonclaims": [
+    "not TPS54202 PSpice run",
+    "not controller actual EN startup proof",
+    "not USB5V reference design qualification",
+    "not L inductance derating guarantee",
+    "not output voltage/MCU BOR PASS",
+    "not Iranian procurement approval"
+  ]
+}

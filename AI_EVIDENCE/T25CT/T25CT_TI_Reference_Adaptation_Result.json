@@ -1,0 +1,344 @@
+{
+  "stage": "T25CT",
+  "classification": "ACTUAL_EXECUTED_REFERENCE_ARITHMETIC_NOT_VENDOR_MODEL_PASS",
+  "date": "2026-10-09",
+  "source": {
+    "TPS54202_datasheet": "https://www.ti.com/lit/ds/symlink/tps54202.pdf",
+    "TIDA_00947_reference_page": "https://www.ti.com/tool/TIDA-00947",
+    "TIDA_00947_BOM": "https://www.ti.com/lit/pdf/tidrmf5",
+    "TIDA_00947_schematic": "https://www.ti.com/lit/pdf/tidrmf4",
+    "model_metadata": "TPS54202 Unencrypted PSpice Transient Model Package Rev C, SLVMBJ5C.ZIP, TI product page; bytes NOT retrieved/executed",
+    "TI_reference_verified_VIN_V": [
+      6.5,
+      20
+    ]
+  },
+  "locked_RevA": {
+    "USB5p50V_no_nuisance": true,
+    "BAT_loaded_pack_min_V": 1.8,
+    "3V3_system_design_load_A": 0.28
+  },
+  "reference_parts_not_RevA_BOM": {
+    "TPS54202": "TPS54202DDCR",
+    "L1_22uH": "THPC6045MF-220M, 1.9A, 96mOhm, 6x6mm",
+    "C4_C5": "GRM21BZ71A226ME15L x2, nominal22uF each",
+    "R2_EN_upper": "562k 1%",
+    "R5_EN_lower": "102k 1%",
+    "R3_FB_upper": "200k 1%",
+    "R6_FB_lower": "44.2k 1%",
+    "C6_feedforward": "30pF C0G",
+    "C3_input": "10uF 35V (reference)"
+  },
+  "device_characteristics": {
+    "VIN_recommended_V": [
+      4.5,
+      28
+    ],
+    "EN_rise_threshold_V": [
+      1.21,
+      1.28
+    ],
+    "EN_absolute_max_V": 7,
+    "EN_pullup_current_typical_uA": 0.7,
+    "EN_hysteresis_current_typical_uA": 1.55,
+    "FB_reference_V_at_VIN12V": [
+      0.581,
+      0.596,
+      0.611
+    ],
+    "fSW_kHz": [
+      390,
+      500,
+      630
+    ],
+    "soft_start_ms_typical_not_startup_guarantee": 5
+  },
+  "feedback_ideal_DC_screen": {
+    "nominal_V": 3.29283257918552,
+    "corner_min_V": 3.1579006764929884,
+    "corner_max_V": 3.431558526440879,
+    "note": "VFB limits specified at VIN12V, do not assert same guaranteed VOUT at USB5V"
+  },
+  "EN_divider_resistor_only": [
+    {
+      "VIN_V": 4.75,
+      "EN_divider_nominal_V": 0.7296686746987951,
+      "EN_divider_1percent_min_V": 0.7174020341011068,
+      "EN_divider_1percent_max_V": 0.7421064604185623,
+      "V_EN_rise_min_V_according_to_TI": 1.21,
+      "EN_with_typical_0p7uA_plus_1p55uA_pullup_V_sensitivity": 0.923914156626506,
+      "resistor_only_best_case_below_TI_EN_rise_min": true
+    },
+    {
+      "VIN_V": 5.0,
+      "EN_divider_nominal_V": 0.7680722891566265,
+      "EN_divider_1percent_min_V": 0.7551600358959019,
+      "EN_divider_1percent_max_V": 0.781164695177434,
+      "V_EN_rise_min_V_according_to_TI": 1.21,
+      "EN_with_typical_0p7uA_plus_1p55uA_pullup_V_sensitivity": 0.9623177710843374,
+      "resistor_only_best_case_below_TI_EN_rise_min": true
+    },
+    {
+      "VIN_V": 5.5,
+      "EN_divider_nominal_V": 0.8448795180722891,
+      "EN_divider_1percent_min_V": 0.8306760394854921,
+      "EN_divider_1percent_max_V": 0.8592811646951775,
+      "V_EN_rise_min_V_according_to_TI": 1.21,
+      "EN_with_typical_0p7uA_plus_1p55uA_pullup_V_sensitivity": 1.039125,
+      "resistor_only_best_case_below_TI_EN_rise_min": true
+    },
+    {
+      "VIN_V": 12.0,
+      "EN_divider_nominal_V": 1.8433734939759037,
+      "EN_divider_1percent_min_V": 1.8123840861501646,
+      "EN_divider_1percent_max_V": 1.8747952684258418,
+      "V_EN_rise_min_V_according_to_TI": 1.21,
+      "EN_with_typical_0p7uA_plus_1p55uA_pullup_V_sensitivity": 2.0376189759036145,
+      "resistor_only_best_case_below_TI_EN_rise_min": false
+    },
+    {
+      "VIN_V": 20.0,
+      "EN_divider_nominal_V": 3.072289156626506,
+      "EN_divider_1percent_min_V": 3.0206401435836074,
+      "EN_divider_1percent_max_V": 3.124658780709736,
+      "V_EN_rise_min_V_according_to_TI": 1.21,
+      "EN_with_typical_0p7uA_plus_1p55uA_pullup_V_sensitivity": 3.2665346385542167,
+      "resistor_only_best_case_below_TI_EN_rise_min": false
+    }
+  ],
+  "inductor_CCM_ripple_scenario": [
+    {
+      "VIN_V": 5.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 390.0,
+      "ripple_pp_A_ccm_approx": 0.13076923076923078,
+      "peak_A_for_280mA_CCM_approx": 0.3453846153846154,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 500.0,
+      "ripple_pp_A_ccm_approx": 0.102,
+      "peak_A_for_280mA_CCM_approx": 0.331,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 630.0,
+      "ripple_pp_A_ccm_approx": 0.08095238095238096,
+      "peak_A_for_280mA_CCM_approx": 0.32047619047619047,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 390.0,
+      "ripple_pp_A_ccm_approx": 0.16346153846153846,
+      "peak_A_for_280mA_CCM_approx": 0.36173076923076924,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 500.0,
+      "ripple_pp_A_ccm_approx": 0.1275,
+      "peak_A_for_280mA_CCM_approx": 0.34375,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 630.0,
+      "ripple_pp_A_ccm_approx": 0.10119047619047619,
+      "peak_A_for_280mA_CCM_approx": 0.3305952380952381,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.5,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 390.0,
+      "ripple_pp_A_ccm_approx": 0.15384615384615385,
+      "peak_A_for_280mA_CCM_approx": 0.3569230769230769,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.5,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 500.0,
+      "ripple_pp_A_ccm_approx": 0.12,
+      "peak_A_for_280mA_CCM_approx": 0.34,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.5,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 630.0,
+      "ripple_pp_A_ccm_approx": 0.09523809523809523,
+      "peak_A_for_280mA_CCM_approx": 0.32761904761904764,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.5,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 390.0,
+      "ripple_pp_A_ccm_approx": 0.19230769230769232,
+      "peak_A_for_280mA_CCM_approx": 0.37615384615384617,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.5,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 500.0,
+      "ripple_pp_A_ccm_approx": 0.15,
+      "peak_A_for_280mA_CCM_approx": 0.355,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 5.5,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 630.0,
+      "ripple_pp_A_ccm_approx": 0.11904761904761904,
+      "peak_A_for_280mA_CCM_approx": 0.3395238095238095,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 12.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 390.0,
+      "ripple_pp_A_ccm_approx": 0.27884615384615385,
+      "peak_A_for_280mA_CCM_approx": 0.4194230769230769,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 12.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 500.0,
+      "ripple_pp_A_ccm_approx": 0.2175,
+      "peak_A_for_280mA_CCM_approx": 0.38875,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 12.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 630.0,
+      "ripple_pp_A_ccm_approx": 0.17261904761904762,
+      "peak_A_for_280mA_CCM_approx": 0.3663095238095238,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 12.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 390.0,
+      "ripple_pp_A_ccm_approx": 0.3485576923076923,
+      "peak_A_for_280mA_CCM_approx": 0.45427884615384617,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 12.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 500.0,
+      "ripple_pp_A_ccm_approx": 0.271875,
+      "peak_A_for_280mA_CCM_approx": 0.4159375,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 12.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 630.0,
+      "ripple_pp_A_ccm_approx": 0.21577380952380953,
+      "peak_A_for_280mA_CCM_approx": 0.38788690476190474,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 20.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 390.0,
+      "ripple_pp_A_ccm_approx": 0.3211538461538462,
+      "peak_A_for_280mA_CCM_approx": 0.4405769230769231,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 20.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 500.0,
+      "ripple_pp_A_ccm_approx": 0.2505,
+      "peak_A_for_280mA_CCM_approx": 0.40525,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 20.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 22.0,
+      "fSW_kHz_scenario": 630.0,
+      "ripple_pp_A_ccm_approx": 0.1988095238095238,
+      "peak_A_for_280mA_CCM_approx": 0.3794047619047619,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 20.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 390.0,
+      "ripple_pp_A_ccm_approx": 0.4014423076923077,
+      "peak_A_for_280mA_CCM_approx": 0.4807211538461538,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 20.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 500.0,
+      "ripple_pp_A_ccm_approx": 0.313125,
+      "peak_A_for_280mA_CCM_approx": 0.4365625,
+      "load_A_design": 0.28
+    },
+    {
+      "VIN_V": 20.0,
+      "VOUT_target_V": 3.3,
+      "inductance_uH_scenario": 17.6,
+      "fSW_kHz_scenario": 630.0,
+      "ripple_pp_A_ccm_approx": 0.24851190476190477,
+      "peak_A_for_280mA_CCM_approx": 0.40425595238095235,
+      "load_A_design": 0.28
+    }
+  ],
+  "most_constraining_5V_EN_no_external_driver": {
+    "VIN_V": 5.0,
+    "EN_resistor_only_nominal_V": 0.7680722891566265,
+    "EN_rise_min_V": 1.21,
+    "statement": "Reference EN resistors do not meet enable rise threshold for USB5V with ideal passive divider; TI typical pull-up and hysteresis current do not erase the deficit in this calculation. External EN header/drive may override: NOT tested or approved."
+  },
+  "design_consequence": [
+    "Do not copy TIDA-00947 EN resistors into RevA USB5V; change only in consolidated candidate ECO after validated EN margins.",
+    "TIDA VIN6.5..20 measured performance must not be claimed for USB5V or 5.5V.",
+    "At 3.3V target directly before a downstream mux, VOUT drop across mux may under-run 3V3_SYS spec; true mux conduction and logic/BOR constraints OPEN.",
+    "Upstream buck avoids pass-through 12V forcing its input-side switch 12V directly onto mux; it does NOT guarantee output has no fault overshoot.",
+    "Vendor model official listing is a useful executable path but has not been downloaded/run in current container.",
+    "No independent BAT1.80V no-reset / SD write / OLED evidence here.",
+    "Candidate inductor exact MPN and output capacitor exact MPN not Iran-stock qualified.",
+    "EN absolute max7V means a 12V raw USB fault must never directly drive EN.",
+    "TIDA EN network may rely on external enable control: source screenshot shows an EN header; do not misrepresent it as fixed always-on."
+  ]
+}
