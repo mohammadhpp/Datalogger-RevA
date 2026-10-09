@@ -1,0 +1,122 @@
+{
+  "status": "ACTUAL_EXECUTED_CONDITIONAL_ARITHMETIC_NO_HARDWARE_PASS",
+  "scope": "Capacitor-only lower-bound C and upper-bound source gap; constant current, no replenishment, fixed scenario thresholds. Not a mux/LDO fault simulation.",
+  "assumptions": {
+    "I_LOAD_mA": 280,
+    "BUS_START_V": 3.3,
+    "SCREEN_FLOOR_V": 2.7,
+    "LDOCIN_mA": 280,
+    "LDOCIN_uF_scenario": 1,
+    "LDO_OUTPUT_V_scenario": 3.3,
+    "LDO_DROPOUT_V_scenario": 0.9,
+    "SERIES_DIODE_VF_V_scenario": 0.5
+  },
+  "required_Cbus_effective_uF": [
+    {
+      "gap_us": 5,
+      "c_eff_min_uF": 2.3333333333333335
+    },
+    {
+      "gap_us": 10,
+      "c_eff_min_uF": 4.666666666666667
+    },
+    {
+      "gap_us": 25,
+      "c_eff_min_uF": 11.666666666666666
+    },
+    {
+      "gap_us": 50,
+      "c_eff_min_uF": 23.333333333333332
+    },
+    {
+      "gap_us": 100,
+      "c_eff_min_uF": 46.666666666666664
+    }
+  ],
+  "available_gap_us_if_Cbus_effective": [
+    {
+      "Cbus_effective_uF": 0.5,
+      "max_gap_us": 1.0714285714285714
+    },
+    {
+      "Cbus_effective_uF": 1,
+      "max_gap_us": 2.142857142857143
+    },
+    {
+      "Cbus_effective_uF": 4.7,
+      "max_gap_us": 10.071428571428571
+    },
+    {
+      "Cbus_effective_uF": 10,
+      "max_gap_us": 21.428571428571427
+    },
+    {
+      "Cbus_effective_uF": 22,
+      "max_gap_us": 47.142857142857146
+    },
+    {
+      "Cbus_effective_uF": 44,
+      "max_gap_us": 94.28571428571429
+    }
+  ],
+  "illustrative_ldo_input_cap_gap_us": [
+    {
+      "USB_V": 5,
+      "Cin_effective_uF": 1,
+      "pre_dropout_gap_us": 1.071428571428572
+    },
+    {
+      "USB_V": 5,
+      "Cin_effective_uF": 4.7,
+      "pre_dropout_gap_us": 5.035714285714289
+    },
+    {
+      "USB_V": 5,
+      "Cin_effective_uF": 10,
+      "pre_dropout_gap_us": 10.71428571428572
+    },
+    {
+      "USB_V": 5.5,
+      "Cin_effective_uF": 1,
+      "pre_dropout_gap_us": 2.8571428571428577
+    },
+    {
+      "USB_V": 5.5,
+      "Cin_effective_uF": 4.7,
+      "pre_dropout_gap_us": 13.42857142857143
+    },
+    {
+      "USB_V": 5.5,
+      "Cin_effective_uF": 10,
+      "pre_dropout_gap_us": 28.571428571428577
+    }
+  ],
+  "diode_forward_heat_W_at_280mA": [
+    {
+      "VF_scenario_V": "0.3",
+      "diode_heat_W": 0.084
+    },
+    {
+      "VF_scenario_V": "0.5",
+      "diode_heat_W": 0.14
+    },
+    {
+      "VF_scenario_V": "0.6",
+      "diode_heat_W": 0.168
+    }
+  ],
+  "non_claims": [
+    "Cbus effective capacitance unknown: do not identify it with C_USB1/C_USB2/CIN/COUT or a nameplate",
+    "2.7 V is illustrative T25CP rail screen, NOT proven MCU BOR/SD write limit",
+    "0.9 V LDO dropout, 0.5 V diode VF and 280 mA input are hypothetical constant values; no worst-case guarantee",
+    "Series diode alone does not protect LDO output-to-input intrinsic body path; bypass diode alone does not block upstream discharge",
+    "T25CP reverse vendor model omits physical body diode; do not infer reverse PASS",
+    "Do not use missing TPS2121/TPS2116 current model as whole-system evidence"
+  ],
+  "source_basis": [
+    "Git main T25CP_LDO_FAULT_EDGE_AND_REVERSE_SCOPE_FA.md",
+    "Git main T25CP_WHOLE_POWER_DRAFT_FA.md",
+    "TI TLV767 RevD section 9.1.4",
+    "Git main T25X_OVP_MODEL_AND_BIAS_FEASIBILITY_FA.md"
+  ]
+}

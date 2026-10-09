@@ -7,7 +7,18 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25CP LDO fault edges / reverse-model scope, 2026-10-06 UTC
+## CURRENT EXACT POINT — T25CQ post-mux Cbus and diode reverse gate, 2026-10-09
+
+- This session resumed directly from Git main T25CP (commit 3ef4dd67), read AI_START_HERE, decisions, continuity protocol, T25X/AF/Z, CN/CO/CP and source archives. No CJ/CK/CL/CN/CO or CP invalid/redundant fixture rerun.
+- ACTUAL_EXECUTED_CONDITIONAL_ARITHMETIC_NO_HARDWARE_PASS: T25CQ Python + JSON in AI_SCRIPTS/T25 and AI_EVIDENCE/T25CQ. Independent 3V3_SYS *post-mux* Cbus budget: at I=280mA, Vstart3.3/floor2.7 scenario a 10us source gap requires4.667uF EFFECTIVE Cbus; 50us requires23.333uF. True mux gap, Cbus_eff, MCU BOR and SD write boundary remain unknown. An upstream C_USB or LDO COUT cannot automatically be counted as Cbus.
+- Illustrative LDO-CIN sensitivity only: series diode VF0.5V, dropout0.9V, 1uF effective CIN, 280mA assumed input -> pre-dropout no-source time1.071us at USB5V; NOT actual diode/guarantee. Diode assumed loss0.14W at VF0.5/280mA.
+- Reverse: OUT-to-IN bypass protects intrinsic LDO path but not upstream discharge; series diode before CIN isolates upstream only and still requires validation of intrinsic OUT>IN path. CP model lacks intrinsic reverse diode. No actual diode selected.
+- Iran exact diode screen: SS14 generic stocked offers found but Atrinelec advertises Toshiba while detail text says Vishay; no full manufacturer MPN+validated vendor data and temperature/IR/surge proof. ECA says out of stock. Manufacturer-specific onsemi SS14 global evidence not Iranian supply. NO exact-MPN Iran PASS, no purchase/ECO.
+- Read AI_CONTINUITY/T25CQ_DIODE_AND_HOLDUP_GATES_FA.md. Live CAD PCB and power SchDoc blobs remain unmodified; existing T23/T24 DRC PASS only. TPS631000/Murata1uH retained, SD subgate closed screening, S1 triple-pole decision retained and exact sourcing deferred.
+- NEXT EXECUTABLE ACTION: exact sourced diode data and validated TS431BCX/BC857BLT1G/FSS2301S real-node OVP response under bounded input-source fault; then current-valid mux BAT1.80V/NRST/SD no-reset. Do not re-run invalid or already accepted PSpice fixtures. BLOCKER REQUIRING USER: none for independent evidence work; physical instrumentation/board not authorized.
+- NO WHOLE-POWER PASS, NO COMPLETE IRAN BOM, NO CAD ECO, NO GERBERS, FABRICATION HOLD.
+
+## PRIOR VERIFIED POINT — T25CP LDO fault edges / reverse-model scope, 2026-10-06 UTC
 
 - Continued from authoritative CM/CN/CO commit258d351; Windows local repo remained e6f9a36/T25CF, CAD blobs01_POWER/07_EXPANSION/PCB identical. No edits to the user's working repo, CAD, population, purchase or physical stage.
 - Read T25CP_LDO_FAULT_EDGE_AND_REVERSE_SCOPE_FA.md and T25CP_WHOLE_POWER_DRAFT_FA.md. Exact CN SLVMCY1 LIB and RevD PDF re-fetched with matching hashes. Portable official Windows ngspice42 executed13 NEW analyses:1DC/12TRAN, all completed; every transient valid1.5..1.9ms prestate and3ms finish. Independent CSV audit includes all rounded-equal timestamps and extrema. No CJ/CK/CL/CN/CO repeat.
