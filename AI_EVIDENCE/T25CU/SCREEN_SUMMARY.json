@@ -1,0 +1,27 @@
+{
+  "stage": "T25CU",
+  "date": "2026-10-09",
+  "parent_sha": "b2bcbb06d75dad1152a2972ebfa4ac2e13900a52",
+  "source_pdf": "https://www.ti.com/lit/ds/symlink/tps54202.pdf",
+  "classification": "ACTUAL_TEST_WITH_RAW_EVIDENCE__CONDITIONAL_DC_ARITHMETIC_ONLY",
+  "tested_120_KCL_corners": true,
+  "TIDA_562_102_at_USB5_max_EN_V": 0.9767456810737034,
+  "alternative_150_100_at_USB5_min_EN_V": 1.9760479041916168,
+  "alternative_150_100_at_USB12_typical_current_max_EN_V": 4.992972444889779,
+  "alternative_150_100_at_USB28_no_current_min_EN_V": 11.065868263473053,
+  "max_allowed_internal_sourcing_at12_uA": 10.684401773510684,
+  "internal_IP_and_IH_typical_only": [
+    0.7,
+    1.55
+  ],
+  "preferred_unapplied_topology": "FLOAT_EN_per_TI; regulator VIN internal UVLO 3.9..4.4V rising",
+  "model_ZIP": "SLVMBJ5C.ZIP",
+  "model_retrieved": false,
+  "model_execution": false,
+  "softstart_typical_ms": 5,
+  "hypothetical_only_280mA_cbus_needed_5ms_3p3_to_2p7_uF": 2333.3333333333335,
+  "fabricate": false,
+  "CAD_ECO": false,
+  "purchase": false,
+  "local_evidence_zip_sha256": "6ec4825b3c3ebaba9f187068decc30d239451c3ae265a8f7f1d25451c88f1546"
+}
