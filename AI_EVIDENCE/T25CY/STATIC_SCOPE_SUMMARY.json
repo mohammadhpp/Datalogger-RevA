@@ -1,0 +1,19 @@
+{
+  "stage": "T25CY",
+  "date": "2026-10-09",
+  "type": "STATIC_CORNER_EXECUTED_NO_SYSTEM_PASS",
+  "parent": "fad03ccea3d4adc90453c4caf0c714bed0b2fc80",
+  "architecture": "USB buck3.305 and retained battery boost -> TPS2121 downstream mux -> 3V3_SYS",
+  "corners": 256,
+  "rail_usb_min": 3.1696138613861384,
+  "rail_usb_max": 3.4443792470156107,
+  "minimum_priority_margin_v": 0.06921359204106714,
+  "switchover_crossing_min_v": 2.876080345670477,
+  "switchover_crossing_max_v": 3.0862779000599243,
+  "crossing_with_adverse_40mV_offset_min_v": 2.828238761512061,
+  "offline_full_bundle_sha256": "4d17ff792fbfdb136b53257e7e73a1306a35161711f72ba8cc380ca7a9c41e46",
+  "no_cad_change": true,
+  "no_purchase": true,
+  "no_gerber": true,
+  "source_continuity_ci_not_electrical_pass": true
+}
