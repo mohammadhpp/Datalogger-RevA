@@ -1,0 +1,182 @@
+{
+  "tests_run": 7,
+  "all_assertions_passed": true,
+  "status": "VALIDATOR_UNIT_TEST_PASS_NO_PHYSICAL_OR_VENDOR_POWER_PASS",
+  "cases": {
+    "nominal": {
+      "classification": "TEST_STAGED_AWAITING_QUALIFIED_DEVICE_OR_PHYSICAL_TRACE",
+      "waveform_screen": "CONDITIONAL_SCREEN_PASS",
+      "system_pass": false,
+      "missing_columns": [],
+      "missing_metadata": [],
+      "violations": [],
+      "warnings": [
+        "OLED_CARRIER_VOLTAGE_AND_SD_WRITE_INTEGRITY_NOT_INFERRED_FROM_THESE_WAVEFORMS",
+        "SOURCE_NOT_VENDOR_QUALIFIED_OR_PHYSICALLY_MEASURED",
+        "NO_SD_WRITE_SUCCESS_AND_DATA_INTEGRITY_WITNESS"
+      ],
+      "observed": {
+        "n": 41,
+        "min_bus_v": 3.3,
+        "min_mcu_vdd_v": 3.3,
+        "min_sd_vdd_v": 3.3,
+        "max_dt_us": 0.25,
+        "max_mux_kcl_residual_a": 0.0,
+        "max_bus_kcl_residual_a": 0.0
+      },
+      "provenance": "SYNTHETIC_UNIT_TEST_NOT_A_DEVICE_MODEL"
+    },
+    "unloaded_model": {
+      "classification": "TEST_STAGED_AWAITING_QUALIFIED_DEVICE_OR_PHYSICAL_TRACE",
+      "waveform_screen": "SCREEN_FAIL",
+      "system_pass": false,
+      "missing_columns": [],
+      "missing_metadata": [],
+      "violations": [
+        "MUX_INPUT_OUTPUT_CURRENT_NOT_CONSERVED"
+      ],
+      "warnings": [
+        "OLED_CARRIER_VOLTAGE_AND_SD_WRITE_INTEGRITY_NOT_INFERRED_FROM_THESE_WAVEFORMS",
+        "SOURCE_NOT_VENDOR_QUALIFIED_OR_PHYSICALLY_MEASURED",
+        "NO_SD_WRITE_SUCCESS_AND_DATA_INTEGRITY_WITNESS"
+      ],
+      "observed": {
+        "n": 41,
+        "min_bus_v": 3.3,
+        "min_mcu_vdd_v": 3.3,
+        "min_sd_vdd_v": 3.3,
+        "max_dt_us": 0.25,
+        "max_mux_kcl_residual_a": 0.28,
+        "max_bus_kcl_residual_a": 0.0
+      },
+      "provenance": "SYNTHETIC_UNIT_TEST_NOT_A_DEVICE_MODEL"
+    },
+    "sd_droop": {
+      "classification": "TEST_STAGED_AWAITING_QUALIFIED_DEVICE_OR_PHYSICAL_TRACE",
+      "waveform_screen": "SCREEN_FAIL",
+      "system_pass": false,
+      "missing_columns": [],
+      "missing_metadata": [],
+      "violations": [
+        "SD_VDD_BELOW_STANDARD_MINIMUM"
+      ],
+      "warnings": [
+        "OLED_CARRIER_VOLTAGE_AND_SD_WRITE_INTEGRITY_NOT_INFERRED_FROM_THESE_WAVEFORMS",
+        "SOURCE_NOT_VENDOR_QUALIFIED_OR_PHYSICALLY_MEASURED",
+        "NO_SD_WRITE_SUCCESS_AND_DATA_INTEGRITY_WITNESS"
+      ],
+      "observed": {
+        "n": 41,
+        "min_bus_v": 3.3,
+        "min_mcu_vdd_v": 3.3,
+        "min_sd_vdd_v": 2.6,
+        "max_dt_us": 0.25,
+        "max_mux_kcl_residual_a": 0.0,
+        "max_bus_kcl_residual_a": 0.0
+      },
+      "provenance": "SYNTHETIC_UNIT_TEST_NOT_A_DEVICE_MODEL"
+    },
+    "reset": {
+      "classification": "TEST_STAGED_AWAITING_QUALIFIED_DEVICE_OR_PHYSICAL_TRACE",
+      "waveform_screen": "SCREEN_FAIL",
+      "system_pass": false,
+      "missing_columns": [],
+      "missing_metadata": [],
+      "violations": [
+        "NRST_ASSERTION_OBSERVED"
+      ],
+      "warnings": [
+        "OLED_CARRIER_VOLTAGE_AND_SD_WRITE_INTEGRITY_NOT_INFERRED_FROM_THESE_WAVEFORMS",
+        "SOURCE_NOT_VENDOR_QUALIFIED_OR_PHYSICALLY_MEASURED",
+        "NO_SD_WRITE_SUCCESS_AND_DATA_INTEGRITY_WITNESS"
+      ],
+      "observed": {
+        "n": 41,
+        "min_bus_v": 3.3,
+        "min_mcu_vdd_v": 3.3,
+        "min_sd_vdd_v": 3.3,
+        "max_dt_us": 0.25,
+        "max_mux_kcl_residual_a": 0.0,
+        "max_bus_kcl_residual_a": 0.0
+      },
+      "provenance": "SYNTHETIC_UNIT_TEST_NOT_A_DEVICE_MODEL"
+    },
+    "battery_fast_collapse": {
+      "classification": "TEST_STAGED_AWAITING_QUALIFIED_DEVICE_OR_PHYSICAL_TRACE",
+      "waveform_screen": "SCREEN_FAIL",
+      "system_pass": false,
+      "missing_columns": [],
+      "missing_metadata": [],
+      "violations": [
+        "BAT_MUX_INPUT_BELOW_2P5_DURING_FAST_USB_COLLAPSE"
+      ],
+      "warnings": [
+        "OLED_CARRIER_VOLTAGE_AND_SD_WRITE_INTEGRITY_NOT_INFERRED_FROM_THESE_WAVEFORMS",
+        "SOURCE_NOT_VENDOR_QUALIFIED_OR_PHYSICALLY_MEASURED",
+        "NO_SD_WRITE_SUCCESS_AND_DATA_INTEGRITY_WITNESS"
+      ],
+      "observed": {
+        "n": 41,
+        "min_bus_v": 3.3,
+        "min_mcu_vdd_v": 3.3,
+        "min_sd_vdd_v": 3.3,
+        "max_dt_us": 0.25,
+        "max_mux_kcl_residual_a": 0.0,
+        "max_bus_kcl_residual_a": 0.0
+      },
+      "provenance": "SYNTHETIC_UNIT_TEST_NOT_A_DEVICE_MODEL"
+    },
+    "gap": {
+      "classification": "TEST_STAGED_AWAITING_QUALIFIED_DEVICE_OR_PHYSICAL_TRACE",
+      "waveform_screen": "SCREEN_FAIL",
+      "system_pass": false,
+      "missing_columns": [],
+      "missing_metadata": [],
+      "violations": [
+        "UNDERRESOLVED_TRACE"
+      ],
+      "warnings": [
+        "OLED_CARRIER_VOLTAGE_AND_SD_WRITE_INTEGRITY_NOT_INFERRED_FROM_THESE_WAVEFORMS",
+        "SOURCE_NOT_VENDOR_QUALIFIED_OR_PHYSICALLY_MEASURED",
+        "NO_SD_WRITE_SUCCESS_AND_DATA_INTEGRITY_WITNESS"
+      ],
+      "observed": {
+        "n": 41,
+        "min_bus_v": 3.3,
+        "min_mcu_vdd_v": 3.3,
+        "min_sd_vdd_v": 3.3,
+        "max_dt_us": 2.0,
+        "max_mux_kcl_residual_a": 0.0,
+        "max_bus_kcl_residual_a": 0.0
+      },
+      "provenance": "SYNTHETIC_UNIT_TEST_NOT_A_DEVICE_MODEL"
+    },
+    "legacy_T25CW_header": {
+      "classification": "TEST_STAGED_AWAITING_QUALIFIED_DEVICE_OR_PHYSICAL_TRACE",
+      "waveform_screen": "NOT_EVALUABLE",
+      "system_pass": false,
+      "missing_columns": [
+        "v_pack_loaded_v",
+        "v_bat_pin_v",
+        "v_bat_reg_v",
+        "v_usb_reg_v",
+        "v_3v3_sys_v",
+        "v_mcu_vdd_v",
+        "v_sd_vdd_v",
+        "i_usb_mux_input_a",
+        "i_bat_mux_input_a",
+        "i_mux_output_a",
+        "i_load_a",
+        "nrst_asserted",
+        "sd_write_active"
+      ],
+      "missing_metadata": [],
+      "violations": [
+        "REQUIRED_PROBE_OR_PROVENANCE_ABSENT"
+      ],
+      "warnings": [],
+      "observed": {},
+      "provenance": "SYNTHETIC_UNIT_TEST_NOT_A_DEVICE_MODEL"
+    }
+  }
+}

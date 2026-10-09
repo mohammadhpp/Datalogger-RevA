@@ -1,0 +1,11 @@
+{
+  "topology": "DOWNSTREAM_DUAL_REGULATED_MUX_UNAPPLIED",
+  "provenance": "NOT_MEASURED_PLEASE_REPLACE",
+  "c_bus_effective_min_uf": 0,
+  "c_bus_capacitance_basis": "UNVERIFIED_PLEASE_REPLACE",
+  "max_sample_interval_us": 0.5,
+  "event_direction": "USB_TO_BAT",
+  "sd_write_result_evidence": "NO_REAL_SD_WRITE_WITNESS",
+  "mux_kcl_tolerance_a": 0.01,
+  "bus_kcl_tolerance_a": 0.015
+}

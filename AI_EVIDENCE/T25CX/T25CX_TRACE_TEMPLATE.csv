@@ -1,0 +1,1 @@
+time_us,v_pack_loaded_v,v_bat_pin_v,v_bat_reg_v,v_usb_reg_v,v_3v3_sys_v,v_mcu_vdd_v,v_sd_vdd_v,i_usb_mux_input_a,i_bat_mux_input_a,i_mux_output_a,i_load_a,nrst_asserted,sd_write_active

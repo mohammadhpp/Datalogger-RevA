@@ -1,0 +1,42 @@
+{
+  "stage": "T25CX",
+  "classification": "TEST_STAGED_AWAITING_QUALIFIED_DEVICE_OR_HARDWARE_TRACE",
+  "parent_sha": "47ea976391df3157bf85e21c3cd2973853a27003",
+  "actual_device_model_pass": false,
+  "board_pass": false,
+  "audit_unit_test_pass": true,
+  "files": {
+    "README_RUN.txt": {
+      "bytes": 874,
+      "sha256": "d5123e3a5d9b2585d747f3f8a9ce7e4f9d3c9b007e53b46f791d1b3625973b1b"
+    },
+    "T25CX_EVIDENCE_GATED_HANDOFF_VERIFIER_FA.md": {
+      "bytes": 8193,
+      "sha256": "1e723e77f736b2109115e47d63bd3c4d959b3ec012704ceb8aba3e0caf120f17"
+    },
+    "T25CX_Independent_Audit.json": {
+      "bytes": 691,
+      "sha256": "13cc9be0d0c874e3dddb0cf70a42a5d4aebe87dd45cd0069700f02344f7dffdf"
+    },
+    "T25CX_Independent_Audit_v1.py": {
+      "bytes": 2748,
+      "sha256": "d4da09f5df7fcb5efa816f0db83ba9db6e7e0f5c14a1b2154cf1815f076c9df4"
+    },
+    "T25CX_TRACE_METADATA_TEMPLATE.json": {
+      "bytes": 385,
+      "sha256": "a7a512c2789f2e5a61f03e122b64830661732dacf541406c49dbe8523622ec47"
+    },
+    "T25CX_TRACE_TEMPLATE.csv": {
+      "bytes": 185,
+      "sha256": "706ffd835fad9036e7785ed82530358dea9257f1f374788bb0a73069b088297e"
+    },
+    "T25CX_Trace_Qualification_v1.py": {
+      "bytes": 9978,
+      "sha256": "0321cfcd2431643f466d018ff8fd7b211d04d5777885cdb3cf65ab0097822e3a"
+    },
+    "T25CX_VALIDATOR_UNIT_TESTS.json": {
+      "bytes": 5921,
+      "sha256": "58ac5ae109960a95496c85a62ee010b3ff73ff0eac8a552a85121b9f78a33c7c"
+    }
+  }
+}
