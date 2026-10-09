@@ -1,0 +1,37 @@
+{
+  "classification": "ACTUAL_EXECUTED_CONDITIONAL_ARITHMETIC_NO_BOARD_OR_COMPONENT_PASS",
+  "date": "2026-10-09",
+  "exact_candidate": "Vishay SS14-E3/61T",
+  "local_listing": "https://afranik.ir/passive/diode.html",
+  "source": "https://www.vishay.com/docs/88746/ss12.pdf",
+  "exact_local_stock": "UNCONFIRMED_AT_CHECKOUT",
+  "specs": {
+    "VRRM_V": 40,
+    "IFavg_A": 1,
+    "IFSM_A_8p3ms": 40,
+    "forward_max_pulsed_V_at_1A_25C": 0.5,
+    "leakage_max_at_40V_25C_mA": 0.2,
+    "leakage_max_at_40V_100C_mA": 6
+  },
+  "executable": "AI_SCRIPTS/T25/T25CR_Diode_Headroom_Screen_v1.py",
+  "local_script_sha256": "98d17f7e51199513b47c3637112c15e6b92db4d5fe6185370eb509986ecee190",
+  "local_full_result_sha256": "ad5336b964ace5725485c8ff80981c64b5852ffad5cc3b9ef4dba69039686ae3",
+  "cases": {
+    "headroom_count": 27,
+    "thermal_count": 9,
+    "example_USB5_vf0p5_dropout0p9_margin_V": 0.3,
+    "example_USB4p75_margin_V": 0.05,
+    "example_USB5_vf0p6_dropout1p2_margin_V": -0.1,
+    "example_12V_fault_vf0p5_ldo_heat_W": 2.296,
+    "example_12V_diode_heat_W": 0.14,
+    "reference_theta_only_Crise": 178.3992
+  },
+  "nonclaims": [
+    "No validated full OVP waveform",
+    "No guaranteed dropout at 280mA across temp",
+    "No diode leakage guarantee at actual reverse voltage",
+    "No no-reset handoff PASS",
+    "No exact local lot or checkout stock proof",
+    "No CAD, purchase, fabrication or bench activity"
+  ]
+}
