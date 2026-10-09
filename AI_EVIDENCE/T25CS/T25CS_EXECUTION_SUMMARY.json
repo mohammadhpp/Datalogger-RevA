@@ -1,0 +1,112 @@
+{
+  "classification": "ACTUAL_TEST_WITH_RAW_EVIDENCE / BOUNDED_BEHAVIORAL_SIMULATION_NO_HARDWARE_PASS",
+  "as_of": "2026-10-09",
+  "source": "Synthetic source voltage 5.5->12V; known FSS2301S nominal Rds(on)128mOhm@-2.5V from FOSAN/LCSC listing; historical workbook trip5.9157205069V; 6V TPS2116 absolute stress limit.",
+  "assumptions": {
+    "source_start_V": 5.5,
+    "fault_peak_V": 12.0,
+    "historical_trip_V_NOT_physical_clamp": 5.9157205069,
+    "stress_limit_V_NOT_recommended_operating": 6.0,
+    "R_total_ohm": [
+      0.05,
+      0.128,
+      0.5,
+      2.0
+    ],
+    "Ceff_uF": [
+      0.5,
+      1.0,
+      4.7,
+      10.0,
+      22.0,
+      44.0
+    ],
+    "source_rise_us": [
+      1,
+      10,
+      100
+    ],
+    "delay_us_after_historical_trip": [
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      1,
+      2,
+      5
+    ],
+    "no_load": true,
+    "no_L_or_stray_injection": true,
+    "switch": "fixed R until ideal abrupt OFF",
+    "DC_bias_and_temperature_in_Ceff": "not known"
+  },
+  "equations": [
+    "tau=R*C",
+    "t<=T: Vcap=V0 + a*(t-tau*(1-exp(-t/tau)))",
+    "t>T: Vcap=Vmax+(Vcap(T)-Vmax)*exp(-(t-T)/tau)",
+    "a=(12-5.5)/T",
+    "t_trip=(5.9157205069-5.5)/a",
+    "solve Vcap(t)=6 for cutoff budget"
+  ],
+  "cases": 504,
+  "budget_cases": 72,
+  "crosschecks": [
+    {
+      "rise_us": 1,
+      "R_ohm": 0.128,
+      "Ceff_uF": 22,
+      "delay_us": 0.1,
+      "analytic_V": 5.530431456,
+      "RK4_V": 5.530431456,
+      "abs_difference_V": 0.0
+    },
+    {
+      "rise_us": 1,
+      "R_ohm": 0.128,
+      "Ceff_uF": 22,
+      "delay_us": 1,
+      "analytic_V": 6.651681306,
+      "RK4_V": 6.651681306,
+      "abs_difference_V": 6.8e-11
+    },
+    {
+      "rise_us": 1,
+      "R_ohm": 0.05,
+      "Ceff_uF": 0.5,
+      "delay_us": 1,
+      "analytic_V": 11.987416355,
+      "RK4_V": 11.987416354,
+      "abs_difference_V": 6.04e-10
+    },
+    {
+      "rise_us": 10,
+      "R_ohm": 0.5,
+      "Ceff_uF": 4.7,
+      "delay_us": 2,
+      "analytic_V": 6.185010014,
+      "RK4_V": 6.185010014,
+      "abs_difference_V": 0.0
+    },
+    {
+      "rise_us": 100,
+      "R_ohm": 2,
+      "Ceff_uF": 44,
+      "delay_us": 5,
+      "analytic_V": 5.545955478,
+      "RK4_V": 5.545955478,
+      "abs_difference_V": 0.0
+    }
+  ],
+  "status_assertions": [
+    "504 scenarios computed",
+    "72 time-budget roots converged",
+    "5 independent RK4 checks <20uV",
+    "no vendor device model is present",
+    "no synthesis of actual FET turnoff or regulated OVP"
+  ],
+  "result_files": [
+    "T25CS_SENSITIVITY_MATRIX.csv",
+    "T25CS_CUTOFF_BUDGET.csv"
+  ],
+  "limitation": "No actual TS431, PNP, gate, Zener, capacitance-vs-bias, source R/current, LDO, mux, BAT, NRST or SD. Numerical PASS in the synthetic RC fixture NEVER qualifies hardware."
+}

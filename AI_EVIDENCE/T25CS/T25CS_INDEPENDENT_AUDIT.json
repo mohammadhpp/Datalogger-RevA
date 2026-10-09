@@ -1,0 +1,23 @@
+{
+  "check": "T25CS independent CSV audit",
+  "status": "PASS_CONDITIONAL_RC_ONLY",
+  "rows": 504,
+  "cutoff_budgets": 72,
+  "checks": [
+    "monotonic nondecreasing peak for same RC/rise",
+    "peak<=12V source",
+    "<6V flag consistent",
+    "trip crossing scales with ramp duration",
+    "independent selected numerical fixture"
+  ],
+  "sha256": {
+    "T25CS_OVP_PassThrough_Bounded_v1.py": "ed05a7807d87122e4af7c105a35b48614f37fd2982eedae7cb748bb5dc7fd719",
+    "T25CS_CUTOFF_BUDGET.csv": "fd20b162b9c8507e06a833a38260ba13c26ea6da070772c908273a219b040649",
+    "T25CS_Independent_Audit.py": "bd517b9f7668275da964c86a7c17129647e3309941e9bf33a160664f97bba235",
+    "T25CS_SHA256_MANIFEST.json": "cfda53f26aeaaf531b6f19f8d79b73d8e4717fad8b00e006dc77726356a659bb",
+    "T25CS_EXECUTION_SUMMARY.json": "41da750a02ea16c7aed0ea85678e1263323c396c4a4459c0f13fd5a9b18313dd",
+    "T25CS_OVP_BOUNDED_SOURCE_TRANSIENT_FA.md": "6e8680b16f03a97b4e723955a32237dc3157970f4d9f307457b2195dc79a0887",
+    "T25CS_SENSITIVITY_MATRIX.csv": "3f7d296b5a268e852048bf1a72fb04e90a5b364707d5557746f2419753d58107"
+  },
+  "interpretation": "Numerical reproducibility only; no TS431/PNP/FET physical model or hardware PASS"
+}
