@@ -28,7 +28,9 @@ Then inspect the latest Git commits and the current engineering files relevant t
 
 ## Current high-level state
 
-- **T25CV CURRENT EXACT POINT, 2026-10-09:** 35 new conditional battery-path current-conservation scenarios executed and audited. With AA pack loaded1.80V at terminals and 0.924W output, TI TPS631000 device VIN cold-start >1.65V creates a threshold Rpost-pack budget: 0.1875Ω at eta0.70; 0.20089Ω at hypothetical eta0.75. Not an actual hardware/startup PASS. BAT current, holder/S1 resistance, effective C and USB no-reset mux/NRST/SD remain OPEN. Read live handoff and T25CV report. No CAD, purchase or manufacturing PASS.
+- **T25CW CURRENT EXACT POINT, 2026-10-09:** 25 battery/10 effective Cbus/27 current-conserving illustrative cases audited with 819 independent checks. Two-regulator downstream mux remains UNAPPLIED proposal and actual no-reset unproven. No CAD/BOM/purchase/fab PASS. Read CURRENT_HANDOFF and T25CW report.
+
+- **T25CV prior point, 2026-10-09:** 35 new conditional battery-path current-conservation scenarios executed and audited. With AA pack loaded1.80V at terminals and 0.924W output, TI TPS631000 device VIN cold-start >1.65V creates a threshold Rpost-pack budget: 0.1875Ω at eta0.70; 0.20089Ω at hypothetical eta0.75. Not an actual hardware/startup PASS. BAT current, holder/S1 resistance, effective C and USB no-reset mux/NRST/SD remain OPEN. Read live handoff and T25CV report. No CAD, purchase or manufacturing PASS.
 
 - **T25CU prior point, 2026-10-09:** TI allows floating TPS54202 EN; 120 new conditional KCL divider corners executed with independent checks. Reference 562k/102k does NOT enable at 5V without external drive. An alternative 150k/100k divider is only an unselected <=12V hypothesis, UNSAFE at 28V; no MPN/source selection. Actual SLVMBJ5C zip unavailable, no vendor transient execution. Prepare valid 5/5.5/12V/19..280mA source fixture, then BAT1.80V current-valid mux/NRST/SD, no new CAD, purchase or fabrication. Read CURRENT_HANDOFF and T25CU report.
 

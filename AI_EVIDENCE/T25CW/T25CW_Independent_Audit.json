@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "assertions": 819,
+  "errors": [],
+  "provenance": "independent Decimal DC/KVL/KCL/threshold and trace consistency; not a hardware or vendor-model certification",
+  "input_files": {
+    "T25CW_BAT_DC_CASES.csv": {
+      "sha256": "5a1b391873a888c4e17b9164c6c008a3f889613f13eff3fcbea217de686dfb3b",
+      "bytes": 2975
+    },
+    "T25CW_Battery_Ready_Handoff_v1.py": {
+      "sha256": "bffb31474cda03ffcb19b1c009567a091662198e153fa4e9c5cd517f324c21b3",
+      "bytes": 7110
+    },
+    "T25CW_CURRENT_LIMITED_HANDOFF.csv": {
+      "sha256": "54ecba7c3146ce7115582a3fc2e212709827ef46449eca9dc4cd8504b1e0e42f",
+      "bytes": 5048
+    },
+    "T25CW_Independent_Audit_v1.py": {
+      "sha256": "b1424a32551b5514b9b4df7ff9399d189c5c2645d33bb22eda381742b0ff2e2a",
+      "bytes": 3936
+    },
+    "T25CW_RESULT.json": {
+      "sha256": "5203a08e9a78c4dc58013bceb92f5a4e867d12d98bf7aab838007f7bb87544ae",
+      "bytes": 28014
+    },
+    "T25CW_SELECTED_TRACE.csv": {
+      "sha256": "d97fce0f6927c1a2fd9fad7219ebd941cea14c87cfcc294b1eff5e7d2c09b445",
+      "bytes": 4999
+    }
+  }
+}
