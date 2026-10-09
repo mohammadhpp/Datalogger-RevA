@@ -63,32 +63,32 @@
     {
       "USB_V": 5,
       "Cin_effective_uF": 1,
-      "pre_dropout_gap_us": 1.071428571428572
+      "pre_dropout_gap_us": 1.0714285714285714
     },
     {
       "USB_V": 5,
       "Cin_effective_uF": 4.7,
-      "pre_dropout_gap_us": 5.035714285714289
+      "pre_dropout_gap_us": 5.035714285714286
     },
     {
       "USB_V": 5,
       "Cin_effective_uF": 10,
-      "pre_dropout_gap_us": 10.71428571428572
+      "pre_dropout_gap_us": 10.714285714285714
     },
     {
       "USB_V": 5.5,
       "Cin_effective_uF": 1,
-      "pre_dropout_gap_us": 2.8571428571428577
+      "pre_dropout_gap_us": 2.857142857142857
     },
     {
       "USB_V": 5.5,
       "Cin_effective_uF": 4.7,
-      "pre_dropout_gap_us": 13.42857142857143
+      "pre_dropout_gap_us": 13.428571428571429
     },
     {
       "USB_V": 5.5,
       "Cin_effective_uF": 10,
-      "pre_dropout_gap_us": 28.571428571428577
+      "pre_dropout_gap_us": 28.571428571428573
     }
   ],
   "diode_forward_heat_W_at_280mA": [
