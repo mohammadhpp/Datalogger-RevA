@@ -7,7 +7,15 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25CY one-shot rapid power ECO proposal and conditional 256-corner XREF screen, 2026-10-09
+## CURRENT EXACT POINT — T25CZ manual assembly package screening and leaded alternative shortlist, 2026-10-09
+
+- New user LOCK: final RevA is MANUALLY ASSEMBLED. Reject new QFN/DFN/WLCSP/hidden-pad choices; old TPS2121RUXR QFN and tiny TPS631000DRLR SOT-5x3 are unsuitable for the final hand build despite historical proposal/purchase. Supersedes T25CY PDF purchasing recommendations.
+- Leaded TECHNICAL candidates (not final buylist): TPS2113APW TSSOP8 mux, TI 55uA typ operating, local Iran ISEE listing from Tehran IC-Kala not physically confirmed; TLV61070ADBVR SOT23-6 boost, TI1.3V startup min, low-load20uA typ, exact Iranian availability and actual1.8V/280mA performance OPEN. Optional MCP1642B-33I/MS MSOP8 with trial solder pilot. Keep TPS54202DDCR SOT23-6 USB buck, TPS22918DBVT SOT23-6 SD.
+- See full AI_CONTINUITY/T25CZ_FINAL_MANUAL_ASSEMBLY_POWER_MPN_GATE_FA.md; no schematic, PCB, Gerber, order or product functional PASS. T25CY static test unaffected as historic evidence but network for new mux is NOT transferred.
+- NEXT EXECUTABLE ACTION: verify Iran exact-stock and valid manual lead footprints, then one combined ECO with full electrical verification loadedAA1.80V/280mA, USB5/5.5/12 bounded, both transfer directions, NRST and SD integrity.
+- BLOCKER REQUIRING USER: single final parts/purchase/fabrication decision only after technical supply resolved. FABRICATION HOLD.
+
+## PRIOR VERIFIED POINT — T25CY one-shot proposal; manual-assembly parts superseded by T25CZ, 2026-10-09
 
 - User requested speed to fabrication, one concise engineering solution and exact change/buy list. No routine confirmation interruptions. **ONE UNAPPLIED PROPOSAL** at AI_CONTINUITY/T25CY_FAST_FAB_CONSOLIDATED_POWER_ECO_FA.md and T25CY_CONSOLIDATED_CANDIDATE_BOM.md. Full offline local T25CY ZIP SHA256 4d17ff792fbfdb136b53257e7e73a1306a35161711f72ba8cc380ca7a9c41e46.
 - Proposed dual-regulated USB/BAT then TPS2121RUXR OUT=3V3_SYS, replacing upstream TPS2116 and legacy pass-through OVP; USB branch TPS54202 output **3.305V (NOT3.576)** to avoid violating STM32/SD 3.6V. Keep TPS631000+original Murata1uH and T25BL SD selection. USB 5.5 no nuisance; 12V *bounded* VIN buck source. S1 3 poles BAT USB two Rd return ends only.

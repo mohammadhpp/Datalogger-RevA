@@ -105,3 +105,9 @@ No off-board logical component may remain without a physical PCB connection path
 - Existing purchased parts that remain electrically valid should be reused rather than repurchased.
 - Only after the user explicitly approves the consolidated design and purchase list may the power schematic/PCB ECO be applied.
 - Fabrication Hold remains until the post-ECO compile/DRC/layout/power-validation gates are complete.
+
+## Final hand assembly package constraint — LOCKED 2026-10-09
+
+- User explicitly requires manual final PCB population. New IC choices must have visible accessible solder pads/leads. Favor SOIC/SOT23 and THT, use TSSOP only with inspection and manual solder proficiency, MSOP only after a solder trial. Avoid QFN/DFN/BGA/WLCSP/hidden-pad devices and ultraminiature SOT-5x3 for final power.
+- Supersede the T25CY proposal of TPS2121RUXR QFN and retention of TPS631000DRLR ultraminiature for final manual assembly. Preliminary replacement candidates are TI TPS2113APW TSSOP-8 and TLV61070ADBVR SOT-23-6; not finalized, exact Iran source and AA1.80V at280mA/transfer proof required. Keep TI TPS54202DDCR/TPS22918DBVT SOT23-6 for USB/SD as qualified leaded-format candidates.
+- Preserve all other existing engineering limits, two-layer, no-reset, low-power, exact Iran sourced parts, one consolidated BOM/ECO, new DRC and no speculative hardware PASS. See T25CZ report.
