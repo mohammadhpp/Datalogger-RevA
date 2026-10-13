@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Datalogger RevA | Altium STM32 Data Logger & PCB Project</title>
+  <meta name="description" content="Datalogger RevA is an in-development battery-powered STM32 data logger hardware project featuring SHT3x temperature and humidity sensing, microSD logging, OLED, RTC, and Altium PCB design.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://mohammadhpp.github.io/Datalogger-RevA/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Datalogger RevA — Embedded Data Logger Hardware Project">
+  <meta property="og:description" content="Explore the Datalogger RevA Altium design, schematic, PCB and engineering documentation. Work in progress; hardware validation is pending.">
+  <meta property="og:url" content="https://mohammadhpp.github.io/Datalogger-RevA/">
+  <meta name="theme-color" content="#152437">
+  <style>
+    :root { color-scheme: light; --ink:#152437; --muted:#526173; --blue:#1554b2; --border:#dce3ea; --bg:#f5f8fc; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif; }
+    .wrap { max-width:900px; padding:0 24px; margin:0 auto; }
+    header { background:var(--ink); color:#fff; padding:58px 0 62px; }
+    h1 { font-size:clamp(2.15rem,5vw,3.5rem); letter-spacing:-.045em; line-height:1.15; margin:0 0 14px; }
+    header p { color:#d9e4f2; max-width:710px; font-size:1.15rem; margin:0 0 24px; }
+    .cta { display:inline-block; background:white; color:#163c78; text-decoration:none; font-weight:700; border-radius:8px; padding:10px 17px; }
+    main { padding:42px 0 68px; } h2 { font-size:1.55rem; margin:37px 0 14px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+    .tile { background:white; border:1px solid var(--border); padding:20px; border-radius:12px; }
+    .tile h3 { font-size:1.07rem; margin:0 0 8px; }
+    .tile p { margin:0; color:var(--muted); }
+    .notice { border-left:4px solid #ad6622; padding:14px 20px; background:#fff; margin:24px 0; }
+    a { color:var(--blue); } a:focus-visible { outline:3px solid #ef9e36; outline-offset:3px; }
+    li { margin:7px 0; }
+    footer { color:var(--muted); border-top:1px solid var(--border); padding:22px 0 40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Datalogger RevA</h1>
+      <p>Battery-powered embedded data logger hardware project: SHT3x environmental sensing, STM32, microSD, RTC, OLED interface, and Altium Designer PCB engineering.</p>
+      <a class="cta" href="https://github.com/mohammadhpp/Datalogger-RevA">Explore the GitHub repository &rarr;</a>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="notice"><strong>Engineering status:</strong> This project is under development as of October 2026. Electrical acceptance, physical prototype validation, and fabrication readiness have <strong>not</strong> been established. Do not use historic BOMs or model outputs as approved manufacturing instructions.</div>
+    <section aria-labelledby="features">
+      <h2 id="features">Project features and goals</h2>
+      <div class="grid">
+        <div class="tile"><h3>Environmental sensing</h3><p>Temperature and relative humidity measurement using the SHT3x sensor family.</p></div>
+        <div class="tile"><h3>Data storage</h3><p>Targeting timestamped logging with a real-time clock and a microSD interface.</p></div>
+        <div class="tile"><h3>Embedded interface</h3><p>STM32 microcontroller architecture, OLED display, and physical navigation keys.</p></div>
+        <div class="tile"><h3>Power architecture</h3><p>USB and battery operation with seamless handoff as a design goal, not a verified capability.</p></div>
+        <div class="tile"><h3>PCB design</h3><p>Cost-conscious two-layer Altium PCB; alternative single-layer power test coupons are being investigated.</p></div>
+        <div class="tile"><h3>Engineering records</h3><p>Schematics, PCB libraries, handoff notes, scripted checks, and explicitly labeled validation evidence.</p></div>
+      </div>
+    </section>
+    <section aria-labelledby="docs">
+      <h2 id="docs">Engineering documentation</h2>
+      <p>For the current status and limitations, consult the canonical files in the public GitHub repository:</p>
+      <ul>
+        <li><a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/README.md">Project README and overview</a></li>
+        <li><a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_START_HERE.md">AI-assisted engineering entry point</a></li>
+        <li><a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_CONTINUITY/CURRENT_HANDOFF.md">Current engineering handoff and open acceptance gates</a></li>
+      </ul>
+      <p>The authoritative state is the latest GitHub <code>main</code> branch. Archived files may reflect superseded experiments and component choices.</p>
+    </section>
+    <section aria-labelledby="about">
+      <h2 id="about">About the project</h2>
+      <p>Datalogger RevA documents the evolution of an embedded temperature and humidity data-logging board, including PCB layout, power-path exploration, package selection for manual assembly, and engineering test planning. It is presented for technical reference and project transparency; no claim of manufacturing or electrical certification is made.</p>
+    </section>
+  </main>
+  <footer><div class="wrap">Datalogger RevA &mdash; <a href="https://github.com/mohammadhpp/Datalogger-RevA">GitHub source and documentation</a>.</div></footer>
+</body>
+</html>
