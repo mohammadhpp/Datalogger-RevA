@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PCB Validation and Power Handoff Status | Datalogger RevA</title>
+<meta name="description" content="Verified PCB DRC checkpoints versus unresolved Datalogger RevA power handoff, microSD integrity, battery low-voltage and manufacturing readiness gates.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://mohammadhpp.github.io/Datalogger-RevA/validation.html">
+<link rel="stylesheet" href="site.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PCB Validation and Power Handoff Status | Datalogger RevA">
+<meta property="og:description" content="Verified PCB DRC checkpoints versus unresolved Datalogger RevA power handoff, microSD integrity, battery low-voltage and manufacturing readiness gates.">
+<meta property="og:url" content="https://mohammadhpp.github.io/Datalogger-RevA/validation.html">
+<meta name="theme-color" content="#132439">
+</head><body>
+<header><div class="wrap">
+<nav aria-label="Primary"><a class="brand" href="./">Datalogger RevA</a><a href="hardware.html">Hardware</a><a href="validation.html">Validation</a><a href="documentation.html">Documentation</a><a href="https://github.com/mohammadhpp/Datalogger-RevA">GitHub ↗</a></nav>
+<h1>Validation status and open engineering gates</h1><p>Clear separation of documented layout checks, analytical experiments and the tests still required before any manufacturing release.</p>
+</div></header>
+<main class="wrap">
+<div class="notice"><strong>Project status: FABRICATION HOLD.</strong> As recorded in the engineering handoff on 10 October 2026, no final RevA manufacturing release, production Gerbers or demonstrated integrated power-source transfer PASS has been established.</div>
+<section><h2>What has and has not passed</h2>
+<table><thead><tr><th>Area</th><th>Evidence-backed status</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>PCB layout DRC</td><td>Historical T24 CAD checkpoint: 0 errors / 0 violations in the recorded state</td><td>A CAD-only check, not an electrical test or fabrication approval</td></tr>
+<tr><td>Power-path analyses</td><td>Conditional calculations and software-level model checks</td><td>Useful for screening; not proof of a real battery-to-USB transient</td></tr>
+<tr><td>Power conversion at loaded 1.80 V battery</td><td>OPEN</td><td>Current, startup and voltage margin still require suitable evidence</td></tr>
+<tr><td>Uninterrupted USB/battery transitions</td><td>OPEN</td><td>Both directions need measured or otherwise valid transient evidence, including MCU reset behavior</td></tr>
+<tr><td>microSD and RTC-related data behavior</td><td>OPEN for complete system validation</td><td>Supply stability and actual write integrity must be checked under transitions</td></tr>
+<tr><td>Single-layer laser coupons</td><td>Feasibility-stage proposal only</td><td>No released one-layer routed board or fabrication files</td></tr>
+<tr><td>Parts, prototype and final fabrication</td><td>OPEN / HOLD</td><td>Candidate parts and analyses do not constitute a verified production BOM</td></tr>
+</tbody></table></section>
+<section><h2>Power transition acceptance concept</h2>
+<p>The intended design switches priority from the battery to an attached standard USB supply and back again, without an MCU reset during normal operation. The active acceptance context records a battery-pack terminal condition of 1.80 V under load and a 3V3_SYS design load of 280 mA.</p>
+<p>A meaningful integrated test must observe both input currents, regulated supply rails, MCU VDD and NRST, SD supply and real write completion. An artificial waveform or a model with inconsistent current accounting must not be called a hardware PASS.</p></section>
+<section><h2>Why the one-layer experiment is separate</h2>
+<p>The laser-process isolation coupon tests achievable copper separation first. The mux/load carrier is a potential next physical test. The buck and boost sections have more sensitive ground and switching-loop constraints, so manufacturability on a single copper layer remains unqualified.</p>
+<p>This experimental track does not replace the two-layer RevA baseline or remove the need for proper power-stage verification.</p></section>
+<section><h2>How to interpret an old PASS label</h2>
+<p>Every PASS must be read with its scope and original evidence. A script unit test passing, a DRC-clean layout, and a prototype surviving a real source switchover are three different claims. Historical archived results may be superseded.</p>
+<p>For the exact next step and latest limitations use the live <a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_CONTINUITY/CURRENT_HANDOFF.md">CURRENT_HANDOFF.md</a>; the <a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_CONTINUITY/T25DA_ONE_SIDED_LASER_PCB_FEASIBILITY_FA.md">T25DA feasibility report</a> records the current single-layer investigation.</p></section>
+<section><h2>Related pages</h2><p><a href="hardware.html">Hardware architecture</a> · <a href="documentation.html">Documentation guide</a></p></section>
+<section aria-labelledby="source-links"><h2 id="source-links">Primary engineering references</h2>
+<div class="sources"><p>This is a public-facing summary dated <strong>14 October 2026</strong>, not a frozen design approval. The <a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_CONTINUITY/CURRENT_HANDOFF.md">live CURRENT_HANDOFF.md</a> and latest Git <code>main</code> files take precedence over this summary.</p>
+<p><a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_START_HERE.md">AI_START_HERE.md</a> · <a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_CONTINUITY/DECISIONS_AND_CONSTRAINTS.md">Decisions and constraints</a> · <a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/README.md">README</a></p></div></section>
+</main>
+<footer><div class="wrap">Datalogger RevA — public project summaries, not production documentation. <a href="./">Project home</a> · <a href="https://github.com/mohammadhpp/Datalogger-RevA">Source on GitHub</a>.</div></footer>
+</body></html>
