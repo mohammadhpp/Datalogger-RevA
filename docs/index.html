@@ -29,11 +29,13 @@
     a { color:var(--blue); } a:focus-visible { outline:3px solid #ef9e36; outline-offset:3px; }
     li { margin:7px 0; }
     footer { color:var(--muted); border-top:1px solid var(--border); padding:22px 0 40px; }
+  .pagenav{display:flex;flex-wrap:wrap;gap:15px;margin-bottom:34px}.pagenav a{color:#e0edfd;font-weight:700;text-decoration:none}.pagenav a:hover{text-decoration:underline}.pagenav a:focus-visible{outline:3px solid #faad45} 
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
+      <nav aria-label="Project sections" class="pagenav"><a href="./">Home</a><a href="hardware.html">Hardware architecture</a><a href="validation.html">Verification status</a><a href="documentation.html">Engineering docs</a></nav>
       <h1>Datalogger RevA</h1>
       <p>Battery-powered embedded data logger hardware project: SHT3x environmental sensing, STM32, microSD, RTC, OLED interface, and Altium Designer PCB engineering.</p>
       <a class="cta" href="https://github.com/mohammadhpp/Datalogger-RevA">Explore the GitHub repository &rarr;</a>
@@ -50,6 +52,14 @@
         <div class="tile"><h3>Power architecture</h3><p>USB and battery operation with seamless handoff as a design goal, not a verified capability.</p></div>
         <div class="tile"><h3>PCB design</h3><p>Cost-conscious two-layer Altium PCB; alternative single-layer power test coupons are being investigated.</p></div>
         <div class="tile"><h3>Engineering records</h3><p>Schematics, PCB libraries, handoff notes, scripted checks, and explicitly labeled validation evidence.</p></div>
+      </div>
+    </section>
+    <section aria-labelledby="guides"><h2 id="guides">Explore the engineering project</h2>
+      <p>These independently indexable public articles summarize the latest available design context. For live engineering decisions, always consult the current GitHub handoff.</p>
+      <div class="grid">
+        <div class="tile"><h3><a href="hardware.html">Hardware architecture</a></h3><p>STM32, SHT3x, microSD, OLED, RTC, USB and AA power, two-layer PCB and proposed laser test coupons.</p></div>
+        <div class="tile"><h3><a href="validation.html">Verification status</a></h3><p>Historical CAD DRC versus open power-path, data-integrity and fabrication acceptance gates.</p></div>
+        <div class="tile"><h3><a href="documentation.html">Technical documentation guide</a></h3><p>How to navigate current GitHub source, handoff files and engineering evidence without confusing superseded records.</p></div>
       </div>
     </section>
     <section aria-labelledby="docs">
