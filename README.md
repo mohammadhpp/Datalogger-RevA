@@ -38,6 +38,16 @@ Before using any files for component orders, PCB production, or assembly, read *
 4. Validate power behavior, source switching, data integrity, and board-level operation.
 5. Generate production outputs only after the required evidence passes.
 
+## Public project website
+
+The [GitHub Pages site](https://mohammadhpp.github.io/Datalogger-RevA/) provides search-friendly, curated engineering summaries:
+
+- [Hardware architecture and single-layer laser coupon concept](https://mohammadhpp.github.io/Datalogger-RevA/hardware.html)
+- [Validation and fabrication-readiness status](https://mohammadhpp.github.io/Datalogger-RevA/validation.html)
+- [Documentation and authoritative handoff guide](https://mohammadhpp.github.io/Datalogger-RevA/documentation.html)
+
+These pages summarize the published records and do **not** replace the live engineering handoff or authorize fabrication.
+
 ## Project resources
 
 - [Source repository](https://github.com/mohammadhpp/Datalogger-RevA)
