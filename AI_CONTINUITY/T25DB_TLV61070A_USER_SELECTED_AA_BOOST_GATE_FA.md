@@ -1,0 +1,23 @@
+# T25DB — User-selected AA battery boost: TI TLV61070ADBVR
+
+Date: 2026-10-15. User explicitly selects `TLV61070ADBVR` rather than `MCP1642B` as the preferred two-AA 1.8V -> 3.3V source for manually assembled RevA. This is a **locked preferred MPN / not a final Iran-sourced procurement PASS or fully qualified ECO**. Do not silently replace user choice without a demonstrated electrical/sourcing conflict. Unchanged PCB and no physical one-sided coupon/Gerber.
+
+## Official vendor evidence (Rev B July 2026)
+- TI https://www.ti.com/lit/ds/symlink/tlv61070a.pdf ; `TLV61070ADBVR` is DBV SOT-23-6 with accessible external pins: **1 SW, 2 GND, 3 EN, 4 FB, 5 VOUT, 6 VIN**. The part is **adjustable** VOUT, not fixed 3.3V.
+- VIN operating 0.5–5.5V and typical startup rising VIN threshold 1.3V; lower startup label is not an assurance of 280mA from AA holder at pack terminal1.8. Recommended effective L ~1.0–6.1uH, and **TI detailed design guide says 2.2–4.7uH**, with min inductance and temperature/saturation to be checked. At VIN >1.5V, switching around1MHz. Typical no-load quiescent20uA **from VOUT pin** under data sheet conditions; do not equate with guaranteed current from AA or total system standby.
+- TI https://www.ti.com/lit/ug/slvucc9/slvucc9.pdf EVM performance table at25C includes 1.8V input, up to0.5A 5V output under its board/equipment conditions. The EVM is **four-layer**. It does not certify hand-made single-layer board, 3.3V/280mA at depleted batteries, source transition or reverse backfeed in integrated RevA.
+- Critical **boost-only/pass-through** behavior: datasheet section6.3.5 says if VIN exceeds regulated output, output follows VIN minus inductor/FET conduction drop; it does not buck to3.3V. Test brand-new two-cell AA open/load high voltage; maintain MCU/SD max rail <=3.6V and correct priority switching, USB failover at highest fresh-battery voltage. EN must remain on for immediate backup; shutdown 0.1uA is not the mode used for uninterrupted USB unplug.
+
+## Unapplied circuit starting values
+- Reuse historical existing resistor values `R_FB_TOP=510kΩ`, `R_FB_BOTTOM=91kΩ` if parts can be electrically reallocated in one integrated ECO. With TI nominal FB=0.500V: VOUT=0.5*(1+510/91) ≈3.30220V (static ideal only). Rbottom91k <TI guide maximum100k. Tolerance, reference bounds PWM/PFM and FB leakage not yet signed off.
+- Initial shielded L=2.2uH, low DCR and saturation current with adequate temperature margin; exact manufacturer MPN and **Iran stock UNVERIFIED**. Preferred 0805/1206 input/output MLCC, actual effective Cmin and thermal/ripple source must be selected; 1uH original Murata L1 of TPS631000 **NOT suitable by automatic substitution**. Do not reuse 1uH without technical check.
+- Input at 1.8V loaded pack terminals must include holder, maintained BAT S1 contact, wiring, return copper, bypass and connection voltage droop; ensure EN on at all times battery available and separate BAT_REG3V3 -> leaded priority mux IN2 (TPS2113APW candidate, not yet selected/sourced).
+- Power 3.3V*0.280A=0.924W; illustrative input current at 1.8V pins and efficiency 75–85% = 0.604–0.684A DC, not an actual result or converter-guaranteed efficiency. Peak inductance, minimum loaded1.8 pack, ground return and 1-layer hot loop need a real layout/current budget and tests.
+
+## Sourcing / test / manufacture status
+- As of inquiry Oct15 2026 TI and international distributors list exact MPN, but **no confirmed Iranian checkout for TLV61070ADBVR** was found. Strict Iran-exact-MPN gate stays OPEN; do not falsely mark stock PASS or purchase this particular MPN as final until exact seller and provenance are checked.
+- T25DA one-layer coupon preflight is binding: test laser etch process 0.2–0.5mm gap then full copper trace/return topology. Never release a one-layer boost Gerber until short SW-COUT/VOUT-GND loop, accessible hand soldering and power-ground requirements are met; consider two-layer power submodule if needed.
+- Execute gates VINpin under AA terminal loaded1.80V with280mA VOUT, startup, 19mA old observation, thermal and high fresh-AA pass-through; USB attach/remove to mux with source current accounting, 3V3 MCU.VDD/NRST and SD_VDD/write validation. Vendor EVM 1.8V row does NOT replace those tests.
+- **CONCRETE USER DECISION**: `TLV61070ADBVR = PREFERRED_SELECTED_MPN`; `MCP1642B = NOT_SELECTED`. No CAD change, no BOM order, no fabrication or whole-power function PASS.
+
+NEXT EXECUTABLE ACTION: finish exact Iran supply plus 2.2uH inductor/Ceff vendor selection, perform one-sided switcher layout preflight and actual 1.8V 280mA sample test. BLOCKER REQUIRING USER: only final consolidated parts/purchase/ECO decision after sources and testing; no routine approval pause. FABRICATION HOLD.
