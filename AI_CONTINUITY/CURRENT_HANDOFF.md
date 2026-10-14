@@ -7,7 +7,14 @@
 - Prepare a single concrete, reviewable consolidated power proposal, Iran-sourced exact new-part list, test criteria and one ECO/purchase decision when technically ready. User's instruction to continue removes routine confirmation pauses; it does **not** turn unverified simulations into PASS or authorize claiming fabricated hardware. Do not ask for routine permission to write continuity reports or investigate candidates. If an irreversible purchase/fabrication action or a material change of locked product requirements truly requires a user choice, complete all independent work first and present the specific decision once.
 - Keep GitHub `main` authoritative, maintain one live CURRENT EXACT POINT, and carry these instructions across chats. Preserve T24 0/0 DRC as a CAD-only checkpoint and FABRICATION HOLD until power gates are actually closed.
 
-## CURRENT EXACT POINT — T25DB user-selected TLV61070ADBVR AA Boost, 2026-10-15
+## CURRENT EXACT POINT — T25DC user-confirmed Lion Iran stock for TLV61070ADBVR, 2026-10-15
+
+- User explicitly says **لیون موجود داره** for exact selected `TLV61070ADBVR`. Mark **IRAN_AVAILABILITY_USER_REPORTED / SELLER_IDENTIFIED**; no direct Lion product URL, quantity, price, stock lot independently retrieved from web. Prior T25DB “no Iran source found” claim is superseded as an absolute procurement statement. Do not invent a direct product link or silently treat confirmation as actual purchase.
+- Precise source evidence: AI_CONTINUITY/T25DC_LION_IRAN_STOCK_USER_CONFIRMATION_FA.md.
+- TI datasheet reference 2.2uH shielded inductor Coilcraft XGL4030-222ME (EVM XGL4030-222MEC) or Würth 74438357022, both approximately 7A saturation reference parts, DCR max ~15mΩ/13.5mΩ. **No exact Iranian inductor stock verified**, and biased Ceff/complete BOM remain open. IC itself retains user-selected preference.
+- NEXT EXECUTABLE ACTION: verify exact Iran available 2.2uH low-DCR high-Isat inductor and manual solder passive package, then check boost single-sided laser routing and BAT1.80V/280mA test. BLOCKER REQUIRING USER: final one-shot purchase/fab sign-off only, no routine confirmation. **NO ECO / NO GERBER / FABRICATION HOLD**.
+
+## PRIOR VERIFIED POINT — T25DB user-selected TLV61070ADBVR AA Boost, 2026-10-15
 
 - **Explicit user choice:** preferred AA-source boost MPN is `TLV61070ADBVR` in hand-solderable 6-lead SOT23 DBV; do not choose `MCP1642B` for the principal battery path. This locks the user's part preference, **not** unqualified Iranian order/ECO or final system PASS. Full official-TI-based gate: AI_CONTINUITY/T25DB_TLV61070A_USER_SELECTED_AA_BOOST_GATE_FA.md.
 - TI Rev B July2026: pinmap 1 SW,2 GND,3 EN,4 FB,5 VOUT,6 VIN; adjustable boost, nominal FB0.500V. Existing 510k/91k resistor values can nominally target3.3022V in a single integrated future ECO, if tolerances/FB leakage close. TI design inductor 2.2..4.7uH (2.2uH start) is NEW, not original 1uH Murata. No exact Iranian MPN stock yet. 20uA no-load from VOUT typical, not battery standby guarantee.
