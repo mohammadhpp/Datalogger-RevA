@@ -2,5 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mohammadhpp.github.io/Datalogger-RevA/</loc>
+    <lastmod>2026-10-14</lastmod>
+  </url>
+  <url>
+    <loc>https://mohammadhpp.github.io/Datalogger-RevA/hardware.html</loc>
+    <lastmod>2026-10-14</lastmod>
+  </url>
+  <url>
+    <loc>https://mohammadhpp.github.io/Datalogger-RevA/validation.html</loc>
+    <lastmod>2026-10-14</lastmod>
+  </url>
+  <url>
+    <loc>https://mohammadhpp.github.io/Datalogger-RevA/documentation.html</loc>
+    <lastmod>2026-10-14</lastmod>
   </url>
 </urlset>
