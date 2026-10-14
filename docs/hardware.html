@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STM32 Data Logger Hardware Architecture | Datalogger RevA</title>
+<meta name="description" content="Explore the planned STM32, SHT3x temperature and humidity, RTC, microSD, OLED, battery/USB power and two-layer Altium PCB architecture of Datalogger RevA.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://mohammadhpp.github.io/Datalogger-RevA/hardware.html">
+<link rel="stylesheet" href="site.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM32 Data Logger Hardware Architecture | Datalogger RevA">
+<meta property="og:description" content="Explore the planned STM32, SHT3x temperature and humidity, RTC, microSD, OLED, battery/USB power and two-layer Altium PCB architecture of Datalogger RevA.">
+<meta property="og:url" content="https://mohammadhpp.github.io/Datalogger-RevA/hardware.html">
+<meta name="theme-color" content="#132439">
+</head><body>
+<header><div class="wrap">
+<nav aria-label="Primary"><a class="brand" href="./">Datalogger RevA</a><a href="hardware.html">Hardware</a><a href="validation.html">Validation</a><a href="documentation.html">Documentation</a><a href="https://github.com/mohammadhpp/Datalogger-RevA">GitHub ↗</a></nav>
+<h1>Hardware architecture and features</h1><p>A compact embedded temperature-and-humidity data logger in development, combining sensor input, timestamped storage and a local interface.</p>
+</div></header>
+<main class="wrap">
+<section><h2>Functional blocks</h2><div class="cardgrid">
+<div class="card"><h3>Sensor input</h3><p>SHT3x-family temperature and relative-humidity sensing. The documented internal sensor connection is a labeled six-pin, 2.54 mm through-hole connector; the external panel connector is a separate interface.</p></div>
+<div class="card"><h3>Microcontroller and controls</h3><p>An STM32-based control architecture with physical navigation keys and an OLED interface. A completed PCB layout is not proof of firmware or system functionality.</p></div>
+<div class="card"><h3>Storage and timestamps</h3><p>microSD storage and an RTC are part of the project design. Successful data writing and retention during power-source transitions have not yet passed full hardware validation.</p></div>
+<div class="card"><h3>Power input and handoff</h3><p>Battery operation and standard USB or power-bank input are planned, with USB prioritization and return to battery without resetting the MCU. This behavior remains an engineering acceptance target.</p></div>
+</div></section>
+<section><h2>PCB and assembly constraints</h2>
+<p>The established RevA PCB baseline is <strong>two copper layers</strong> and <strong>manual assembly</strong>. Silkscreen identifiers, component polarity and connector orientation must remain readable; off-board devices need explicit PCB-side interfaces. The active Altium source, not a web diagram, governs design changes.</p>
+<p>Package accessibility, copper clearances, practical rework space and in-country component sourcing are important considerations, but proposed replacement components are not approved merely because a package appears hand-solderable.</p></section>
+<section><h2>Power specification: target, not demonstrated performance</h2>
+<table><thead><tr><th>Requirement</th><th>Engineering status</th></tr></thead><tbody>
+<tr><td>Battery pack loaded down to 1.80 V</td><td>Recorded design/acceptance condition; physical margin still open</td></tr>
+<tr><td>3V3_SYS design current of 280 mA</td><td>Target used in screening; actual integrated behavior unverified</td></tr>
+<tr><td>USB switching without reset or interrupted logging</td><td>Required in both connection and disconnection directions; not hardware-proven</td></tr>
+<tr><td>Manually assembled two-layer RevA board</td><td>Current manufacturing design constraint; fabrication not released</td></tr>
+</tbody></table></section>
+<section><h2>Single-layer laser power test coupons</h2>
+<p>Separate test boards are being <em>evaluated</em> for one-copper-layer fiber-laser and etching work. The documented preliminary concepts are a 35 × 25 mm process-isolation coupon, a 70 × 50 mm power-mux/load carrier, and separate 45 × 40 mm USB buck and battery boost board studies.</p>
+<div class="notice"><strong>Important:</strong> These dimensions are preliminary. There is no completed single-layer routed PCB, copper Gerber or drill output. The 0.20 mm feature-clearance process must be tested, and switching converters may require small two-layer modules if return-path and layout constraints cannot be met.</div>
+<p>Source: <a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_CONTINUITY/T25DA_ONE_SIDED_LASER_PCB_FEASIBILITY_FA.md">T25DA single-layer feasibility analysis</a>.</p></section>
+<section><h2>Continue exploring</h2><p>Read the <a href="validation.html">verification gates and fabrication hold</a> or the <a href="documentation.html">guide to public engineering documentation</a>.</p></section>
+<section aria-labelledby="source-links"><h2 id="source-links">Primary engineering references</h2>
+<div class="sources"><p>This is a public-facing summary dated <strong>14 October 2026</strong>, not a frozen design approval. The <a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_CONTINUITY/CURRENT_HANDOFF.md">live CURRENT_HANDOFF.md</a> and latest Git <code>main</code> files take precedence over this summary.</p>
+<p><a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_START_HERE.md">AI_START_HERE.md</a> · <a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/AI_CONTINUITY/DECISIONS_AND_CONSTRAINTS.md">Decisions and constraints</a> · <a href="https://github.com/mohammadhpp/Datalogger-RevA/blob/main/README.md">README</a></p></div></section>
+</main>
+<footer><div class="wrap">Datalogger RevA — public project summaries, not production documentation. <a href="./">Project home</a> · <a href="https://github.com/mohammadhpp/Datalogger-RevA">Source on GitHub</a>.</div></footer>
+</body></html>
