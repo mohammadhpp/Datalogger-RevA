@@ -25,5 +25,5 @@ jobs:
           python-version: '3.12'
       - name: Syntax check
         run: python -m py_compile AI_SCRIPTS/SEO/gsc_direct_monitor.py AI_SCRIPTS/SEO/test_gsc_direct_monitor.py
-      - name: Unit tests (offline: no Google credentials)
+      - name: "Unit tests (offline: no Google credentials)"
         run: python -m unittest discover -s AI_SCRIPTS/SEO -p 'test_*.py' -v
