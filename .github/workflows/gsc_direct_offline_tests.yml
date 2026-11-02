@@ -1,0 +1,29 @@
+name: GSC Direct Monitor Offline Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'AI_SCRIPTS/SEO/**'
+      - '.github/workflows/gsc_direct_offline_tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Syntax check
+        run: python -m py_compile AI_SCRIPTS/SEO/gsc_direct_monitor.py AI_SCRIPTS/SEO/test_gsc_direct_monitor.py
+      - name: Unit tests (offline: no Google credentials)
+        run: python -m unittest discover -s AI_SCRIPTS/SEO -p 'test_*.py' -v
