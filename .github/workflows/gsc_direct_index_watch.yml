@@ -1,0 +1,74 @@
+name: Direct Google Search Console Index Watch
+
+on:
+  # 09:07 Tehran (UTC+03:30); off the top of the hour to reduce schedule delay.
+  schedule:
+    - cron: '37 5 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: datalogger-gsc-index-watch
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+  id-token: write # Needed only when using keyless Google Workload Identity Federation.
+
+jobs:
+  inspect:
+    name: Inspect four Datalogger pages and sitemap
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+      GSC_WIF_PROVIDER: ${{ secrets.GSC_WIF_PROVIDER }}
+      GSC_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GSC_SERVICE_ACCOUNT_EMAIL }}
+      GITHUB_TOKEN: ${{ github.token }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+
+    steps:
+      - name: Check out the source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Google OAuth library
+        run: python -m pip install 'google-auth[requests]>=2.32,<4'
+
+      - name: Run offline classification checks
+        run: python -m unittest discover -s AI_SCRIPTS/SEO -p 'test_*.py' -v
+
+      - name: Verify a Google authentication method is configured
+        shell: bash
+        run: |
+          if [[ -z "$GSC_SERVICE_ACCOUNT_JSON" && -z "$GSC_WIF_PROVIDER" ]]; then
+            echo "::error::Set GSC_SERVICE_ACCOUNT_JSON in repository Actions secrets, or configure GSC_WIF_PROVIDER and GSC_SERVICE_ACCOUNT_EMAIL."
+            exit 1
+          fi
+          if [[ -z "$GSC_SERVICE_ACCOUNT_JSON" && -n "$GSC_WIF_PROVIDER" && -z "$GSC_SERVICE_ACCOUNT_EMAIL" ]]; then
+            echo "::error::Keyless WIF also needs GSC_SERVICE_ACCOUNT_EMAIL."
+            exit 1
+          fi
+
+      - name: Authenticate to Google with keyless Workload Identity Federation
+        if: ${{ env.GSC_SERVICE_ACCOUNT_JSON == '' && env.GSC_WIF_PROVIDER != '' }}
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ secrets.GSC_WIF_PROVIDER }}
+          service_account: ${{ secrets.GSC_SERVICE_ACCOUNT_EMAIL }}
+
+      - name: Read official URL Inspection and Sitemap APIs
+        run: python AI_SCRIPTS/SEO/gsc_direct_monitor.py
+
+      - name: Store sanitized status report as a workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gsc-index-report
+          path: gsc-index-report.json
+          if-no-files-found: ignore
+          retention-days: 30
