@@ -1,9 +1,7 @@
 name: Direct Google Search Console Index Watch
 
 on:
-  # 09:07 Tehran (UTC+03:30); off the top of the hour to reduce schedule delay.
-  schedule:
-    - cron: '37 5 * * *'
+  # Automatic monitoring paused at user's request. Manual runs remain available.
   workflow_dispatch:
 
 concurrency:
